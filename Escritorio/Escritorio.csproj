@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{70BFB1A5-D165-41F2-9D23-4BE29D1A1DD6}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Escritorio</RootNamespace>
+    <AssemblyName>Escritorio</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.8.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetLight, Version=3.4.9.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.4.9\lib\SpreadsheetLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.4.0\lib\net46\System.IO.Packaging.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AcercaDeTamboSoft.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AcercaDeTamboSoft.Designer.cs">
+      <DependentUpon>AcercaDeTamboSoft.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AltaAnimales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaAnimales.Designer.cs">
+      <DependentUpon>AltaAnimales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AltaControles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaControles.Designer.cs">
+      <DependentUpon>AltaControles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AltaEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaEventos.Designer.cs">
+      <DependentUpon>AltaEventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AltaPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaPersonal.Designer.cs">
+      <DependentUpon>AltaPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AltaTambos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaTambos.Designer.cs">
+      <DependentUpon>AltaTambos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DatosTambo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DatosTambo.Designer.cs">
+      <DependentUpon>DatosTambo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdicionAnimales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EdicionAnimales.Designer.cs">
+      <DependentUpon>EdicionAnimales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdicionControles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EdicionControles.Designer.cs">
+      <DependentUpon>EdicionControles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdicionDatosTambo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EdicionDatosTambo.Designer.cs">
+      <DependentUpon>EdicionDatosTambo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdicionOtrosTambos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EdicionOtrosTambos.Designer.cs">
+      <DependentUpon>EdicionOtrosTambos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EdicionPersonal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EdicionPersonal.Designer.cs">
+      <DependentUpon>EdicionPersonal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ExportarAExcel.cs" />
+    <Compile Include="GestionAnimales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionAnimales.Designer.cs">
+      <DependentUpon>GestionAnimales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionControles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionControles.Designer.cs">
+      <DependentUpon>GestionControles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionEventos.Designer.cs">
+      <DependentUpon>GestionEventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionTambos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GestionTambos.Designer.cs">
+      <DependentUpon>GestionTambos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoAnimales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoAnimales.Designer.cs">
+      <DependentUpon>ListadoAnimales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoControles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoControles.Designer.cs">
+      <DependentUpon>ListadoControles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoEventos.Designer.cs">
+      <DependentUpon>ListadoEventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListadoInseminadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoInseminadores.Designer.cs">
+      <DependentUpon>ListadoInseminadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Personal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Personal.Designer.cs">
+      <DependentUpon>Personal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Principal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AcercaDeTamboSoft.resx">
+      <DependentUpon>AcercaDeTamboSoft.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaAnimales.resx">
+      <DependentUpon>AltaAnimales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaControles.resx">
+      <DependentUpon>AltaControles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaEventos.resx">
+      <DependentUpon>AltaEventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaPersonal.resx">
+      <DependentUpon>AltaPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AltaTambos.resx">
+      <DependentUpon>AltaTambos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DatosTambo.resx">
+      <DependentUpon>DatosTambo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EdicionAnimales.resx">
+      <DependentUpon>EdicionAnimales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EdicionControles.resx">
+      <DependentUpon>EdicionControles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EdicionDatosTambo.resx">
+      <DependentUpon>EdicionDatosTambo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EdicionOtrosTambos.resx">
+      <DependentUpon>EdicionOtrosTambos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EdicionPersonal.resx">
+      <DependentUpon>EdicionPersonal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionAnimales.resx">
+      <DependentUpon>GestionAnimales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionControles.resx">
+      <DependentUpon>GestionControles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionEventos.resx">
+      <DependentUpon>GestionEventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GestionTambos.resx">
+      <DependentUpon>GestionTambos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoAnimales.resx">
+      <DependentUpon>ListadoAnimales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoControles.resx">
+      <DependentUpon>ListadoControles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoEventos.resx">
+      <DependentUpon>ListadoEventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoInseminadores.resx">
+      <DependentUpon>ListadoInseminadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Personal.resx">
+      <DependentUpon>Personal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{2fa90a42-c85e-495a-baab-2bd879e2e728}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Negocio\Negocio.csproj">
+      <Project>{d49bd041-f775-45de-9279-37dd48579ea6}</Project>
+      <Name>Negocio</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Util\Util.csproj">
+      <Project>{4b0029c2-35dd-40a6-b7ae-a9928408c7e4}</Project>
+      <Name>Util</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
