@@ -427,6 +427,13 @@ namespace Escritorio
                     eventoNegocio.Insertar(listaEventoAnimal);
                     MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    //Actualizo el estado del animal
+                    Animal_Negocio animalNegocio = new Animal_Negocio();
+                    if (this.lbEventos.SelectedIndex == 5)  //sería el evento de enfermedad
+                    {
+                        animalNegocio.ActualizarEstado("Enfermo", eventoAnimal1.Rp);
+                    }
+
                     this.Limpiar();
                 }
                 else
@@ -449,6 +456,18 @@ namespace Escritorio
                     listaEventoAnimal.Add(eventoAnimal3);
                     eventoNegocio.Insertar(listaEventoAnimal);
                     MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //Actualizo el estado del animal
+                    Animal_Negocio animalNegocio = new Animal_Negocio();
+                    if (this.lbEventos.SelectedIndex == 2)  //sería el evento de celo
+                    {
+                        animalNegocio.ActualizarEstado("Celo", eventoAnimal1.Rp);
+                    }
+                    else if (this.lbEventos.SelectedIndex == 0)  //sería el evento de celo
+                    {
+                        animalNegocio.ActualizarEstado("Vivo", eventoAnimal1.Rp);
+                    }
+
                     this.Limpiar();
                 }
                 else

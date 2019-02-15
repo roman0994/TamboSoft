@@ -123,6 +123,320 @@ namespace Datos
             }
         }
 
+        public List<Animal> RecuperarVacasServidasPorTambo(int id_tambo)
+        {
+            try
+            {
+                List<Animal> lista = new List<Animal>();
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.sexo,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo FROM EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Animal on ev.rp=a.rp a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Servicio' and ev.fecha_desc > DATEADD(dd,-21,GETDATE())", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    Animal animal = new Animal();
+                    animal.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    animal.Fecha_nacimiento = dr.IsDBNull(1) ? Convert.ToDateTime(string.Empty) : (DateTime)dr["fecha_nacimiento"];
+                    animal.Edad = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (int)dr["edad"];
+                    animal.Foto = dr.IsDBNull(3) ? string.Empty : dr["foto"].ToString();
+                    animal.Nombre_animal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
+                    animal.Estado_animal = dr.IsDBNull(5) ? string.Empty : dr["estado_animal"].ToString();
+                    animal.Hba = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
+                    animal.Categoria = dr.IsDBNull(7) ? string.Empty : dr["categoria"].ToString();
+                    animal.Sexo = dr.IsDBNull(8) ? string.Empty : dr["sexo"].ToString();
+                    animal.Rp_madre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
+                    animal.Rp_padre = dr.IsDBNull(10) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
+                    animal.Hba_madre = dr.IsDBNull(11) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
+                    animal.Hba_padre = dr.IsDBNull(12) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_padre"]));
+                    animal.Id_tambo = dr.IsDBNull(13) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    animal.Id_raza = dr.IsDBNull(14) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_raza"]));
+                    animal.Nombre_raza = dr.IsDBNull(15) ? string.Empty : dr["nombre_raza"].ToString();
+                    animal.Nombre_tambo = dr.IsDBNull(16) ? string.Empty : dr["nombre_tambo"].ToString();
+                    animal.Habilitado = dr.IsDBNull(17) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
+
+
+                    lista.Add(animal);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del animal", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public List<Animal> RecuperarVacasConPartoPorTambo(int id_tambo)
+        {
+            try
+            {
+                List<Animal> lista = new List<Animal>();
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.sexo,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo FROM EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Animal on ev.rp=a.rp a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Parto' and ev.fecha_desc > DATEADD(dd,-21,GETDATE())", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    Animal animal = new Animal();
+                    animal.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    animal.Fecha_nacimiento = dr.IsDBNull(1) ? Convert.ToDateTime(string.Empty) : (DateTime)dr["fecha_nacimiento"];
+                    animal.Edad = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (int)dr["edad"];
+                    animal.Foto = dr.IsDBNull(3) ? string.Empty : dr["foto"].ToString();
+                    animal.Nombre_animal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
+                    animal.Estado_animal = dr.IsDBNull(5) ? string.Empty : dr["estado_animal"].ToString();
+                    animal.Hba = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
+                    animal.Categoria = dr.IsDBNull(7) ? string.Empty : dr["categoria"].ToString();
+                    animal.Sexo = dr.IsDBNull(8) ? string.Empty : dr["sexo"].ToString();
+                    animal.Rp_madre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
+                    animal.Rp_padre = dr.IsDBNull(10) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
+                    animal.Hba_madre = dr.IsDBNull(11) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
+                    animal.Hba_padre = dr.IsDBNull(12) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_padre"]));
+                    animal.Id_tambo = dr.IsDBNull(13) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    animal.Id_raza = dr.IsDBNull(14) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_raza"]));
+                    animal.Nombre_raza = dr.IsDBNull(15) ? string.Empty : dr["nombre_raza"].ToString();
+                    animal.Nombre_tambo = dr.IsDBNull(16) ? string.Empty : dr["nombre_tambo"].ToString();
+                    animal.Habilitado = dr.IsDBNull(17) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
+
+
+                    lista.Add(animal);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del animal", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public List<Animal> RecuperarAnimalesEnfermosPorTambo(int id_tambo)
+        {
+            try
+            {
+                List<Animal> lista = new List<Animal>();
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.sexo,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo'", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    Animal animal = new Animal();
+                    animal.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    animal.Fecha_nacimiento = dr.IsDBNull(1) ? Convert.ToDateTime(string.Empty) : (DateTime)dr["fecha_nacimiento"];
+                    animal.Edad = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (int)dr["edad"];
+                    animal.Foto = dr.IsDBNull(3) ? string.Empty : dr["foto"].ToString();
+                    animal.Nombre_animal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
+                    animal.Estado_animal = dr.IsDBNull(5) ? string.Empty : dr["estado_animal"].ToString();
+                    animal.Hba = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
+                    animal.Categoria = dr.IsDBNull(7) ? string.Empty : dr["categoria"].ToString();
+                    animal.Sexo = dr.IsDBNull(8) ? string.Empty : dr["sexo"].ToString();
+                    animal.Rp_madre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
+                    animal.Rp_padre = dr.IsDBNull(10) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
+                    animal.Hba_madre = dr.IsDBNull(11) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
+                    animal.Hba_padre = dr.IsDBNull(12) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_padre"]));
+                    animal.Id_tambo = dr.IsDBNull(13) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    animal.Id_raza = dr.IsDBNull(14) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_raza"]));
+                    animal.Nombre_raza = dr.IsDBNull(15) ? string.Empty : dr["nombre_raza"].ToString();
+                    animal.Nombre_tambo = dr.IsDBNull(16) ? string.Empty : dr["nombre_tambo"].ToString();
+                    animal.Habilitado = dr.IsDBNull(17) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
+
+
+                    lista.Add(animal);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del animal", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public List<Animal> RecuperarVacasEnCeloPorTambo(int id_tambo)
+        {
+            try
+            {
+                List<Animal> lista = new List<Animal>();
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.sexo,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Celo'", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    Animal animal = new Animal();
+                    animal.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    animal.Fecha_nacimiento = dr.IsDBNull(1) ? Convert.ToDateTime(string.Empty) : (DateTime)dr["fecha_nacimiento"];
+                    animal.Edad = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (int)dr["edad"];
+                    animal.Foto = dr.IsDBNull(3) ? string.Empty : dr["foto"].ToString();
+                    animal.Nombre_animal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
+                    animal.Estado_animal = dr.IsDBNull(5) ? string.Empty : dr["estado_animal"].ToString();
+                    animal.Hba = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
+                    animal.Categoria = dr.IsDBNull(7) ? string.Empty : dr["categoria"].ToString();
+                    animal.Sexo = dr.IsDBNull(8) ? string.Empty : dr["sexo"].ToString();
+                    animal.Rp_madre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
+                    animal.Rp_padre = dr.IsDBNull(10) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
+                    animal.Hba_madre = dr.IsDBNull(11) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
+                    animal.Hba_padre = dr.IsDBNull(12) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_padre"]));
+                    animal.Id_tambo = dr.IsDBNull(13) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    animal.Id_raza = dr.IsDBNull(14) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_raza"]));
+                    animal.Nombre_raza = dr.IsDBNull(15) ? string.Empty : dr["nombre_raza"].ToString();
+                    animal.Nombre_tambo = dr.IsDBNull(16) ? string.Empty : dr["nombre_tambo"].ToString();
+                    animal.Habilitado = dr.IsDBNull(17) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
+
+
+                    lista.Add(animal);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del animal", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public int CantidadCriasMacho(int id_tambo)
+        {
+            try
+            {
+                int cantCriasMacho;
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("select COUNT(*) 'Crías Macho' from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 2 and t.id_tambo=@id_tambo", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                cantCriasMacho = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : Convert.ToInt32(dr["Crias Macho"]);
+                
+                return cantCriasMacho;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public int CantidadCriasHembra(int id_tambo)
+        {
+            try
+            {
+                int cantCriasHembra;
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("select COUNT(*) 'Crías Hembra' from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 1 and t.id_tambo=@id_tambo", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                cantCriasHembra = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : Convert.ToInt32(dr["Crias Hembra"]);
+
+                return cantCriasHembra;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public int CantidadCriasMuertas(int id_tambo)
+        {
+            try
+            {
+                int cantCriasMuertas;
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("select COUNT(*) 'Crías Muertas' from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 12 and t.id_tambo=@id_tambo", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                cantCriasMuertas = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : Convert.ToInt32(dr["Crias Muertas"]);
+
+                return cantCriasMuertas;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
         public Animal RecuperarUno(int rp)
         {
             try

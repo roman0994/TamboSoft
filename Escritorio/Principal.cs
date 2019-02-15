@@ -134,10 +134,17 @@ namespace Escritorio
             altaTambos.ShowDialog();
         }
 
-        private void acercaDeTamboSoftToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void acercaDeTamboSoftToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AcercaDeTamboSoft tamboSoft = new AcercaDeTamboSoft();
             tamboSoft.ShowDialog();
+        }
+
+        private void reporteProduccionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteProduccion reporteProduccion = new ReporteProduccion(id_tambo);
+            reporteProduccion.idtambo = id_tambo;
+            reporteProduccion.ShowDialog();
         }
     }
 }
