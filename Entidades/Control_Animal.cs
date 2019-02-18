@@ -18,6 +18,8 @@ namespace Entidades
         private decimal _segundo_control;
         private decimal _porcentaje_grasa;
         private decimal _kg_grasa;
+        private decimal grasa_primercontrol;
+        private decimal grasa_segundocontrol;
 
         public DateTime Fecha_control { get => _fecha_control; set => _fecha_control = value; }
         public int Id_control { get => _id_control; set => _id_control = value; }
@@ -29,13 +31,15 @@ namespace Entidades
         public string Nombre_animal { get => _nombre_animal; set => _nombre_animal = value; }
         public int Id_tambo { get => _id_tambo; set => _id_tambo = value; }
         public string Nombre_tambo { get => _nombre_tambo; set => _nombre_tambo = value; }
+        public decimal Grasa_segundocontrol { get => grasa_segundocontrol; set => grasa_segundocontrol = value; }
+        public decimal Grasa_primercontrol { get => grasa_primercontrol; set => grasa_primercontrol = value; }
 
         public Control_Animal()
         {
 
         }
 
-        public Control_Animal(DateTime fecha_control, int id_control, int rp, string nombre_animal, int id_tambo,string nombre_tambo, decimal primer_control, decimal segundo_control, decimal porcentaje_grasa, decimal kg_grasa)
+        public Control_Animal(DateTime fecha_control, int id_control, int rp, string nombre_animal, int id_tambo,string nombre_tambo, decimal primer_control, decimal segundo_control, decimal porcentaje_grasa, decimal kg_grasa, decimal grasa_primercontrol, decimal grasa_segundocontrol)
         {
             this.Fecha_control = fecha_control;
             this.Id_control = id_control;
@@ -47,6 +51,8 @@ namespace Entidades
             this.Segundo_control = segundo_control;
             this.Porcentaje_grasa = porcentaje_grasa;
             this.Kg_grasa = kg_grasa;
+            this.Grasa_primercontrol = grasa_primercontrol;
+            this.Grasa_segundocontrol = grasa_segundocontrol;
         }
     }
 }

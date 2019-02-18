@@ -315,6 +315,7 @@
             this.reporteEventosToolStripMenuItem1.Name = "reporteEventosToolStripMenuItem1";
             this.reporteEventosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.reporteEventosToolStripMenuItem1.Text = "Eventos";
+            this.reporteEventosToolStripMenuItem1.Click += new System.EventHandler(this.reporteEventosToolStripMenuItem1_Click);
             // 
             // acercaDeToolStripMenuItem
             // 

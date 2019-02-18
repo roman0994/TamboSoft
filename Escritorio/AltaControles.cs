@@ -35,8 +35,8 @@ namespace Escritorio
         {
             tooltipControles.SetToolTip(this.txtPrimerControl, "Formato de ingreso : XX,XX");
             tooltipControles.SetToolTip(this.txtSegundoControl, "Formato de ingreso : XX,XX");
-            tooltipControles.SetToolTip(this.txtPorcentajeGrasa, "Formato de ingreso : XX,XX");
-            tooltipControles.SetToolTip(this.txtKgGrasa, "Formato de ingreso : XX,XX");
+            tooltipControles.SetToolTip(this.txtGrasaPrimerControl, "Formato de ingreso : XX,XX");
+            tooltipControles.SetToolTip(this.txtGrasaSegundoControl, "Formato de ingreso : XX,XX");
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -47,7 +47,7 @@ namespace Escritorio
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarCargaControles(this.cbAnimal.SelectedIndex, this.dtpFechaControl.Value.Date, this.txtPrimerControl.Text, this.txtSegundoControl.Text, this.txtPorcentajeGrasa.Text, this.txtKgGrasa.Text);
+            bool validar = validaciones.ValidarCargaControles(this.cbAnimal.SelectedIndex, this.dtpFechaControl.Value.Date);
 
             if (validar == true)
             {
@@ -77,10 +77,10 @@ namespace Escritorio
             Control_Animal control = new Control_Animal();
 
             control.Fecha_control = dtpFechaControl.Value.Date;
-            control.Primer_control = Convert.ToDecimal(txtPrimerControl.Text);
-            control.Segundo_control = Convert.ToDecimal(txtSegundoControl.Text);
-            control.Porcentaje_grasa = Convert.ToDecimal(txtPorcentajeGrasa.Text);
-            control.Kg_grasa = Convert.ToDecimal(txtKgGrasa.Text);
+            control.Primer_control = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtPrimerControl.Text);
+            control.Segundo_control = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtSegundoControl.Text);
+            control.Grasa_primercontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaPrimerControl.Text);
+            control.Grasa_segundocontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaSegundoControl.Text);
             control.Nombre_animal = animal.Nombre_animal;
             control.Rp = animal.Rp;
 
@@ -92,8 +92,8 @@ namespace Escritorio
             this.cbAnimal.Text = string.Empty;
             this.txtPrimerControl.Text = string.Empty;
             this.txtSegundoControl.Text = string.Empty;
-            this.txtPorcentajeGrasa.Text = string.Empty;
-            this.txtKgGrasa.Text = string.Empty;
+            this.txtGrasaPrimerControl.Text = string.Empty;
+            this.txtGrasaSegundoControl.Text = string.Empty;
             this.dtpFechaControl.Text = string.Empty;
 
         }
@@ -184,37 +184,37 @@ namespace Escritorio
 
         private void txtPorcentajeGrasa_Enter(object sender, EventArgs e)
         {
-            if (this.txtPorcentajeGrasa.Text == "Formato: XX,XX")
+            if (this.txtGrasaPrimerControl.Text == "Formato: XX,XX")
             {
-                this.txtPorcentajeGrasa.Text = "";
-                this.txtPorcentajeGrasa.ForeColor = Color.Black;
+                this.txtGrasaPrimerControl.Text = "";
+                this.txtGrasaPrimerControl.ForeColor = Color.Black;
             }
         }
 
         private void txtPorcentajeGrasa_Leave(object sender, EventArgs e)
         {
-            if (this.txtPorcentajeGrasa.Text == "")
+            if (this.txtGrasaPrimerControl.Text == "")
             {
-                this.txtPorcentajeGrasa.Text = "Formato: XX,XX";
-                this.txtPorcentajeGrasa.ForeColor = Color.Silver;
+                this.txtGrasaPrimerControl.Text = "Formato: XX,XX";
+                this.txtGrasaPrimerControl.ForeColor = Color.Silver;
             }
         }
 
         private void txtKgGrasa_Enter(object sender, EventArgs e)
         {
-            if (this.txtKgGrasa.Text == "Formato: XX,XX")
+            if (this.txtGrasaSegundoControl.Text == "Formato: XX,XX")
             {
-                this.txtKgGrasa.Text = "";
-                this.txtKgGrasa.ForeColor = Color.Black;
+                this.txtGrasaSegundoControl.Text = "";
+                this.txtGrasaSegundoControl.ForeColor = Color.Black;
             }
         }
 
         private void txtKgGrasa_Leave(object sender, EventArgs e)
         {
-            if (this.txtKgGrasa.Text == "")
+            if (this.txtGrasaSegundoControl.Text == "")
             {
-                this.txtKgGrasa.Text = "Formato: XX,XX";
-                this.txtKgGrasa.ForeColor = Color.Silver;
+                this.txtGrasaSegundoControl.Text = "Formato: XX,XX";
+                this.txtGrasaSegundoControl.ForeColor = Color.Silver;
             }
         }
 

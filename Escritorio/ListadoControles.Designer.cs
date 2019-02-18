@@ -49,9 +49,9 @@
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.primer_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grasa_primercontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.segundo_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentaje_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kg_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grasa_segundocontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -117,9 +117,9 @@
             this.nombre_animal,
             this.id_control,
             this.primer_control,
+            this.grasa_primercontrol,
             this.segundo_control,
-            this.porcentaje_grasa,
-            this.kg_grasa,
+            this.grasa_segundocontrol,
             this.id_tambo,
             this.nombre_tambo});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvControles, 2);
@@ -268,6 +268,14 @@
             this.primer_control.ReadOnly = true;
             this.primer_control.Width = 95;
             // 
+            // grasa_primercontrol
+            // 
+            this.grasa_primercontrol.DataPropertyName = "grasa_primercontrol";
+            this.grasa_primercontrol.HeaderText = "Grasa primer control";
+            this.grasa_primercontrol.Name = "grasa_primercontrol";
+            this.grasa_primercontrol.ReadOnly = true;
+            this.grasa_primercontrol.Width = 80;
+            // 
             // segundo_control
             // 
             this.segundo_control.DataPropertyName = "segundo_control";
@@ -276,21 +284,13 @@
             this.segundo_control.ReadOnly = true;
             this.segundo_control.Width = 95;
             // 
-            // porcentaje_grasa
+            // grasa_segundocontrol
             // 
-            this.porcentaje_grasa.DataPropertyName = "porcentaje_grasa";
-            this.porcentaje_grasa.HeaderText = "% Grasa";
-            this.porcentaje_grasa.Name = "porcentaje_grasa";
-            this.porcentaje_grasa.ReadOnly = true;
-            this.porcentaje_grasa.Width = 80;
-            // 
-            // kg_grasa
-            // 
-            this.kg_grasa.DataPropertyName = "kg_grasa";
-            this.kg_grasa.HeaderText = "Kg Grasa";
-            this.kg_grasa.Name = "kg_grasa";
-            this.kg_grasa.ReadOnly = true;
-            this.kg_grasa.Width = 80;
+            this.grasa_segundocontrol.DataPropertyName = "grasa_segundocontrol";
+            this.grasa_segundocontrol.HeaderText = "Grasa segundo control";
+            this.grasa_segundocontrol.Name = "grasa_segundocontrol";
+            this.grasa_segundocontrol.ReadOnly = true;
+            this.grasa_segundocontrol.Width = 80;
             // 
             // id_tambo
             // 
@@ -355,9 +355,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn primer_control;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grasa_primercontrol;
         private System.Windows.Forms.DataGridViewTextBoxColumn segundo_control;
-        private System.Windows.Forms.DataGridViewTextBoxColumn porcentaje_grasa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kg_grasa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grasa_segundocontrol;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
     }

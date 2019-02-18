@@ -56,9 +56,9 @@ namespace Util
             }
         }
 
-        public bool ValidarCargaControles(int indexAnimal, DateTime fecha, string primerControl, string segundoControl, string porcGrasa, string kgGrasa)
+        public bool ValidarCargaControles(int indexAnimal, DateTime fecha)
         {
-            if (indexAnimal != -1 && fecha != null && primerControl != null && primerControl != "Lts del 1er ordeñe. Formato: XX,XX" && segundoControl != null && segundoControl != "Lts del 2do ordeñe. Formato: XX,XX" && porcGrasa != null && porcGrasa != "Formato: XX,XX" && kgGrasa != null && kgGrasa != "Formato: XX,XX")
+            if (indexAnimal != -1 && fecha != null)
             {
                 return true;
             }
@@ -68,9 +68,9 @@ namespace Util
             }
         }
 
-        public bool ValidarEdicionControles(int indexAnimal, DateTime fecha, string primerControl, string segundoControl, string porcGrasa, string kgGrasa)
+        public bool ValidarEdicionControles(int indexAnimal, DateTime fecha)
         {
-            if (indexAnimal != -1 && fecha != null && primerControl != null && primerControl != string.Empty && segundoControl != null && segundoControl != string.Empty && porcGrasa != null && porcGrasa != string.Empty && kgGrasa != null && kgGrasa != string.Empty)
+            if (indexAnimal != -1 && fecha != null)
             {
                 return true;
             }

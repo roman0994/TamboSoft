@@ -37,8 +37,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.gbControl = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.txtKgGrasa = new System.Windows.Forms.TextBox();
-            this.txtPorcentajeGrasa = new System.Windows.Forms.TextBox();
+            this.txtGrasaSegundoControl = new System.Windows.Forms.TextBox();
+            this.txtGrasaPrimerControl = new System.Windows.Forms.TextBox();
             this.txtSegundoControl = new System.Windows.Forms.TextBox();
             this.txtPrimerControl = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -149,8 +149,8 @@
             // 
             this.tlpControles.SetColumnSpan(this.gbControl, 3);
             this.gbControl.Controls.Add(this.label9);
-            this.gbControl.Controls.Add(this.txtKgGrasa);
-            this.gbControl.Controls.Add(this.txtPorcentajeGrasa);
+            this.gbControl.Controls.Add(this.txtGrasaSegundoControl);
+            this.gbControl.Controls.Add(this.txtGrasaPrimerControl);
             this.gbControl.Controls.Add(this.txtSegundoControl);
             this.gbControl.Controls.Add(this.txtPrimerControl);
             this.gbControl.Controls.Add(this.label7);
@@ -176,25 +176,25 @@
             this.label9.TabIndex = 8;
             this.label9.Text = "* Campos obligatorios.";
             // 
-            // txtKgGrasa
+            // txtGrasaSegundoControl
             // 
-            this.txtKgGrasa.Location = new System.Drawing.Point(191, 141);
-            this.txtKgGrasa.Name = "txtKgGrasa";
-            this.txtKgGrasa.Size = new System.Drawing.Size(200, 20);
-            this.txtKgGrasa.TabIndex = 5;
-            this.txtKgGrasa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKgGrasa_KeyPress);
+            this.txtGrasaSegundoControl.Location = new System.Drawing.Point(191, 141);
+            this.txtGrasaSegundoControl.Name = "txtGrasaSegundoControl";
+            this.txtGrasaSegundoControl.Size = new System.Drawing.Size(200, 20);
+            this.txtGrasaSegundoControl.TabIndex = 5;
+            this.txtGrasaSegundoControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKgGrasa_KeyPress);
             // 
-            // txtPorcentajeGrasa
+            // txtGrasaPrimerControl
             // 
-            this.txtPorcentajeGrasa.Location = new System.Drawing.Point(192, 105);
-            this.txtPorcentajeGrasa.Name = "txtPorcentajeGrasa";
-            this.txtPorcentajeGrasa.Size = new System.Drawing.Size(200, 20);
-            this.txtPorcentajeGrasa.TabIndex = 4;
-            this.txtPorcentajeGrasa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPorcentajeGrasa_KeyPress);
+            this.txtGrasaPrimerControl.Location = new System.Drawing.Point(192, 68);
+            this.txtGrasaPrimerControl.Name = "txtGrasaPrimerControl";
+            this.txtGrasaPrimerControl.Size = new System.Drawing.Size(200, 20);
+            this.txtGrasaPrimerControl.TabIndex = 4;
+            this.txtGrasaPrimerControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPorcentajeGrasa_KeyPress);
             // 
             // txtSegundoControl
             // 
-            this.txtSegundoControl.Location = new System.Drawing.Point(191, 65);
+            this.txtSegundoControl.Location = new System.Drawing.Point(191, 105);
             this.txtSegundoControl.Name = "txtSegundoControl";
             this.txtSegundoControl.Size = new System.Drawing.Size(200, 20);
             this.txtSegundoControl.TabIndex = 3;
@@ -214,29 +214,29 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(28, 144);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.Size = new System.Drawing.Size(120, 13);
             this.label7.TabIndex = 3;
-            this.label7.Text = "Kg grasa: *";
+            this.label7.Text = "Grasa segundo control: ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(28, 108);
+            this.label6.Location = new System.Drawing.Point(26, 68);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 13);
+            this.label6.Size = new System.Drawing.Size(107, 13);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Porcentaje grasa: *";
+            this.label6.Text = "Grasa primer control: ";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(28, 68);
+            this.label5.Location = new System.Drawing.Point(26, 108);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(95, 13);
+            this.label5.Size = new System.Drawing.Size(91, 13);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Segundo control: *";
+            this.label5.Text = "Segundo control: ";
             // 
             // label4
             // 
@@ -244,9 +244,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(28, 27);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(81, 13);
+            this.label4.Size = new System.Drawing.Size(77, 13);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Primer control: *";
+            this.label4.Text = "Primer control: ";
             // 
             // gbFechaControl
             // 
@@ -359,8 +359,8 @@
         public System.Windows.Forms.ComboBox cbAnimal;
         public System.Windows.Forms.Label label3;
         public System.Windows.Forms.GroupBox gbControl;
-        public System.Windows.Forms.TextBox txtKgGrasa;
-        public System.Windows.Forms.TextBox txtPorcentajeGrasa;
+        public System.Windows.Forms.TextBox txtGrasaSegundoControl;
+        public System.Windows.Forms.TextBox txtGrasaPrimerControl;
         public System.Windows.Forms.TextBox txtSegundoControl;
         public System.Windows.Forms.TextBox txtPrimerControl;
         public System.Windows.Forms.Label label7;

@@ -37,14 +37,14 @@ namespace Escritorio
         {
             tooltipControles.SetToolTip(this.txtPrimerControl, "Formato de ingreso : XX,XX");
             tooltipControles.SetToolTip(this.txtSegundoControl, "Formato de ingreso : XX,XX");
-            tooltipControles.SetToolTip(this.txtPorcentajeGrasa, "Formato de ingreso : XX,XX");
-            tooltipControles.SetToolTip(this.txtKgGrasa, "Formato de ingreso : XX,XX");
+            tooltipControles.SetToolTip(this.txtGrasaPrimerControl, "Formato de ingreso : XX,XX");
+            tooltipControles.SetToolTip(this.txtGrasaSegundoControl, "Formato de ingreso : XX,XX");
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarEdicionControles(this.cbAnimal.SelectedIndex, this.dtpFechaControl.Value.Date, this.txtPrimerControl.Text, this.txtSegundoControl.Text, this.txtPorcentajeGrasa.Text, this.txtKgGrasa.Text);
+            bool validar = validaciones.ValidarEdicionControles(this.cbAnimal.SelectedIndex, this.dtpFechaControl.Value.Date);
 
             if (validar == true)
             {
@@ -71,8 +71,8 @@ namespace Escritorio
             control.Fecha_control = dtpFechaControl.Value.Date;
             control.Primer_control = Convert.ToInt32(txtPrimerControl.Text);
             control.Segundo_control = Convert.ToInt32(txtSegundoControl.Text);
-            control.Porcentaje_grasa = Convert.ToDecimal(txtPorcentajeGrasa.Text);
-            control.Kg_grasa = Convert.ToDecimal(txtKgGrasa.Text);
+            control.Grasa_primercontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaPrimerControl.Text);
+            control.Grasa_segundocontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaSegundoControl.Text);
             control.Nombre_animal = animal.Nombre_animal;
             control.Rp = animal.Rp;
 

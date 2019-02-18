@@ -66,8 +66,8 @@ namespace Escritorio
             edicion.dtpFechaControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["fecha_control"].Value);
             edicion.txtPrimerControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["primer_control"].Value);
             edicion.txtSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["segundo_control"].Value);
-            edicion.txtPorcentajeGrasa.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["porcentaje_grasa"].Value);
-            edicion.txtKgGrasa.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["kg_grasa"].Value);
+            edicion.txtGrasaPrimerControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["porcentaje_grasa"].Value);
+            edicion.txtGrasaSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["kg_grasa"].Value);
             edicion.cbAnimal.Text = animal.Nombre_animal;
 
             edicion.ShowDialog();

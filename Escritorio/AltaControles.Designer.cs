@@ -35,9 +35,8 @@
             this.cbAnimal = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbControl = new System.Windows.Forms.GroupBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtKgGrasa = new System.Windows.Forms.TextBox();
-            this.txtPorcentajeGrasa = new System.Windows.Forms.TextBox();
+            this.txtGrasaSegundoControl = new System.Windows.Forms.TextBox();
+            this.txtGrasaPrimerControl = new System.Windows.Forms.TextBox();
             this.txtSegundoControl = new System.Windows.Forms.TextBox();
             this.txtPrimerControl = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
@@ -132,9 +131,8 @@
             // gbControl
             // 
             this.tlpControles.SetColumnSpan(this.gbControl, 4);
-            this.gbControl.Controls.Add(this.label8);
-            this.gbControl.Controls.Add(this.txtKgGrasa);
-            this.gbControl.Controls.Add(this.txtPorcentajeGrasa);
+            this.gbControl.Controls.Add(this.txtGrasaSegundoControl);
+            this.gbControl.Controls.Add(this.txtGrasaPrimerControl);
             this.gbControl.Controls.Add(this.txtSegundoControl);
             this.gbControl.Controls.Add(this.txtPrimerControl);
             this.gbControl.Controls.Add(this.label7);
@@ -150,48 +148,35 @@
             this.gbControl.TabStop = false;
             this.gbControl.Text = "Datos Control";
             // 
-            // label8
+            // txtGrasaSegundoControl
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(532, 160);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(111, 13);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "* Campos obligatorios.";
+            this.txtGrasaSegundoControl.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtGrasaSegundoControl.Location = new System.Drawing.Point(233, 158);
+            this.txtGrasaSegundoControl.Name = "txtGrasaSegundoControl";
+            this.txtGrasaSegundoControl.Size = new System.Drawing.Size(210, 20);
+            this.txtGrasaSegundoControl.TabIndex = 5;
+            this.txtGrasaSegundoControl.Enter += new System.EventHandler(this.txtKgGrasa_Enter);
+            this.txtGrasaSegundoControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKgGrasa_KeyPress);
+            this.txtGrasaSegundoControl.Leave += new System.EventHandler(this.txtKgGrasa_Leave);
             // 
-            // txtKgGrasa
+            // txtGrasaPrimerControl
             // 
-            this.txtKgGrasa.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.txtKgGrasa.Location = new System.Drawing.Point(233, 158);
-            this.txtKgGrasa.Name = "txtKgGrasa";
-            this.txtKgGrasa.Size = new System.Drawing.Size(210, 20);
-            this.txtKgGrasa.TabIndex = 5;
-            this.txtKgGrasa.Text = "Formato: XX,XX";
-            this.txtKgGrasa.Enter += new System.EventHandler(this.txtKgGrasa_Enter);
-            this.txtKgGrasa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtKgGrasa_KeyPress);
-            this.txtKgGrasa.Leave += new System.EventHandler(this.txtKgGrasa_Leave);
-            // 
-            // txtPorcentajeGrasa
-            // 
-            this.txtPorcentajeGrasa.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.txtPorcentajeGrasa.Location = new System.Drawing.Point(233, 116);
-            this.txtPorcentajeGrasa.Name = "txtPorcentajeGrasa";
-            this.txtPorcentajeGrasa.Size = new System.Drawing.Size(210, 20);
-            this.txtPorcentajeGrasa.TabIndex = 4;
-            this.txtPorcentajeGrasa.Text = "Formato: XX,XX";
-            this.txtPorcentajeGrasa.Enter += new System.EventHandler(this.txtPorcentajeGrasa_Enter);
-            this.txtPorcentajeGrasa.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPorcentajeGrasa_KeyPress);
-            this.txtPorcentajeGrasa.Leave += new System.EventHandler(this.txtPorcentajeGrasa_Leave);
+            this.txtGrasaPrimerControl.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtGrasaPrimerControl.Location = new System.Drawing.Point(233, 71);
+            this.txtGrasaPrimerControl.Name = "txtGrasaPrimerControl";
+            this.txtGrasaPrimerControl.Size = new System.Drawing.Size(210, 20);
+            this.txtGrasaPrimerControl.TabIndex = 4;
+            this.txtGrasaPrimerControl.Enter += new System.EventHandler(this.txtPorcentajeGrasa_Enter);
+            this.txtGrasaPrimerControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPorcentajeGrasa_KeyPress);
+            this.txtGrasaPrimerControl.Leave += new System.EventHandler(this.txtPorcentajeGrasa_Leave);
             // 
             // txtSegundoControl
             // 
             this.txtSegundoControl.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.txtSegundoControl.Location = new System.Drawing.Point(233, 74);
+            this.txtSegundoControl.Location = new System.Drawing.Point(233, 113);
             this.txtSegundoControl.Name = "txtSegundoControl";
             this.txtSegundoControl.Size = new System.Drawing.Size(210, 20);
             this.txtSegundoControl.TabIndex = 3;
-            this.txtSegundoControl.Text = "Lts del 2do ordeñe. Formato: XX,XX";
             this.txtSegundoControl.Enter += new System.EventHandler(this.txtSegundoControl_Enter);
             this.txtSegundoControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSegundoControl_KeyPress);
             this.txtSegundoControl.Leave += new System.EventHandler(this.txtSegundoControl_Leave);
@@ -199,11 +184,10 @@
             // txtPrimerControl
             // 
             this.txtPrimerControl.ForeColor = System.Drawing.SystemColors.InactiveCaption;
-            this.txtPrimerControl.Location = new System.Drawing.Point(233, 35);
+            this.txtPrimerControl.Location = new System.Drawing.Point(233, 32);
             this.txtPrimerControl.Name = "txtPrimerControl";
             this.txtPrimerControl.Size = new System.Drawing.Size(210, 20);
             this.txtPrimerControl.TabIndex = 2;
-            this.txtPrimerControl.Text = "Lts del 1er ordeñe. Formato: XX,XX";
             this.txtPrimerControl.Enter += new System.EventHandler(this.txtPrimerControl_Enter);
             this.txtPrimerControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrimerControl_KeyPress);
             this.txtPrimerControl.Leave += new System.EventHandler(this.txtPrimerControl_Leave);
@@ -214,29 +198,29 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(25, 161);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(59, 13);
+            this.label7.Size = new System.Drawing.Size(117, 13);
             this.label7.TabIndex = 3;
-            this.label7.Text = "Kg grasa: *";
+            this.label7.Text = "Grasa segundo control:";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(25, 116);
+            this.label6.Location = new System.Drawing.Point(25, 74);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(97, 13);
+            this.label6.Size = new System.Drawing.Size(107, 13);
             this.label6.TabIndex = 2;
-            this.label6.Text = "Porcentaje grasa: *";
+            this.label6.Text = "Grasa primer control: ";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(25, 74);
+            this.label5.Location = new System.Drawing.Point(25, 116);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(143, 13);
+            this.label5.Size = new System.Drawing.Size(139, 13);
             this.label5.TabIndex = 1;
-            this.label5.Text = "Segundo control (en litros) : *";
+            this.label5.Text = "Segundo control (en litros) : ";
             // 
             // label4
             // 
@@ -244,9 +228,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(25, 35);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(129, 13);
+            this.label4.Size = new System.Drawing.Size(125, 13);
             this.label4.TabIndex = 0;
-            this.label4.Text = "Primer control (en litros) : *";
+            this.label4.Text = "Primer control (en litros) : ";
             // 
             // gbFecha
             // 
@@ -344,11 +328,10 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtKgGrasa;
-        private System.Windows.Forms.TextBox txtPorcentajeGrasa;
+        private System.Windows.Forms.TextBox txtGrasaSegundoControl;
+        private System.Windows.Forms.TextBox txtGrasaPrimerControl;
         private System.Windows.Forms.TextBox txtSegundoControl;
         private System.Windows.Forms.TextBox txtPrimerControl;
         private System.Windows.Forms.ToolTip tooltipControles;
-        private System.Windows.Forms.Label label8;
     }
 }

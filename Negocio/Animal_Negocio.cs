@@ -28,6 +28,41 @@ namespace Negocio
             return animalDatos.RecuperarUno(rp);
         }
 
+        public List<Animal> RecuperarVacasServidasPorTambo(int id_tambo)
+        {
+            return animalDatos.RecuperarVacasServidasPorTambo(id_tambo);
+        }
+
+        public List<Animal> RecuperarVacasEnCeloPorTambo(int id_tambo)
+        {
+            return animalDatos.RecuperarVacasEnCeloPorTambo(id_tambo);
+        }
+
+        public List<Animal> RecuperarVacasConPartoPorTambo(int id_tambo)
+        {
+            return animalDatos.RecuperarVacasConPartoPorTambo(id_tambo);
+        }
+
+        public List<Animal> RecuperarAnimalesEnfermosPorTambo(int id_tambo)
+        {
+            return animalDatos.RecuperarAnimalesEnfermosPorTambo(id_tambo);
+        }
+
+        public int CantidadCriasMacho(int id_tambo)
+        {
+            return animalDatos.CantidadCriasMacho(id_tambo);
+        }
+
+        public int CantidadCriasHembra(int id_tambo)
+        {
+            return animalDatos.CantidadCriasHembra(id_tambo);
+        }
+
+        public int CantidadCriasMuertas(int id_tambo)
+        {
+            return animalDatos.CantidadCriasMuertas(id_tambo);
+        }
+
         public void Insertar(Animal animal)
         {
             animalDatos.Insertar(animal);

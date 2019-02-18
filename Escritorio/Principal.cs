@@ -146,5 +146,12 @@ namespace Escritorio
             reporteProduccion.idtambo = id_tambo;
             reporteProduccion.ShowDialog();
         }
+
+        private void reporteEventosToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ReporteEventos reporteEventos = new ReporteEventos(id_tambo);
+            reporteEventos.idtambo = id_tambo;
+            reporteEventos.ShowDialog();
+        }
     }
 }
