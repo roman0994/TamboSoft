@@ -13,6 +13,7 @@ namespace Escritorio
 {
     public partial class ListadoControles : Form
     {
+        public int idtambo;
         public ListadoControles(int id_tambo)
         {
             InitializeComponent();
@@ -37,7 +38,7 @@ namespace Escritorio
 
         private void tbsNuevo_Click(object sender, EventArgs e)
         {
-            AltaControles altaControles = new AltaControles();
+            AltaControles altaControles = new AltaControles(idtambo);
             altaControles.ShowDialog();
         }
 
@@ -55,7 +56,7 @@ namespace Escritorio
 
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
-            this.CargarGrilla(Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_tambo"].Value));
+            this.CargarGrilla(Convert.ToInt32(idtambo));
         }
     }
 }

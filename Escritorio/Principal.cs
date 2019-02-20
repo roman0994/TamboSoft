@@ -50,6 +50,7 @@ namespace Escritorio
         private void controlesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ListadoControles listadoControles = new ListadoControles(id_tambo);
+            listadoControles.idtambo = id_tambo;
             listadoControles.ShowDialog();
         }
 
@@ -98,7 +99,7 @@ namespace Escritorio
 
         private void nuevoControlToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaControles alta = new AltaControles();
+            AltaControles alta = new AltaControles(id_tambo);
             alta.ShowDialog();
         }
 

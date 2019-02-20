@@ -19,7 +19,8 @@ namespace Escritorio
         {
             InitializeComponent();
             CargarTextBoxTambo(id_tambo);
-            CargarGrillas(id_tambo);
+            CargarComboBoxFiltro();
+            CargarGrilla(id_tambo);            
         }
 
         public void CargarTextBoxTambo(int id_tambo)
@@ -31,7 +32,54 @@ namespace Escritorio
             this.txtTambo.Text = tambo.Nombre_tambo;
         }
 
-        public void CargarGrillas(int id_tambo)
+        public void CargarComboBoxFiltro()
+        {
+            this.cbFiltro.Items.Add("Vacas en celo");
+            this.cbFiltro.Items.Add("Animales enfermos");
+            this.cbFiltro.Items.Add("Vacas con parto en los últimos 21 días");
+            this.cbFiltro.Items.Add("Vacas servidas en los últimos 21 días");
+            this.cbFiltro.SelectedIndex = -1;
+        }
+
+        public void CargarGrilla(int id_tambo)
+        {
+            Animal_Negocio animalNegocio = new Animal_Negocio();
+            this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
+        }
+
+        private void cbFiltro_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Animal_Negocio animalNegocio = new Animal_Negocio();
+            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            Tambo tambo = new Tambo();
+
+            tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
+
+            if (this.cbFiltro.SelectedItem.ToString() == "Vacas en celo")
+            {
+                this.dgvEventos.DataSource = animalNegocio.RecuperarVacasEnCeloPorTambo(tambo.Id_tambo);
+            }
+            else if (this.cbFiltro.SelectedItem.ToString() == "Animales enfermos")
+            {
+                this.dgvEventos.DataSource = animalNegocio.RecuperarAnimalesEnfermosPorTambo(tambo.Id_tambo);
+            }
+            else if (this.cbFiltro.SelectedItem.ToString() == "Vacas con parto en los últimos 21 días")
+            {
+                this.dgvEventos.DataSource = animalNegocio.RecuperarVacasConPartoPorTambo(tambo.Id_tambo);
+            }
+            else if (this.cbFiltro.SelectedItem.ToString() == "Vacas servidas en los últimos 21 días")
+            {
+                this.dgvEventos.DataSource = animalNegocio.RecuperarVacasServidasPorTambo(tambo.Id_tambo);
+            }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+
+        /*public void CargarGrillas(int id_tambo)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             this.dgvVacasServidas.DataSource = animalNegocio.RecuperarVacasServidasPorTambo(id_tambo);
@@ -41,6 +89,6 @@ namespace Escritorio
             this.dgvCriasHembra.DataSource = animalNegocio.CantidadCriasHembra(id_tambo);
             this.dgvCriasMacho.DataSource = animalNegocio.CantidadCriasMacho(id_tambo);
             this.dgvCriasMuertas.DataSource = animalNegocio.CantidadCriasMuertas(id_tambo);
-        }
+        }*/
     }
 }

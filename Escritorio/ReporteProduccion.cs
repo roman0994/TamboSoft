@@ -19,15 +19,7 @@ namespace Escritorio
         {
             InitializeComponent();
             CargarTextBoxTambo(id_tambo);
-            CargarComboBusqueda();
-        }
-
-        public void CargarComboBusqueda()
-        {
-            this.cbBuscar.Items.Add("Día");
-            this.cbBuscar.Items.Add("Mes");
-            this.cbBuscar.Items.Add("Año");
-            this.cbBuscar.SelectedIndex = -1;
+            CargarGrilla(id_tambo);
         }
 
         public void CargarTextBoxTambo(int id_tambo)
@@ -37,6 +29,25 @@ namespace Escritorio
 
             tambo = tamboNegocio.RecuperarUno(id_tambo);
             this.txtTambo.Text = tambo.Nombre_tambo;
+        }
+
+        public void CargarGrilla(int id_tambo)
+        {
+            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+            this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTambo(id_tambo);
+        }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+            DateTime fechaDesde = this.dateTimePicker1.Value;
+            DateTime fechaHasta = this.dateTimePicker2.Value;
+            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+            this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTamboPorFecha(idtambo,fechaDesde,fechaHasta);
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

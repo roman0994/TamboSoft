@@ -78,6 +78,11 @@ namespace Negocio
             animalDatos.ActualizarEstado(estado,rp);
         }
 
+        public void ActualizarEstadoMuerto(string estado, int rp)
+        {
+            animalDatos.ActualizarEstadoMuerto(estado, rp);
+        }
+
         public void Eliminar(int rp)
         {
             animalDatos.Eliminar(rp);
@@ -106,6 +111,16 @@ namespace Negocio
         public DataTable FiltrarPorEstado(string texto)
         {
             return animalDatos.FiltrarPorEstado(texto);
+        }
+
+        public DataTable FiltrarPorAnimalesEnCeloPorTambo(int id_tambo)
+        {
+            return animalDatos.FiltrarPorAnimalesEnCeloPorTambo(id_tambo);
+        }
+
+        public DataTable FiltrarPorAnimalesEnfermosPorTambo(int id_tambo)
+        {
+            return animalDatos.FiltrarPorAnimalesEnfermosPorTambo(id_tambo);
         }
     }
 }

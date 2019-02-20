@@ -103,6 +103,55 @@ namespace Datos
             }
         }
 
+        public List<Control_Animal> RecuperarPorTamboPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                List<Control_Animal> lista = new List<Control_Animal>();
+                this.AbrirConexion();
+                SqlCommand cmdControlAnimal = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol FROM Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and ca.fecha_control>=@fechaDesde and ca.fecha_control<=@fechaHasta", Conn);
+                cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControlAnimal.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
+                cmdControlAnimal.Parameters.Add("fechaHasta", SqlDbType.DateTime).Value = fechaHasta;
+
+                SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    Control_Animal controlAnimal = new Control_Animal();
+                    controlAnimal.Fecha_control = dr.IsDBNull(0) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_control"]));
+                    controlAnimal.Id_control = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_control"]));
+                    controlAnimal.Rp = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    controlAnimal.Nombre_animal = dr.IsDBNull(3) ? string.Empty : dr["nombre_animal"].ToString();
+                    controlAnimal.Id_tambo = dr.IsDBNull(4) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    controlAnimal.Nombre_tambo = dr.IsDBNull(5) ? string.Empty : dr["nombre_tambo"].ToString();
+                    controlAnimal.Primer_control = dr.IsDBNull(6) ? 0 : (Convert.ToDecimal(dr["primer_control"]));
+                    controlAnimal.Segundo_control = dr.IsDBNull(7) ? 0 : (Convert.ToDecimal(dr["segundo_control"]));
+                    controlAnimal.Grasa_primercontrol = dr.IsDBNull(8) ? 0 : (Convert.ToDecimal(dr["grasa_segundocontrol"]));
+                    controlAnimal.Grasa_segundocontrol = dr.IsDBNull(9) ? 0 : (Convert.ToDecimal(dr["grasa_segundocontrol"]));
+
+                    lista.Add(controlAnimal);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
         public void Insertar(Control_Animal controlAnimal)
         {
             try

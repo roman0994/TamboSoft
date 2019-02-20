@@ -23,6 +23,11 @@ namespace Negocio
             return controlAnimalDatos.RecuperarPorTambo(id_tambo);
         }
 
+        public List<Control_Animal> RecuperarPorTamboPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            return controlAnimalDatos.RecuperarPorTamboPorFecha(id_tambo,fechaDesde,fechaHasta);
+        }
+
         public void Insertar (Control_Animal control)
         {
             controlAnimalDatos.Insertar(control);

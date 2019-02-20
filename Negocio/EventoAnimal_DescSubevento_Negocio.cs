@@ -67,6 +67,5 @@ namespace Negocio
         {
             return eventoAnimal_DescSubevento.FiltrarPorNombreTambo(texto);
         }
-
     }
 }

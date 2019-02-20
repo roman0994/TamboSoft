@@ -15,17 +15,17 @@ namespace Escritorio
 {
     public partial class AltaControles : Form
     {
-        public AltaControles()
+        public AltaControles(int id_tambo)
         {
             InitializeComponent();
-            CargaComboAnimal();
+            CargaComboAnimal(id_tambo);
             CargarToolTips();
         }
 
-        public void CargaComboAnimal()
+        public void CargaComboAnimal(int id_tambo)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            this.cbAnimal.DataSource = animalNegocio.RecuperarTodos();
+            this.cbAnimal.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
             this.cbAnimal.DisplayMember = "nombre_animal";
             this.cbAnimal.ValueMember = "rp";
             this.cbAnimal.SelectedIndex = -1;

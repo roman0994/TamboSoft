@@ -58,6 +58,7 @@
             this.reporteEventosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeTamboSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reproducciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -298,7 +299,8 @@
             // 
             this.reporteMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.reporteProduccionToolStripMenuItem,
-            this.reporteEventosToolStripMenuItem1});
+            this.reporteEventosToolStripMenuItem1,
+            this.reproducciónToolStripMenuItem});
             this.reporteMenuItem.Name = "reporteMenuItem";
             this.reporteMenuItem.Size = new System.Drawing.Size(65, 20);
             this.reporteMenuItem.Text = "Reportes";
@@ -331,6 +333,12 @@
             this.acercaDeTamboSoftToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.acercaDeTamboSoftToolStripMenuItem.Text = "Acerca de TamboSoft";
             this.acercaDeTamboSoftToolStripMenuItem.Click += new System.EventHandler(this.acercaDeTamboSoftToolStripMenuItem_Click);
+            // 
+            // reproducciónToolStripMenuItem
+            // 
+            this.reproducciónToolStripMenuItem.Name = "reproducciónToolStripMenuItem";
+            this.reproducciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reproducciónToolStripMenuItem.Text = "Reproducción";
             // 
             // Principal
             // 
@@ -388,5 +396,6 @@
         private System.Windows.Forms.ToolStripMenuItem acercaDeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem acercaDeTamboSoftToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteEventosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem reproducciónToolStripMenuItem;
     }
 }

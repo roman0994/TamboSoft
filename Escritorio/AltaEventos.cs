@@ -19,7 +19,7 @@ namespace Escritorio
         {
             InitializeComponent();
             CargarTextBoxTambo(id_tambo);
-            CargaComboAnimal();
+            CargaComboAnimal(id_tambo);
             CargarListaEventos();
         }
 
@@ -31,13 +31,13 @@ namespace Escritorio
             this.txtTambo.Text = tambo.Nombre_tambo;
         }
 
-        public void CargaComboAnimal()
+        public void CargaComboAnimal(int id_tambo)
         {
-            Animal_Negocio inseminadorNegocio = new Animal_Negocio();
+            Animal_Negocio animalNegocio = new Animal_Negocio();
             //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error   
             this.cbAnimal.DisplayMember = "nombre_animal";
             this.cbAnimal.ValueMember = "rp";
-            this.cbAnimal.DataSource = inseminadorNegocio.RecuperarTodos();
+            this.cbAnimal.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
             this.cbAnimal.SelectedIndex = -1;
         }
 
@@ -403,7 +403,7 @@ namespace Escritorio
                     }
                     else if(this.lbEventos.SelectedIndex == 4)    //sería el evento de muerte
                     {
-                        animalNegocio.ActualizarEstado("Muerto",eventoAnimal1.Rp);
+                        animalNegocio.ActualizarEstadoMuerto("Muerto",eventoAnimal1.Rp);
                     }
 
                     this.Limpiar();

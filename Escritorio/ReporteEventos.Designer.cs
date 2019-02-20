@@ -31,32 +31,36 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtTambo = new System.Windows.Forms.TextBox();
-            this.dgvVacasServidas = new System.Windows.Forms.DataGridView();
-            this.dgvVacasParto = new System.Windows.Forms.DataGridView();
-            this.dgvVacasCelo = new System.Windows.Forms.DataGridView();
-            this.dgvAnimalesEnfermos = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbFiltro = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.dgvCriasHembra = new System.Windows.Forms.DataGridView();
-            this.dgvCriasMacho = new System.Windows.Forms.DataGridView();
-            this.dgvCriasMuertas = new System.Windows.Forms.DataGridView();
-            this.label6 = new System.Windows.Forms.Label();
+            this.dgvEventos = new System.Windows.Forms.DataGridView();
+            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.foto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hba = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hba_madre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hba_padre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rp_madre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rp_padre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVacasServidas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVacasParto)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVacasCelo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAnimalesEnfermos)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCriasHembra)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCriasMacho)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCriasMuertas)).BeginInit();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEventos)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -65,30 +69,19 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
-            this.tableLayoutPanel1.Controls.Add(this.btnExportar, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.btnSalir, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.btnExportar, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnSalir, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.dgvVacasServidas, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.dgvVacasParto, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.dgvVacasCelo, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.dgvAnimalesEnfermos, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dgvEventos, 0, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.27907F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.27907F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.27907F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.27907F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.27907F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.60465F));
+            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
@@ -107,30 +100,11 @@
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnSalir.Location = new System.Drawing.Point(482, 415);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 32);
+            this.btnSalir.Size = new System.Drawing.Size(75, 29);
             this.btnSalir.TabIndex = 3;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel2
-            // 
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel1.SetColumnSpan(this.tableLayoutPanel2, 2);
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24F));
-            this.tableLayoutPanel2.Controls.Add(this.dgvCriasHembra, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dgvCriasMacho, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.dgvCriasMuertas, 3, 0);
-            this.tableLayoutPanel2.Controls.Add(this.label6, 0, 0);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 338);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 71);
-            this.tableLayoutPanel2.TabIndex = 4;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // groupBox1
             // 
@@ -138,21 +112,12 @@
             this.groupBox1.Controls.Add(this.txtTambo);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox1.Location = new System.Drawing.Point(3, 3);
+            this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(794, 61);
+            this.groupBox1.Size = new System.Drawing.Size(788, 54);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tambo";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(95, 22);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tambo a gestionar:";
             // 
             // txtTambo
             // 
@@ -162,126 +127,209 @@
             this.txtTambo.Size = new System.Drawing.Size(200, 20);
             this.txtTambo.TabIndex = 1;
             // 
-            // dgvVacasServidas
+            // label1
             // 
-            this.dgvVacasServidas.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvVacasServidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVacasServidas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvVacasServidas.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvVacasServidas.Location = new System.Drawing.Point(243, 70);
-            this.dgvVacasServidas.Name = "dgvVacasServidas";
-            this.dgvVacasServidas.Size = new System.Drawing.Size(554, 61);
-            this.dgvVacasServidas.TabIndex = 6;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(135, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tambo a gestionar:";
             // 
-            // dgvVacasParto
+            // groupBox2
             // 
-            this.dgvVacasParto.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvVacasParto.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVacasParto.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvVacasParto.Location = new System.Drawing.Point(243, 137);
-            this.dgvVacasParto.Name = "dgvVacasParto";
-            this.dgvVacasParto.Size = new System.Drawing.Size(554, 61);
-            this.dgvVacasParto.TabIndex = 7;
+            this.tableLayoutPanel1.SetColumnSpan(this.groupBox2, 2);
+            this.groupBox2.Controls.Add(this.cbFiltro);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox2.Location = new System.Drawing.Point(6, 69);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(788, 54);
+            this.groupBox2.TabIndex = 6;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Filtro de búsqueda";
             // 
-            // dgvVacasCelo
+            // cbFiltro
             // 
-            this.dgvVacasCelo.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvVacasCelo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVacasCelo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvVacasCelo.Location = new System.Drawing.Point(243, 204);
-            this.dgvVacasCelo.Name = "dgvVacasCelo";
-            this.dgvVacasCelo.Size = new System.Drawing.Size(554, 61);
-            this.dgvVacasCelo.TabIndex = 8;
-            // 
-            // dgvAnimalesEnfermos
-            // 
-            this.dgvAnimalesEnfermos.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvAnimalesEnfermos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAnimalesEnfermos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAnimalesEnfermos.Location = new System.Drawing.Point(243, 271);
-            this.dgvAnimalesEnfermos.Name = "dgvAnimalesEnfermos";
-            this.dgvAnimalesEnfermos.Size = new System.Drawing.Size(554, 61);
-            this.dgvAnimalesEnfermos.TabIndex = 9;
+            this.cbFiltro.FormattingEnabled = true;
+            this.cbFiltro.Location = new System.Drawing.Point(265, 20);
+            this.cbFiltro.Name = "cbFiltro";
+            this.cbFiltro.Size = new System.Drawing.Size(201, 21);
+            this.cbFiltro.TabIndex = 1;
+            this.cbFiltro.SelectedIndexChanged += new System.EventHandler(this.cbFiltro_SelectedIndexChanged);
             // 
             // label2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 94);
+            this.label2.Location = new System.Drawing.Point(135, 23);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(187, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Vacas servidas en los últimos 21 días:";
+            this.label2.Size = new System.Drawing.Size(96, 13);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Seleccione el filtro:";
             // 
-            // label3
+            // dgvEventos
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 161);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(193, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Vacas con parto en los últimos 21 días:";
+            this.dgvEventos.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEventos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.rp,
+            this.categoria,
+            this.nombre_animal,
+            this.fecha_nacimiento,
+            this.estado_animal,
+            this.descripcion,
+            this.nombre_raza,
+            this.nombre_tambo,
+            this.foto,
+            this.hba,
+            this.sexo,
+            this.id_tambo,
+            this.edad,
+            this.id_raza,
+            this.hba_madre,
+            this.hba_padre,
+            this.rp_madre,
+            this.rp_padre,
+            this.habilitado});
+            this.tableLayoutPanel1.SetColumnSpan(this.dgvEventos, 2);
+            this.dgvEventos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvEventos.Location = new System.Drawing.Point(6, 132);
+            this.dgvEventos.Name = "dgvEventos";
+            this.dgvEventos.Size = new System.Drawing.Size(788, 274);
+            this.dgvEventos.TabIndex = 7;
             // 
-            // label4
+            // rp
             // 
-            this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 228);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Vacas en celo:";
+            this.rp.DataPropertyName = "rp";
+            this.rp.HeaderText = "RP";
+            this.rp.Name = "rp";
+            this.rp.Width = 50;
             // 
-            // label5
+            // categoria
             // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 295);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(98, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Animales enfermos:";
+            this.categoria.DataPropertyName = "categoria";
+            this.categoria.HeaderText = "Categoria";
+            this.categoria.Name = "categoria";
+            this.categoria.Width = 80;
             // 
-            // dgvCriasHembra
+            // nombre_animal
             // 
-            this.dgvCriasHembra.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvCriasHembra.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCriasHembra.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCriasHembra.Location = new System.Drawing.Point(241, 3);
-            this.dgvCriasHembra.Name = "dgvCriasHembra";
-            this.dgvCriasHembra.Size = new System.Drawing.Size(176, 65);
-            this.dgvCriasHembra.TabIndex = 0;
+            this.nombre_animal.DataPropertyName = "nombre_animal";
+            this.nombre_animal.HeaderText = "Animal";
+            this.nombre_animal.Name = "nombre_animal";
+            this.nombre_animal.Width = 130;
             // 
-            // dgvCriasMacho
+            // fecha_nacimiento
             // 
-            this.dgvCriasMacho.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvCriasMacho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCriasMacho.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCriasMacho.Location = new System.Drawing.Point(423, 3);
-            this.dgvCriasMacho.Name = "dgvCriasMacho";
-            this.dgvCriasMacho.Size = new System.Drawing.Size(176, 65);
-            this.dgvCriasMacho.TabIndex = 1;
+            this.fecha_nacimiento.DataPropertyName = "fecha_nacimiento";
+            this.fecha_nacimiento.HeaderText = "Fecha Nacimiento";
+            this.fecha_nacimiento.Name = "fecha_nacimiento";
+            this.fecha_nacimiento.Width = 120;
             // 
-            // dgvCriasMuertas
+            // estado_animal
             // 
-            this.dgvCriasMuertas.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dgvCriasMuertas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCriasMuertas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCriasMuertas.Location = new System.Drawing.Point(605, 3);
-            this.dgvCriasMuertas.Name = "dgvCriasMuertas";
-            this.dgvCriasMuertas.Size = new System.Drawing.Size(186, 65);
-            this.dgvCriasMuertas.TabIndex = 2;
+            this.estado_animal.DataPropertyName = "estado_animal";
+            this.estado_animal.HeaderText = "Estado";
+            this.estado_animal.Name = "estado_animal";
+            this.estado_animal.Width = 120;
             // 
-            // label6
+            // descripcion
             // 
-            this.label6.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 29);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(90, 13);
-            this.label6.TabIndex = 3;
-            this.label6.Text = "Reporte de crías:";
+            this.descripcion.DataPropertyName = "descripcion";
+            this.descripcion.HeaderText = "Descripcion";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.Visible = false;
+            this.descripcion.Width = 130;
+            // 
+            // nombre_raza
+            // 
+            this.nombre_raza.DataPropertyName = "nombre_raza";
+            this.nombre_raza.HeaderText = "Raza";
+            this.nombre_raza.Name = "nombre_raza";
+            // 
+            // nombre_tambo
+            // 
+            this.nombre_tambo.DataPropertyName = "nombre_tambo";
+            this.nombre_tambo.HeaderText = "Tambo";
+            this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.Width = 130;
+            // 
+            // foto
+            // 
+            this.foto.DataPropertyName = "foto";
+            this.foto.HeaderText = "Foto";
+            this.foto.Name = "foto";
+            this.foto.Visible = false;
+            // 
+            // hba
+            // 
+            this.hba.DataPropertyName = "hba";
+            this.hba.HeaderText = "Hba";
+            this.hba.Name = "hba";
+            this.hba.Visible = false;
+            // 
+            // sexo
+            // 
+            this.sexo.DataPropertyName = "sexo";
+            this.sexo.HeaderText = "Sexo";
+            this.sexo.Name = "sexo";
+            this.sexo.Visible = false;
+            // 
+            // id_tambo
+            // 
+            this.id_tambo.DataPropertyName = "id_tambo";
+            this.id_tambo.HeaderText = "ID Tambo";
+            this.id_tambo.Name = "id_tambo";
+            this.id_tambo.Visible = false;
+            // 
+            // edad
+            // 
+            this.edad.DataPropertyName = "edad";
+            this.edad.HeaderText = "Edad";
+            this.edad.Name = "edad";
+            this.edad.Visible = false;
+            // 
+            // id_raza
+            // 
+            this.id_raza.DataPropertyName = "id_raza";
+            this.id_raza.HeaderText = "ID Raza";
+            this.id_raza.Name = "id_raza";
+            this.id_raza.Visible = false;
+            // 
+            // hba_madre
+            // 
+            this.hba_madre.DataPropertyName = "hba_madre";
+            this.hba_madre.HeaderText = "Hba Madre";
+            this.hba_madre.Name = "hba_madre";
+            this.hba_madre.Visible = false;
+            // 
+            // hba_padre
+            // 
+            this.hba_padre.DataPropertyName = "hba_padre";
+            this.hba_padre.HeaderText = "Hba Padre";
+            this.hba_padre.Name = "hba_padre";
+            this.hba_padre.Visible = false;
+            // 
+            // rp_madre
+            // 
+            this.rp_madre.DataPropertyName = "rp_madre";
+            this.rp_madre.HeaderText = "RP Madre";
+            this.rp_madre.Name = "rp_madre";
+            this.rp_madre.Visible = false;
+            // 
+            // rp_padre
+            // 
+            this.rp_padre.DataPropertyName = "rp_padre";
+            this.rp_padre.HeaderText = "RP Padre";
+            this.rp_padre.Name = "rp_padre";
+            this.rp_padre.Visible = false;
+            // 
+            // habilitado
+            // 
+            this.habilitado.DataPropertyName = "habilitado";
+            this.habilitado.HeaderText = "Habilitado";
+            this.habilitado.Name = "habilitado";
+            this.habilitado.Visible = false;
             // 
             // ReporteEventos
             // 
@@ -293,18 +341,11 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Eventos";
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.tableLayoutPanel2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVacasServidas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVacasParto)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVacasCelo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvAnimalesEnfermos)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCriasHembra)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCriasMacho)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCriasMuertas)).EndInit();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEventos)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -314,21 +355,31 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnExportar;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtTambo;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvCriasHembra;
-        private System.Windows.Forms.DataGridView dgvCriasMacho;
-        private System.Windows.Forms.DataGridView dgvCriasMuertas;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.DataGridView dgvVacasServidas;
-        private System.Windows.Forms.DataGridView dgvVacasParto;
-        private System.Windows.Forms.DataGridView dgvVacasCelo;
-        private System.Windows.Forms.DataGridView dgvAnimalesEnfermos;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ComboBox cbFiltro;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.DataGridView dgvEventos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn categoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_nacimiento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado_animal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_raza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn foto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hba;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sexo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn edad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_raza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hba_madre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn hba_padre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rp_madre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rp_padre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
     }
 }
