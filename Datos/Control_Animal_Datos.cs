@@ -260,27 +260,100 @@ namespace Datos
             }
         }
 
+        /*public List<Control_Animal> ProduccionPorDia(int id_tambo, DateTime fecha)
+        {
+            try
+            {
+                this.AbrirConexion();
+                List<Control_Animal> controlAnimales = new List<Control_Animal>();
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and ca.fecha_control=@fecha group by ca.fecha_control,t.nombre_tambo", Conn);
+
+                cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControlAnimal.Parameters.Add("fecha", SqlDbType.DateTime).Value = fecha;
+
+                SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Control_Animal controlAnimal = new Control_Animal();
+                    
+                    controlAnimal.Litrostotales = dr.IsDBNull(0) ? Convert.ToDecimal(string.Empty) : (Convert.ToDecimal(dr["litrostotales"]));
+                    controlAnimal.Grasatotal = dr.IsDBNull(1) ? Convert.ToDecimal(string.Empty) : (Convert.ToDecimal(dr["grasatotal"]));
+                    controlAnimal.Fecha_control = dr.IsDBNull(2) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_control"]));
+                    controlAnimal.Nombre_tambo = dr.IsDBNull(3) ? string.Empty : dr["nombre_tambo"].ToString();
+                    controlAnimales.Add(controlAnimal);
+                }
+                dr.Close();
+                return controlAnimales;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+
+        }*/
+
         public DataTable ProduccionPorDia(int id_tambo, DateTime fecha)
         {
             this.AbrirConexion();
-            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and ca.fecha_control=@fecha group by ca.fecha_control,t.nombre_tambo", Conn);
+            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and ca.fecha_control>=@fecha group by ca.fecha_control,t.nombre_tambo", Conn);
 
             cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
             cmdControlAnimal.Parameters.Add("fecha", SqlDbType.DateTime).Value = fecha;
-            
+
             SqlDataReader dr = cmdControlAnimal.ExecuteReader();
-            
             DataTable dt = new DataTable();
-            //SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
             if (dr.Read())
             {
                 dt.Load(dr);
             }
             dr.Close();
-            //da.Fill(dt);
+            this.CerrarConexion();
+            return dt;                      
+        }
+
+        public DataTable ProduccionPorAnimal(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
+
+            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+            DataTable dt = new DataTable();
+          
+            dt.Load(dr);
+            
+            dr.Close();
             this.CerrarConexion();
             return dt;
+        }
 
+        public DataTable ProduccionPorFiltroAnimal(int id_tambo, int rp)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.rp=@rp group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
+
+            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            cmdControlAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
+
+            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+            DataTable dt = new DataTable();
+           
+            dt.Load(dr);
+            
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
         }
 
         public DataTable FiltrarPorNombre(string texto)

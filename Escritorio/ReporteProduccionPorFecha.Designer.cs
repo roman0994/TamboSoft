@@ -336,7 +336,7 @@
             this.MinimizeBox = false;
             this.Name = "ReporteProduccionPorFecha";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Reporte de Producción";
+            this.Text = "Reporte de Producción por Fecha";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

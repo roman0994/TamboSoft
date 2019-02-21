@@ -48,6 +48,16 @@ namespace Negocio
             return controlAnimalDatos.ProduccionPorDia(id_tambo,fecha);
         }
 
+        public DataTable ProduccionPorAnimal(int id_tambo)
+        {
+            return controlAnimalDatos.ProduccionPorAnimal(id_tambo);
+        }
+
+        public DataTable ProduccionPorFiltroAnimal(int id_tambo, int rp)
+        {
+            return controlAnimalDatos.ProduccionPorFiltroAnimal(id_tambo, rp);
+        }
+
         public DataTable FiltrarPorNombre(string texto)
         {
             return controlAnimalDatos.FiltrarPorNombre(texto);
