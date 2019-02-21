@@ -150,7 +150,7 @@
             // 
             // txtGrasaSegundoControl
             // 
-            this.txtGrasaSegundoControl.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtGrasaSegundoControl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtGrasaSegundoControl.Location = new System.Drawing.Point(233, 158);
             this.txtGrasaSegundoControl.Name = "txtGrasaSegundoControl";
             this.txtGrasaSegundoControl.Size = new System.Drawing.Size(210, 20);
@@ -161,7 +161,7 @@
             // 
             // txtGrasaPrimerControl
             // 
-            this.txtGrasaPrimerControl.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtGrasaPrimerControl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtGrasaPrimerControl.Location = new System.Drawing.Point(233, 71);
             this.txtGrasaPrimerControl.Name = "txtGrasaPrimerControl";
             this.txtGrasaPrimerControl.Size = new System.Drawing.Size(210, 20);
@@ -172,7 +172,7 @@
             // 
             // txtSegundoControl
             // 
-            this.txtSegundoControl.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtSegundoControl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtSegundoControl.Location = new System.Drawing.Point(233, 113);
             this.txtSegundoControl.Name = "txtSegundoControl";
             this.txtSegundoControl.Size = new System.Drawing.Size(210, 20);
@@ -183,7 +183,7 @@
             // 
             // txtPrimerControl
             // 
-            this.txtPrimerControl.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtPrimerControl.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtPrimerControl.Location = new System.Drawing.Point(233, 32);
             this.txtPrimerControl.Name = "txtPrimerControl";
             this.txtPrimerControl.Size = new System.Drawing.Size(210, 20);

@@ -66,6 +66,7 @@
             // 
             // btnIngresar
             // 
+            this.btnIngresar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnIngresar.Location = new System.Drawing.Point(264, 266);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(86, 23);
@@ -76,6 +77,7 @@
             // 
             // btnSalir
             // 
+            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSalir.Location = new System.Drawing.Point(370, 266);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(91, 23);
@@ -86,8 +88,10 @@
             // 
             // Login
             // 
+            this.AcceptButton = this.btnIngresar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.btnSalir;
             this.ClientSize = new System.Drawing.Size(524, 351);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnIngresar);

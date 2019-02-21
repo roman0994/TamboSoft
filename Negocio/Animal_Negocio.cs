@@ -63,6 +63,21 @@ namespace Negocio
             return animalDatos.CantidadCriasMuertas(id_tambo);
         }
 
+        public int CantidadCriasMachoPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            return animalDatos.CantidadCriasMachoPorFecha(id_tambo, fechaDesde, fechaHasta);
+        }
+
+        public int CantidadCriasHembraPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            return animalDatos.CantidadCriasHembraPorFecha(id_tambo, fechaDesde, fechaHasta);
+        }
+
+        public int CantidadCriasMuertasPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            return animalDatos.CantidadCriasMuertasPorFecha(id_tambo, fechaDesde, fechaHasta);
+        }
+
         public void Insertar(Animal animal)
         {
             animalDatos.Insertar(animal);

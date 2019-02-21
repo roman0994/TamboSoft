@@ -141,18 +141,32 @@ namespace Escritorio
             tamboSoft.ShowDialog();
         }
 
-        private void reporteProduccionToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            ReporteProduccion reporteProduccion = new ReporteProduccion(id_tambo);
-            reporteProduccion.idtambo = id_tambo;
-            reporteProduccion.ShowDialog();
-        }
-
         private void reporteEventosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ReporteEventos reporteEventos = new ReporteEventos(id_tambo);
             reporteEventos.idtambo = id_tambo;
             reporteEventos.ShowDialog();
+        }
+
+        private void porFechaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteProduccionPorFecha reporteReproduccionPorFecha = new ReporteProduccionPorFecha(id_tambo);
+            reporteReproduccionPorFecha.idtambo = id_tambo;
+            reporteReproduccionPorFecha.ShowDialog();
+        }
+
+        private void porAnimalToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteProduccionPorAnimal reporteReproduccionPorAnimal = new ReporteProduccionPorAnimal(id_tambo);
+            reporteReproduccionPorAnimal.idtambo = id_tambo;
+            reporteReproduccionPorAnimal.ShowDialog();
+        }
+
+        private void reproducciónToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ReporteReproduccion reporteReproduccion = new ReporteReproduccion(id_tambo);
+            reporteReproduccion.idtambo = id_tambo;
+            reporteReproduccion.ShowDialog();
         }
     }
 }

@@ -43,6 +43,11 @@ namespace Negocio
             controlAnimalDatos.Eliminar(fecha_control,id_control,rp);
         }
 
+        public DataTable ProduccionPorDia(int id_tambo, DateTime fecha)
+        {
+            return controlAnimalDatos.ProduccionPorDia(id_tambo,fecha);
+        }
+
         public DataTable FiltrarPorNombre(string texto)
         {
             return controlAnimalDatos.FiltrarPorNombre(texto);

@@ -260,6 +260,29 @@ namespace Datos
             }
         }
 
+        public DataTable ProduccionPorDia(int id_tambo, DateTime fecha)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and ca.fecha_control=@fecha group by ca.fecha_control,t.nombre_tambo", Conn);
+
+            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            cmdControlAnimal.Parameters.Add("fecha", SqlDbType.DateTime).Value = fecha;
+            
+            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+            
+            DataTable dt = new DataTable();
+            //SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
+            if (dr.Read())
+            {
+                dt.Load(dr);
+            }
+            dr.Close();
+            //da.Fill(dt);
+            this.CerrarConexion();
+            return dt;
+
+        }
+
         public DataTable FiltrarPorNombre(string texto)
         {
             this.AbrirConexion();

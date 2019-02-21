@@ -113,6 +113,110 @@ namespace Datos
             }
         }
 
+        public List<EventoAnimal_DescSubevento> RecuperarPartosPorTambo(int id_tambo)
+        {
+            try
+            {
+                List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
+                this.AbrirConexion();
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto'", Conn);
+                cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdEventosAnimalDescSubevento.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    EventoAnimal_DescSubevento eventoAnimal_DescSubevento = new EventoAnimal_DescSubevento();
+                    eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
+                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
+                    eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(3) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc"]));
+                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(4) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
+                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(5) ? string.Empty : dr["nombre_animal"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(6) ? string.Empty : dr["nombre_evento"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_subevento = dr.IsDBNull(7) ? string.Empty : dr["nombre_subevento"].ToString();
+                    eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(8) ? string.Empty : dr["descripcion"].ToString();
+                    //eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_inseminador"]));
+                    //eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(10) ? string.Empty : dr["nombre_inseminador"].ToString();
+                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
+                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(11) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
+
+                    lista.Add(eventoAnimal_DescSubevento);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los eventos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public List<EventoAnimal_DescSubevento> RecuperarPartosPorTamboPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
+                this.AbrirConexion();
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and e.fecha_desc>=@fechaDesde and e.fecha_desc<=@fechaHasta", Conn);
+                cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdEventosAnimalDescSubevento.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
+                cmdEventosAnimalDescSubevento.Parameters.Add("fechaHasta", SqlDbType.DateTime).Value = fechaHasta;
+
+                SqlDataReader dr = cmdEventosAnimalDescSubevento.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    EventoAnimal_DescSubevento eventoAnimal_DescSubevento = new EventoAnimal_DescSubevento();
+                    eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
+                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
+                    eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(3) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc"]));
+                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(4) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
+                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(5) ? string.Empty : dr["nombre_animal"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(6) ? string.Empty : dr["nombre_evento"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_subevento = dr.IsDBNull(7) ? string.Empty : dr["nombre_subevento"].ToString();
+                    eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(8) ? string.Empty : dr["descripcion"].ToString();
+                    //eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_inseminador"]));
+                    //eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(10) ? string.Empty : dr["nombre_inseminador"].ToString();
+                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
+                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(11) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
+
+                    lista.Add(eventoAnimal_DescSubevento);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los eventos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
         public void Insertar(List<EventoAnimal_DescSubevento> listaEventoAnimal)
         {
             try

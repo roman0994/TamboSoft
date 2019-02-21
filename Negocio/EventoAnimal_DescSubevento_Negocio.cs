@@ -23,6 +23,16 @@ namespace Negocio
             return eventoAnimal_DescSubevento.RecuperarPorTambo(id_tambo);
         }
 
+        public List<EventoAnimal_DescSubevento> RecuperarPartosPorTambo(int id_tambo)
+        {
+            return eventoAnimal_DescSubevento.RecuperarPartosPorTambo(id_tambo);
+        }
+
+        public List<EventoAnimal_DescSubevento> RecuperarPartosPorTamboPorFecha(int idtambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            return eventoAnimal_DescSubevento.RecuperarPartosPorTamboPorFecha(idtambo,fechaDesde,fechaHasta);
+        }
+
         public void Insertar(List<EventoAnimal_DescSubevento> listaEventoAnimal)
         {
             eventoAnimal_DescSubevento.Insertar(listaEventoAnimal);

@@ -264,11 +264,17 @@
     <Compile Include="ReporteEventos.Designer.cs">
       <DependentUpon>ReporteEventos.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReporteProduccion.cs">
+    <Compile Include="ReporteProduccionPorAnimal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ReporteProduccion.Designer.cs">
-      <DependentUpon>ReporteProduccion.cs</DependentUpon>
+    <Compile Include="ReporteProduccionPorAnimal.Designer.cs">
+      <DependentUpon>ReporteProduccionPorAnimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteProduccionPorFecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteProduccionPorFecha.Designer.cs">
+      <DependentUpon>ReporteProduccionPorFecha.cs</DependentUpon>
     </Compile>
     <Compile Include="ReporteReproduccion.cs">
       <SubType>Form</SubType>
@@ -357,8 +363,11 @@
     <EmbeddedResource Include="ReporteEventos.resx">
       <DependentUpon>ReporteEventos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReporteProduccion.resx">
-      <DependentUpon>ReporteProduccion.cs</DependentUpon>
+    <EmbeddedResource Include="ReporteProduccionPorAnimal.resx">
+      <DependentUpon>ReporteProduccionPorAnimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteProduccionPorFecha.resx">
+      <DependentUpon>ReporteProduccionPorFecha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteReproduccion.resx">
       <DependentUpon>ReporteReproduccion.cs</DependentUpon>

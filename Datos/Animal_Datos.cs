@@ -328,14 +328,14 @@ namespace Datos
             {
                 int cantCriasMacho=0;
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("select COUNT(*) 'Crias Macho' from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 2 and t.id_tambo=@id_tambo", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("select COUNT(*) 'Crias_Macho' from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 2 and t.id_tambo=@id_tambo", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
 
                 if (dr.Read())
                 {
-                    cantCriasMacho = Convert.ToInt32(dr["Crias Macho"]);
+                    cantCriasMacho = Convert.ToInt32(dr["Crias_Macho"]);
                 }
                 dr.Close();
                 return cantCriasMacho;
@@ -396,6 +396,111 @@ namespace Datos
                 this.AbrirConexion();
                 SqlCommand cmdAnimal = new SqlCommand("select COUNT(*) 'Crias Muertas' from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 12 and t.id_tambo=@id_tambo", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    cantCriasMuertas = Convert.ToInt32(dr["Crias Muertas"]);
+                }
+                dr.Close();
+                return cantCriasMuertas;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public int CantidadCriasMachoPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                int cantCriasMacho = 0;
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("select COUNT(*) 'Crias_Macho' from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 2 and t.id_tambo=@id_tambo and ev.fecha_desc>=@fechaDesde and ev.fecha_desc<=@fechaHasta", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdAnimal.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
+                cmdAnimal.Parameters.Add("fechaHasta", SqlDbType.DateTime).Value = fechaHasta;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                if (dr.Read())
+                {
+                    cantCriasMacho = Convert.ToInt32(dr["Crias_Macho"]);
+                }
+                dr.Close();
+                return cantCriasMacho;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public int CantidadCriasHembraPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                int cantCriasHembra = 0;
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("select COUNT(*) 'Crias Hembra' from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 1 and t.id_tambo=@id_tambo and ev.fecha_desc>=@fechaDesde and ev.fecha_desc<=@fechaHasta", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdAnimal.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
+                cmdAnimal.Parameters.Add("fechaHasta", SqlDbType.DateTime).Value = fechaHasta;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+                if (dr.Read())
+                {
+                    cantCriasHembra = Convert.ToInt32(dr["Crias Hembra"]);
+                }
+                dr.Close();
+                return cantCriasHembra;
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public int CantidadCriasMuertasPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
+        {
+            try
+            {
+                int cantCriasMuertas = 0;
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("select COUNT(*) 'Crias Muertas' from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 12 and t.id_tambo=@id_tambo and ev.fecha_desc>=@fechaDesde and ev.fecha_desc<=@fechaHasta", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdAnimal.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
+                cmdAnimal.Parameters.Add("fechaHasta", SqlDbType.DateTime).Value = fechaHasta;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
 
