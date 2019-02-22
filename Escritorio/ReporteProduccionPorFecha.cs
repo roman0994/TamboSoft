@@ -35,7 +35,7 @@ namespace Escritorio
         public void CargarGrilla(int id_tambo)
         {
             Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-            this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTambo(id_tambo);
+            this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorFecha(id_tambo);
         }
 
         public void CargarComboBusqueda()
@@ -123,14 +123,17 @@ namespace Escritorio
 
             if (this.cbBuscar.SelectedItem.ToString() == "Día")
             {
-                DateTime fecha = this.dtpDia.Value;
-                this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorDia(idtambo,fecha);
+                DateTime fecha = Convert.ToDateTime(this.dtpDia.Value.ToString("dd/MM/yyyy"));             
+                this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorFiltroDia(idtambo,fecha);
             }
             else if (this.cbBuscar.SelectedItem.ToString() == "Mes")
             {
-                DateTime año = Convert.ToDateTime(this.cbAño.SelectedItem.ToString());
-                DateTime mes = Convert.ToDateTime(this.cbMes.SelectedIndex);
-                //this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorMes(idtambo, año, mes);
+                int año = Convert.ToInt32(this.cbAño.SelectedItem.ToString());
+                this.textBox1.Text = año.ToString();
+            
+                int mes = this.cbMes.SelectedIndex + 01;
+                this.textBox2.Text = mes.ToString();
+                this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorFiltroMes(idtambo, mes, año);
             }
 
         }

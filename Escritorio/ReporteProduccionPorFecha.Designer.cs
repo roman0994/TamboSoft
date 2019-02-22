@@ -33,28 +33,22 @@
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.dtpDia = new System.Windows.Forms.DateTimePicker();
+            this.cbMes = new System.Windows.Forms.ComboBox();
+            this.cbAño = new System.Windows.Forms.ComboBox();
+            this.cbBuscar = new System.Windows.Forms.ComboBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvControles = new System.Windows.Forms.DataGridView();
-            this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.primer_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grasa_primercontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.segundo_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grasa_segundocontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentaje_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kg_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnExportar = new System.Windows.Forms.Button();
-            this.cbBuscar = new System.Windows.Forms.ComboBox();
-            this.cbAño = new System.Windows.Forms.ComboBox();
-            this.cbMes = new System.Windows.Forms.ComboBox();
-            this.dtpDia = new System.Windows.Forms.DateTimePicker();
+            this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.litrostotales = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grasatotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -115,6 +109,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.textBox2);
+            this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.dtpDia);
             this.groupBox2.Controls.Add(this.cbMes);
             this.groupBox2.Controls.Add(this.cbAño);
@@ -129,6 +125,44 @@
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fecha reporte";
+            // 
+            // dtpDia
+            // 
+            this.dtpDia.Location = new System.Drawing.Point(22, 167);
+            this.dtpDia.Name = "dtpDia";
+            this.dtpDia.Size = new System.Drawing.Size(200, 20);
+            this.dtpDia.TabIndex = 12;
+            this.dtpDia.Visible = false;
+            // 
+            // cbMes
+            // 
+            this.cbMes.FormattingEnabled = true;
+            this.cbMes.Location = new System.Drawing.Point(22, 209);
+            this.cbMes.Name = "cbMes";
+            this.cbMes.Size = new System.Drawing.Size(121, 21);
+            this.cbMes.TabIndex = 11;
+            this.cbMes.Visible = false;
+            this.cbMes.SelectedIndexChanged += new System.EventHandler(this.cbMes_SelectedIndexChanged);
+            // 
+            // cbAño
+            // 
+            this.cbAño.FormattingEnabled = true;
+            this.cbAño.Location = new System.Drawing.Point(22, 123);
+            this.cbAño.Name = "cbAño";
+            this.cbAño.Size = new System.Drawing.Size(121, 21);
+            this.cbAño.TabIndex = 9;
+            this.cbAño.Visible = false;
+            this.cbAño.SelectedIndexChanged += new System.EventHandler(this.cbAño_SelectedIndexChanged);
+            // 
+            // cbBuscar
+            // 
+            this.cbBuscar.FormattingEnabled = true;
+            this.cbBuscar.Location = new System.Drawing.Point(22, 87);
+            this.cbBuscar.Name = "cbBuscar";
+            this.cbBuscar.Size = new System.Drawing.Size(121, 21);
+            this.cbBuscar.TabIndex = 8;
+            this.cbBuscar.Text = "Buscar por:";
+            this.cbBuscar.SelectedIndexChanged += new System.EventHandler(this.cbBuscar_SelectedIndexChanged);
             // 
             // btnLimpiar
             // 
@@ -166,106 +200,14 @@
             this.dgvControles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvControles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fecha_control,
-            this.rp,
-            this.nombre_animal,
-            this.primer_control,
-            this.grasa_primercontrol,
-            this.segundo_control,
-            this.grasa_segundocontrol,
-            this.nombre_tambo,
-            this.id_control,
-            this.porcentaje_grasa,
-            this.kg_grasa,
-            this.id_tambo});
+            this.litrostotales,
+            this.grasatotal,
+            this.nombre_tambo});
             this.dgvControles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvControles.Location = new System.Drawing.Point(246, 90);
             this.dgvControles.Name = "dgvControles";
             this.dgvControles.Size = new System.Drawing.Size(548, 318);
             this.dgvControles.TabIndex = 4;
-            // 
-            // fecha_control
-            // 
-            this.fecha_control.DataPropertyName = "fecha_control";
-            this.fecha_control.HeaderText = "Fecha Control";
-            this.fecha_control.Name = "fecha_control";
-            this.fecha_control.Width = 90;
-            // 
-            // rp
-            // 
-            this.rp.DataPropertyName = "rp";
-            this.rp.HeaderText = "RP";
-            this.rp.Name = "rp";
-            this.rp.Width = 45;
-            // 
-            // nombre_animal
-            // 
-            this.nombre_animal.DataPropertyName = "nombre_animal";
-            this.nombre_animal.HeaderText = "Animal";
-            this.nombre_animal.Name = "nombre_animal";
-            this.nombre_animal.Width = 80;
-            // 
-            // primer_control
-            // 
-            this.primer_control.DataPropertyName = "primer_control";
-            this.primer_control.HeaderText = "Primer ordeñe";
-            this.primer_control.Name = "primer_control";
-            this.primer_control.Width = 60;
-            // 
-            // grasa_primercontrol
-            // 
-            this.grasa_primercontrol.DataPropertyName = "grasa_primercontrol";
-            this.grasa_primercontrol.HeaderText = "Grasa primer ordeñe";
-            this.grasa_primercontrol.Name = "grasa_primercontrol";
-            this.grasa_primercontrol.Width = 60;
-            // 
-            // segundo_control
-            // 
-            this.segundo_control.DataPropertyName = "segundo_control";
-            this.segundo_control.HeaderText = "Segundo ordeñe";
-            this.segundo_control.Name = "segundo_control";
-            this.segundo_control.Width = 60;
-            // 
-            // grasa_segundocontrol
-            // 
-            this.grasa_segundocontrol.DataPropertyName = "grasa_segundocontrol";
-            this.grasa_segundocontrol.HeaderText = "Grasa segundo ordeñe";
-            this.grasa_segundocontrol.Name = "grasa_segundocontrol";
-            this.grasa_segundocontrol.Width = 60;
-            // 
-            // nombre_tambo
-            // 
-            this.nombre_tambo.DataPropertyName = "nombre_tambo";
-            this.nombre_tambo.HeaderText = "Tambo";
-            this.nombre_tambo.Name = "nombre_tambo";
-            this.nombre_tambo.Width = 70;
-            // 
-            // id_control
-            // 
-            this.id_control.DataPropertyName = "id_control";
-            this.id_control.HeaderText = "ID Control";
-            this.id_control.Name = "id_control";
-            this.id_control.Visible = false;
-            // 
-            // porcentaje_grasa
-            // 
-            this.porcentaje_grasa.DataPropertyName = "porcentaje_grasa";
-            this.porcentaje_grasa.HeaderText = "% Grasa";
-            this.porcentaje_grasa.Name = "porcentaje_grasa";
-            this.porcentaje_grasa.Visible = false;
-            // 
-            // kg_grasa
-            // 
-            this.kg_grasa.DataPropertyName = "kg_grasa";
-            this.kg_grasa.HeaderText = "Kg Grasa";
-            this.kg_grasa.Name = "kg_grasa";
-            this.kg_grasa.Visible = false;
-            // 
-            // id_tambo
-            // 
-            this.id_tambo.DataPropertyName = "id_tambo";
-            this.id_tambo.HeaderText = "ID Tambo";
-            this.id_tambo.Name = "id_tambo";
-            this.id_tambo.Visible = false;
             // 
             // btnSalir
             // 
@@ -288,43 +230,46 @@
             this.btnExportar.Text = "Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
             // 
-            // cbBuscar
+            // fecha_control
             // 
-            this.cbBuscar.FormattingEnabled = true;
-            this.cbBuscar.Location = new System.Drawing.Point(22, 87);
-            this.cbBuscar.Name = "cbBuscar";
-            this.cbBuscar.Size = new System.Drawing.Size(121, 21);
-            this.cbBuscar.TabIndex = 8;
-            this.cbBuscar.Text = "Buscar por:";
-            this.cbBuscar.SelectedIndexChanged += new System.EventHandler(this.cbBuscar_SelectedIndexChanged);
+            this.fecha_control.DataPropertyName = "fecha_control";
+            this.fecha_control.HeaderText = "Fecha Control";
+            this.fecha_control.Name = "fecha_control";
+            this.fecha_control.Width = 130;
             // 
-            // cbAño
+            // litrostotales
             // 
-            this.cbAño.FormattingEnabled = true;
-            this.cbAño.Location = new System.Drawing.Point(22, 123);
-            this.cbAño.Name = "cbAño";
-            this.cbAño.Size = new System.Drawing.Size(121, 21);
-            this.cbAño.TabIndex = 9;
-            this.cbAño.Visible = false;
-            this.cbAño.SelectedIndexChanged += new System.EventHandler(this.cbAño_SelectedIndexChanged);
+            this.litrostotales.DataPropertyName = "litrostotales";
+            this.litrostotales.HeaderText = "Litros totales ordeñe";
+            this.litrostotales.Name = "litrostotales";
+            this.litrostotales.Width = 130;
             // 
-            // cbMes
+            // grasatotal
             // 
-            this.cbMes.FormattingEnabled = true;
-            this.cbMes.Location = new System.Drawing.Point(22, 209);
-            this.cbMes.Name = "cbMes";
-            this.cbMes.Size = new System.Drawing.Size(121, 21);
-            this.cbMes.TabIndex = 11;
-            this.cbMes.Visible = false;
-            this.cbMes.SelectedIndexChanged += new System.EventHandler(this.cbMes_SelectedIndexChanged);
+            this.grasatotal.DataPropertyName = "grasatotal";
+            this.grasatotal.HeaderText = "Grasa total";
+            this.grasatotal.Name = "grasatotal";
             // 
-            // dtpDia
+            // nombre_tambo
             // 
-            this.dtpDia.Location = new System.Drawing.Point(22, 167);
-            this.dtpDia.Name = "dtpDia";
-            this.dtpDia.Size = new System.Drawing.Size(200, 20);
-            this.dtpDia.TabIndex = 12;
-            this.dtpDia.Visible = false;
+            this.nombre_tambo.DataPropertyName = "nombre_tambo";
+            this.nombre_tambo.HeaderText = "Tambo";
+            this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.Width = 140;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(173, 87);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(49, 20);
+            this.textBox1.TabIndex = 13;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(173, 123);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(49, 20);
+            this.textBox2.TabIndex = 14;
             // 
             // ReporteProduccionPorFecha
             // 
@@ -359,22 +304,16 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvControles;
         private System.Windows.Forms.Button btnBuscar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_control;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn primer_control;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grasa_primercontrol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn segundo_control;
-        private System.Windows.Forms.DataGridViewTextBoxColumn grasa_segundocontrol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_control;
-        private System.Windows.Forms.DataGridViewTextBoxColumn porcentaje_grasa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kg_grasa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
         private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.ComboBox cbBuscar;
         private System.Windows.Forms.DateTimePicker dtpDia;
         private System.Windows.Forms.ComboBox cbMes;
         private System.Windows.Forms.ComboBox cbAño;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha_control;
+        private System.Windows.Forms.DataGridViewTextBoxColumn litrostotales;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grasatotal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

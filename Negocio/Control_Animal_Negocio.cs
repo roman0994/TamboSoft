@@ -43,9 +43,19 @@ namespace Negocio
             controlAnimalDatos.Eliminar(fecha_control,id_control,rp);
         }
 
-        public DataTable ProduccionPorDia(int id_tambo, DateTime fecha)
+        public DataTable ProduccionPorFecha(int id_tambo)
         {
-            return controlAnimalDatos.ProduccionPorDia(id_tambo,fecha);
+            return controlAnimalDatos.ProduccionPorFecha(id_tambo);
+        }
+
+        public DataTable ProduccionPorFiltroDia(int id_tambo, DateTime fecha)
+        {
+            return controlAnimalDatos.ProduccionPorFiltroDia(id_tambo,fecha);
+        }
+
+        public DataTable ProduccionPorFiltroMes(int id_tambo, int mes, int año)
+        {
+            return controlAnimalDatos.ProduccionPorFiltroMes(id_tambo, mes, año);
         }
 
         public DataTable ProduccionPorAnimal(int id_tambo)
