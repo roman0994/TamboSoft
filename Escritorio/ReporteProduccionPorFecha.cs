@@ -76,6 +76,7 @@ namespace Escritorio
                 CargarComboAño();
                 this.cbAño.Text = "Año:";
                 this.cbAño.Visible = true;
+                this.btnBuscar.Enabled = false;
                 //this.dgvEventos.DataSource = animalNegocio.RecuperarAnimalesEnfermosPorTambo(tambo.Id_tambo);
             }
         }
@@ -128,10 +129,12 @@ namespace Escritorio
             }
             else if (this.cbBuscar.SelectedItem.ToString() == "Mes")
             {
-                int año = Convert.ToInt32(this.cbAño.SelectedItem.ToString());                
-            
+                int año = Convert.ToInt32(this.cbAño.SelectedItem.ToString());
+
                 int mes = this.cbMes.SelectedIndex + 01;
+
                 this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorFiltroMes(idtambo, mes, año);
+                
             }
 
         }
