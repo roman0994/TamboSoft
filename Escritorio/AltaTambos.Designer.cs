@@ -137,7 +137,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(27, 341);
+            this.label8.Location = new System.Drawing.Point(27, 336);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(111, 13);
             this.label8.TabIndex = 11;
@@ -173,24 +173,22 @@
             // 
             // txtSuperficie
             // 
-            this.txtSuperficie.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtSuperficie.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtSuperficie.Location = new System.Drawing.Point(157, 95);
             this.txtSuperficie.Name = "txtSuperficie";
             this.txtSuperficie.Size = new System.Drawing.Size(200, 20);
             this.txtSuperficie.TabIndex = 2;
-            this.txtSuperficie.Text = "Ej: 200,00";
             this.txtSuperficie.Enter += new System.EventHandler(this.txtSuperficie_Enter);
             this.txtSuperficie.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSuperficie_KeyPress);
             this.txtSuperficie.Leave += new System.EventHandler(this.txtSuperficie_Leave);
             // 
             // txtNombre
             // 
-            this.txtNombre.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtNombre.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtNombre.Location = new System.Drawing.Point(157, 48);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(200, 20);
             this.txtNombre.TabIndex = 1;
-            this.txtNombre.Text = "Nombre tambo";
             this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);

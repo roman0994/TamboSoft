@@ -68,14 +68,16 @@ namespace Escritorio
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             EventoAnimal_DescSubevento_Negocio eventoNegocio = new EventoAnimal_DescSubevento_Negocio();
-            int id_desc_evento = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_desc_evento"].Value);
+            int id_evento = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_evento"].Value);
+            int rp = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["rp"].Value);
+            DateTime fecha_desc = Convert.ToDateTime(this.dgvEventos.CurrentRow.Cells["fecha_desc"].Value);
             bool estado_evento = false;
             int id_tambo = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_tambo"].Value);
             DateTime fecha = Convert.ToDateTime(this.dgvEventos.CurrentRow.Cells["fecha_desc"].Value);
             DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el evento?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                eventoNegocio.Eliminar(estado_evento,id_desc_evento);
+                eventoNegocio.Eliminar(estado_evento, id_evento, rp, fecha_desc);
                 MessageBox.Show("El evento fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.CargarGrilla(id_tambo);
             }

@@ -15,6 +15,7 @@ namespace Escritorio
 {
     public partial class DatosTambo : Form
     {
+        public int idtambo;
         public DatosTambo(int id_tambo)
         {
             InitializeComponent();
@@ -67,8 +68,10 @@ namespace Escritorio
             edicionTambo.chkEstado.Checked = tambo.Estado_tambo;
             edicionTambo.cbProvincia.Text = tambo.Nombre_provincia;
             edicionTambo.cbLocalidad.Text = tambo.Nombre_localidad;
+            
+            edicionTambo.Show();
+            CargarDatosTambo(idtambo);
 
-            edicionTambo.ShowDialog();
 
             CargarTextBoxTambo(tambo.Id_tambo);
         }

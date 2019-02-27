@@ -140,6 +140,22 @@ namespace Datos
             }
         }
 
+        public bool HayTambos()
+        {            
+            this.AbrirConexion();
+            SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true'", Conn);
+            SqlDataReader drTambo = cmdTambos.ExecuteReader();
+            
+            if(drTambo.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public void Actualizar(Tambo tambo)
         {
             try

@@ -106,6 +106,7 @@ namespace Escritorio
         private void datosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DatosTambo datosTambo = new DatosTambo(id_tambo);
+            datosTambo.idtambo = id_tambo;
             datosTambo.ShowDialog();
         }
 
@@ -167,6 +168,11 @@ namespace Escritorio
             ReporteReproduccion reporteReproduccion = new ReporteReproduccion(id_tambo);
             reporteReproduccion.idtambo = id_tambo;
             reporteReproduccion.ShowDialog();
+        }
+
+        private void Principal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

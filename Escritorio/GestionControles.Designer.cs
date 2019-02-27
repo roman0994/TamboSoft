@@ -34,18 +34,20 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvControles = new System.Windows.Forms.DataGridView();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.primer_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grasa_primercontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.segundo_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentaje_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kg_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grasa_segundocontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.kg_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentaje_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpControles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvControles)).BeginInit();
             this.SuspendLayout();
@@ -82,9 +84,9 @@
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(96, 416);
+            this.btnEliminar.Location = new System.Drawing.Point(96, 415);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 28);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 29);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -93,9 +95,9 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnEditar.Location = new System.Drawing.Point(361, 416);
+            this.btnEditar.Location = new System.Drawing.Point(361, 415);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 28);
+            this.btnEditar.Size = new System.Drawing.Size(75, 29);
             this.btnEditar.TabIndex = 4;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -104,9 +106,9 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(627, 416);
+            this.btnSalir.Location = new System.Drawing.Point(627, 415);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 28);
+            this.btnSalir.Size = new System.Drawing.Size(75, 29);
             this.btnSalir.TabIndex = 5;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -137,10 +139,12 @@
             this.id_control,
             this.id_tambo,
             this.primer_control,
+            this.grasa_primercontrol,
             this.segundo_control,
-            this.porcentaje_grasa,
+            this.grasa_segundocontrol,
+            this.nombre_tambo,
             this.kg_grasa,
-            this.nombre_tambo});
+            this.porcentaje_grasa});
             this.tlpControles.SetColumnSpan(this.dgvControles, 3);
             this.dgvControles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvControles.Location = new System.Drawing.Point(6, 72);
@@ -148,8 +152,27 @@
             this.dgvControles.Name = "dgvControles";
             this.dgvControles.ReadOnly = true;
             this.dgvControles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvControles.Size = new System.Drawing.Size(788, 335);
+            this.dgvControles.Size = new System.Drawing.Size(788, 334);
             this.dgvControles.TabIndex = 5;
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(271, 41);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(200, 20);
+            this.txtBuscar.TabIndex = 2;
+            this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(6, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(256, 28);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Buscar por nombre de animal:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // fecha_control
             // 
@@ -198,6 +221,14 @@
             this.primer_control.ReadOnly = true;
             this.primer_control.Width = 95;
             // 
+            // grasa_primercontrol
+            // 
+            this.grasa_primercontrol.DataPropertyName = "grasa_primercontrol";
+            this.grasa_primercontrol.HeaderText = "Grasa Primer Control";
+            this.grasa_primercontrol.Name = "grasa_primercontrol";
+            this.grasa_primercontrol.ReadOnly = true;
+            this.grasa_primercontrol.Width = 80;
+            // 
             // segundo_control
             // 
             this.segundo_control.DataPropertyName = "segundo_control";
@@ -206,21 +237,13 @@
             this.segundo_control.ReadOnly = true;
             this.segundo_control.Width = 95;
             // 
-            // porcentaje_grasa
+            // grasa_segundocontrol
             // 
-            this.porcentaje_grasa.DataPropertyName = "porcentaje_grasa";
-            this.porcentaje_grasa.HeaderText = "% Grasa";
-            this.porcentaje_grasa.Name = "porcentaje_grasa";
-            this.porcentaje_grasa.ReadOnly = true;
-            this.porcentaje_grasa.Width = 80;
-            // 
-            // kg_grasa
-            // 
-            this.kg_grasa.DataPropertyName = "kg_grasa";
-            this.kg_grasa.HeaderText = "Kg Grasa";
-            this.kg_grasa.Name = "kg_grasa";
-            this.kg_grasa.ReadOnly = true;
-            this.kg_grasa.Width = 80;
+            this.grasa_segundocontrol.DataPropertyName = "grasa_segundocontrol";
+            this.grasa_segundocontrol.HeaderText = "Grasa Segundo Control";
+            this.grasa_segundocontrol.Name = "grasa_segundocontrol";
+            this.grasa_segundocontrol.ReadOnly = true;
+            this.grasa_segundocontrol.Width = 80;
             // 
             // nombre_tambo
             // 
@@ -229,24 +252,21 @@
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.ReadOnly = true;
             // 
-            // txtBuscar
+            // kg_grasa
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(271, 41);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(200, 20);
-            this.txtBuscar.TabIndex = 2;
-            this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
+            this.kg_grasa.DataPropertyName = "kg_grasa";
+            this.kg_grasa.HeaderText = "Kg Grasa";
+            this.kg_grasa.Name = "kg_grasa";
+            this.kg_grasa.ReadOnly = true;
+            this.kg_grasa.Visible = false;
             // 
-            // label2
+            // porcentaje_grasa
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(6, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(256, 28);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Buscar por nombre de animal:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.porcentaje_grasa.DataPropertyName = "porcentaje_grasa";
+            this.porcentaje_grasa.HeaderText = "% Grasa";
+            this.porcentaje_grasa.Name = "porcentaje_grasa";
+            this.porcentaje_grasa.ReadOnly = true;
+            this.porcentaje_grasa.Visible = false;
             // 
             // GestionControles
             // 
@@ -283,9 +303,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn id_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn primer_control;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grasa_primercontrol;
         private System.Windows.Forms.DataGridViewTextBoxColumn segundo_control;
-        private System.Windows.Forms.DataGridViewTextBoxColumn porcentaje_grasa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn kg_grasa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn grasa_segundocontrol;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kg_grasa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn porcentaje_grasa;
     }
 }

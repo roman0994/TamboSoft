@@ -58,7 +58,19 @@ namespace Util
 
         public bool ValidarCargaControles(int indexAnimal, DateTime fecha)
         {
-            if (indexAnimal != -1 && fecha != null)
+            if (indexAnimal != -1 && fecha != null && fecha <= DateTime.Now)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ValidarFecha(DateTime fecha)
+        {
+            if (fecha <= DateTime.Now)
             {
                 return true;
             }
@@ -80,9 +92,9 @@ namespace Util
             }
         }
 
-        public bool ValidarCargaAnimales(int indexCategoria, int indexSexo, int indexRaza, string edad, string nombre, string hba)
+        public bool ValidarCargaAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba)
         {
-            if (indexCategoria != -1 && indexSexo != -1 && indexRaza != -1 && edad != null && edad != "Edad del animal" && nombre != null && nombre != "Nombre del animal" && hba != null && hba != "Código numérico")
+            if (indexCategoria != -1  && indexRaza != -1 && edad != null && edad != "Edad del animal" && nombre != null && nombre != "Nombre del animal" && hba != null && hba != "Código numérico")
             {
                 return true;
             }
@@ -92,9 +104,9 @@ namespace Util
             }
         }
 
-        public bool ValidarEdicionAnimales(int indexCategoria, int indexSexo, int indexRaza, string edad, string nombre, string hba)
+        public bool ValidarEdicionAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba)
         {
-            if (indexCategoria != -1 && indexSexo != -1 && indexRaza != -1 && edad != null && edad != string.Empty && nombre != null && nombre != string.Empty && hba != null && hba != string.Empty)
+            if (indexCategoria != -1 && indexRaza != -1 && edad != null && edad != string.Empty && nombre != null && nombre != string.Empty && hba != null && hba != string.Empty)
             {
                 return true;
             }

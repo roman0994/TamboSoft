@@ -16,7 +16,6 @@ namespace Entidades
         private string _estado_animal;
         private int _hba;
         private string _categoria;
-        private string _sexo;
         private int _rp_madre;
         private int _rp_padre;
         private int _hba_padre;
@@ -74,12 +73,6 @@ namespace Entidades
         {
             get { return _categoria; }
             set { _categoria = value; }
-        }
-
-        public string Sexo
-        {
-            get { return _sexo; }
-            set { _sexo = value; }
         }
 
         public int Rp_madre
@@ -144,7 +137,7 @@ namespace Entidades
         }
 
 
-        public Animal(int rp, DateTime fecha_nacimiento, int edad, string foto, string nombre_animal, string estado, int hba, string categoria, string sexo, int rp_madre, int rp_padre, int hba_padre, int hba_madre, int id_tambo, int id_raza,string nombre_raza,string nombre_tambo,bool habilitado)
+        public Animal(int rp, DateTime fecha_nacimiento, int edad, string foto, string nombre_animal, string estado, int hba, string categoria, int rp_madre, int rp_padre, int hba_padre, int hba_madre, int id_tambo, int id_raza,string nombre_raza,string nombre_tambo,bool habilitado)
         {
             Rp = rp;
             Fecha_nacimiento = fecha_nacimiento;
@@ -154,7 +147,6 @@ namespace Entidades
             Estado_animal = estado;
             Hba = hba;
             Categoria = categoria;
-            Sexo = sexo;
             Rp_madre = rp_madre;
             Rp_padre = rp_padre;
             Hba_padre = hba_padre;
@@ -165,7 +157,7 @@ namespace Entidades
             Nombre_tambo = nombre_tambo;
             Habilitado = habilitado;
         }
-        public Animal(int rp, DateTime fecha_nacimiento, int edad, string foto, string nombre_animal, string estado, int hba, string categoria, string sexo, int rp_madre, int rp_padre, int hba_padre, int hba_madre, int id_tambo, int id_raza,bool habilitado)
+        public Animal(int rp, DateTime fecha_nacimiento, int edad, string foto, string nombre_animal, string estado, int hba, string categoria,  int rp_madre, int rp_padre, int hba_padre, int hba_madre, int id_tambo, int id_raza,bool habilitado)
         {
             Rp = rp;
             Fecha_nacimiento = fecha_nacimiento;
@@ -175,7 +167,6 @@ namespace Entidades
             Estado_animal = estado;
             Hba = hba;
             Categoria = categoria;
-            Sexo = sexo;
             Rp_madre = rp_madre;
             Rp_padre = rp_padre;
             Hba_padre = hba_padre;

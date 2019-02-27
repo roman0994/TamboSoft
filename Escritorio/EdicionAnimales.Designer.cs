@@ -33,15 +33,15 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtFoto = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
-            this.txtFoto = new System.Windows.Forms.TextBox();
             this.txtRP = new System.Windows.Forms.TextBox();
             this.txtHBA = new System.Windows.Forms.TextBox();
             this.cbRaza = new System.Windows.Forms.ComboBox();
-            this.cbSexo = new System.Windows.Forms.ComboBox();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
@@ -50,10 +50,7 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -138,15 +135,15 @@
             // groupBox1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 2);
+            this.groupBox1.Controls.Add(this.txtFoto);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtTambo);
             this.groupBox1.Controls.Add(this.chkHabilitado);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.dtpFechaNacimiento);
-            this.groupBox1.Controls.Add(this.txtFoto);
             this.groupBox1.Controls.Add(this.txtRP);
             this.groupBox1.Controls.Add(this.txtHBA);
             this.groupBox1.Controls.Add(this.cbRaza);
-            this.groupBox1.Controls.Add(this.cbSexo);
             this.groupBox1.Controls.Add(this.cbCategoria);
             this.groupBox1.Controls.Add(this.cbEstado);
             this.groupBox1.Controls.Add(this.txtNombre);
@@ -155,10 +152,7 @@
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -172,6 +166,23 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Animal";
+            // 
+            // txtFoto
+            // 
+            this.txtFoto.Location = new System.Drawing.Point(496, 54);
+            this.txtFoto.Name = "txtFoto";
+            this.txtFoto.Size = new System.Drawing.Size(200, 20);
+            this.txtFoto.TabIndex = 30;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(421, 61);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 13);
+            this.label7.TabIndex = 29;
+            this.label7.Text = "Foto:";
             // 
             // txtTambo
             // 
@@ -207,13 +218,6 @@
             this.dtpFechaNacimiento.Size = new System.Drawing.Size(200, 20);
             this.dtpFechaNacimiento.TabIndex = 1;
             // 
-            // txtFoto
-            // 
-            this.txtFoto.Location = new System.Drawing.Point(496, 54);
-            this.txtFoto.Name = "txtFoto";
-            this.txtFoto.Size = new System.Drawing.Size(200, 20);
-            this.txtFoto.TabIndex = 9;
-            // 
             // txtRP
             // 
             this.txtRP.Location = new System.Drawing.Point(496, 22);
@@ -238,14 +242,6 @@
             this.cbRaza.Size = new System.Drawing.Size(201, 21);
             this.cbRaza.TabIndex = 11;
             // 
-            // cbSexo
-            // 
-            this.cbSexo.FormattingEnabled = true;
-            this.cbSexo.Location = new System.Drawing.Point(146, 225);
-            this.cbSexo.Name = "cbSexo";
-            this.cbSexo.Size = new System.Drawing.Size(201, 21);
-            this.cbSexo.TabIndex = 7;
-            // 
             // cbCategoria
             // 
             this.cbCategoria.FormattingEnabled = true;
@@ -253,7 +249,6 @@
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(201, 21);
             this.cbCategoria.TabIndex = 6;
-            this.cbCategoria.SelectedIndexChanged += new System.EventHandler(this.cbCategoria_SelectedIndexChanged);
             // 
             // cbEstado
             // 
@@ -319,26 +314,6 @@
             this.label11.TabIndex = 9;
             this.label11.Text = "Raza: *";
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(421, 228);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(370, 13);
-            this.label10.TabIndex = 8;
-            this.label10.Text = "** Para seleccionar el sexo, primero debe elegir la categoría correspondiente.";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(21, 228);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(45, 13);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "Sexo: **";
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -348,16 +323,6 @@
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 6;
             this.label8.Text = "Tambo: ";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(421, 57);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 13);
-            this.label7.TabIndex = 5;
-            this.label7.Text = "Foto:";
             // 
             // label6
             // 
@@ -547,7 +512,6 @@
         public System.Windows.Forms.TextBox txtRP;
         public System.Windows.Forms.TextBox txtHBA;
         public System.Windows.Forms.ComboBox cbRaza;
-        public System.Windows.Forms.ComboBox cbSexo;
         public System.Windows.Forms.ComboBox cbCategoria;
         public System.Windows.Forms.ComboBox cbEstado;
         public System.Windows.Forms.TextBox txtNombre;
@@ -556,10 +520,7 @@
         public System.Windows.Forms.Label label13;
         public System.Windows.Forms.Label label12;
         public System.Windows.Forms.Label label11;
-        public System.Windows.Forms.Label label10;
-        public System.Windows.Forms.Label label9;
         public System.Windows.Forms.Label label8;
-        public System.Windows.Forms.Label label7;
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label label4;
@@ -578,7 +539,8 @@
         public System.Windows.Forms.CheckBox chkHabilitado;
         public System.Windows.Forms.Label label19;
         public System.Windows.Forms.TextBox txtTambo;
-        public System.Windows.Forms.TextBox txtFoto;
         private System.Windows.Forms.Button btnSalir;
+        public System.Windows.Forms.TextBox txtFoto;
+        private System.Windows.Forms.Label label7;
     }
 }

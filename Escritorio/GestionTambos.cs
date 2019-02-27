@@ -57,6 +57,7 @@ namespace Escritorio
             edicionTambo.cbLocalidad.Text = tambo.Nombre_localidad;
 
             edicionTambo.ShowDialog();
+            CargarGrilla(idtambo);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

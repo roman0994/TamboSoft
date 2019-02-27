@@ -316,15 +316,17 @@ namespace Datos
             }
         }
 
-        public void Eliminar(bool estado_evento, int id_desc_evento)
+        public void Eliminar(bool estado_evento, int id_evento, int rp, DateTime fecha_desc)
         {
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdInsertar = new SqlCommand("update EventoAnimal_DescSubevento set estado_evento = @estado_evento where id_desc_evento=@id_desc_evento", Conn);
+                SqlCommand cmdInsertar = new SqlCommand("update EventoAnimal_DescSubevento set estado_evento = @estado_evento where id_evento=@id_evento and rp=@rp and CONVERT(VARCHAR(10), fecha_desc, 103) = CONVERT(VARCHAR(10), @fecha_desc, 103)", Conn);
 
                 cmdInsertar.Parameters.Add("estado_evento", SqlDbType.Bit).Value = estado_evento;
-                cmdInsertar.Parameters.Add("id_desc_evento", SqlDbType.Int).Value = id_desc_evento;
+                cmdInsertar.Parameters.Add("id_evento", SqlDbType.VarChar, 50).Value = id_evento;
+                cmdInsertar.Parameters.Add("rp", SqlDbType.VarChar, 50).Value = rp;
+                cmdInsertar.Parameters.Add("fecha_desc", SqlDbType.DateTime).Value = fecha_desc;
 
                 cmdInsertar.ExecuteNonQuery();
 

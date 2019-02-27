@@ -23,7 +23,6 @@ namespace Escritorio
 
         public void CargarComboBusqueda()
         {
-            this.cbBuscar.Items.Add("RP");
             this.cbBuscar.Items.Add("Nombre");
             this.cbBuscar.Items.Add("Estado");
             this.cbBuscar.SelectedIndex = -1;
@@ -50,7 +49,7 @@ namespace Escritorio
             edicion.cbEstado.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["estado_animal"].Value);
             edicion.txtHBA.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba"].Value);
             edicion.cbCategoria.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["categoria"].Value);
-            edicion.cbSexo.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["sexo"].Value);
+            //edicion.cbSexo.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["sexo"].Value);
             edicion.txtFoto.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["foto"].Value);
             edicion.txtTambo.Text = tambo.Nombre_tambo;
             edicion.cbRaza.Text = raza.Nombre_raza;
@@ -99,10 +98,6 @@ namespace Escritorio
             else if (this.cbBuscar.SelectedItem.ToString() == "Nombre")
             {
                  this.dgvAnimales.DataSource = animalNegocio.FiltrarPorNombre(this.txtBuscar.Text);
-            }
-            else if (this.cbBuscar.SelectedItem.ToString() == "RP")
-            {
-                 this.dgvAnimales.DataSource = animalNegocio.FiltrarPorRP(Convert.ToInt32(this.txtBuscar.Text));
             }
             else if (this.cbBuscar.SelectedItem.ToString() == "Estado")
             {

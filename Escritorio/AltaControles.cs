@@ -58,7 +58,7 @@ namespace Escritorio
                 MessageBox.Show("El control fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Limpiar();
             }
-            else
+            else if (validaciones.ValidarFecha(this.dtpFechaControl.Value.Date))
             {
                 MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 //if (this.cbAnimal.SelectedIndex == -1) { this.cbAnimal.Focus(); }
@@ -67,6 +67,10 @@ namespace Escritorio
                 //if (this.txtSegundoControl.Text == "Litros del segundo ordeñe. Formato: XX,XX") { this.txtSegundoControl.Focus(); }
                 //if (this.txtPorcentajeGrasa.Text == "Formato: XX,XX") { this.txtPorcentajeGrasa.Focus(); }
                 //if (this.txtKgGrasa.Text == "Formato: XX,XX") { this.txtKgGrasa.Focus(); }
+            }
+            else
+            {
+                MessageBox.Show("La fecha no puede ser mayor a hoy", "Información errónea", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -78,9 +82,9 @@ namespace Escritorio
 
             control.Fecha_control = dtpFechaControl.Value.Date;
             control.Primer_control = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtPrimerControl.Text);
-            control.Segundo_control = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtSegundoControl.Text);
-            control.Grasa_primercontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaPrimerControl.Text);
-            control.Grasa_segundocontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaSegundoControl.Text);
+            control.Segundo_control = string.IsNullOrEmpty(txtSegundoControl.Text) ? 0 : Convert.ToDecimal(txtSegundoControl.Text);
+            control.Grasa_primercontrol = string.IsNullOrEmpty(txtGrasaPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaPrimerControl.Text);
+            control.Grasa_segundocontrol = string.IsNullOrEmpty(txtGrasaSegundoControl.Text) ? 0 : Convert.ToDecimal(txtGrasaSegundoControl.Text);
             control.Nombre_animal = animal.Nombre_animal;
             control.Rp = animal.Rp;
 

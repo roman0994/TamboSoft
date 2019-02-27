@@ -92,7 +92,7 @@
             // btnVolver
             // 
             this.btnVolver.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnVolver.Location = new System.Drawing.Point(51, 116);
+            this.btnVolver.Location = new System.Drawing.Point(51, 198);
             this.btnVolver.Name = "btnVolver";
             this.btnVolver.Size = new System.Drawing.Size(181, 28);
             this.btnVolver.TabIndex = 3;
@@ -108,7 +108,7 @@
             this.txtTambo.Enabled = false;
             this.txtTambo.Font = new System.Drawing.Font("Segoe UI Semibold", 40F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTambo.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.txtTambo.Location = new System.Drawing.Point(447, 15);
+            this.txtTambo.Location = new System.Drawing.Point(447, 89);
             this.txtTambo.Name = "txtTambo";
             this.txtTambo.ReadOnly = true;
             this.txtTambo.Size = new System.Drawing.Size(339, 72);
@@ -119,7 +119,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label1.Location = new System.Drawing.Point(45, 46);
+            this.label1.Location = new System.Drawing.Point(45, 109);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(382, 32);
             this.label1.TabIndex = 0;
@@ -208,14 +208,14 @@
             // gestiónControlesToolStripMenuItem
             // 
             this.gestiónControlesToolStripMenuItem.Name = "gestiónControlesToolStripMenuItem";
-            this.gestiónControlesToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.gestiónControlesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestiónControlesToolStripMenuItem.Text = "Gestión Controles";
             this.gestiónControlesToolStripMenuItem.Click += new System.EventHandler(this.gestiónControlesToolStripMenuItem_Click);
             // 
             // nuevoControlToolStripMenuItem
             // 
             this.nuevoControlToolStripMenuItem.Name = "nuevoControlToolStripMenuItem";
-            this.nuevoControlToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.nuevoControlToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nuevoControlToolStripMenuItem.Text = "Cargar Controles";
             this.nuevoControlToolStripMenuItem.Click += new System.EventHandler(this.nuevoControlToolStripMenuItem_Click);
             // 
@@ -233,28 +233,28 @@
             // gestiónEventosToolStripMenuItem
             // 
             this.gestiónEventosToolStripMenuItem.Name = "gestiónEventosToolStripMenuItem";
-            this.gestiónEventosToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.gestiónEventosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestiónEventosToolStripMenuItem.Text = "Gestión Eventos";
             this.gestiónEventosToolStripMenuItem.Click += new System.EventHandler(this.gestiónEventosToolStripMenuItem_Click);
             // 
             // gestiónAnimalesToolStripMenuItem
             // 
             this.gestiónAnimalesToolStripMenuItem.Name = "gestiónAnimalesToolStripMenuItem";
-            this.gestiónAnimalesToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.gestiónAnimalesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.gestiónAnimalesToolStripMenuItem.Text = "Gestión Animales";
             this.gestiónAnimalesToolStripMenuItem.Click += new System.EventHandler(this.gestiónAnimalesToolStripMenuItem_Click);
             // 
             // altaEventosToolStripMenuItem
             // 
             this.altaEventosToolStripMenuItem.Name = "altaEventosToolStripMenuItem";
-            this.altaEventosToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.altaEventosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.altaEventosToolStripMenuItem.Text = "Cargar Eventos";
             this.altaEventosToolStripMenuItem.Click += new System.EventHandler(this.altaEventosToolStripMenuItem_Click);
             // 
             // altaAnimalesToolStripMenuItem
             // 
             this.altaAnimalesToolStripMenuItem.Name = "altaAnimalesToolStripMenuItem";
-            this.altaAnimalesToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
+            this.altaAnimalesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.altaAnimalesToolStripMenuItem.Text = "Cargar Animales";
             this.altaAnimalesToolStripMenuItem.Click += new System.EventHandler(this.altaAnimalesToolStripMenuItem_Click);
             // 
@@ -272,28 +272,28 @@
             // animalesToolStripMenuItem1
             // 
             this.animalesToolStripMenuItem1.Name = "animalesToolStripMenuItem1";
-            this.animalesToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.animalesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.animalesToolStripMenuItem1.Text = "Animales";
             this.animalesToolStripMenuItem1.Click += new System.EventHandler(this.animalesToolStripMenuItem1_Click);
             // 
             // controlesToolStripMenuItem1
             // 
             this.controlesToolStripMenuItem1.Name = "controlesToolStripMenuItem1";
-            this.controlesToolStripMenuItem1.Size = new System.Drawing.Size(151, 22);
+            this.controlesToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.controlesToolStripMenuItem1.Text = "Controles";
             this.controlesToolStripMenuItem1.Click += new System.EventHandler(this.controlesToolStripMenuItem1_Click);
             // 
             // eventosToolStripMenuItem
             // 
             this.eventosToolStripMenuItem.Name = "eventosToolStripMenuItem";
-            this.eventosToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.eventosToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.eventosToolStripMenuItem.Text = "Eventos";
             this.eventosToolStripMenuItem.Click += new System.EventHandler(this.eventosToolStripMenuItem_Click);
             // 
             // inseminadoresToolStripMenuItem
             // 
             this.inseminadoresToolStripMenuItem.Name = "inseminadoresToolStripMenuItem";
-            this.inseminadoresToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+            this.inseminadoresToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.inseminadoresToolStripMenuItem.Text = "Inseminadores";
             this.inseminadoresToolStripMenuItem.Click += new System.EventHandler(this.inseminadoresToolStripMenuItem_Click);
             // 
@@ -319,14 +319,14 @@
             // porFechaToolStripMenuItem
             // 
             this.porFechaToolStripMenuItem.Name = "porFechaToolStripMenuItem";
-            this.porFechaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.porFechaToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.porFechaToolStripMenuItem.Text = "Por fecha";
             this.porFechaToolStripMenuItem.Click += new System.EventHandler(this.porFechaToolStripMenuItem_Click);
             // 
             // porAnimalToolStripMenuItem
             // 
             this.porAnimalToolStripMenuItem.Name = "porAnimalToolStripMenuItem";
-            this.porAnimalToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.porAnimalToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
             this.porAnimalToolStripMenuItem.Text = "Por animal";
             this.porAnimalToolStripMenuItem.Click += new System.EventHandler(this.porAnimalToolStripMenuItem_Click);
             // 
@@ -371,6 +371,7 @@
             this.Name = "Principal";
             this.Text = "Principal";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Principal_FormClosing);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.ContentPanel.PerformLayout();
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);

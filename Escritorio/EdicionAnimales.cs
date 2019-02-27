@@ -46,7 +46,7 @@ namespace Escritorio
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbSexo.SelectedIndex, cbRaza.SelectedIndex, txtEdad.Text, txtNombre.Text, txtHBA.Text);
+            bool validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex, txtEdad.Text, txtNombre.Text, txtHBA.Text);
 
             if (validar == true)
             {
@@ -79,7 +79,7 @@ namespace Escritorio
             animal.Estado_animal = cbEstado.SelectedItem.ToString();
             animal.Hba = Convert.ToInt32(txtHBA.Text);
             animal.Categoria = cbCategoria.SelectedItem.ToString();
-            animal.Sexo = cbSexo.SelectedItem.ToString();
+            //animal.Sexo = cbSexo.SelectedItem.ToString();
             animal.Rp_madre = Convert.ToInt32(txtRPMadre.Text);
             animal.Rp_padre = Convert.ToInt32(txtRPPadre.Text);
             animal.Hba_madre = Convert.ToInt32(txtHBAMadre.Text);
@@ -89,24 +89,6 @@ namespace Escritorio
             animal.Habilitado = chkHabilitado.Checked;
 
             return animal;
-        }
-
-        private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (this.cbCategoria.SelectedItem.ToString() == "Vaca")
-            {
-                //Si elije vaca, solo puede ser hembra
-                cbSexo.Items.Clear();
-                cbSexo.Items.Add("Hembra");
-                cbSexo.SelectedIndex = 0;
-            }
-            else if (this.cbCategoria.SelectedItem.ToString() == "Toro")
-            {
-                //Si elije toro, solo puede ser macho
-                cbSexo.Items.Clear();
-                cbSexo.Items.Add("Macho");
-                cbSexo.SelectedIndex = 0;
-            }
         }
 
         private void txtEdad_KeyPress(object sender, KeyPressEventArgs e)

@@ -58,7 +58,15 @@ namespace Escritorio
 
         private void tbsImpresora_Click(object sender, EventArgs e)
         {
+            VistaPreviaListadoAnimales vistaPreviaListadoAnimales = new VistaPreviaListadoAnimales();
+            
+            ReporteListadoAnimales reporteListadoAnimales = new ReporteListadoAnimales();
+            //Animal_Negocio animal_Negocio = new Animal_Negocio();
+            //reporteListadoAnimales.SetDataSource(animal_Negocio.RecuperarPorTambo(idtambo));
 
+            vistaPreviaListadoAnimales.crvAnimales.ReportSource = reporteListadoAnimales;
+            vistaPreviaListadoAnimales.crvAnimales.Refresh();
+            vistaPreviaListadoAnimales.ShowDialog();
         }
 
         private void tbsExportarAExcel_Click(object sender, EventArgs e)

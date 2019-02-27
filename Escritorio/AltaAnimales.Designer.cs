@@ -43,30 +43,27 @@
             this.txtHBAPadre = new System.Windows.Forms.TextBox();
             this.txtRPPadre = new System.Windows.Forms.TextBox();
             this.gbAnimal = new System.Windows.Forms.GroupBox();
+            this.txtTambo = new System.Windows.Forms.TextBox();
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.txtFoto = new System.Windows.Forms.TextBox();
             this.cbRaza = new System.Windows.Forms.ComboBox();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.cbCategoria = new System.Windows.Forms.ComboBox();
-            this.cbSexo = new System.Windows.Forms.ComboBox();
             this.txtHBA = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtEdad = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtTambo = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtFoto = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbMadre.SuspendLayout();
             this.gbPadre.SuspendLayout();
@@ -258,24 +255,21 @@
             // gbAnimal
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.gbAnimal, 4);
+            this.gbAnimal.Controls.Add(this.txtFoto);
+            this.gbAnimal.Controls.Add(this.label14);
             this.gbAnimal.Controls.Add(this.txtTambo);
             this.gbAnimal.Controls.Add(this.cbEstado);
             this.gbAnimal.Controls.Add(this.label18);
             this.gbAnimal.Controls.Add(this.label17);
             this.gbAnimal.Controls.Add(this.chkHabilitado);
             this.gbAnimal.Controls.Add(this.label16);
-            this.gbAnimal.Controls.Add(this.label15);
-            this.gbAnimal.Controls.Add(this.txtFoto);
             this.gbAnimal.Controls.Add(this.cbRaza);
             this.gbAnimal.Controls.Add(this.dtpFechaNacimiento);
             this.gbAnimal.Controls.Add(this.cbCategoria);
-            this.gbAnimal.Controls.Add(this.cbSexo);
             this.gbAnimal.Controls.Add(this.txtHBA);
             this.gbAnimal.Controls.Add(this.txtNombre);
             this.gbAnimal.Controls.Add(this.txtEdad);
-            this.gbAnimal.Controls.Add(this.label14);
             this.gbAnimal.Controls.Add(this.label13);
-            this.gbAnimal.Controls.Add(this.label12);
             this.gbAnimal.Controls.Add(this.label8);
             this.gbAnimal.Controls.Add(this.label7);
             this.gbAnimal.Controls.Add(this.label6);
@@ -290,6 +284,14 @@
             this.gbAnimal.TabIndex = 30;
             this.gbAnimal.TabStop = false;
             this.gbAnimal.Text = "Datos Animal";
+            // 
+            // txtTambo
+            // 
+            this.txtTambo.Location = new System.Drawing.Point(484, 190);
+            this.txtTambo.Name = "txtTambo";
+            this.txtTambo.ReadOnly = true;
+            this.txtTambo.Size = new System.Drawing.Size(200, 20);
+            this.txtTambo.TabIndex = 27;
             // 
             // cbEstado
             // 
@@ -340,23 +342,6 @@
             this.label16.TabIndex = 21;
             this.label16.Text = "* Campos obligatorios.";
             // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(21, 262);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(370, 13);
-            this.label15.TabIndex = 20;
-            this.label15.Text = "** Para seleccionar el sexo, primero debe elegir la categoría correspondiente.";
-            // 
-            // txtFoto
-            // 
-            this.txtFoto.Location = new System.Drawing.Point(484, 34);
-            this.txtFoto.Name = "txtFoto";
-            this.txtFoto.Size = new System.Drawing.Size(200, 20);
-            this.txtFoto.TabIndex = 7;
-            // 
             // cbRaza
             // 
             this.cbRaza.FormattingEnabled = true;
@@ -379,15 +364,6 @@
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(200, 21);
             this.cbCategoria.TabIndex = 5;
-            this.cbCategoria.SelectedIndexChanged += new System.EventHandler(this.cbCategoria_SelectedIndexChanged);
-            // 
-            // cbSexo
-            // 
-            this.cbSexo.FormattingEnabled = true;
-            this.cbSexo.Location = new System.Drawing.Point(134, 226);
-            this.cbSexo.Name = "cbSexo";
-            this.cbSexo.Size = new System.Drawing.Size(200, 21);
-            this.cbSexo.TabIndex = 6;
             // 
             // txtHBA
             // 
@@ -425,16 +401,6 @@
             this.txtEdad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEdad_KeyPress);
             this.txtEdad.Leave += new System.EventHandler(this.txtEdad_Leave);
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(419, 40);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(31, 13);
-            this.label14.TabIndex = 8;
-            this.label14.Text = "Foto:";
-            // 
             // label13
             // 
             this.label13.AutoSize = true;
@@ -444,16 +410,6 @@
             this.label13.Size = new System.Drawing.Size(50, 13);
             this.label13.TabIndex = 7;
             this.label13.Text = "Tambo: *";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(21, 229);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(45, 13);
-            this.label12.TabIndex = 6;
-            this.label12.Text = "Sexo: **";
             // 
             // label8
             // 
@@ -515,13 +471,22 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Fecha Nacimiento:";
             // 
-            // txtTambo
+            // label14
             // 
-            this.txtTambo.Location = new System.Drawing.Point(484, 190);
-            this.txtTambo.Name = "txtTambo";
-            this.txtTambo.ReadOnly = true;
-            this.txtTambo.Size = new System.Drawing.Size(200, 20);
-            this.txtTambo.TabIndex = 27;
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(419, 40);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(31, 13);
+            this.label14.TabIndex = 28;
+            this.label14.Text = "Foto:";
+            // 
+            // txtFoto
+            // 
+            this.txtFoto.Location = new System.Drawing.Point(484, 37);
+            this.txtFoto.Name = "txtFoto";
+            this.txtFoto.Size = new System.Drawing.Size(200, 20);
+            this.txtFoto.TabIndex = 31;
             // 
             // AltaAnimales
             // 
@@ -569,18 +534,13 @@
         private System.Windows.Forms.TextBox txtRPPadre;
         private System.Windows.Forms.GroupBox gbAnimal;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtFoto;
         private System.Windows.Forms.ComboBox cbRaza;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
         private System.Windows.Forms.ComboBox cbCategoria;
-        private System.Windows.Forms.ComboBox cbSexo;
         private System.Windows.Forms.TextBox txtHBA;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.TextBox txtEdad;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
@@ -592,5 +552,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox chkHabilitado;
         private System.Windows.Forms.TextBox txtTambo;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtFoto;
     }
 }

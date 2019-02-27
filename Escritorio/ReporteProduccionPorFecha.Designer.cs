@@ -41,14 +41,12 @@
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvControles = new System.Windows.Forms.DataGridView();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.btnExportar = new System.Windows.Forms.Button();
             this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.litrostotales = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grasatotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnExportar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -109,8 +107,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.textBox2);
-            this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.dtpDia);
             this.groupBox2.Controls.Add(this.cbMes);
             this.groupBox2.Controls.Add(this.cbAño);
@@ -209,27 +205,6 @@
             this.dgvControles.Size = new System.Drawing.Size(548, 318);
             this.dgvControles.TabIndex = 4;
             // 
-            // btnSalir
-            // 
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(482, 417);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 27);
-            this.btnSalir.TabIndex = 1;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // btnExportar
-            // 
-            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportar.Location = new System.Drawing.Point(162, 417);
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(75, 25);
-            this.btnExportar.TabIndex = 0;
-            this.btnExportar.Text = "Exportar";
-            this.btnExportar.UseVisualStyleBackColor = true;
-            // 
             // fecha_control
             // 
             this.fecha_control.DataPropertyName = "fecha_control";
@@ -257,19 +232,26 @@
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.Width = 140;
             // 
-            // textBox1
+            // btnSalir
             // 
-            this.textBox1.Location = new System.Drawing.Point(173, 87);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(49, 20);
-            this.textBox1.TabIndex = 13;
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSalir.Location = new System.Drawing.Point(482, 417);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 27);
+            this.btnSalir.TabIndex = 1;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // textBox2
+            // btnExportar
             // 
-            this.textBox2.Location = new System.Drawing.Point(173, 123);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(49, 20);
-            this.textBox2.TabIndex = 14;
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExportar.Location = new System.Drawing.Point(162, 417);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(75, 25);
+            this.btnExportar.TabIndex = 0;
+            this.btnExportar.Text = "Exportar";
+            this.btnExportar.UseVisualStyleBackColor = true;
             // 
             // ReporteProduccionPorFecha
             // 
@@ -313,7 +295,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn litrostotales;
         private System.Windows.Forms.DataGridViewTextBoxColumn grasatotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }

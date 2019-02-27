@@ -35,6 +35,7 @@
             this.cbAnimal = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbControl = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtGrasaSegundoControl = new System.Windows.Forms.TextBox();
             this.txtGrasaPrimerControl = new System.Windows.Forms.TextBox();
             this.txtSegundoControl = new System.Windows.Forms.TextBox();
@@ -131,6 +132,7 @@
             // gbControl
             // 
             this.tlpControles.SetColumnSpan(this.gbControl, 4);
+            this.gbControl.Controls.Add(this.label9);
             this.gbControl.Controls.Add(this.txtGrasaSegundoControl);
             this.gbControl.Controls.Add(this.txtGrasaPrimerControl);
             this.gbControl.Controls.Add(this.txtSegundoControl);
@@ -147,6 +149,16 @@
             this.gbControl.TabIndex = 2;
             this.gbControl.TabStop = false;
             this.gbControl.Text = "Datos Control";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(569, 165);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(111, 13);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "* Campos obligatorios.";
             // 
             // txtGrasaSegundoControl
             // 
@@ -165,7 +177,7 @@
             this.txtGrasaPrimerControl.Location = new System.Drawing.Point(233, 71);
             this.txtGrasaPrimerControl.Name = "txtGrasaPrimerControl";
             this.txtGrasaPrimerControl.Size = new System.Drawing.Size(210, 20);
-            this.txtGrasaPrimerControl.TabIndex = 4;
+            this.txtGrasaPrimerControl.TabIndex = 3;
             this.txtGrasaPrimerControl.Enter += new System.EventHandler(this.txtPorcentajeGrasa_Enter);
             this.txtGrasaPrimerControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPorcentajeGrasa_KeyPress);
             this.txtGrasaPrimerControl.Leave += new System.EventHandler(this.txtPorcentajeGrasa_Leave);
@@ -176,7 +188,7 @@
             this.txtSegundoControl.Location = new System.Drawing.Point(233, 113);
             this.txtSegundoControl.Name = "txtSegundoControl";
             this.txtSegundoControl.Size = new System.Drawing.Size(210, 20);
-            this.txtSegundoControl.TabIndex = 3;
+            this.txtSegundoControl.TabIndex = 4;
             this.txtSegundoControl.Enter += new System.EventHandler(this.txtSegundoControl_Enter);
             this.txtSegundoControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSegundoControl_KeyPress);
             this.txtSegundoControl.Leave += new System.EventHandler(this.txtSegundoControl_Leave);
@@ -333,5 +345,6 @@
         private System.Windows.Forms.TextBox txtSegundoControl;
         private System.Windows.Forms.TextBox txtPrimerControl;
         private System.Windows.Forms.ToolTip tooltipControles;
+        private System.Windows.Forms.Label label9;
     }
 }

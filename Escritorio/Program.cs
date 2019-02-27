@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Negocio;
 
 namespace Escritorio
 {
@@ -16,7 +17,16 @@ namespace Escritorio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+
+            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            if (tamboNegocio.HayTambos())
+            {
+                Application.Run(new Login());
+            }
+            else
+            {
+                Application.Run(new LoginAltaTambos());
+            }
         }
     }
 }

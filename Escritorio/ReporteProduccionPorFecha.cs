@@ -128,11 +128,9 @@ namespace Escritorio
             }
             else if (this.cbBuscar.SelectedItem.ToString() == "Mes")
             {
-                int año = Convert.ToInt32(this.cbAño.SelectedItem.ToString());
-                this.textBox1.Text = año.ToString();
+                int año = Convert.ToInt32(this.cbAño.SelectedItem.ToString());                
             
                 int mes = this.cbMes.SelectedIndex + 01;
-                this.textBox2.Text = mes.ToString();
                 this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorFiltroMes(idtambo, mes, año);
             }
 

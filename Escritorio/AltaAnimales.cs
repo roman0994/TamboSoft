@@ -56,24 +56,6 @@ namespace Escritorio
             this.cbRaza.SelectedIndex = -1;
         }
 
-        private void cbCategoria_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if(this.cbCategoria.SelectedItem.ToString() == "Vaca")
-            {
-                //Si elije vaca, solo puede ser hembra
-                cbSexo.Items.Clear();
-                cbSexo.Items.Add("Hembra");
-                cbSexo.SelectedIndex = 0;
-            }
-            else if(this.cbCategoria.SelectedItem.ToString() == "Toro")
-            {
-                //Si elije toro, solo puede ser macho
-                cbSexo.Items.Clear();
-                cbSexo.Items.Add("Macho");
-                cbSexo.SelectedIndex = 0;
-            }
-        }
-
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -82,7 +64,7 @@ namespace Escritorio
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarCargaAnimales(cbCategoria.SelectedIndex,cbSexo.SelectedIndex,cbRaza.SelectedIndex,txtEdad.Text,txtNombre.Text,txtHBA.Text);
+            bool validar = validaciones.ValidarCargaAnimales(cbCategoria.SelectedIndex,cbRaza.SelectedIndex,txtEdad.Text,txtNombre.Text,txtHBA.Text);
 
             if(validar == true)
             {
@@ -114,7 +96,7 @@ namespace Escritorio
             animal.Estado_animal = "Vivo";
             animal.Hba = Convert.ToInt32(txtHBA.Text);
             animal.Categoria = cbCategoria.SelectedItem.ToString();
-            animal.Sexo = cbSexo.SelectedItem.ToString();
+            //animal.Sexo = cbSexo.SelectedItem.ToString();
             animal.Rp_madre = Convert.ToInt32(txtRPMadre.Text);
             animal.Rp_padre = Convert.ToInt32(txtRPPadre.Text);
             animal.Hba_madre = Convert.ToInt32(txtHBAMadre.Text);
@@ -136,7 +118,6 @@ namespace Escritorio
             this.txtHBAPadre.Text = string.Empty;
             this.txtRPMadre.Text = string.Empty;
             this.txtRPPadre.Text = string.Empty;
-            this.cbSexo.Text = string.Empty;
             this.cbCategoria.Text = string.Empty;
             this.cbRaza.SelectedValue = -1;
         }

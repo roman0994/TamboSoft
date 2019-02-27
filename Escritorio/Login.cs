@@ -45,8 +45,8 @@ namespace Escritorio
             int id_tambo = Convert.ToInt32(this.cbTambo.SelectedValue);
             Principal principal = new Principal(id_tambo);
             principal.id_tambo = id_tambo;
-            principal.ShowDialog();
-            this.Dispose();
+            principal.Show();
+            this.Hide();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

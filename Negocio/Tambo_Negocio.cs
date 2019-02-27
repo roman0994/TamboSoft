@@ -32,6 +32,11 @@ namespace Negocio
             return tamboDatos.RecuperarPorNombre(nombre_tambo);
         }
 
+        public bool HayTambos()
+        {
+            return tamboDatos.HayTambos();
+        }
+
         public void Actualizar(Tambo tambo)
         {
             tamboDatos.Actualizar(tambo);

@@ -43,9 +43,9 @@ namespace Negocio
             eventoAnimal_DescSubevento.Actualizar(evento);
         }
 
-        public void Eliminar(bool estado_evento, int id_desc_evento)
+        public void Eliminar(bool estado_evento, int id_evento, int rp, DateTime fecha_desc)
         {
-            eventoAnimal_DescSubevento.Eliminar(estado_evento,id_desc_evento);
+            eventoAnimal_DescSubevento.Eliminar(estado_evento,id_evento,rp,fecha_desc);
         }
 
         public DataTable FiltrarPorNombreAnimal(string texto, int idtambo)

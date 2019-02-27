@@ -36,9 +36,11 @@
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.ReportSource, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Shared, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.3500.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.8.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -103,6 +105,8 @@
     <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -244,6 +248,12 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginAltaTambos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginAltaTambos.Designer.cs">
+      <DependentUpon>LoginAltaTambos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Personal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -264,6 +274,12 @@
     <Compile Include="ReporteEventos.Designer.cs">
       <DependentUpon>ReporteEventos.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReporteListadoAnimales.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReporteListadoAnimales.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ReporteProduccionPorAnimal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -281,6 +297,12 @@
     </Compile>
     <Compile Include="ReporteReproduccion.Designer.cs">
       <DependentUpon>ReporteReproduccion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VistaPreviaListadoAnimales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VistaPreviaListadoAnimales.Designer.cs">
+      <DependentUpon>VistaPreviaListadoAnimales.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AcercaDeTamboSoft.resx">
       <DependentUpon>AcercaDeTamboSoft.cs</DependentUpon>
@@ -345,6 +367,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="LoginAltaTambos.resx">
+      <DependentUpon>LoginAltaTambos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Personal.resx">
       <DependentUpon>Personal.cs</DependentUpon>
     </EmbeddedResource>
@@ -363,6 +388,10 @@
     <EmbeddedResource Include="ReporteEventos.resx">
       <DependentUpon>ReporteEventos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReporteListadoAnimales.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>ReporteListadoAnimales.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteProduccionPorAnimal.resx">
       <DependentUpon>ReporteProduccionPorAnimal.cs</DependentUpon>
     </EmbeddedResource>
@@ -371,6 +400,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteReproduccion.resx">
       <DependentUpon>ReporteReproduccion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VistaPreviaListadoAnimales.resx">
+      <DependentUpon>VistaPreviaListadoAnimales.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

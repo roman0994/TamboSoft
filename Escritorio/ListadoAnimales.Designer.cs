@@ -53,7 +53,6 @@
             this.estado_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hba = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sexo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp_madre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp_padre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hba_madre = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -129,7 +128,6 @@
             this.estado_animal,
             this.hba,
             this.categoria,
-            this.sexo,
             this.rp_madre,
             this.rp_padre,
             this.hba_madre,
@@ -318,14 +316,6 @@
             this.categoria.ReadOnly = true;
             this.categoria.Width = 70;
             // 
-            // sexo
-            // 
-            this.sexo.DataPropertyName = "sexo";
-            this.sexo.HeaderText = "Sexo";
-            this.sexo.Name = "sexo";
-            this.sexo.ReadOnly = true;
-            this.sexo.Width = 60;
-            // 
             // rp_madre
             // 
             this.rp_madre.DataPropertyName = "rp_madre";
@@ -442,7 +432,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn estado_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn hba;
         private System.Windows.Forms.DataGridViewTextBoxColumn categoria;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sexo;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp_madre;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp_padre;
         private System.Windows.Forms.DataGridViewTextBoxColumn hba_madre;
