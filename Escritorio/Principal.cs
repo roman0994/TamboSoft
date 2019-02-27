@@ -88,7 +88,7 @@ namespace Escritorio
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Dispose();
+            Application.Exit();
         }
 
         private void gestiónControlesToolStripMenuItem_Click(object sender, EventArgs e)
@@ -113,8 +113,17 @@ namespace Escritorio
         private void btnVolver_Click(object sender, EventArgs e)
         {
             this.Dispose();
-            Login login = new Login();
-            login.ShowDialog();
+            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            if (tamboNegocio.HayTambos())
+            {
+                Login login = new Login();
+                login.ShowDialog();
+            }
+            else
+            {
+                LoginAltaTambos loginAltaTambos = new LoginAltaTambos();
+                loginAltaTambos.ShowDialog();
+            }
         }
 
         private void personalToolStripMenuItem_Click(object sender, EventArgs e)
