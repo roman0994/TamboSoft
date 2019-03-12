@@ -113,6 +113,24 @@ namespace Datos
             }
         }
 
+        public DataTable RecuperarDTPorTambo(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdEvento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true'", Conn);
+
+            cmdEvento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+            SqlDataReader dr = cmdEvento.ExecuteReader();
+            DataTable dt = new DataTable();
+
+            dt.Load(dr);
+
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
+
+        }
+
         public List<EventoAnimal_DescSubevento> RecuperarPartosPorTambo(int id_tambo)
         {
             try

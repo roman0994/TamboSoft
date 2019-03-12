@@ -40,6 +40,7 @@ namespace Escritorio
         {
             AltaControles altaControles = new AltaControles(idtambo);
             altaControles.ShowDialog();
+            this.CargarGrilla(idtambo);
         }
 
         private void tbsExportar_Click(object sender, EventArgs e)
@@ -57,6 +58,13 @@ namespace Escritorio
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
             this.CargarGrilla(Convert.ToInt32(idtambo));
+        }
+
+        private void tsbImprimir_Click(object sender, EventArgs e)
+        {
+            vpListadoControles vistaPreviaListadoControles = new vpListadoControles();
+            vistaPreviaListadoControles.idtambo = idtambo;
+            vistaPreviaListadoControles.Show();
         }
     }
 }

@@ -65,7 +65,7 @@ namespace Datos
             {
                 List<Tambo_Inseminador> lista = new List<Tambo_Inseminador>();
                 this.AbrirConexion();
-                SqlCommand cmdTamboInseminador = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@id_tambo", Conn);
+                SqlCommand cmdTamboInseminador = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@id_tambo and i.estado_inseminador='true'", Conn);
                 cmdTamboInseminador.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdTamboInseminador.ExecuteReader();
@@ -106,13 +106,31 @@ namespace Datos
             }
         }
 
-        public void Eliminar(int id_tambo,int id_inseminador)
+        public DataTable RecuperarDTPorTambo(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdInseminador = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@id_tambo and i.estado_inseminador='true'", Conn);
+
+            cmdInseminador.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+            SqlDataReader dr = cmdInseminador.ExecuteReader();
+            DataTable dt = new DataTable();
+
+            dt.Load(dr);
+
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
+
+        }
+
+        public void Eliminar(int id_inseminador)
         {
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdEliminar = new SqlCommand("update Tambo_Inseminador set estado_inseminador = 'false' where id_tambo=@id_tambo and id_inseminador=@id_inseminador", Conn);
-                cmdEliminar.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                SqlCommand cmdEliminar = new SqlCommand("update Inseminador set estado_inseminador = 'false' where id_inseminador=@id_inseminador", Conn);
+                //cmdEliminar.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdEliminar.Parameters.Add("id_inseminador", SqlDbType.Int).Value = id_inseminador;
 
                 cmdEliminar.ExecuteNonQuery();

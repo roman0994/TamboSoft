@@ -24,9 +24,14 @@ namespace Negocio
             return tamboInseminadorDatos.RecuperarPorTambo(id_tambo);
         }
 
-        public void Eliminar(int id_tambo,int id_inseminador)
+        public DataTable RecuperarDTPorTambo(int id_tambo)
         {
-            tamboInseminadorDatos.Eliminar(id_tambo,id_inseminador);
+            return tamboInseminadorDatos.RecuperarDTPorTambo(id_tambo);
+        }
+
+        public void Eliminar(int id_inseminador)
+        {
+            tamboInseminadorDatos.Eliminar(id_inseminador);
         }
     }
 }

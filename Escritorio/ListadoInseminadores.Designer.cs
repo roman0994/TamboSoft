@@ -33,6 +33,16 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dgvInseminadores = new System.Windows.Forms.DataGridView();
+            this.id_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbRegresar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -44,16 +54,6 @@
             this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbActualizar = new System.Windows.Forms.ToolStripButton();
-            this.id_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -132,103 +132,6 @@
             this.dgvInseminadores.Size = new System.Drawing.Size(794, 390);
             this.dgvInseminadores.TabIndex = 2;
             // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbRegresar,
-            this.toolStripSeparator1,
-            this.tsbNuevo,
-            this.tsbImprimir,
-            this.tsbExportar,
-            this.toolStripSeparator2,
-            this.tslBuscar,
-            this.tstxtBuscar,
-            this.toolStripSeparator3,
-            this.tsbActualizar});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(398, 25);
-            this.toolStrip1.TabIndex = 1;
-            // 
-            // tsbRegresar
-            // 
-            this.tsbRegresar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tsbRegresar.Image")));
-            this.tsbRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRegresar.Name = "tsbRegresar";
-            this.tsbRegresar.Size = new System.Drawing.Size(23, 22);
-            this.tsbRegresar.Text = "Regresar";
-            this.tsbRegresar.Click += new System.EventHandler(this.tsbRegresar_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsbNuevo
-            // 
-            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
-            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(23, 22);
-            this.tsbNuevo.Text = "Nuevo";
-            this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
-            // 
-            // tsbImprimir
-            // 
-            this.tsbImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbImprimir.Image = ((System.Drawing.Image)(resources.GetObject("tsbImprimir.Image")));
-            this.tsbImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbImprimir.Name = "tsbImprimir";
-            this.tsbImprimir.Size = new System.Drawing.Size(23, 22);
-            this.tsbImprimir.Text = "Imprimir";
-            // 
-            // tsbExportar
-            // 
-            this.tsbExportar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbExportar.Image = ((System.Drawing.Image)(resources.GetObject("tsbExportar.Image")));
-            this.tsbExportar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbExportar.Name = "tsbExportar";
-            this.tsbExportar.Size = new System.Drawing.Size(23, 22);
-            this.tsbExportar.Text = "Exportar a Excel";
-            this.tsbExportar.Click += new System.EventHandler(this.tsbExportar_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tslBuscar
-            // 
-            this.tslBuscar.Name = "tslBuscar";
-            this.tslBuscar.Size = new System.Drawing.Size(111, 22);
-            this.tslBuscar.Text = "Buscar por nombre:";
-            // 
-            // tstxtBuscar
-            // 
-            this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tstxtBuscar.Name = "tstxtBuscar";
-            this.tstxtBuscar.Size = new System.Drawing.Size(100, 25);
-            this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tstxtBuscar_KeyUp);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsbActualizar
-            // 
-            this.tsbActualizar.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.tsbActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbActualizar.Image = ((System.Drawing.Image)(resources.GetObject("tsbActualizar.Image")));
-            this.tsbActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbActualizar.Name = "tsbActualizar";
-            this.tsbActualizar.Size = new System.Drawing.Size(63, 22);
-            this.tsbActualizar.Text = "Actualizar";
-            this.tsbActualizar.Click += new System.EventHandler(this.tsbActualizar_Click);
-            // 
             // id_inseminador
             // 
             this.id_inseminador.DataPropertyName = "id_inseminador";
@@ -306,6 +209,104 @@
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.ReadOnly = true;
             this.nombre_tambo.Width = 120;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRegresar,
+            this.toolStripSeparator1,
+            this.tsbNuevo,
+            this.tsbImprimir,
+            this.tsbExportar,
+            this.toolStripSeparator2,
+            this.tslBuscar,
+            this.tstxtBuscar,
+            this.toolStripSeparator3,
+            this.tsbActualizar});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(429, 25);
+            this.toolStrip1.TabIndex = 1;
+            // 
+            // tsbRegresar
+            // 
+            this.tsbRegresar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tsbRegresar.Image")));
+            this.tsbRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRegresar.Name = "tsbRegresar";
+            this.tsbRegresar.Size = new System.Drawing.Size(23, 22);
+            this.tsbRegresar.Text = "Regresar";
+            this.tsbRegresar.Click += new System.EventHandler(this.tsbRegresar_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbNuevo
+            // 
+            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
+            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNuevo.Name = "tsbNuevo";
+            this.tsbNuevo.Size = new System.Drawing.Size(23, 22);
+            this.tsbNuevo.Text = "Nuevo";
+            this.tsbNuevo.Click += new System.EventHandler(this.tsbNuevo_Click);
+            // 
+            // tsbImprimir
+            // 
+            this.tsbImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbImprimir.Image = ((System.Drawing.Image)(resources.GetObject("tsbImprimir.Image")));
+            this.tsbImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbImprimir.Name = "tsbImprimir";
+            this.tsbImprimir.Size = new System.Drawing.Size(23, 22);
+            this.tsbImprimir.Text = "Imprimir";
+            this.tsbImprimir.Click += new System.EventHandler(this.tsbImprimir_Click);
+            // 
+            // tsbExportar
+            // 
+            this.tsbExportar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbExportar.Image = ((System.Drawing.Image)(resources.GetObject("tsbExportar.Image")));
+            this.tsbExportar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbExportar.Name = "tsbExportar";
+            this.tsbExportar.Size = new System.Drawing.Size(23, 22);
+            this.tsbExportar.Text = "Exportar a Excel";
+            this.tsbExportar.Click += new System.EventHandler(this.tsbExportar_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tslBuscar
+            // 
+            this.tslBuscar.Name = "tslBuscar";
+            this.tslBuscar.Size = new System.Drawing.Size(111, 22);
+            this.tslBuscar.Text = "Buscar por nombre:";
+            // 
+            // tstxtBuscar
+            // 
+            this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tstxtBuscar.Name = "tstxtBuscar";
+            this.tstxtBuscar.Size = new System.Drawing.Size(100, 25);
+            this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tstxtBuscar_KeyUp);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbActualizar
+            // 
+            this.tsbActualizar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.tsbActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbActualizar.Image = ((System.Drawing.Image)(resources.GetObject("tsbActualizar.Image")));
+            this.tsbActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbActualizar.Name = "tsbActualizar";
+            this.tsbActualizar.Size = new System.Drawing.Size(63, 22);
+            this.tsbActualizar.Text = "Actualizar";
+            this.tsbActualizar.Click += new System.EventHandler(this.tsbActualizar_Click);
             // 
             // ListadoInseminadores
             // 

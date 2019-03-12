@@ -43,6 +43,7 @@ namespace Escritorio
         {
             AltaAnimales altaAnimales = new AltaAnimales(idtambo);
             altaAnimales.ShowDialog();
+            this.CargarGrilla(idtambo);
         }
 
         private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
@@ -56,23 +57,24 @@ namespace Escritorio
             this.CargarGrilla(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value));
         }
 
-        private void tbsImpresora_Click(object sender, EventArgs e)
-        {
-            VistaPreviaListadoAnimales vistaPreviaListadoAnimales = new VistaPreviaListadoAnimales();
-            
-            ReporteListadoAnimales reporteListadoAnimales = new ReporteListadoAnimales();
-            //Animal_Negocio animal_Negocio = new Animal_Negocio();
-            //reporteListadoAnimales.SetDataSource(animal_Negocio.RecuperarPorTambo(idtambo));
-
-            vistaPreviaListadoAnimales.crvAnimales.ReportSource = reporteListadoAnimales;
-            vistaPreviaListadoAnimales.crvAnimales.Refresh();
-            vistaPreviaListadoAnimales.ShowDialog();
-        }
-
         private void tbsExportarAExcel_Click(object sender, EventArgs e)
         {
             ExportarAExcel exportarAExcel = new ExportarAExcel();
             exportarAExcel.Exportar(this.dgvAnimales,ListadoAnimales.ActiveForm.Text);
+        }
+
+        private void tbsImpresora_Click(object sender, EventArgs e)
+        {
+            /*VistaPreviaListadoAnimales vistaPreviaListadoAnimales = new VistaPreviaListadoAnimales();
+
+            ReporteListadoAnimales reporteListadoAnimales = new ReporteListadoAnimales();
+            vistaPreviaListadoAnimales.crvAnimales.ReportSource = reporteListadoAnimales;
+            vistaPreviaListadoAnimales.crvAnimales.Refresh();
+            vistaPreviaListadoAnimales.ShowDialog();*/
+
+            vpListadoAnimales vistaPreviaListadoAnimales = new vpListadoAnimales();
+            vistaPreviaListadoAnimales.idtambo = idtambo;
+            vistaPreviaListadoAnimales.Show();
         }
     }
 }

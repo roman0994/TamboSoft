@@ -15,6 +15,8 @@ namespace Escritorio
 {
     public partial class Personal : Form
     {
+        public int idtambo;
+
         public Personal(int id_tambo)
         {
             InitializeComponent();
@@ -85,16 +87,18 @@ namespace Escritorio
             int id_tambo = Convert.ToInt32(this.dgvPersonal.CurrentRow.Cells["id_tambo"].Value);
             int id_inseminador = Convert.ToInt32(this.dgvPersonal.CurrentRow.Cells["id_inseminador"].Value);
 
-            //Busco el tambo individual y el inseminador individual
+            //Busco el inseminador individual y el tambo
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            Tambo tambo = new Tambo();
+            tambo = tamboNegocio.RecuperarUno(idtambo);
+
             Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
-            Tambo tambo = tamboNegocio.RecuperarUno(id_tambo);
             Inseminador inseminador = inseminadorNegocio.RecuperarUno(id_inseminador);
 
             DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el personal "+ inseminador.Nombre_inseminador +" del tambo "+ tambo.Nombre_tambo +"?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
-                tamboInseminadorNegocio.Eliminar(id_tambo,id_inseminador);
+                tamboInseminadorNegocio.Eliminar(id_inseminador);
                 MessageBox.Show("El personal "+ inseminador.Nombre_inseminador + " fue eliminado del tambo "+tambo.Nombre_tambo, "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.CargarGrilla(id_tambo);
             }

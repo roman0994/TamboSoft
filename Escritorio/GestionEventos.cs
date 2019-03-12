@@ -85,8 +85,9 @@ namespace Escritorio
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            ExportarAExcel exportarAExcel = new ExportarAExcel();
-            exportarAExcel.Exportar(this.dgvEventos,GestionEventos.ActiveForm.Text);
+            vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
+            vistaPreviaListadoEventos.idtambo = idtambo;
+            vistaPreviaListadoEventos.Show();
         }
 
         public void InicializarTextBox()

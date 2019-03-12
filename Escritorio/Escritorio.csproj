@@ -163,6 +163,14 @@
     <Compile Include="DatosTambo.Designer.cs">
       <DependentUpon>DatosTambo.cs</DependentUpon>
     </Compile>
+    <Compile Include="dsTamboSoft.cs">
+      <DependentUpon>dsTamboSoft.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dsTamboSoft.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsTamboSoft.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EdicionAnimales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -274,12 +282,6 @@
     <Compile Include="ReporteEventos.Designer.cs">
       <DependentUpon>ReporteEventos.cs</DependentUpon>
     </Compile>
-    <Compile Include="ReporteListadoAnimales.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ReporteListadoAnimales.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="ReporteProduccionPorAnimal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -298,11 +300,53 @@
     <Compile Include="ReporteReproduccion.Designer.cs">
       <DependentUpon>ReporteReproduccion.cs</DependentUpon>
     </Compile>
-    <Compile Include="VistaPreviaListadoAnimales.cs">
+    <Compile Include="rptListadoAnimales.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptListadoAnimales.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptListadoControles.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptListadoControles.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptListadoEventos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptListadoEventos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptListadoInseminadores.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptListadoInseminadores.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="vpListadoAnimales.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="VistaPreviaListadoAnimales.Designer.cs">
-      <DependentUpon>VistaPreviaListadoAnimales.cs</DependentUpon>
+    <Compile Include="vpListadoAnimales.Designer.cs">
+      <DependentUpon>vpListadoAnimales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpListadoControles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpListadoControles.Designer.cs">
+      <DependentUpon>vpListadoControles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpListadoEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpListadoEventos.Designer.cs">
+      <DependentUpon>vpListadoEventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpListadoInseminadores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpListadoInseminadores.Designer.cs">
+      <DependentUpon>vpListadoInseminadores.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AcercaDeTamboSoft.resx">
       <DependentUpon>AcercaDeTamboSoft.cs</DependentUpon>
@@ -388,10 +432,6 @@
     <EmbeddedResource Include="ReporteEventos.resx">
       <DependentUpon>ReporteEventos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ReporteListadoAnimales.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>ReporteListadoAnimales.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="ReporteProduccionPorAnimal.resx">
       <DependentUpon>ReporteProduccionPorAnimal.cs</DependentUpon>
     </EmbeddedResource>
@@ -401,9 +441,45 @@
     <EmbeddedResource Include="ReporteReproduccion.resx">
       <DependentUpon>ReporteReproduccion.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="VistaPreviaListadoAnimales.resx">
-      <DependentUpon>VistaPreviaListadoAnimales.cs</DependentUpon>
+    <EmbeddedResource Include="rptListadoAnimales.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListadoAnimales.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptListadoControles.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListadoControles.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptListadoEventos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListadoEventos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptListadoInseminadores.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListadoInseminadores.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpListadoAnimales.resx">
+      <DependentUpon>vpListadoAnimales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpListadoControles.resx">
+      <DependentUpon>vpListadoControles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpListadoEventos.resx">
+      <DependentUpon>vpListadoEventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpListadoInseminadores.resx">
+      <DependentUpon>vpListadoInseminadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="dsTamboSoft.xsc">
+      <DependentUpon>dsTamboSoft.xsd</DependentUpon>
+    </None>
+    <None Include="dsTamboSoft.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsTamboSoft.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="dsTamboSoft.xss">
+      <DependentUpon>dsTamboSoft.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

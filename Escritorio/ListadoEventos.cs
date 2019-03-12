@@ -42,6 +42,7 @@ namespace Escritorio
         {
             AltaEventos altaEventos = new AltaEventos(idtambo);
             altaEventos.ShowDialog();
+            this.CargarGrilla(idtambo);
         }
 
         private void tbsExportar_Click(object sender, EventArgs e)
@@ -59,6 +60,13 @@ namespace Escritorio
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             this.CargarGrilla(Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_tambo"].Value));
+        }
+
+        private void tbsImprimir_Click(object sender, EventArgs e)
+        {
+            vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
+            vistaPreviaListadoEventos.idtambo = idtambo;
+            vistaPreviaListadoEventos.Show();
         }
     }
 }

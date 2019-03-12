@@ -41,6 +41,7 @@ namespace Escritorio
         {
             AltaPersonal altaPersonal = new AltaPersonal(idtambo);
             altaPersonal.ShowDialog();
+            this.CargarGrilla(idtambo);
         }
 
         private void tsbExportar_Click(object sender, EventArgs e)
@@ -58,6 +59,13 @@ namespace Escritorio
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
             this.CargarGrilla(Convert.ToInt32(this.dgvInseminadores.CurrentRow.Cells["id_tambo"].Value));
+        }
+
+        private void tsbImprimir_Click(object sender, EventArgs e)
+        {
+            vpListadoInseminadores vistaPreviaListadoIns = new vpListadoInseminadores();
+            vistaPreviaListadoIns.idtambo = idtambo;
+            vistaPreviaListadoIns.Show();
         }
     }
 }

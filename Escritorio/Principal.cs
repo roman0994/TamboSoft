@@ -129,6 +129,7 @@ namespace Escritorio
         private void personalToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Personal personal = new Personal(id_tambo);
+            personal.idtambo = id_tambo;
             personal.ShowDialog();
         }
 

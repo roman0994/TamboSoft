@@ -16,14 +16,14 @@ namespace Escritorio {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class ReporteListadoAnimales : ReportClass {
+    public class rptListadoControles : ReportClass {
         
-        public ReporteListadoAnimales() {
+        public rptListadoControles() {
         }
         
         public override string ResourceName {
             get {
-                return "ReporteListadoAnimales.rpt";
+                return "rptListadoControles.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Escritorio {
         
         public override string FullResourceName {
             get {
-                return "Escritorio.ReporteListadoAnimales.rpt";
+                return "Escritorio.rptListadoControles.rpt";
             }
             set {
                 // Do nothing
@@ -90,9 +90,9 @@ namespace Escritorio {
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedReporteListadoAnimales : Component, ICachedReport {
+    public class CachedrptListadoControles : Component, ICachedReport {
         
-        public CachedReporteListadoAnimales() {
+        public CachedrptListadoControles() {
         }
         
         [Browsable(false)]
@@ -129,7 +129,7 @@ namespace Escritorio {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            ReporteListadoAnimales rpt = new ReporteListadoAnimales();
+            rptListadoControles rpt = new rptListadoControles();
             rpt.Site = this.Site;
             return rpt;
         }
