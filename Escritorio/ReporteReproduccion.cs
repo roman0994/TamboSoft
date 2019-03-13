@@ -75,5 +75,12 @@ namespace Escritorio
             this.CargarGrilla(idtambo);
             this.CargarCantidadCrias(idtambo);
         }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            vpReproduccion vistaPreviaReproduccion = new vpReproduccion();
+            vistaPreviaReproduccion.idtambo = idtambo;
+            vistaPreviaReproduccion.Show();
+        }
     }
 }

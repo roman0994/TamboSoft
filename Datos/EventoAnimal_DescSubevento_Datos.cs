@@ -68,7 +68,7 @@ namespace Datos
             {
                 List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
                 this.AbrirConexion();
-                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true'", Conn);
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' order by e.fecha_desc", Conn);
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdEventosAnimalDescSubevento.ExecuteReader();
@@ -116,7 +116,7 @@ namespace Datos
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdEvento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true'", Conn);
+            SqlCommand cmdEvento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' order by e.fecha_desc", Conn);
 
             cmdEvento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -131,13 +131,59 @@ namespace Datos
 
         }
 
+        public DataTable ReporteReproduccion(int id_tambo)
+        {
+            this.AbrirConexion();
+            DataTable dt = new DataTable();
+            //Partos
+            SqlCommand cmdPartos = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and d.id_subevento = 1 order by e.fecha_desc", Conn);
+            cmdPartos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            SqlDataReader drPartos = cmdPartos.ExecuteReader();
+            dt.Load(drPartos);
+            drPartos.Close();
+
+            
+
+            //Cantidad crías hembra
+            //int cantCriasHembra = 0;
+            SqlCommand cmdCriasHembra = new SqlCommand("select COUNT(*) crias_hembra from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 1 and t.id_tambo=@id_tambo", Conn);
+            cmdCriasHembra.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            SqlDataReader drCriasHembra = cmdCriasHembra.ExecuteReader();
+            //if (drCriasHembra.Read())
+            //{
+                //cantCriasHembra = Convert.ToInt32(drCriasHembra["crias_hembra"]);
+                dt.Load(drCriasHembra);
+            //}
+            drCriasHembra.Close();
+
+            //Cantidad crías muertas
+            int cantCriasMuertas = 0;
+            SqlCommand cmdCriasMuertas = new SqlCommand("select COUNT(*) crias_muertas from EventoAnimal_DescSubevento ev inner join Evento e on ev.id_evento = e.id_evento inner join Tambo t on ev.id_tambo = t.id_tambo where e.nombre_evento = 'Parto' and ev.id_desc = 12 and t.id_tambo=@id_tambo", Conn);
+            cmdCriasMuertas.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            SqlDataReader drCriasMuertas = cmdCriasMuertas.ExecuteReader();
+            if (drCriasMuertas.Read())
+            {
+                cantCriasMuertas = Convert.ToInt32(drCriasMuertas["crias_muertas"]);
+                dt.Load(drCriasMuertas);
+            }
+            else
+            {
+                cantCriasMuertas = 0;
+            }
+            drCriasMuertas.Close();
+            
+            this.CerrarConexion();
+            return dt;
+
+        }
+
         public List<EventoAnimal_DescSubevento> RecuperarPartosPorTambo(int id_tambo)
         {
             try
             {
                 List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
                 this.AbrirConexion();
-                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and d.id_subevento = 1", Conn);
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and d.id_subevento = 1 order by e.fecha_desc", Conn);
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdEventosAnimalDescSubevento.ExecuteReader();
@@ -188,7 +234,7 @@ namespace Datos
             {
                 List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
                 this.AbrirConexion();
-                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and e.fecha_desc>=@fechaDesde and e.fecha_desc<=@fechaHasta", Conn);
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and d.id_subevento = 1 and e.fecha_desc>=@fechaDesde and e.fecha_desc<=@fechaHasta order by e.fecha_desc", Conn);
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdEventosAnimalDescSubevento.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
                 cmdEventosAnimalDescSubevento.Parameters.Add("fechaHasta", SqlDbType.DateTime).Value = fechaHasta;

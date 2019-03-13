@@ -94,6 +94,7 @@
             this.btnExportar.TabIndex = 2;
             this.btnExportar.Text = "Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // btnSalir
             // 
@@ -341,7 +342,7 @@
             this.MinimizeBox = false;
             this.Name = "ReporteEventos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Reporte de Eventos";
+            this.Text = "Reporte del estado de animales";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

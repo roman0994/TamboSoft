@@ -35,6 +35,7 @@
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.cbAnimal = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnLimpiar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -76,9 +76,9 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(561, 417);
+            this.btnSalir.Location = new System.Drawing.Point(561, 416);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 27);
+            this.btnSalir.Size = new System.Drawing.Size(75, 28);
             this.btnSalir.TabIndex = 1;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -87,12 +87,13 @@
             // btnExportar
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnExportar.Location = new System.Drawing.Point(163, 417);
+            this.btnExportar.Location = new System.Drawing.Point(163, 416);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(75, 27);
+            this.btnExportar.Size = new System.Drawing.Size(75, 28);
             this.btnExportar.TabIndex = 0;
             this.btnExportar.Text = "Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // groupBox1
             // 
@@ -139,6 +140,16 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Animal";
             // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(615, 21);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 3;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            // 
             // btnBuscar
             // 
             this.btnBuscar.Enabled = false;
@@ -182,7 +193,7 @@
             this.dgvProduccionAnimal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProduccionAnimal.Location = new System.Drawing.Point(6, 132);
             this.dgvProduccionAnimal.Name = "dgvProduccionAnimal";
-            this.dgvProduccionAnimal.Size = new System.Drawing.Size(788, 276);
+            this.dgvProduccionAnimal.Size = new System.Drawing.Size(788, 275);
             this.dgvProduccionAnimal.TabIndex = 4;
             // 
             // Litros_leche
@@ -219,16 +230,6 @@
             this.nombre_tambo.HeaderText = "Tambo";
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.Width = 175;
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Location = new System.Drawing.Point(615, 21);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
-            this.btnLimpiar.TabIndex = 3;
-            this.btnLimpiar.Text = "Limpiar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // ReporteProduccionPorAnimal
             // 

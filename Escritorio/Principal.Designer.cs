@@ -313,7 +313,7 @@
             this.porFechaToolStripMenuItem,
             this.porAnimalToolStripMenuItem});
             this.reporteProduccionToolStripMenuItem.Name = "reporteProduccionToolStripMenuItem";
-            this.reporteProduccionToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.reporteProduccionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reporteProduccionToolStripMenuItem.Text = "Producción";
             // 
             // porFechaToolStripMenuItem
@@ -333,14 +333,14 @@
             // reporteEventosToolStripMenuItem1
             // 
             this.reporteEventosToolStripMenuItem1.Name = "reporteEventosToolStripMenuItem1";
-            this.reporteEventosToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
-            this.reporteEventosToolStripMenuItem1.Text = "Eventos";
+            this.reporteEventosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.reporteEventosToolStripMenuItem1.Text = "Estado de animales";
             this.reporteEventosToolStripMenuItem1.Click += new System.EventHandler(this.reporteEventosToolStripMenuItem1_Click);
             // 
             // reproducciónToolStripMenuItem
             // 
             this.reproducciónToolStripMenuItem.Name = "reproducciónToolStripMenuItem";
-            this.reproducciónToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
+            this.reproducciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.reproducciónToolStripMenuItem.Text = "Reproducción";
             this.reproducciónToolStripMenuItem.Click += new System.EventHandler(this.reproducciónToolStripMenuItem_Click);
             // 

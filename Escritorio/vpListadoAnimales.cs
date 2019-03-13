@@ -14,6 +14,7 @@ namespace Escritorio
     public partial class vpListadoAnimales : Form
     {
         public int idtambo;
+
         public vpListadoAnimales()
         {
             InitializeComponent();

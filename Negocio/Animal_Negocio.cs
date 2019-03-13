@@ -38,9 +38,19 @@ namespace Negocio
             return animalDatos.RecuperarVacasServidasPorTambo(id_tambo);
         }
 
+        public DataTable RecuperarDTVacasServidasPorTambo(int id_tambo)
+        {
+            return animalDatos.RecuperarDTVacasServidasPorTambo(id_tambo);
+        }
+
         public List<Animal> RecuperarVacasEnCeloPorTambo(int id_tambo)
         {
             return animalDatos.RecuperarVacasEnCeloPorTambo(id_tambo);
+        }
+
+        public DataTable RecuperarDTVacasEnCeloPorTambo(int id_tambo)
+        {
+            return animalDatos.RecuperarDTVacasEnCeloPorTambo(id_tambo);
         }
 
         public List<Animal> RecuperarVacasConPartoPorTambo(int id_tambo)
@@ -48,9 +58,19 @@ namespace Negocio
             return animalDatos.RecuperarVacasConPartoPorTambo(id_tambo);
         }
 
+        public DataTable RecuperarDTVacasConPartoPorTambo(int id_tambo)
+        {
+            return animalDatos.RecuperarDTVacasConPartoPorTambo(id_tambo);
+        }
+
         public List<Animal> RecuperarAnimalesEnfermosPorTambo(int id_tambo)
         {
             return animalDatos.RecuperarAnimalesEnfermosPorTambo(id_tambo);
+        }
+
+        public DataTable RecuperarDTAnimalesEnfermosPorTambo(int id_tambo)
+        {
+            return animalDatos.RecuperarDTAnimalesEnfermosPorTambo(id_tambo);
         }
 
         public int CantidadCriasMacho(int id_tambo)

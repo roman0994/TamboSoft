@@ -187,6 +187,24 @@ namespace Datos
             }
         }
 
+        public DataTable RecuperarDTVacasServidasPorTambo(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Servicio' and ev.fecha_desc > DATEADD(dd,-21,GETDATE())", Conn);
+
+            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+            SqlDataReader dr = cmdAnimal.ExecuteReader();
+            DataTable dt = new DataTable();
+
+            dt.Load(dr);
+
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
+
+        }
+
         public List<Animal> RecuperarVacasConPartoPorTambo(int id_tambo)
         {
             try
@@ -237,6 +255,24 @@ namespace Datos
             }
         }
 
+        public DataTable RecuperarDTVacasConPartoPorTambo(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdAnimal = new SqlCommand("SELECT DISTINCT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Parto' and ev.fecha_desc > DATEADD(dd,-21,GETDATE())", Conn);
+
+            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+            SqlDataReader dr = cmdAnimal.ExecuteReader();
+            DataTable dt = new DataTable();
+
+            dt.Load(dr);
+
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
+
+        }
+
         public List<Animal> RecuperarAnimalesEnfermosPorTambo(int id_tambo)
         {
             try
@@ -283,6 +319,24 @@ namespace Datos
             {
                 this.CerrarConexion();
             }
+        }
+
+        public DataTable RecuperarDTAnimalesEnfermosPorTambo(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo'", Conn);
+
+            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+            SqlDataReader dr = cmdAnimal.ExecuteReader();
+            DataTable dt = new DataTable();
+
+            dt.Load(dr);
+
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
+
         }
 
         public List<Animal> RecuperarVacasEnCeloPorTambo(int id_tambo)
@@ -332,6 +386,24 @@ namespace Datos
             {
                 this.CerrarConexion();
             }
+        }
+
+        public DataTable RecuperarDTVacasEnCeloPorTambo(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Celo'", Conn);
+
+            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+            SqlDataReader dr = cmdAnimal.ExecuteReader();
+            DataTable dt = new DataTable();
+
+            dt.Load(dr);
+
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
+
         }
 
         public int CantidadCriasMacho(int id_tambo)

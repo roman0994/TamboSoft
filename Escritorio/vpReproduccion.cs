@@ -11,22 +11,23 @@ using Negocio;
 
 namespace Escritorio
 {
-    public partial class vpListadoEventos : Form
+    public partial class vpReproduccion : Form
     {
         public int idtambo;
-        public vpListadoEventos()
+        public vpReproduccion()
         {
             InitializeComponent();
         }
 
-        private void vpListadoEventos_Load(object sender, EventArgs e)
+        private void vpReproduccion_Load(object sender, EventArgs e)
         {
             EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-            rptListadoEventos reporte = new rptListadoEventos();
+            rptReproduccion reporte = new rptReproduccion();
+            dsTamboSoft ds = new dsTamboSoft();
             
-            reporte.SetDataSource(eventoAnimalDescNegocio.RecuperarDTPorTambo(idtambo));
-            crvEventos.ReportSource = reporte;
-            crvEventos.Refresh();
+            reporte.SetDataSource(eventoAnimalDescNegocio.ReporteReproduccion(idtambo));
+            crvReproduccion.ReportSource = reporte;
+            crvReproduccion.Refresh();
         }
     }
 }

@@ -75,5 +75,20 @@ namespace Escritorio
             this.cbAnimal.SelectedIndex = -1;
             this.btnBuscar.Enabled = false;
         }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            vpProduccionPorAnimal vistaPreviaProduccionPorAnimal = new vpProduccionPorAnimal();
+            vistaPreviaProduccionPorAnimal.idtambo = idtambo;
+            if (this.cbAnimal.SelectedIndex != -1)
+            {
+                vistaPreviaProduccionPorAnimal.opcioncombo = Convert.ToInt32(this.cbAnimal.SelectedValue);
+            }
+            else
+            {
+                vistaPreviaProduccionPorAnimal.opcioncombo = -1;
+            }
+            vistaPreviaProduccionPorAnimal.Show();
+        }
     }
 }

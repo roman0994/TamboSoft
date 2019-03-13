@@ -78,6 +78,21 @@ namespace Escritorio
             this.Dispose();
         }
 
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            vpEventos vistaPreviaEventos = new vpEventos();
+            vistaPreviaEventos.idtambo = idtambo;
+            if (this.cbFiltro.SelectedIndex != -1)
+            {
+                vistaPreviaEventos.opcioncombo = this.cbFiltro.SelectedItem.ToString();
+            }
+            else
+            {
+                vistaPreviaEventos.opcioncombo = "vacio";
+            }
+            vistaPreviaEventos.Show();
+        }
+
 
         /*public void CargarGrillas(int id_tambo)
         {

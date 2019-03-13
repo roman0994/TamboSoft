@@ -300,6 +300,12 @@
     <Compile Include="ReporteReproduccion.Designer.cs">
       <DependentUpon>ReporteReproduccion.cs</DependentUpon>
     </Compile>
+    <Compile Include="rptEventos.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEventos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="rptListadoAnimales.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -324,6 +330,24 @@
       <DependentUpon>rptListadoInseminadores.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="rptProduccionPorAnimal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptProduccionPorAnimal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptReproduccion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptReproduccion.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="vpEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpEventos.Designer.cs">
+      <DependentUpon>vpEventos.cs</DependentUpon>
+    </Compile>
     <Compile Include="vpListadoAnimales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -347,6 +371,18 @@
     </Compile>
     <Compile Include="vpListadoInseminadores.Designer.cs">
       <DependentUpon>vpListadoInseminadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpProduccionPorAnimal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpProduccionPorAnimal.Designer.cs">
+      <DependentUpon>vpProduccionPorAnimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpReproduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpReproduccion.Designer.cs">
+      <DependentUpon>vpReproduccion.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="AcercaDeTamboSoft.resx">
       <DependentUpon>AcercaDeTamboSoft.cs</DependentUpon>
@@ -441,6 +477,10 @@
     <EmbeddedResource Include="ReporteReproduccion.resx">
       <DependentUpon>ReporteReproduccion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptEventos.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEventos.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptListadoAnimales.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptListadoAnimales.cs</LastGenOutput>
@@ -457,6 +497,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptListadoInseminadores.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptProduccionPorAnimal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProduccionPorAnimal.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptReproduccion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptReproduccion.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpEventos.resx">
+      <DependentUpon>vpEventos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="vpListadoAnimales.resx">
       <DependentUpon>vpListadoAnimales.cs</DependentUpon>
     </EmbeddedResource>
@@ -468,6 +519,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vpListadoInseminadores.resx">
       <DependentUpon>vpListadoInseminadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpProduccionPorAnimal.resx">
+      <DependentUpon>vpProduccionPorAnimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpReproduccion.resx">
+      <DependentUpon>vpReproduccion.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="dsTamboSoft.xsc">
       <DependentUpon>dsTamboSoft.xsd</DependentUpon>
