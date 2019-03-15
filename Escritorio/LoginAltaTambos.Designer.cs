@@ -145,6 +145,7 @@
             // 
             // cbProvincia
             // 
+            this.cbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProvincia.FormattingEnabled = true;
             this.cbProvincia.Location = new System.Drawing.Point(166, 161);
             this.cbProvincia.Name = "cbProvincia";
@@ -154,6 +155,7 @@
             // 
             // cbLocalidad
             // 
+            this.cbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocalidad.FormattingEnabled = true;
             this.cbLocalidad.Location = new System.Drawing.Point(166, 199);
             this.cbLocalidad.Name = "cbLocalidad";

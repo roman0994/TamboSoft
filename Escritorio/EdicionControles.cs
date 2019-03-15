@@ -48,12 +48,47 @@ namespace Escritorio
 
             if (validar == true)
             {
-                Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
-                Control_Animal control = new Control_Animal();
-                control = MapearAControlAnimal();
-                controlNegocio.Actualizar(control);
-                DialogResult result = MessageBox.Show("El control fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                if (validaciones.ValidarFecha(this.dtpFechaControl.Value.Date))
+                {
+                    if (validaciones.ValidarDecimalControles(txtPrimerControl.Text) == true || txtPrimerControl.Text == string.Empty)
+                    {
+                        if (validaciones.ValidarDecimalControles(txtGrasaPrimerControl.Text) == true || txtGrasaPrimerControl.Text == string.Empty)
+                        {
+                            if (validaciones.ValidarDecimalControles(txtSegundoControl.Text) == true || txtSegundoControl.Text == string.Empty)
+                            {
+                                if (validaciones.ValidarDecimalControles(txtGrasaSegundoControl.Text) == true || txtGrasaSegundoControl.Text == string.Empty)
+                                {
+                                    Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
+                                    Control_Animal control = new Control_Animal();
+                                    control = MapearAControlAnimal();
+                                    controlNegocio.Actualizar(control);
+                                    DialogResult result = MessageBox.Show("El control fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    this.Dispose();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("El campo Grasa Segundo Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("El campo Segundo Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("El campo Grasa Primer Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El campo Primer Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La fecha no puede ser mayor a hoy", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

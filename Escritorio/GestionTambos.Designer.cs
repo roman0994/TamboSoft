@@ -89,14 +89,15 @@
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(200, 20);
             this.txtBuscar.TabIndex = 1;
+            this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
             // 
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnEditar.Enabled = false;
-            this.btnEditar.Location = new System.Drawing.Point(361, 417);
+            this.btnEditar.Location = new System.Drawing.Point(361, 415);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 27);
+            this.btnEditar.Size = new System.Drawing.Size(75, 29);
             this.btnEditar.TabIndex = 2;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -108,9 +109,9 @@
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.Enabled = false;
             this.btnEliminar.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btnEliminar.Location = new System.Drawing.Point(96, 417);
+            this.btnEliminar.Location = new System.Drawing.Point(96, 415);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 27);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 29);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -119,9 +120,9 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(627, 417);
+            this.btnSalir.Location = new System.Drawing.Point(627, 415);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 27);
+            this.btnSalir.Size = new System.Drawing.Size(75, 29);
             this.btnSalir.TabIndex = 4;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -143,7 +144,7 @@
             this.dgvTambos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTambos.Location = new System.Drawing.Point(6, 72);
             this.dgvTambos.Name = "dgvTambos";
-            this.dgvTambos.Size = new System.Drawing.Size(788, 336);
+            this.dgvTambos.Size = new System.Drawing.Size(788, 334);
             this.dgvTambos.TabIndex = 5;
             // 
             // id_tambo

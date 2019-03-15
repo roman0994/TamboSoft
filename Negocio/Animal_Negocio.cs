@@ -138,9 +138,9 @@ namespace Negocio
             return animalDatos.RecuperarPorNombre(nombre);
         }
 
-        public DataTable FiltrarPorNombre(string texto)
+        public DataTable FiltrarPorNombre(string texto, int idtambo)
         {
-            return animalDatos.FiltrarPorNombre(texto);
+            return animalDatos.FiltrarPorNombre(texto,idtambo);
         }
 
         public DataTable FiltrarPorRP(int rp)
@@ -148,9 +148,9 @@ namespace Negocio
             return animalDatos.FiltrarPorRP(rp);
         }
 
-        public DataTable FiltrarPorEstado(string texto)
+        public DataTable FiltrarPorEstado(string texto,int idtambo)
         {
-            return animalDatos.FiltrarPorEstado(texto);
+            return animalDatos.FiltrarPorEstado(texto,idtambo);
         }
 
         public DataTable FiltrarPorAnimalesEnCeloPorTambo(int id_tambo)

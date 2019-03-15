@@ -36,6 +36,14 @@ namespace Escritorio
         {
             EventoAnimal_DescSubevento_Negocio eventoAnimalDescSubeventoNegocio = new EventoAnimal_DescSubevento_Negocio();
             this.dgvPartos.DataSource = eventoAnimalDescSubeventoNegocio.RecuperarPartosPorTambo(id_tambo);
+            if (this.dgvPartos.Rows.Count != 0 && this.dgvPartos.Rows != null)
+            {
+                this.btnExportar.Enabled = true;
+            }
+            else
+            {
+                this.btnExportar.Enabled = false;
+            }
         }
 
         public void CargarCantidadCrias(int id_tambo)
@@ -61,6 +69,14 @@ namespace Escritorio
             //Cargar partos
             EventoAnimal_DescSubevento_Negocio eventoAnimalDescSubeventoNegocio = new EventoAnimal_DescSubevento_Negocio();
             this.dgvPartos.DataSource = eventoAnimalDescSubeventoNegocio.RecuperarPartosPorTamboPorFecha(idtambo, fechaDesde, fechaHasta);
+            if (this.dgvPartos.Rows.Count != 0 && this.dgvPartos.Rows != null)
+            {
+                this.btnExportar.Enabled = true;
+            }
+            else
+            {
+                this.btnExportar.Enabled = false;
+            }
             //Crías hembra
             Animal_Negocio animalNegocio = new Animal_Negocio();
             this.txtCriasHembra.Text = animalNegocio.CantidadCriasHembraPorFecha(idtambo, fechaDesde, fechaHasta).ToString();

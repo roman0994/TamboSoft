@@ -336,6 +336,18 @@
       <DependentUpon>rptProduccionPorAnimal.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="rptProduccionPorFechaDia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptProduccionPorFechaDia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptProduccionPorFechaMes.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptProduccionPorFechaMes.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="rptReproduccion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -377,6 +389,18 @@
     </Compile>
     <Compile Include="vpProduccionPorAnimal.Designer.cs">
       <DependentUpon>vpProduccionPorAnimal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpProduccionPorFechaDia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpProduccionPorFechaDia.Designer.cs">
+      <DependentUpon>vpProduccionPorFechaDia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpProduccionPorFechaMes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpProduccionPorFechaMes.Designer.cs">
+      <DependentUpon>vpProduccionPorFechaMes.cs</DependentUpon>
     </Compile>
     <Compile Include="vpReproduccion.cs">
       <SubType>Form</SubType>
@@ -501,6 +525,14 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptProduccionPorAnimal.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptProduccionPorFechaDia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProduccionPorFechaDia.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptProduccionPorFechaMes.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptProduccionPorFechaMes.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptReproduccion.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptReproduccion.cs</LastGenOutput>
@@ -522,6 +554,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vpProduccionPorAnimal.resx">
       <DependentUpon>vpProduccionPorAnimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpProduccionPorFechaDia.resx">
+      <DependentUpon>vpProduccionPorFechaDia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpProduccionPorFechaMes.resx">
+      <DependentUpon>vpProduccionPorFechaMes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vpReproduccion.resx">
       <DependentUpon>vpReproduccion.cs</DependentUpon>

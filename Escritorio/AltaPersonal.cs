@@ -67,25 +67,32 @@ namespace Escritorio
 
             if (cbProvincia.SelectedIndex != -1 && cbLocalidad.SelectedIndex != -1 && txtNombre.Text != null && txtNombre.Text != string.Empty && txtDni.Text != null && txtDni.Text != string.Empty)
             {
-                if (txtDni.Text.Length == 8)
+                if (txtDni.Text.Length == 7 || txtDni.Text.Length == 8)
                 {
-                    //Agrego el nuevo inseminador y en el método de insertar, agrego la relacion del tambo inseminador
-                    Tambo tambo = new Tambo();
-                    Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-                    tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
-                    Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
-                    Inseminador inseminador = new Inseminador();
-                    inseminador = MapearAInseminador();
-                    Tambo_Inseminador tamboInseminador = new Tambo_Inseminador();
-                    tamboInseminador.Id_tambo = tambo.Id_tambo;
-                    inseminadorNegocio.Insertar(inseminador, tamboInseminador);
+                    if (txtTelefono.Text.Length >= 8 && txtTelefono.Text.Length <= 12)
+                    {
+                        //Agrego el nuevo inseminador y en el método de insertar, agrego la relacion del tambo inseminador
+                        Tambo tambo = new Tambo();
+                        Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                        tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
+                        Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
+                        Inseminador inseminador = new Inseminador();
+                        inseminador = MapearAInseminador();
+                        Tambo_Inseminador tamboInseminador = new Tambo_Inseminador();
+                        tamboInseminador.Id_tambo = tambo.Id_tambo;
+                        inseminadorNegocio.Insertar(inseminador, tamboInseminador);
 
-                    DialogResult result = MessageBox.Show("El personal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Limpiar();
+                        DialogResult result = MessageBox.Show("El personal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Limpiar();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El campo Teléfono no es válido. Ingrese sin el 0 ni el 15 y sin espacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("El campo DNI debe tener 8 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El campo DNI debe tener entre 7 y 8 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -114,12 +121,11 @@ namespace Escritorio
         public void Limpiar()
         { 
             this.txtNombre.Text = string.Empty;
-            this.chkEstado.Checked = false;
             this.txtTelefono.Text = string.Empty;
             this.txtDireccion.Text = string.Empty;
             this.txtDni.Text = string.Empty;
-            this.cbProvincia.Text = string.Empty;
-            this.cbLocalidad.Text = string.Empty;
+            this.cbProvincia.SelectedIndex = -1;
+            this.cbLocalidad.SelectedIndex = -1;
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
@@ -214,7 +220,7 @@ namespace Escritorio
 
         private void txtDni_Enter(object sender, EventArgs e)
         {
-            if (this.txtDni.Text == "Debe tener ocho dígitos")
+            if (this.txtDni.Text == "Debe tener entre 7 y 8 dígitos")
             {
                 this.txtDni.Text = "";
                 this.txtDni.ForeColor = Color.Black;
@@ -225,7 +231,7 @@ namespace Escritorio
         {
             if (this.txtDni.Text == "")
             {
-                this.txtDni.Text = "Debe tener ocho dígitos";
+                this.txtDni.Text = "Debe tener entre 7 y 8 dígitos";
                 this.txtDni.ForeColor = Color.Silver;
             }
         }

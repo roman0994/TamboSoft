@@ -33,5 +33,10 @@ namespace Negocio
         {
             tamboInseminadorDatos.Eliminar(id_inseminador);
         }
+
+        public DataTable FiltrarPorNombre(string texto, int idtambo)
+        {
+            return tamboInseminadorDatos.FiltrarPorNombre(texto, idtambo);
+        }
     }
 }

@@ -22,7 +22,6 @@ namespace Escritorio
             InitializeComponent();
             CargarTextBoxTambo(id_tambo);
             CargarGrilla(id_tambo);
-            InicializarBotones();
         }
 
         public void CargarTextBoxTambo(int id_tambo)
@@ -42,11 +41,7 @@ namespace Escritorio
         {
             Tambo_Inseminador_Negocio tamboInseminadorNegocio = new Tambo_Inseminador_Negocio();
             this.dgvPersonal.DataSource = tamboInseminadorNegocio.RecuperarPorTambo(id_tambo);
-        }
-
-        private void InicializarBotones()
-        {
-            if(this.dgvPersonal.SelectedRows != null)
+            if (this.dgvPersonal.Rows.Count != 0 && this.dgvPersonal.Rows != null)
             {
                 this.btnModificar.Enabled = true;
                 this.btnEliminar.Enabled = true;
@@ -111,7 +106,7 @@ namespace Escritorio
             tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
             AltaPersonal altaPersonal = new AltaPersonal(tambo.Id_tambo);
             altaPersonal.ShowDialog();
-            //CargarGrilla(Convert.ToInt32(this.dgvPersonal.CurrentRow.Cells["id_tambo"].Value));
+            CargarGrilla(idtambo);
         }
     }
 }

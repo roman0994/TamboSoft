@@ -29,6 +29,14 @@ namespace Escritorio
         {
             Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
             this.dgvProduccionAnimal.DataSource = controlAnimalNegocio.ProduccionPorAnimal(id_tambo);
+            if (this.dgvProduccionAnimal.Rows.Count != 0 && this.dgvProduccionAnimal.Rows != null)
+            {
+                this.btnExportar.Enabled = true;
+            }
+            else
+            {
+                this.btnExportar.Enabled = false;
+            }
         }
 
         public void CargarTextBoxTambo(int id_tambo)
@@ -67,6 +75,14 @@ namespace Escritorio
             Animal animal = new Animal();
             animal = animalNegocio.RecuperarUno(Convert.ToInt32(this.cbAnimal.SelectedValue));
             this.dgvProduccionAnimal.DataSource = controlAnimalNegocio.ProduccionPorFiltroAnimal(idtambo, animal.Rp);
+            if (this.dgvProduccionAnimal.Rows.Count != 0 && this.dgvProduccionAnimal.Rows != null)
+            {
+                this.btnExportar.Enabled = true;
+            }
+            else
+            {
+                this.btnExportar.Enabled = false;
+            }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)

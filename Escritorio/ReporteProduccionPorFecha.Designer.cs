@@ -252,6 +252,7 @@
             this.btnExportar.TabIndex = 0;
             this.btnExportar.Text = "Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // ReporteProduccionPorFecha
             // 

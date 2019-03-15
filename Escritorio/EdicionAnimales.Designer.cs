@@ -33,8 +33,6 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.txtFoto = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -135,8 +133,6 @@
             // groupBox1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 2);
-            this.groupBox1.Controls.Add(this.txtFoto);
-            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtTambo);
             this.groupBox1.Controls.Add(this.chkHabilitado);
             this.groupBox1.Controls.Add(this.label19);
@@ -167,26 +163,9 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Animal";
             // 
-            // txtFoto
-            // 
-            this.txtFoto.Location = new System.Drawing.Point(496, 54);
-            this.txtFoto.Name = "txtFoto";
-            this.txtFoto.Size = new System.Drawing.Size(200, 20);
-            this.txtFoto.TabIndex = 30;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(421, 61);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 13);
-            this.label7.TabIndex = 29;
-            this.label7.Text = "Foto:";
-            // 
             // txtTambo
             // 
-            this.txtTambo.Location = new System.Drawing.Point(496, 123);
+            this.txtTambo.Location = new System.Drawing.Point(496, 54);
             this.txtTambo.Name = "txtTambo";
             this.txtTambo.ReadOnly = true;
             this.txtTambo.Size = new System.Drawing.Size(201, 20);
@@ -195,7 +174,9 @@
             // chkHabilitado
             // 
             this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Location = new System.Drawing.Point(496, 93);
+            this.chkHabilitado.Checked = true;
+            this.chkHabilitado.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkHabilitado.Location = new System.Drawing.Point(496, 126);
             this.chkHabilitado.Name = "chkHabilitado";
             this.chkHabilitado.Size = new System.Drawing.Size(15, 14);
             this.chkHabilitado.TabIndex = 14;
@@ -205,7 +186,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(421, 93);
+            this.label19.Location = new System.Drawing.Point(421, 126);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(57, 13);
             this.label19.TabIndex = 13;
@@ -236,6 +217,7 @@
             // 
             // cbRaza
             // 
+            this.cbRaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRaza.FormattingEnabled = true;
             this.cbRaza.Location = new System.Drawing.Point(496, 159);
             this.cbRaza.Name = "cbRaza";
@@ -244,6 +226,7 @@
             // 
             // cbCategoria
             // 
+            this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(146, 192);
             this.cbCategoria.Name = "cbCategoria";
@@ -252,6 +235,7 @@
             // 
             // cbEstado
             // 
+            this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FormattingEnabled = true;
             this.cbEstado.Location = new System.Drawing.Point(146, 123);
             this.cbEstado.Name = "cbEstado";
@@ -318,7 +302,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(421, 126);
+            this.label8.Location = new System.Drawing.Point(421, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(46, 13);
             this.label8.TabIndex = 6;
@@ -540,7 +524,5 @@
         public System.Windows.Forms.Label label19;
         public System.Windows.Forms.TextBox txtTambo;
         private System.Windows.Forms.Button btnSalir;
-        public System.Windows.Forms.TextBox txtFoto;
-        private System.Windows.Forms.Label label7;
     }
 }

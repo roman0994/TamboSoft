@@ -47,8 +47,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.toolTipTambo = new System.Windows.Forms.ToolTip(this.components);
             this.btnSalir = new System.Windows.Forms.Button();
+            this.toolTipTambo = new System.Windows.Forms.ToolTip(this.components);
+            this.label10 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -101,6 +102,7 @@
             // groupBox1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 3);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.chkEstado);
             this.groupBox1.Controls.Add(this.txtSuperficie);
             this.groupBox1.Controls.Add(this.txtNombre);
@@ -160,6 +162,7 @@
             // 
             // cbLocalidad
             // 
+            this.cbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocalidad.FormattingEnabled = true;
             this.cbLocalidad.Location = new System.Drawing.Point(179, 238);
             this.cbLocalidad.Name = "cbLocalidad";
@@ -168,6 +171,7 @@
             // 
             // cbProvincia
             // 
+            this.cbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProvincia.FormattingEnabled = true;
             this.cbProvincia.Location = new System.Drawing.Point(179, 197);
             this.cbProvincia.Name = "cbProvincia";
@@ -216,9 +220,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(29, 159);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.Size = new System.Drawing.Size(40, 13);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Estado:";
+            this.label5.Text = "Activo:";
             // 
             // label4
             // 
@@ -256,6 +260,16 @@
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(386, 116);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(134, 13);
+            this.label10.TabIndex = 13;
+            this.label10.Text = "Formato de ingreso: XX,XX";
             // 
             // EdicionOtrosTambos
             // 
@@ -296,5 +310,6 @@
         public System.Windows.Forms.ComboBox cbProvincia;
         public System.Windows.Forms.ToolTip toolTipTambo;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label label10;
     }
 }

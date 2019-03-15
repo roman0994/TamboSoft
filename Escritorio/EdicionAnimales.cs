@@ -50,12 +50,54 @@ namespace Escritorio
 
             if (validar == true)
             {
-                Animal_Negocio animalNegocio = new Animal_Negocio();
-                Animal animal = new Animal();
-                animal = MapearAAnimal();
-                animalNegocio.Actualizar(animal);
-                DialogResult result = MessageBox.Show("El animal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                if (txtEdad.Text.Length <= 3)
+                {
+                    if (txtHBA.Text.Length <= 4)
+                    {
+                        if (txtRPMadre.Text.Length <= 6 || txtRPMadre.Text == string.Empty)
+                        {
+                            if (txtRPPadre.Text.Length <= 6 || txtRPPadre.Text == string.Empty)
+                            {
+                                if (txtHBAMadre.Text.Length <= 6 || txtHBAMadre.Text == string.Empty)
+                                {
+                                    if (txtHBAPadre.Text.Length <= 6 || txtHBAPadre.Text == string.Empty)
+                                    {
+                                        Animal_Negocio animalNegocio = new Animal_Negocio();
+                                        Animal animal = new Animal();
+                                        animal = MapearAAnimal();
+                                        animalNegocio.Actualizar(animal);
+                                        DialogResult result = MessageBox.Show("El animal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        this.Dispose();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("El campo HBA Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("El campo HBA Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("El campo RP Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("El campo RP Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El campo HBA no puede ser mayor a 4 (cuatro) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("El valor del campo Edad no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -74,7 +116,7 @@ namespace Escritorio
             animal.Rp = Convert.ToInt32(txtRP.Text);
             animal.Fecha_nacimiento = dtpFechaNacimiento.Value.Date;
             animal.Edad = Convert.ToInt32(txtEdad.Text);
-            animal.Foto = txtFoto.Text;
+            //animal.Foto = txtFoto.Text;
             animal.Nombre_animal = txtNombre.Text;
             animal.Estado_animal = cbEstado.SelectedItem.ToString();
             animal.Hba = Convert.ToInt32(txtHBA.Text);

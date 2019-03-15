@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocio;
+using Entidades;
 
 namespace Escritorio
 {
@@ -46,26 +47,49 @@ namespace Escritorio
 
         private void tsbExportar_Click(object sender, EventArgs e)
         {
-            ExportarAExcel exportarAExcel = new ExportarAExcel();
-            exportarAExcel.Exportar(this.dgvInseminadores,ListadoInseminadores.ActiveForm.Text);
+            if (this.dgvInseminadores.Rows.Count != 0 && this.dgvInseminadores.Rows != null)
+            {
+                ExportarAExcel exportarAExcel = new ExportarAExcel();
+                exportarAExcel.Exportar(this.dgvInseminadores, ListadoInseminadores.ActiveForm.Text);
+            }
+            else
+            {
+                Tambo tambo = new Tambo();
+                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                tambo = tambo_Negocio.RecuperarUno(idtambo);
+                MessageBox.Show("No se encontraron inseminadores en el tambo " + tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void tstxtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            Inseminador_Negocio inseminador_Negocio = new Inseminador_Negocio();
-            this.dgvInseminadores.DataSource = inseminador_Negocio.FiltrarPorNombre(this.tstxtBuscar.Text);
+            Tambo_Inseminador_Negocio tamboInseminadorNegocio = new Tambo_Inseminador_Negocio();
+            this.dgvInseminadores.DataSource = tamboInseminadorNegocio.FiltrarPorNombre(this.tstxtBuscar.Text,idtambo);
         }
 
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
-            this.CargarGrilla(Convert.ToInt32(this.dgvInseminadores.CurrentRow.Cells["id_tambo"].Value));
+            if (this.dgvInseminadores.Rows.Count != 0 && this.dgvInseminadores.Rows != null)
+            {
+                this.CargarGrilla(Convert.ToInt32(this.dgvInseminadores.CurrentRow.Cells["id_tambo"].Value));
+            }
         }
 
         private void tsbImprimir_Click(object sender, EventArgs e)
         {
-            vpListadoInseminadores vistaPreviaListadoIns = new vpListadoInseminadores();
-            vistaPreviaListadoIns.idtambo = idtambo;
-            vistaPreviaListadoIns.Show();
+            if (this.dgvInseminadores.Rows.Count != 0 && this.dgvInseminadores.Rows != null)
+            {
+                vpListadoInseminadores vistaPreviaListadoIns = new vpListadoInseminadores();
+                vistaPreviaListadoIns.idtambo = idtambo;
+                vistaPreviaListadoIns.Show();
+            }
+            else
+            {
+                Tambo tambo = new Tambo();
+                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                tambo = tambo_Negocio.RecuperarUno(idtambo);
+                MessageBox.Show("No se encontraron inseminadores en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

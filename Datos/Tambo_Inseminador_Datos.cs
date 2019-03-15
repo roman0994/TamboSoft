@@ -151,5 +151,22 @@ namespace Datos
             }
         }
 
+        public DataTable FiltrarPorNombre(string texto, int idtambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdFiltro = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@idtambo and i.estado_inseminador='true' and i.nombre_inseminador like ('" + texto + "%')", Conn);
+            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+
+            SqlDataReader dr = cmdFiltro.ExecuteReader();
+            DataTable dt = new DataTable();
+
+            dt.Load(dr);
+
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
+
+        }
+
     }
 }

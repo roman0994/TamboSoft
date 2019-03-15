@@ -7,6 +7,7 @@ namespace Escritorio
 {
     public partial class GestionAnimales : Form
     {
+        public int idtambo;
         public GestionAnimales(int id_tambo)
         {
             InitializeComponent();
@@ -19,6 +20,16 @@ namespace Escritorio
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
+            if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+            {
+                this.btnEditar.Enabled = true;
+                this.btnEliminar.Enabled = true;
+            }
+            else
+            {
+                this.btnEditar.Enabled = false;
+                this.btnEliminar.Enabled = false;
+            }
         }
 
         public void CargarComboBusqueda()
@@ -50,7 +61,7 @@ namespace Escritorio
             edicion.txtHBA.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba"].Value);
             edicion.cbCategoria.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["categoria"].Value);
             //edicion.cbSexo.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["sexo"].Value);
-            edicion.txtFoto.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["foto"].Value);
+            //edicion.txtFoto.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["foto"].Value);
             edicion.txtTambo.Text = tambo.Nombre_tambo;
             edicion.cbRaza.Text = raza.Nombre_raza;
             edicion.txtRPMadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp_madre"].Value);
@@ -97,11 +108,11 @@ namespace Escritorio
             }
             else if (this.cbBuscar.SelectedItem.ToString() == "Nombre")
             {
-                 this.dgvAnimales.DataSource = animalNegocio.FiltrarPorNombre(this.txtBuscar.Text);
+                 this.dgvAnimales.DataSource = animalNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo);
             }
             else if (this.cbBuscar.SelectedItem.ToString() == "Estado")
             {
-                this.dgvAnimales.DataSource = animalNegocio.FiltrarPorEstado(this.txtBuscar.Text);
+                this.dgvAnimales.DataSource = animalNegocio.FiltrarPorEstado(this.txtBuscar.Text,idtambo);
             }
         }
 

@@ -58,7 +58,7 @@ namespace Escritorio
         private void btnModificarDatos_Click(object sender, EventArgs e)
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            Tambo tambo = new Tambo();
+            Tambo tambo = new Tambo(); 
             tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
 
             EdicionDatosTambo edicionTambo = new EdicionDatosTambo();
@@ -68,12 +68,11 @@ namespace Escritorio
             edicionTambo.chkEstado.Checked = tambo.Estado_tambo;
             edicionTambo.cbProvincia.Text = tambo.Nombre_provincia;
             edicionTambo.cbLocalidad.Text = tambo.Nombre_localidad;
-            
-            edicionTambo.Show();
-            CargarDatosTambo(idtambo);
 
-
+            CargarDatosTambo(tambo.Id_tambo);
             CargarTextBoxTambo(tambo.Id_tambo);
+
+            edicionTambo.Show();
         }
 
         private void btnNuevoTambo_Click(object sender, EventArgs e)

@@ -28,6 +28,16 @@ namespace Escritorio
             EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
             this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarPorTambo(id_tambo);
             //gvEventos.Columns[0].HeaderText = "TextoAMostrarEnLaCabecera";
+            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            {
+                this.btnExportar.Enabled = true;
+                this.btnEliminar.Enabled = true;
+            }
+            else
+            {
+                this.btnExportar.Enabled = false;
+                this.btnEliminar.Enabled = false;
+            }
         }
 
         public void CargarComboBusqueda()
@@ -87,7 +97,7 @@ namespace Escritorio
         {
             vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
             vistaPreviaListadoEventos.idtambo = idtambo;
-            vistaPreviaListadoEventos.Show();
+            vistaPreviaListadoEventos.Show();        
         }
 
         public void InicializarTextBox()

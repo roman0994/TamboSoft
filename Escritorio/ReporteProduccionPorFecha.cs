@@ -15,6 +15,11 @@ namespace Escritorio
     public partial class ReporteProduccionPorFecha : Form
     {
         public int idtambo;
+        public DateTime fecha;
+        public int mes;
+        public int año;
+        public int bandera = 0;
+
         public ReporteProduccionPorFecha(int id_tambo)
         {
             InitializeComponent();
@@ -36,6 +41,14 @@ namespace Escritorio
         {
             Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
             this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorFecha(id_tambo);
+            if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+            {
+                this.btnExportar.Enabled = true;
+            }
+            else
+            {
+                this.btnExportar.Enabled = false;
+            }
         }
 
         public void CargarComboBusqueda()
@@ -58,6 +71,7 @@ namespace Escritorio
             this.dtpDia.Visible = false;
             this.cbMes.Visible = false;
             this.btnBuscar.Enabled = false;
+            this.bandera = 0;
         }
 
         private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)
@@ -124,19 +138,64 @@ namespace Escritorio
 
             if (this.cbBuscar.SelectedItem.ToString() == "Día")
             {
-                DateTime fecha = Convert.ToDateTime(this.dtpDia.Value.ToString("dd/MM/yyyy"));             
+                this.bandera = 1;
+                fecha = Convert.ToDateTime(this.dtpDia.Value.ToString("dd/MM/yyyy"));             
                 this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorFiltroDia(idtambo,fecha);
+                if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
             }
             else if (this.cbBuscar.SelectedItem.ToString() == "Mes")
             {
-                int año = Convert.ToInt32(this.cbAño.SelectedItem.ToString());
+                this.bandera = 2;
 
-                int mes = this.cbMes.SelectedIndex + 01;
+                año = Convert.ToInt32(this.cbAño.SelectedItem.ToString());
+
+                mes = this.cbMes.SelectedIndex + 01;
 
                 this.dgvControles.DataSource = controlAnimalNegocio.ProduccionPorFiltroMes(idtambo, mes, año);
-                
+                if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
             }
 
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+            if (this.bandera == 0)
+            {
+                vpProduccionPorFechaDia vistaPreviaProduccionPorDia = new vpProduccionPorFechaDia();
+                vistaPreviaProduccionPorDia.idtambo = idtambo;
+                vistaPreviaProduccionPorDia.fecha = Convert.ToDateTime(this.dtpDia.Value.ToString("dd/MM/yyyy"));
+                vistaPreviaProduccionPorDia.Show();
+            }
+            else if(this.bandera == 1)
+            {
+                vpProduccionPorFechaDia vistaPreviaProduccionPorDia = new vpProduccionPorFechaDia();
+                vistaPreviaProduccionPorDia.idtambo = idtambo;
+                vistaPreviaProduccionPorDia.fecha = Convert.ToDateTime(this.dtpDia.Value.ToString("dd/MM/yyyy"));
+                vistaPreviaProduccionPorDia.Show();
+            }
+            else if(this.bandera == 2)
+            {
+                vpProduccionPorFechaMes vistaPreviaProduccionPorMes = new vpProduccionPorFechaMes();
+                vistaPreviaProduccionPorMes.idtambo = idtambo;
+                vistaPreviaProduccionPorMes.mes = mes;
+                vistaPreviaProduccionPorMes.año = año;
+                vistaPreviaProduccionPorMes.Show();
+            }
         }
     }
 }

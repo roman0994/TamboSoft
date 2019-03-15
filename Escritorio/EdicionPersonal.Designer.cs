@@ -228,6 +228,7 @@
             // 
             // cbLocalidad
             // 
+            this.cbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocalidad.FormattingEnabled = true;
             this.cbLocalidad.Location = new System.Drawing.Point(132, 318);
             this.cbLocalidad.Name = "cbLocalidad";
@@ -236,6 +237,7 @@
             // 
             // cbProvincia
             // 
+            this.cbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProvincia.FormattingEnabled = true;
             this.cbProvincia.Location = new System.Drawing.Point(131, 278);
             this.cbProvincia.Name = "cbProvincia";
@@ -310,9 +312,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(22, 117);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.Size = new System.Drawing.Size(40, 13);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Estado:";
+            this.label5.Text = "Activo:";
             // 
             // label4
             // 

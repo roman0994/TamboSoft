@@ -66,14 +66,56 @@ namespace Escritorio
             Validaciones validaciones = new Validaciones();
             bool validar = validaciones.ValidarCargaAnimales(cbCategoria.SelectedIndex,cbRaza.SelectedIndex,txtEdad.Text,txtNombre.Text,txtHBA.Text);
 
-            if(validar == true)
+            if(validar == true) 
             {
-                Animal_Negocio animal_Negocio = new Animal_Negocio();
-                Animal animal = new Animal();
-                animal = MapearAAnimal();
-                animal_Negocio.Insertar(animal);
-                MessageBox.Show("El animal fue dado de alta exitosamente","Alta" ,MessageBoxButtons.OK,MessageBoxIcon.Asterisk);
-                this.Limpiar();
+                if (txtEdad.Text.Length <= 3)
+                {
+                    if (txtHBA.Text.Length <= 4)
+                    {
+                        if (txtRPMadre.Text.Length<=6 || txtRPMadre.Text == string.Empty)
+                        {
+                            if (txtRPPadre.Text.Length <= 6 || txtRPPadre.Text == string.Empty)
+                            {
+                                if (txtHBAMadre.Text.Length <= 6 || txtHBAMadre.Text == string.Empty)
+                                {
+                                    if (txtHBAPadre.Text.Length <= 6 || txtHBAPadre.Text == string.Empty)
+                                    {
+                                        Animal_Negocio animal_Negocio = new Animal_Negocio();
+                                        Animal animal = new Animal();
+                                        animal = MapearAAnimal();
+                                        animal_Negocio.Insertar(animal);
+                                        MessageBox.Show("El animal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                        this.Limpiar();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("El campo HBA Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("El campo HBA Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("El campo RP Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("El campo RP Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El campo HBA no puede ser mayor a 4 (cuatro) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("El valor del campo Edad no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -91,16 +133,16 @@ namespace Escritorio
 
             animal.Fecha_nacimiento = dtpFechaNacimiento.Value.Date;
             animal.Edad = Convert.ToInt32(txtEdad.Text);
-            animal.Foto = txtFoto.Text;
+            //animal.Foto = txtFoto.Text;
             animal.Nombre_animal = txtNombre.Text;
             animal.Estado_animal = "Vivo";
             animal.Hba = Convert.ToInt32(txtHBA.Text);
             animal.Categoria = cbCategoria.SelectedItem.ToString();
             //animal.Sexo = cbSexo.SelectedItem.ToString();
-            animal.Rp_madre = Convert.ToInt32(txtRPMadre.Text);
-            animal.Rp_padre = Convert.ToInt32(txtRPPadre.Text);
-            animal.Hba_madre = Convert.ToInt32(txtHBAMadre.Text);
-            animal.Hba_padre = Convert.ToInt32(txtHBAPadre.Text);
+            animal.Rp_madre = string.IsNullOrEmpty(txtRPMadre.Text) ? 0 : Convert.ToInt32(txtRPMadre.Text);
+            animal.Rp_padre = string.IsNullOrEmpty(txtRPPadre.Text) ? 0 : Convert.ToInt32(txtRPPadre.Text);
+            animal.Hba_madre = string.IsNullOrEmpty(txtHBAMadre.Text) ? 0 : Convert.ToInt32(txtHBAMadre.Text);
+            animal.Hba_padre = string.IsNullOrEmpty(txtHBAPadre.Text) ? 0 : Convert.ToInt32(txtHBAPadre.Text);
             animal.Id_tambo = tambo.Id_tambo;
             animal.Id_raza = raza.Id_raza;
             animal.Habilitado = chkHabilitado.Checked;
@@ -118,8 +160,8 @@ namespace Escritorio
             this.txtHBAPadre.Text = string.Empty;
             this.txtRPMadre.Text = string.Empty;
             this.txtRPPadre.Text = string.Empty;
-            this.cbCategoria.Text = string.Empty;
-            this.cbRaza.SelectedValue = -1;
+            this.cbCategoria.SelectedIndex = -1;
+            this.cbRaza.SelectedIndex = -1;
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
@@ -204,132 +246,6 @@ namespace Escritorio
             else
             {
                 e.Handled = true;
-            }
-        }
-
-        private void txtEdad_Enter(object sender, EventArgs e)
-        {
-            if (this.txtEdad.Text == "Edad del animal")
-            {
-                this.txtEdad.Text = "";
-                this.txtEdad.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtEdad_Leave(object sender, EventArgs e)
-        {
-            if (this.txtEdad.Text == "")
-            {
-                this.txtEdad.Text = "Edad del animal";
-                this.txtEdad.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtNombre_Enter(object sender, EventArgs e)
-        {
-            if (this.txtNombre.Text == "Nombre del animal")
-            {
-                this.txtNombre.Text = "";
-                this.txtNombre.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtNombre_Leave(object sender, EventArgs e)
-        {
-            if (this.txtNombre.Text == "")
-            {
-                this.txtNombre.Text = "Nombre del animal";
-                this.txtNombre.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtHBA_Enter(object sender, EventArgs e)
-        {
-            if (this.txtHBA.Text == "Código numérico")
-            {
-                this.txtHBA.Text = "";
-                this.txtHBA.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtHBA_Leave(object sender, EventArgs e)
-        {
-            if (this.txtHBA.Text == "")
-            {
-                this.txtHBA.Text = "Código numérico";
-                this.txtHBA.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtRPMadre_Enter(object sender, EventArgs e)
-        {
-            if (this.txtRPMadre.Text == "Código numérico")
-            {
-                this.txtRPMadre.Text = "";
-                this.txtRPMadre.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtRPMadre_Leave(object sender, EventArgs e)
-        {
-            if (this.txtRPMadre.Text == "")
-            {
-                this.txtRPMadre.Text = "Código numérico";
-                this.txtRPMadre.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtHBAMadre_Enter(object sender, EventArgs e)
-        {
-            if (this.txtHBAMadre.Text == "Código numérico")
-            {
-                this.txtHBAMadre.Text = "";
-                this.txtHBAMadre.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtHBAMadre_Leave(object sender, EventArgs e)
-        {
-            if (this.txtHBAMadre.Text == "")
-            {
-                this.txtHBAMadre.Text = "Código numérico";
-                this.txtHBAMadre.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtRPPadre_Enter(object sender, EventArgs e)
-        {
-            if (this.txtRPPadre.Text == "Código numérico")
-            {
-                this.txtRPPadre.Text = "";
-                this.txtRPPadre.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtRPPadre_Leave(object sender, EventArgs e)
-        {
-            if (this.txtRPPadre.Text == "")
-            {
-                this.txtRPPadre.Text = "Código numérico";
-                this.txtRPPadre.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtHBAPadre_Enter(object sender, EventArgs e)
-        {
-            if (this.txtHBAPadre.Text == "Código numérico")
-            {
-                this.txtHBAPadre.Text = "";
-                this.txtHBAPadre.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtHBAPadre_Leave(object sender, EventArgs e)
-        {
-            if (this.txtHBAPadre.Text == "")
-            {
-                this.txtHBAPadre.Text = "Código numérico";
-                this.txtHBAPadre.ForeColor = Color.Silver;
             }
         }
 

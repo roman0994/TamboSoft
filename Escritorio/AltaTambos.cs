@@ -63,12 +63,19 @@ namespace Escritorio
 
             if (validar == true)
             {
-                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-                Tambo tambo = new Tambo();
-                tambo = MapearATambo();
-                tamboNegocio.Insertar(tambo);
-                DialogResult result = MessageBox.Show("El tambo fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                if (validaciones.ValidarDecimalSuperficieTambo(txtSuperficie.Text) == true)
+                {
+                    Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                    Tambo tambo = new Tambo();
+                    tambo = MapearATambo();
+                    tamboNegocio.Insertar(tambo);
+                    DialogResult result = MessageBox.Show("El tambo fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("El valor de Superficie no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
@@ -86,7 +93,7 @@ namespace Escritorio
            
             tambo.Nombre_tambo = txtNombre.Text;
             tambo.Superficie = Convert.ToDecimal(txtSuperficie.Text);
-            tambo.Estado_tambo = chkEstado.Checked;
+            tambo.Estado_tambo = true;
             tambo.Id_localidad = localidad.Id_localidad;
             tambo.Nombre_localidad = localidad.Nombre_localidad;
             tambo.Nombre_provincia = provincia.Nombre_provincia;

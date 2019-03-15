@@ -60,9 +60,9 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnEditar.Location = new System.Drawing.Point(361, 417);
+            this.btnEditar.Location = new System.Drawing.Point(361, 416);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 27);
+            this.btnEditar.Size = new System.Drawing.Size(75, 28);
             this.btnEditar.TabIndex = 4;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -107,9 +107,9 @@
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(627, 417);
+            this.btnSalir.Location = new System.Drawing.Point(627, 416);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 27);
+            this.btnSalir.Size = new System.Drawing.Size(75, 28);
             this.btnSalir.TabIndex = 5;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -144,9 +144,9 @@
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(96, 417);
+            this.btnEliminar.Location = new System.Drawing.Point(96, 416);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 27);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 28);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -181,7 +181,7 @@
             this.dgvAnimales.Name = "dgvAnimales";
             this.dgvAnimales.ReadOnly = true;
             this.dgvAnimales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnimales.Size = new System.Drawing.Size(788, 336);
+            this.dgvAnimales.Size = new System.Drawing.Size(788, 335);
             this.dgvAnimales.TabIndex = 8;
             // 
             // rp
@@ -222,6 +222,7 @@
             this.foto.HeaderText = "Foto";
             this.foto.Name = "foto";
             this.foto.ReadOnly = true;
+            this.foto.Visible = false;
             // 
             // nombre_animal
             // 

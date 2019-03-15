@@ -62,8 +62,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txtFoto = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbMadre.SuspendLayout();
             this.gbPadre.SuspendLayout();
@@ -150,27 +148,21 @@
             // 
             // txtHBAMadre
             // 
-            this.txtHBAMadre.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtHBAMadre.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtHBAMadre.Location = new System.Drawing.Point(120, 60);
             this.txtHBAMadre.Name = "txtHBAMadre";
             this.txtHBAMadre.Size = new System.Drawing.Size(200, 20);
             this.txtHBAMadre.TabIndex = 11;
-            this.txtHBAMadre.Text = "Código numérico";
-            this.txtHBAMadre.Enter += new System.EventHandler(this.txtHBAMadre_Enter);
             this.txtHBAMadre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHBAMadre_KeyPress);
-            this.txtHBAMadre.Leave += new System.EventHandler(this.txtHBAMadre_Leave);
             // 
             // txtRPMadre
             // 
-            this.txtRPMadre.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtRPMadre.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtRPMadre.Location = new System.Drawing.Point(120, 24);
             this.txtRPMadre.Name = "txtRPMadre";
             this.txtRPMadre.Size = new System.Drawing.Size(200, 20);
             this.txtRPMadre.TabIndex = 10;
-            this.txtRPMadre.Text = "Código numérico";
-            this.txtRPMadre.Enter += new System.EventHandler(this.txtRPMadre_Enter);
             this.txtRPMadre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRPMadre_KeyPress);
-            this.txtRPMadre.Leave += new System.EventHandler(this.txtRPMadre_Leave);
             // 
             // label9
             // 
@@ -230,33 +222,25 @@
             // 
             // txtHBAPadre
             // 
-            this.txtHBAPadre.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtHBAPadre.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtHBAPadre.Location = new System.Drawing.Point(120, 57);
             this.txtHBAPadre.Name = "txtHBAPadre";
             this.txtHBAPadre.Size = new System.Drawing.Size(200, 20);
             this.txtHBAPadre.TabIndex = 13;
-            this.txtHBAPadre.Text = "Código numérico";
-            this.txtHBAPadre.Enter += new System.EventHandler(this.txtHBAPadre_Enter);
             this.txtHBAPadre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHBAPadre_KeyPress);
-            this.txtHBAPadre.Leave += new System.EventHandler(this.txtHBAPadre_Leave);
             // 
             // txtRPPadre
             // 
-            this.txtRPPadre.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtRPPadre.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtRPPadre.Location = new System.Drawing.Point(120, 24);
             this.txtRPPadre.Name = "txtRPPadre";
             this.txtRPPadre.Size = new System.Drawing.Size(200, 20);
             this.txtRPPadre.TabIndex = 12;
-            this.txtRPPadre.Text = "Código numérico";
-            this.txtRPPadre.Enter += new System.EventHandler(this.txtRPPadre_Enter);
             this.txtRPPadre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRPPadre_KeyPress);
-            this.txtRPPadre.Leave += new System.EventHandler(this.txtRPPadre_Leave);
             // 
             // gbAnimal
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.gbAnimal, 4);
-            this.gbAnimal.Controls.Add(this.txtFoto);
-            this.gbAnimal.Controls.Add(this.label14);
             this.gbAnimal.Controls.Add(this.txtTambo);
             this.gbAnimal.Controls.Add(this.cbEstado);
             this.gbAnimal.Controls.Add(this.label18);
@@ -295,6 +279,7 @@
             // 
             // cbEstado
             // 
+            this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FormattingEnabled = true;
             this.cbEstado.Location = new System.Drawing.Point(484, 72);
             this.cbEstado.Name = "cbEstado";
@@ -344,6 +329,7 @@
             // 
             // cbRaza
             // 
+            this.cbRaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRaza.FormattingEnabled = true;
             this.cbRaza.Location = new System.Drawing.Point(484, 226);
             this.cbRaza.Name = "cbRaza";
@@ -359,6 +345,7 @@
             // 
             // cbCategoria
             // 
+            this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.FormattingEnabled = true;
             this.cbCategoria.Location = new System.Drawing.Point(134, 190);
             this.cbCategoria.Name = "cbCategoria";
@@ -367,39 +354,30 @@
             // 
             // txtHBA
             // 
-            this.txtHBA.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtHBA.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtHBA.Location = new System.Drawing.Point(134, 151);
             this.txtHBA.Name = "txtHBA";
             this.txtHBA.Size = new System.Drawing.Size(200, 20);
             this.txtHBA.TabIndex = 4;
-            this.txtHBA.Text = "Código numérico";
-            this.txtHBA.Enter += new System.EventHandler(this.txtHBA_Enter);
             this.txtHBA.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHBA_KeyPress);
-            this.txtHBA.Leave += new System.EventHandler(this.txtHBA_Leave);
             // 
             // txtNombre
             // 
-            this.txtNombre.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtNombre.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtNombre.Location = new System.Drawing.Point(134, 109);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(200, 20);
             this.txtNombre.TabIndex = 3;
-            this.txtNombre.Text = "Nombre del animal";
-            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
-            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
             // 
             // txtEdad
             // 
-            this.txtEdad.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtEdad.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtEdad.Location = new System.Drawing.Point(134, 72);
             this.txtEdad.Name = "txtEdad";
             this.txtEdad.Size = new System.Drawing.Size(200, 20);
             this.txtEdad.TabIndex = 2;
-            this.txtEdad.Text = "Edad del animal";
-            this.txtEdad.Enter += new System.EventHandler(this.txtEdad_Enter);
             this.txtEdad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEdad_KeyPress);
-            this.txtEdad.Leave += new System.EventHandler(this.txtEdad_Leave);
             // 
             // label13
             // 
@@ -471,23 +449,6 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Fecha Nacimiento:";
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(419, 40);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(31, 13);
-            this.label14.TabIndex = 28;
-            this.label14.Text = "Foto:";
-            // 
-            // txtFoto
-            // 
-            this.txtFoto.Location = new System.Drawing.Point(484, 37);
-            this.txtFoto.Name = "txtFoto";
-            this.txtFoto.Size = new System.Drawing.Size(200, 20);
-            this.txtFoto.TabIndex = 31;
-            // 
             // AltaAnimales
             // 
             this.AcceptButton = this.btnGuardar;
@@ -552,7 +513,5 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.CheckBox chkHabilitado;
         private System.Windows.Forms.TextBox txtTambo;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtFoto;
     }
 }

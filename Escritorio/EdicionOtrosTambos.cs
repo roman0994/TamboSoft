@@ -58,12 +58,19 @@ namespace Escritorio
 
             if (validar == true)
             {
-                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-                Tambo tambo = new Tambo();
-                tambo = MapearATambo();
-                tamboNegocio.Actualizar(tambo);
-                DialogResult result = MessageBox.Show("El tambo fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Dispose();
+                if (validaciones.ValidarDecimalSuperficieTambo(txtSuperficie.Text) == true)
+                {
+                    Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                    Tambo tambo = new Tambo();
+                    tambo = MapearATambo();
+                    tamboNegocio.Actualizar(tambo);
+                    DialogResult result = MessageBox.Show("El tambo fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("El valor de Superficie no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

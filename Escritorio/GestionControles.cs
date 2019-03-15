@@ -14,6 +14,7 @@ namespace Escritorio
 {
     public partial class GestionControles : Form
     {
+        public int idtambo;
         public GestionControles(int id_tambo)
         {
             InitializeComponent();
@@ -24,6 +25,16 @@ namespace Escritorio
         {
             Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
             this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTambo(id_tambo);
+            if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+            {
+                this.btnEditar.Enabled = true;
+                this.btnEliminar.Enabled = true;
+            }
+            else
+            {
+                this.btnEditar.Enabled = false;
+                this.btnEliminar.Enabled = false;
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -34,7 +45,7 @@ namespace Escritorio
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
-            this.dgvControles.DataSource = controlNegocio.FiltrarPorNombre(this.txtBuscar.Text);
+            this.dgvControles.DataSource = controlNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo);
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)

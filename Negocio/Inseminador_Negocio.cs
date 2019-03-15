@@ -33,9 +33,9 @@ namespace Negocio
             inseminadorDatos.Insertar(inseminador, tamboInseminador);
         }
 
-        public DataTable FiltrarPorNombre(string texto)
+        public DataTable FiltrarPorNombre(string texto,int idtambo)
         {
-            return inseminadorDatos.FiltrarPorNombre(texto);
+            return inseminadorDatos.FiltrarPorNombre(texto,idtambo);
         }
     }
 }

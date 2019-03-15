@@ -73,5 +73,11 @@ namespace Escritorio
                 this.CargarGrilla(idtambo);
             }
         }
+
+        private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
+        {
+            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            this.dgvTambos.DataSource = tamboNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo);
+        }
     }
 }

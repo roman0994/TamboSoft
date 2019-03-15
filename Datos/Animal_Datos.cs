@@ -665,10 +665,9 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdInsertar = new SqlCommand("insert into Animal(fecha_nacimiento,edad,foto,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado) values (@fecha_nacimiento,@edad,@foto,@nombre_animal,@estado_animal,@hba,@categoria,@rp_madre,@rp_padre,@hba_madre,@hba_padre,@id_tambo,@id_raza,@habilitado)", Conn);
+                SqlCommand cmdInsertar = new SqlCommand("insert into Animal(fecha_nacimiento,edad,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado) values (@fecha_nacimiento,@edad,@nombre_animal,@estado_animal,@hba,@categoria,@rp_madre,@rp_padre,@hba_madre,@hba_padre,@id_tambo,@id_raza,@habilitado)", Conn);
                 cmdInsertar.Parameters.Add("fecha_nacimiento", SqlDbType.DateTime).Value = animal.Fecha_nacimiento;
                 cmdInsertar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
-                cmdInsertar.Parameters.Add("foto", SqlDbType.VarChar, 100).Value = animal.Foto;
                 cmdInsertar.Parameters.Add("nombre_animal", SqlDbType.VarChar, 50).Value = animal.Nombre_animal;
                 cmdInsertar.Parameters.Add("estado_animal", SqlDbType.VarChar, 50).Value = animal.Estado_animal;
                 cmdInsertar.Parameters.Add("hba", SqlDbType.Int).Value = animal.Hba;
@@ -703,11 +702,10 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdActualizar = new SqlCommand("update Animal set fecha_nacimiento=@fecha_nacimiento,edad=@edad,foto=@foto,nombre_animal=@nombre_animal,estado_animal=@estado_animal,hba=@hba,categoria=@categoria,rp_madre=@rp_madre,rp_padre=@rp_padre,hba_madre=@hba_madre,hba_padre=@hba_padre,id_tambo=@id_tambo,id_raza=@id_raza,habilitado=@habilitado where rp = @rp", Conn);
+                SqlCommand cmdActualizar = new SqlCommand("update Animal set fecha_nacimiento=@fecha_nacimiento,edad=@edad,nombre_animal=@nombre_animal,estado_animal=@estado_animal,hba=@hba,categoria=@categoria,rp_madre=@rp_madre,rp_padre=@rp_padre,hba_madre=@hba_madre,hba_padre=@hba_padre,id_tambo=@id_tambo,id_raza=@id_raza,habilitado=@habilitado where rp = @rp", Conn);
                 cmdActualizar.Parameters.Add("rp", SqlDbType.Int).Value = animal.Rp;
                 cmdActualizar.Parameters.Add("fecha_nacimiento", SqlDbType.DateTime).Value = animal.Fecha_nacimiento;
                 cmdActualizar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
-                cmdActualizar.Parameters.Add("foto", SqlDbType.VarChar, 100).Value = animal.Foto;
                 cmdActualizar.Parameters.Add("nombre_animal", SqlDbType.VarChar, 50).Value = animal.Nombre_animal;
                 cmdActualizar.Parameters.Add("estado_animal", SqlDbType.VarChar, 50).Value = animal.Estado_animal;
                 cmdActualizar.Parameters.Add("hba", SqlDbType.Int).Value = animal.Hba;
@@ -921,20 +919,22 @@ namespace Datos
             }
         }
 
-        public DataTable FiltrarPorNombre(string texto)
+        public DataTable FiltrarPorNombre(string texto, int idtambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdFiltro = Conn.CreateCommand();
-            cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where nombre_animal like ('" + texto + "%')";
-            cmdFiltro.ExecuteNonQuery();
+            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where nombre_animal like ('" + texto + "%') and a.id_tambo=@idtambo", Conn);
 
+            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+
+            SqlDataReader dr = cmdFiltro.ExecuteReader();
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
-            da.Fill(dt);
+
+            dt.Load(dr);
+
+            dr.Close();
             this.CerrarConexion();
             return dt;
-            
+
         }
 
         public DataTable FiltrarPorRP(int rp)
@@ -953,17 +953,18 @@ namespace Datos
 
         }
 
-        public DataTable FiltrarPorEstado(string texto)
+        public DataTable FiltrarPorEstado(string texto, int idtambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdFiltro = Conn.CreateCommand();
-            cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where estado_animal like ('" + texto + "%')";
-            cmdFiltro.ExecuteNonQuery();
+            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where estado_animal like ('" + texto + "%') and a.id_tambo=@idtambo", Conn);
+            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
+            SqlDataReader dr = cmdFiltro.ExecuteReader();
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
-            da.Fill(dt);
+
+            dt.Load(dr);
+
+            dr.Close();
             this.CerrarConexion();
             return dt;
 

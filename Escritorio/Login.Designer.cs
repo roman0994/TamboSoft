@@ -57,6 +57,7 @@
             // 
             // cbTambo
             // 
+            this.cbTambo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbTambo.FormattingEnabled = true;
             this.cbTambo.Location = new System.Drawing.Point(59, 193);
             this.cbTambo.Name = "cbTambo";

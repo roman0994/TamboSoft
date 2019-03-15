@@ -53,19 +53,26 @@ namespace Escritorio
             
             if (cbProvincia.SelectedIndex != -1 && cbLocalidad.SelectedIndex != -1 && txtNombre.Text != null && txtNombre.Text != string.Empty && txtDni.Text != null && txtDni.Text != string.Empty)
             {
-                if (txtDni.Text.Length == 8)
+                if (txtDni.Text.Length == 7 || txtDni.Text.Length == 8)
                 {
-                    Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
-                    Inseminador inseminador = new Inseminador();
-                    inseminador = MapearAInseminador();
-                    inseminadorNegocio.Actualizar(inseminador);
-                    DialogResult result = MessageBox.Show("El personal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (txtTelefono.Text.Length >= 8 && txtTelefono.Text.Length <= 12)
+                    {
+                        Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
+                        Inseminador inseminador = new Inseminador();
+                        inseminador = MapearAInseminador();
+                        inseminadorNegocio.Actualizar(inseminador);
+                        DialogResult result = MessageBox.Show("El personal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.Dispose();
+                        this.Dispose();
+                    }               
+                    else
+                    {
+                        MessageBox.Show("El campo Teléfono no es válido. Ingrese sin el 0 ni el 15 y sin espacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("El campo DNI debe tener 8 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El campo DNI debe tener entre 7 y 8 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else

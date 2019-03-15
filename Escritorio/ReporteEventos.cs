@@ -45,6 +45,14 @@ namespace Escritorio
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
+            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            {
+                this.btnExportar.Enabled = true;
+            }
+            else
+            {
+                this.btnExportar.Enabled = false;
+            }
         }
 
         private void cbFiltro_SelectedIndexChanged(object sender, EventArgs e)
@@ -58,18 +66,50 @@ namespace Escritorio
             if (this.cbFiltro.SelectedItem.ToString() == "Vacas en celo")
             {
                 this.dgvEventos.DataSource = animalNegocio.RecuperarVacasEnCeloPorTambo(tambo.Id_tambo);
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
             }
             else if (this.cbFiltro.SelectedItem.ToString() == "Animales enfermos")
             {
                 this.dgvEventos.DataSource = animalNegocio.RecuperarAnimalesEnfermosPorTambo(tambo.Id_tambo);
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
             }
             else if (this.cbFiltro.SelectedItem.ToString() == "Vacas con parto en los últimos 21 días")
             {
                 this.dgvEventos.DataSource = animalNegocio.RecuperarVacasConPartoPorTambo(tambo.Id_tambo);
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
             }
             else if (this.cbFiltro.SelectedItem.ToString() == "Vacas servidas en los últimos 21 días")
             {
                 this.dgvEventos.DataSource = animalNegocio.RecuperarVacasServidasPorTambo(tambo.Id_tambo);
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
             }
         }
 

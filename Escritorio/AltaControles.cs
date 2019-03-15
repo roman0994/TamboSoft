@@ -51,26 +51,51 @@ namespace Escritorio
 
             if (validar == true)
             {
-                Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
-                Control_Animal control = new Control_Animal();
-                control = MapearAControlAnimal();
-                controlNegocio.Insertar(control);
-                MessageBox.Show("El control fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Limpiar();
-            }
-            else if (validaciones.ValidarFecha(this.dtpFechaControl.Value.Date))
-            {
-                MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //if (this.cbAnimal.SelectedIndex == -1) { this.cbAnimal.Focus(); }
-                //if (this.dtpFechaControl.Value.Date == null) { this.dtpFechaControl.Focus(); }
-                //if (this.txtPrimerControl.Text == "Litros del primer ordeñe. Formato: XX,XX") { this.txtPrimerControl.Focus(); }
-                //if (this.txtSegundoControl.Text == "Litros del segundo ordeñe. Formato: XX,XX") { this.txtSegundoControl.Focus(); }
-                //if (this.txtPorcentajeGrasa.Text == "Formato: XX,XX") { this.txtPorcentajeGrasa.Focus(); }
-                //if (this.txtKgGrasa.Text == "Formato: XX,XX") { this.txtKgGrasa.Focus(); }
+                if (validaciones.ValidarFecha(this.dtpFechaControl.Value.Date))
+                {
+                    if (validaciones.ValidarDecimalControles(txtPrimerControl.Text)==true || txtPrimerControl.Text == string.Empty)
+                    {
+                        if (validaciones.ValidarDecimalControles(txtGrasaPrimerControl.Text) == true || txtGrasaPrimerControl.Text == string.Empty)
+                        {
+                            if (validaciones.ValidarDecimalControles(txtSegundoControl.Text) == true || txtSegundoControl.Text == string.Empty)
+                            {
+                                if (validaciones.ValidarDecimalControles(txtGrasaSegundoControl.Text) == true || txtGrasaSegundoControl.Text == string.Empty)
+                                {
+                                    Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
+                                    Control_Animal control = new Control_Animal();
+                                    control = MapearAControlAnimal();
+                                    controlNegocio.Insertar(control);
+                                    MessageBox.Show("El control fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    this.Limpiar();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("El valor de Grasa Segundo Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("El valor de Segundo Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("El valor de Grasa Primer Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El valor de Primer Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("La fecha no puede ser mayor a hoy", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("La fecha no puede ser mayor a hoy", "Información errónea", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -147,78 +172,6 @@ namespace Escritorio
             else
             {
                 e.Handled = true;
-            }
-        }
-
-        private void txtPrimerControl_Enter(object sender, EventArgs e)
-        {
-            if (this.txtPrimerControl.Text == "Lts del 1er ordeñe. Formato: XX,XX")
-            {
-                this.txtPrimerControl.Text = "";
-                this.txtPrimerControl.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtPrimerControl_Leave(object sender, EventArgs e)
-        {
-            if (this.txtPrimerControl.Text == "")
-            {
-                this.txtPrimerControl.Text = "Lts del 1er ordeñe. Formato: XX,XX";
-                this.txtPrimerControl.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtSegundoControl_Enter(object sender, EventArgs e)
-        {
-            if (this.txtSegundoControl.Text == "Lts del 2do ordeñe. Formato: XX,XX")
-            {
-                this.txtSegundoControl.Text = "";
-                this.txtSegundoControl.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtSegundoControl_Leave(object sender, EventArgs e)
-        {
-            if (this.txtSegundoControl.Text == "")
-            {
-                this.txtSegundoControl.Text = "Lts del 2do ordeñe. Formato: XX,XX";
-                this.txtSegundoControl.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtPorcentajeGrasa_Enter(object sender, EventArgs e)
-        {
-            if (this.txtGrasaPrimerControl.Text == "Formato: XX,XX")
-            {
-                this.txtGrasaPrimerControl.Text = "";
-                this.txtGrasaPrimerControl.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtPorcentajeGrasa_Leave(object sender, EventArgs e)
-        {
-            if (this.txtGrasaPrimerControl.Text == "")
-            {
-                this.txtGrasaPrimerControl.Text = "Formato: XX,XX";
-                this.txtGrasaPrimerControl.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtKgGrasa_Enter(object sender, EventArgs e)
-        {
-            if (this.txtGrasaSegundoControl.Text == "Formato: XX,XX")
-            {
-                this.txtGrasaSegundoControl.Text = "";
-                this.txtGrasaSegundoControl.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtKgGrasa_Leave(object sender, EventArgs e)
-        {
-            if (this.txtGrasaSegundoControl.Text == "")
-            {
-                this.txtGrasaSegundoControl.Text = "Formato: XX,XX";
-                this.txtGrasaSegundoControl.ForeColor = Color.Silver;
             }
         }
 

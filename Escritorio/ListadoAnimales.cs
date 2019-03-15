@@ -23,10 +23,10 @@ namespace Escritorio
             CargarGrilla(idtambo);
         }
 
-        public void CargarGrilla(int id_tambo)
+        public void CargarGrilla(int idtambo)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
+            this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTambo(idtambo);
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -49,18 +49,31 @@ namespace Escritorio
         private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();    
-            this.dgvAnimales.DataSource = animalNegocio.FiltrarPorNombre(this.tstxtBuscar.Text);   
+            this.dgvAnimales.DataSource = animalNegocio.FiltrarPorNombre(this.tstxtBuscar.Text, idtambo);   
         }
 
         private void tbsActualizar_Click(object sender, EventArgs e)
         {
-            this.CargarGrilla(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value));
+            if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+            {
+                this.CargarGrilla(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value));
+            }
         }
 
         private void tbsExportarAExcel_Click(object sender, EventArgs e)
         {
-            ExportarAExcel exportarAExcel = new ExportarAExcel();
-            exportarAExcel.Exportar(this.dgvAnimales,ListadoAnimales.ActiveForm.Text);
+            if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+            {
+                ExportarAExcel exportarAExcel = new ExportarAExcel();
+                exportarAExcel.Exportar(this.dgvAnimales, ListadoAnimales.ActiveForm.Text);
+            }
+            else
+            {
+                Tambo tambo = new Tambo();
+                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                tambo = tambo_Negocio.RecuperarUno(idtambo);
+                MessageBox.Show("No se encontraron animales en el tambo "+ tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void tbsImpresora_Click(object sender, EventArgs e)
@@ -71,10 +84,19 @@ namespace Escritorio
             vistaPreviaListadoAnimales.crvAnimales.ReportSource = reporteListadoAnimales;
             vistaPreviaListadoAnimales.crvAnimales.Refresh();
             vistaPreviaListadoAnimales.ShowDialog();*/
-
-            vpListadoAnimales vistaPreviaListadoAnimales = new vpListadoAnimales();
-            vistaPreviaListadoAnimales.idtambo = idtambo;
-            vistaPreviaListadoAnimales.Show();
+            if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+            {
+                vpListadoAnimales vistaPreviaListadoAnimales = new vpListadoAnimales();
+                vistaPreviaListadoAnimales.idtambo = idtambo;
+                vistaPreviaListadoAnimales.Show();
+            }
+            else
+            {
+                Tambo tambo = new Tambo();
+                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                tambo = tambo_Negocio.RecuperarUno(idtambo);
+                MessageBox.Show("No se encontraron animales en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

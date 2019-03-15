@@ -50,8 +50,8 @@
             this.cbAnimal = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gbTambo = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.txtTambo = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.tlpEventos.SuspendLayout();
             this.gbFecha.SuspendLayout();
             this.gbEvento.SuspendLayout();
@@ -195,6 +195,7 @@
             // 
             // comboBox4
             // 
+            this.comboBox4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox4.FormattingEnabled = true;
             this.comboBox4.Location = new System.Drawing.Point(433, 164);
             this.comboBox4.Name = "comboBox4";
@@ -203,6 +204,7 @@
             // 
             // comboBox3
             // 
+            this.comboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox3.FormattingEnabled = true;
             this.comboBox3.Location = new System.Drawing.Point(433, 123);
             this.comboBox3.Name = "comboBox3";
@@ -211,6 +213,7 @@
             // 
             // comboBox2
             // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(433, 81);
             this.comboBox2.Name = "comboBox2";
@@ -219,6 +222,7 @@
             // 
             // comboBox1
             // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
             this.comboBox1.Location = new System.Drawing.Point(433, 41);
             this.comboBox1.Name = "comboBox1";
@@ -281,6 +285,7 @@
             // 
             // cbAnimal
             // 
+            this.cbAnimal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAnimal.FormattingEnabled = true;
             this.cbAnimal.Location = new System.Drawing.Point(133, 28);
             this.cbAnimal.Name = "cbAnimal";
@@ -311,6 +316,14 @@
             this.gbTambo.TabStop = false;
             this.gbTambo.Text = "Tambo";
             // 
+            // txtTambo
+            // 
+            this.txtTambo.Location = new System.Drawing.Point(120, 26);
+            this.txtTambo.Name = "txtTambo";
+            this.txtTambo.ReadOnly = true;
+            this.txtTambo.Size = new System.Drawing.Size(200, 20);
+            this.txtTambo.TabIndex = 1;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -320,14 +333,6 @@
             this.label9.Size = new System.Drawing.Size(106, 13);
             this.label9.TabIndex = 0;
             this.label9.Text = "Seleccione el tambo:";
-            // 
-            // txtTambo
-            // 
-            this.txtTambo.Location = new System.Drawing.Point(120, 26);
-            this.txtTambo.Name = "txtTambo";
-            this.txtTambo.ReadOnly = true;
-            this.txtTambo.Size = new System.Drawing.Size(200, 20);
-            this.txtTambo.TabIndex = 1;
             // 
             // AltaEventos
             // 

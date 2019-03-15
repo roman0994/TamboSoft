@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace Util
 {
@@ -58,7 +59,7 @@ namespace Util
 
         public bool ValidarCargaControles(int indexAnimal, DateTime fecha)
         {
-            if (indexAnimal != -1 && fecha != null && fecha <= DateTime.Now)
+            if (indexAnimal != -1 && fecha !=null)
             {
                 return true;
             }
@@ -165,11 +166,26 @@ namespace Util
             }
         }
 
-        public bool ValidarValorDecimal(string texto)
+        public bool ValidarDecimalControles(string texto)
         {
-            decimal i;
-            if (decimal.TryParse(texto, out i))
+            Regex regex = new Regex("(^[0-9]{1,2})+(,[0-9]{1,2})?$");
+            if (regex.IsMatch(texto))
             {
+                
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ValidarDecimalSuperficieTambo(string texto)
+        {
+            Regex regex = new Regex("(^[0-9]{1,6})+(,[0-9]{1,2})?$");
+            if (regex.IsMatch(texto))
+            {
+
                 return true;
             }
             else

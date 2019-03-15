@@ -64,6 +64,7 @@ namespace Escritorio
         private void gestiónAnimalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GestionAnimales gestionAnimales = new GestionAnimales(id_tambo);
+            gestionAnimales.idtambo = id_tambo;
             gestionAnimales.ShowDialog();
         }
 
@@ -94,6 +95,7 @@ namespace Escritorio
         private void gestiónControlesToolStripMenuItem_Click(object sender, EventArgs e)
         {
             GestionControles controles = new GestionControles(id_tambo);
+            controles.idtambo = id_tambo;
             controles.ShowDialog();
         }
 

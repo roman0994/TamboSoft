@@ -284,6 +284,7 @@
             this.foto.HeaderText = "Foto";
             this.foto.Name = "foto";
             this.foto.ReadOnly = true;
+            this.foto.Visible = false;
             // 
             // nombre_animal
             // 

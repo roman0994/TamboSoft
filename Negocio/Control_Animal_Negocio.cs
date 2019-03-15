@@ -73,9 +73,9 @@ namespace Negocio
             return controlAnimalDatos.ProduccionPorFiltroAnimal(id_tambo, rp);
         }
 
-        public DataTable FiltrarPorNombre(string texto)
+        public DataTable FiltrarPorNombre(string texto,int idtambo)
         {
-            return controlAnimalDatos.FiltrarPorNombre(texto);
+            return controlAnimalDatos.FiltrarPorNombre(texto,idtambo);
         }
 
         public DataTable FiltrarPorRP(int rp)

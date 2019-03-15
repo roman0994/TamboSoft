@@ -169,17 +169,18 @@ namespace Datos
             }
         }
 
-        public DataTable FiltrarPorNombre(string texto)
+        public DataTable FiltrarPorNombre(string texto,int idtambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdFiltro = Conn.CreateCommand();
-            cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT i.id_inseminador,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Inseminador i inner join Localidad l on i.id_localidad=l.id_localidad where i.nombre_inseminador like ('" + texto + "%')";
-            cmdFiltro.ExecuteNonQuery();
+            SqlCommand cmdFiltro = new SqlCommand("SELECT i.id_inseminador,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Inseminador i inner join Localidad l on i.id_localidad=l.id_localidad where i.nombre_inseminador like ('" + texto + "%') and a.id_tambo=@idtambo", Conn);
+            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
+            SqlDataReader dr = cmdFiltro.ExecuteReader();
             DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
-            da.Fill(dt);
+
+            dt.Load(dr);
+
+            dr.Close();
             this.CerrarConexion();
             return dt;
 

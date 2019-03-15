@@ -47,8 +47,18 @@ namespace Escritorio
 
         private void tbsExportar_Click(object sender, EventArgs e)
         {
-            ExportarAExcel exportarAExcel = new ExportarAExcel();
-            exportarAExcel.Exportar(this.dgvEventos,ListadoEventos.ActiveForm.Text);
+            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            {
+                ExportarAExcel exportarAExcel = new ExportarAExcel();
+                exportarAExcel.Exportar(this.dgvEventos, ListadoEventos.ActiveForm.Text);
+            }
+            else
+            {
+                Tambo tambo = new Tambo();
+                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                tambo = tambo_Negocio.RecuperarUno(idtambo);
+                MessageBox.Show("No se encontraron eventos en el tambo " + tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void tstxtBuscar_KeyUp(object sender, KeyEventArgs e)
@@ -59,14 +69,27 @@ namespace Escritorio
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            this.CargarGrilla(Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_tambo"].Value));
+            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            {
+                this.CargarGrilla(Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_tambo"].Value));
+            }
         }
 
         private void tbsImprimir_Click(object sender, EventArgs e)
         {
-            vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
-            vistaPreviaListadoEventos.idtambo = idtambo;
-            vistaPreviaListadoEventos.Show();
+            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            {
+                vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
+                vistaPreviaListadoEventos.idtambo = idtambo;
+                vistaPreviaListadoEventos.Show();
+            }
+            else
+            {
+                Tambo tambo = new Tambo();
+                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                tambo = tambo_Negocio.RecuperarUno(idtambo);
+                MessageBox.Show("No se encontraron eventos en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

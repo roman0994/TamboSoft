@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Datos;
 using Entidades;
+using System.Data;
 
 namespace Negocio
 {
@@ -50,6 +51,11 @@ namespace Negocio
         public void Eliminar(int id)
         {
             tamboDatos.Eliminar(id);
+        }
+
+        public DataTable FiltrarPorNombre(string texto, int idtambo)
+        {
+            return tamboDatos.FiltrarPorNombre(texto, idtambo);
         }
     }
 }
