@@ -110,11 +110,13 @@
     <Compile Include="Desc_Subevento_Negocio.cs" />
     <Compile Include="EventoAnimal_DescSubevento_Negocio.cs" />
     <Compile Include="Evento_Negocio.cs" />
+    <Compile Include="Evento_Subevento_Negocio.cs" />
     <Compile Include="Inseminador_Negocio.cs" />
     <Compile Include="Localidad_Negocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provincia_Negocio.cs" />
     <Compile Include="Raza_Negocio.cs" />
+    <Compile Include="Subevento_Negocio.cs" />
     <Compile Include="Tambo_Inseminador_Negocio.cs" />
     <Compile Include="Tambo_Negocio.cs" />
   </ItemGroup>

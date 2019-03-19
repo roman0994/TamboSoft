@@ -86,5 +86,50 @@ namespace Datos
                 this.CerrarConexion();
             }
         }
+
+        public void Insertar(Raza raza)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdInsertar = new SqlCommand("insert into Raza(nombre_raza,estado_raza) values (@nombre_raza,@estado_raza)", Conn);
+
+                cmdInsertar.Parameters.Add("nombre_raza", SqlDbType.VarChar, 50).Value = raza.Nombre_raza;
+                cmdInsertar.Parameters.Add("estado_raza", SqlDbType.Bit).Value = raza.Estado_raza;
+
+                cmdInsertar.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al insertar raza", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public bool HayRazas()
+        {
+            this.AbrirConexion();
+            SqlCommand cmdRaza = new SqlCommand("SELECT r.id_raza,r.nombre_raza,r.estado_raza from Raza r", Conn);
+
+            SqlDataReader drRaza = cmdRaza.ExecuteReader();
+
+            if (drRaza.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

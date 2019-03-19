@@ -21,5 +21,10 @@ namespace Negocio
         {
             return provinciaDatos.RecuperarUno(id);
         }
+
+        public bool HayProvincias()
+        {
+            return provinciaDatos.HayProvincias();
+        }
     }
 }

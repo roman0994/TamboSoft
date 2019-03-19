@@ -21,5 +21,10 @@ namespace Negocio
         {
             return descSubeventoDatos.RecuperarUno(id);
         }
+
+        public bool HayDescripciones()
+        {
+            return descSubeventoDatos.HayDescripciones();
+        }
     }
 }

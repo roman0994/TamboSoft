@@ -106,16 +106,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animal_Datos.cs" />
+    <Compile Include="CargarTablas.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Control_Animal_Datos.cs" />
     <Compile Include="Desc_Subevento_Datos.cs" />
     <Compile Include="EventoAnimal_DescSubevento_Datos.cs" />
     <Compile Include="Evento_Datos.cs" />
+    <Compile Include="Evento_Subevento_Datos.cs" />
     <Compile Include="Inseminador_Datos.cs" />
     <Compile Include="Localidad_Datos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provincia_Datos.cs" />
     <Compile Include="Raza_Datos.cs" />
+    <Compile Include="Subevento_Datos.cs" />
     <Compile Include="Tambo_Datos.cs" />
     <Compile Include="Tambo_Inseminador_Datos.cs" />
   </ItemGroup>

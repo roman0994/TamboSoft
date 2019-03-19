@@ -86,5 +86,48 @@ namespace Datos
             }
         }
 
+        public void Insertar(Evento evento)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdInsertar = new SqlCommand("insert into Evento(nombre_evento) values (@nombre_evento)", Conn);
+              
+                cmdInsertar.Parameters.Add("nombre_evento", SqlDbType.VarChar, 50).Value = evento.Nombre_evento;
+
+                cmdInsertar.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al insertar evento", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public bool HayEventos()
+        {
+            this.AbrirConexion();
+            SqlCommand cmdEvento = new SqlCommand("SELECT id_evento,nombre_evento FROM Evento", Conn);
+
+            SqlDataReader drEvento = cmdEvento.ExecuteReader();
+
+            if (drEvento.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

@@ -91,5 +91,50 @@ namespace Datos
                 this.CerrarConexion();
             }
         }
+
+        public void Insertar(Desc_Subevento desc_Subevento)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdInsertar = new SqlCommand("insert into Desc_Subevento(descripcion,abreviacion,estado_desc,id_subevento) values (@descripcion,@abreviacion,@estado_desc,@id_subevento)", Conn);
+                cmdInsertar.Parameters.Add("descripcion", SqlDbType.VarChar, 100).Value = desc_Subevento.Descripcion;
+                cmdInsertar.Parameters.Add("abreviacion", SqlDbType.VarChar, 10).Value = desc_Subevento.Abreviacion; ;
+                cmdInsertar.Parameters.Add("estado_desc", SqlDbType.Bit).Value = desc_Subevento.Estado_desc;
+                cmdInsertar.Parameters.Add("id_subevento", SqlDbType.Int).Value = desc_Subevento.Id_subevento;
+
+                cmdInsertar.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al insertar descripción", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public bool HayDescripciones()
+        {
+            this.AbrirConexion();
+            SqlCommand cmdDesc = new SqlCommand("select d.id_desc,d.descripcion,d.abreviacion,d.estado_desc,d.id_subevento from Desc_Subevento d", Conn);
+            SqlDataReader drDescripcion = cmdDesc.ExecuteReader();
+
+            if (drDescripcion.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

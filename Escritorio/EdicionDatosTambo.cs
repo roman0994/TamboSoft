@@ -65,7 +65,7 @@ namespace Escritorio
                     tambo = MapearATambo();
                     tamboNegocio.Actualizar(tambo);
                     DialogResult result = MessageBox.Show("El tambo fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Dispose();
+                    this.Close();
                 }
                 else
                 {

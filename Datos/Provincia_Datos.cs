@@ -85,5 +85,48 @@ namespace Datos
                 this.CerrarConexion();
             }
         }
+
+        public void Insertar(Provincia provincia)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdInsertar = new SqlCommand("insert into Provincia(nombre_provincia) values (@nombre_provincia)", Conn);
+
+                cmdInsertar.Parameters.Add("nombre_provincia", SqlDbType.VarChar, 50).Value = provincia.Nombre_provincia;
+
+                cmdInsertar.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al insertar provincia", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public bool HayProvincias()
+        {
+            this.AbrirConexion();
+            SqlCommand cmdProvincia = new SqlCommand("SELECT id_provincia,nombre_provincia from Provincia", Conn);
+            SqlDataReader drTambo = cmdProvincia.ExecuteReader();
+
+            if (drTambo.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

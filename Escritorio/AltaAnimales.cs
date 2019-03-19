@@ -70,7 +70,7 @@ namespace Escritorio
             {
                 if (txtEdad.Text.Length <= 3)
                 {
-                    if (txtHBA.Text.Length <= 4)
+                    if (txtHBA.Text.Length <= 6)
                     {
                         if (txtRPMadre.Text.Length<=6 || txtRPMadre.Text == string.Empty)
                         {
@@ -109,7 +109,7 @@ namespace Escritorio
                     }
                     else
                     {
-                        MessageBox.Show("El campo HBA no puede ser mayor a 4 (cuatro) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El campo HBA no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else

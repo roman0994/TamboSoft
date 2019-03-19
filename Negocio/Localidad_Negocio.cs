@@ -21,5 +21,10 @@ namespace Negocio
         {
             return localidadDatos.RecuperarUno(id);
         }
+
+        public bool HayLocalidades()
+        {
+            return localidadDatos.HayLocalidades();
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocio;
+using Datos;
 
 namespace Escritorio
 {
@@ -18,13 +19,16 @@ namespace Escritorio
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            CargarTablas cargarTablas = new CargarTablas();
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             if (tamboNegocio.HayTambos())
             {
+                cargarTablas.CargaTablasData();
                 Application.Run(new Login());
             }
             else
             {
+                cargarTablas.CargaTablasData();
                 Application.Run(new LoginAltaTambos());
             }
         }

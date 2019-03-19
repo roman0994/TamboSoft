@@ -72,7 +72,10 @@ namespace Escritorio
             CargarDatosTambo(tambo.Id_tambo);
             CargarTextBoxTambo(tambo.Id_tambo);
 
-            edicionTambo.Show();
+            edicionTambo.ShowDialog();
+
+            CargarDatosTambo(idtambo);
+            CargarTextBoxTambo(idtambo);
         }
 
         private void btnNuevoTambo_Click(object sender, EventArgs e)

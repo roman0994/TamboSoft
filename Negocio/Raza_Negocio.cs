@@ -21,5 +21,10 @@ namespace Negocio
         {
             return razaDatos.RecuperarUno(id);
         }
+
+        public bool HayRazas()
+        {
+            return razaDatos.HayRazas();
+        }
     }
 }

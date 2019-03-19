@@ -87,5 +87,50 @@ namespace Datos
                 this.CerrarConexion();
             }
         }
+
+        public void Insertar(Localidad localidad)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdInsertar = new SqlCommand("insert into Localidad(nombre_localidad,id_provincia) values (@nombre_localidad,@id_provincia)", Conn);
+               
+                cmdInsertar.Parameters.Add("nombre_localidad", SqlDbType.VarChar, 50).Value = localidad.Nombre_localidad;
+                cmdInsertar.Parameters.Add("id_provincia", SqlDbType.Int).Value = localidad.Id_provincia;
+
+                cmdInsertar.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al insertar localidad", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public bool HayLocalidades()
+        {
+            Localidad localidad = new Localidad();
+            this.AbrirConexion();
+            SqlCommand cmdLocalidad = new SqlCommand("SELECT l.id_localidad,l.nombre_localidad,l.id_provincia,p.nombre_provincia FROM Localidad l inner join Provincia p on l.id_provincia=p.id_provincia", Conn);
+            SqlDataReader drTambo = cmdLocalidad.ExecuteReader();
+
+            if (drTambo.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
