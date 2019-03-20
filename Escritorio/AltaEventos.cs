@@ -640,8 +640,8 @@ namespace Escritorio
         public void Limpiar()
         {
             this.dtpFecha.Text = string.Empty;
-            this.cbAnimal.SelectedValue = -1;
-            this.lbEventos.SelectedValue = -1;
+            this.cbAnimal.SelectedIndex = -1;
+            this.lbEventos.SelectedIndex = -1;
         }
 
         private void AltaEventos_FormClosing(object sender, FormClosingEventArgs e)

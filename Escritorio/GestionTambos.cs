@@ -56,7 +56,7 @@ namespace Escritorio
             edicionTambo.cbProvincia.Text = tambo.Nombre_provincia;
             edicionTambo.cbLocalidad.Text = tambo.Nombre_localidad;
 
-            edicionTambo.ShowDialog();
+            edicionTambo.Show();
             CargarGrilla(idtambo);
         }
 
@@ -78,6 +78,11 @@ namespace Escritorio
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             this.dgvTambos.DataSource = tamboNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo);
+        }
+
+        private void GestionTambos_Activated(object sender, EventArgs e)
+        {
+            this.CargarGrilla(Login.Tambo.Id_tambo);
         }
     }
 }

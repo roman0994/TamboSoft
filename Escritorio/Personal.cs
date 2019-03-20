@@ -53,28 +53,18 @@ namespace Escritorio
             }
         }
 
+        
         private void btnModificar_Click(object sender, EventArgs e)
         {
-            Localidad_Negocio localidadNegocio = new Localidad_Negocio();
-            Localidad localidad = localidadNegocio.RecuperarUno(Convert.ToInt32(this.dgvPersonal.CurrentRow.Cells["id_localidad"].Value));
-            
-            EdicionPersonal edicion = new EdicionPersonal();
+            Tambo_Inseminador_Negocio tamboNegocio = new Tambo_Inseminador_Negocio();
+            Tambo_Inseminador tamboIns = tamboNegocio.RecuperarUno(idtambo, Convert.ToInt32(this.dgvPersonal.CurrentRow.Cells["id_inseminador"].Value));
 
-            edicion.txtIdPersonal.Text = Convert.ToString(this.dgvPersonal.CurrentRow.Cells["id_inseminador"].Value);
-            edicion.txtIdTambo.Text = Convert.ToString(this.dgvPersonal.CurrentRow.Cells["id_tambo"].Value);
-            edicion.txtTambo.Text = Convert.ToString(this.dgvPersonal.CurrentRow.Cells["nombre_tambo"].Value);
-            edicion.txtNombre.Text = Convert.ToString(this.dgvPersonal.CurrentRow.Cells["nombre_inseminador"].Value);
-            edicion.chkEstado.Checked = Convert.ToBoolean(this.dgvPersonal.CurrentRow.Cells["estado_inseminador"].Value);
-            edicion.txtTelefono.Text = Convert.ToString(this.dgvPersonal.CurrentRow.Cells["telefono"].Value);
-            edicion.txtDireccion.Text = Convert.ToString(this.dgvPersonal.CurrentRow.Cells["direccion"].Value);
-            edicion.txtDni.Text = Convert.ToString(this.dgvPersonal.CurrentRow.Cells["dni"].Value);
-            edicion.cbProvincia.Text = localidad.Nombre_provincia;
-            edicion.cbLocalidad.Text = Convert.ToString(this.dgvPersonal.CurrentRow.Cells["nombre_localidad"].Value);
+            EdicionPersonal edicion = new EdicionPersonal(tamboIns);
 
-            edicion.ShowDialog();
-            CargarGrilla(Convert.ToInt32(this.dgvPersonal.CurrentRow.Cells["id_tambo"].Value));
+            edicion.Show();
+            CargarGrilla(idtambo);
         }
-
+        
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             //Busco el tambo inseminador
@@ -107,6 +97,16 @@ namespace Escritorio
             AltaPersonal altaPersonal = new AltaPersonal(tambo.Id_tambo);
             altaPersonal.ShowDialog();
             CargarGrilla(idtambo);
+        }
+
+        private void Personal_Load(object sender, EventArgs e)
+        {
+            this.CargarGrilla(Login.Tambo.Id_tambo);
+        }
+
+        private void Personal_Activated(object sender, EventArgs e)
+        {
+            this.CargarGrilla(Login.Tambo.Id_tambo);
         }
     }
 }

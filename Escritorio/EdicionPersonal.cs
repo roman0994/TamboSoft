@@ -17,10 +17,11 @@ namespace Escritorio
     {
         Validaciones validaciones = new Validaciones();
 
-        public EdicionPersonal()
+        public EdicionPersonal(Tambo_Inseminador tambo_Inseminador)
         {
             InitializeComponent();
             CargarComboProvincia();
+            MapearDatos(tambo_Inseminador);
         }
 
         public void CargarComboProvincia()
@@ -47,39 +48,88 @@ namespace Escritorio
             this.cbLocalidad.SelectedIndex = -1;
         }
 
+        public void MapearDatos(Tambo_Inseminador tambo_Inseminador)
+        {
+            Localidad_Negocio localidadNegocio = new Localidad_Negocio();
+            Localidad localidad = localidadNegocio.RecuperarUno(tambo_Inseminador.Id_localidad);
+
+            this.txtIdPersonal.Text = Convert.ToString(tambo_Inseminador.Id_inseminador);
+            this.txtIdTambo.Text = Convert.ToString(tambo_Inseminador.Id_tambo);
+            this.txtTambo.Text = Convert.ToString(tambo_Inseminador.Nombre_tambo);
+            this.txtNombre.Text = Convert.ToString(tambo_Inseminador.Nombre_inseminador);
+            this.chkEstado.Checked = Convert.ToBoolean(tambo_Inseminador.Estado_inseminador);
+            this.txtTelefono.Text = Convert.ToString(tambo_Inseminador.Telefono);
+            this.txtDireccion.Text = Convert.ToString(tambo_Inseminador.Direccion);
+            this.txtDni.Text = Convert.ToString(tambo_Inseminador.Dni);
+            this.cbProvincia.Text = localidad.Nombre_provincia;
+            this.cbLocalidad.Text = Convert.ToString(tambo_Inseminador.Nombre_localidad);
+        }
+
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Validaciones validaciones = new Validaciones();
-            
+            if (validarCampos())
+            {
+                Guardar();
+                MessageBox.Show("El personal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                this.Close();
+            }
+            //else
+            //{
+            //    MessageBox.Show("Debe completar todos los datos obligatorios en su formato correcto");
+
+
+            //}
+        }
+
+        public void Guardar()
+        {
+            Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
+            Inseminador inseminador = new Inseminador();
+            inseminador = MapearAInseminador();
+            inseminadorNegocio.Actualizar(inseminador);
+        }
+
+        public bool validarCampos() {
+
+           
+
             if (cbProvincia.SelectedIndex != -1 && cbLocalidad.SelectedIndex != -1 && txtNombre.Text != null && txtNombre.Text != string.Empty && txtDni.Text != null && txtDni.Text != string.Empty)
             {
                 if (txtDni.Text.Length == 7 || txtDni.Text.Length == 8)
                 {
                     if (txtTelefono.Text.Length >= 8 && txtTelefono.Text.Length <= 12)
                     {
-                        Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
-                        Inseminador inseminador = new Inseminador();
-                        inseminador = MapearAInseminador();
-                        inseminadorNegocio.Actualizar(inseminador);
-                        DialogResult result = MessageBox.Show("El personal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
+                        //Inseminador inseminador = new Inseminador();
+                        //inseminador = MapearAInseminador();
+                        //inseminadorNegocio.Actualizar(inseminador);
+                        //DialogResult result = MessageBox.Show("El personal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                        this.Dispose();
-                    }               
+                        return true;
+                        //this.Dispose();
+                    }
                     else
                     {
-                        MessageBox.Show("El campo Teléfono no es válido. Ingrese sin el 0 ni el 15 y sin espacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El campo Teléfono no es válido. Ingrese sin el 0 ni el 15 y sin espacios","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
                     }
                 }
                 else
                 {
-                    MessageBox.Show("El campo DNI debe tener entre 7 y 8 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El campo DNI debe tener entre 7 y 8 caracteres","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
                 }
             }
             else
             {
-                MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Debe completar los campos vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
+           // return true;
         }
+
+
 
         public Inseminador MapearAInseminador()
         {

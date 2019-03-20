@@ -74,7 +74,7 @@ namespace Escritorio
             }
             else
             {
-                MessageBox.Show("Debe completar los campos vacíos");
+                MessageBox.Show("Debe completar los campos vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

@@ -33,6 +33,7 @@
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.gbDatosTambo = new System.Windows.Forms.GroupBox();
+            this.btnEliminar = new System.Windows.Forms.Button();
             this.chbEstado = new System.Windows.Forms.CheckBox();
             this.txtProvincia = new System.Windows.Forms.TextBox();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
@@ -46,7 +47,6 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnNuevoTambo = new System.Windows.Forms.Button();
             this.btnModificarDatos = new System.Windows.Forms.Button();
-            this.btnEliminar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbTambo.SuspendLayout();
             this.gbDatosTambo.SuspendLayout();
@@ -130,6 +130,18 @@
             this.gbDatosTambo.TabIndex = 1;
             this.gbDatosTambo.TabStop = false;
             this.gbDatosTambo.Text = "Datos tambo";
+            // 
+            // btnEliminar
+            // 
+            this.btnEliminar.BackColor = System.Drawing.Color.Red;
+            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.btnEliminar.Location = new System.Drawing.Point(558, 141);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(105, 56);
+            this.btnEliminar.TabIndex = 7;
+            this.btnEliminar.Text = "Eliminar tambo y salir";
+            this.btnEliminar.UseVisualStyleBackColor = false;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
             // chbEstado
             // 
@@ -257,18 +269,6 @@
             this.btnModificarDatos.UseVisualStyleBackColor = true;
             this.btnModificarDatos.Click += new System.EventHandler(this.btnModificarDatos_Click);
             // 
-            // btnEliminar
-            // 
-            this.btnEliminar.BackColor = System.Drawing.Color.Red;
-            this.btnEliminar.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnEliminar.Location = new System.Drawing.Point(558, 141);
-            this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(105, 56);
-            this.btnEliminar.TabIndex = 7;
-            this.btnEliminar.Text = "Eliminar tambo y salir";
-            this.btnEliminar.UseVisualStyleBackColor = false;
-            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
-            // 
             // DatosTambo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -282,6 +282,7 @@
             this.Name = "DatosTambo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Datos Tambo";
+            this.Activated += new System.EventHandler(this.DatosTambo_Activated);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.gbTambo.ResumeLayout(false);
             this.gbTambo.PerformLayout();

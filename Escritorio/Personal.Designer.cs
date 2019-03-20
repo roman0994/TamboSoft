@@ -292,6 +292,8 @@
             this.Name = "Personal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Personal";
+            this.Activated += new System.EventHandler(this.Personal_Activated);
+            this.Load += new System.EventHandler(this.Personal_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.gbTambo.ResumeLayout(false);
             this.gbTambo.PerformLayout();

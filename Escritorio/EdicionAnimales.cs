@@ -46,62 +46,49 @@ namespace Escritorio
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex, txtEdad.Text, txtNombre.Text, txtHBA.Text);
+            string validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex, txtEdad.Text, txtNombre.Text, txtHBA.Text);
 
-            if (validar == true)
+            if (validar == "true")
             {
-                if (txtEdad.Text.Length <= 3)
+
+                if (txtRPMadre.Text.Length <= 6 || txtRPMadre.Text == string.Empty)
                 {
-                    if (txtHBA.Text.Length <= 6)
+                    if (txtRPPadre.Text.Length <= 6 || txtRPPadre.Text == string.Empty)
                     {
-                        if (txtRPMadre.Text.Length <= 6 || txtRPMadre.Text == string.Empty)
+                        if (txtHBAMadre.Text.Length <= 6 || txtHBAMadre.Text == string.Empty)
                         {
-                            if (txtRPPadre.Text.Length <= 6 || txtRPPadre.Text == string.Empty)
+                            if (txtHBAPadre.Text.Length <= 6 || txtHBAPadre.Text == string.Empty)
                             {
-                                if (txtHBAMadre.Text.Length <= 6 || txtHBAMadre.Text == string.Empty)
-                                {
-                                    if (txtHBAPadre.Text.Length <= 6 || txtHBAPadre.Text == string.Empty)
-                                    {
-                                        Animal_Negocio animalNegocio = new Animal_Negocio();
-                                        Animal animal = new Animal();
-                                        animal = MapearAAnimal();
-                                        animalNegocio.Actualizar(animal);
-                                        DialogResult result = MessageBox.Show("El animal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                        this.Dispose();
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("El campo HBA Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
-                                }
-                                else
-                                {
-                                    MessageBox.Show("El campo HBA Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
+                                 Animal_Negocio animalNegocio = new Animal_Negocio();
+                                 Animal animal = new Animal();
+                                 animal = MapearAAnimal();
+                                 animalNegocio.Actualizar(animal);
+                                 DialogResult result = MessageBox.Show("El animal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                 this.Dispose();
                             }
                             else
                             {
-                                MessageBox.Show("El campo RP Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                 MessageBox.Show("El campo HBA Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("El campo RP Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("El campo HBA Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("El campo HBA no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El campo RP Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("El valor del campo Edad no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El campo RP Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
             {
-                MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(validar, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

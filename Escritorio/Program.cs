@@ -10,6 +10,7 @@ namespace Escritorio
 {
     static class Program
     {
+        
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -18,6 +19,9 @@ namespace Escritorio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+
+            int idtambo;
 
             CargarTablas cargarTablas = new CargarTablas();
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();

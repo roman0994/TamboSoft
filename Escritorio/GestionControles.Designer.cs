@@ -34,8 +34,6 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvControles = new System.Windows.Forms.DataGridView();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +46,8 @@
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kg_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentaje_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.tlpControles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvControles)).BeginInit();
             this.SuspendLayout();
@@ -155,25 +155,6 @@
             this.dgvControles.Size = new System.Drawing.Size(788, 334);
             this.dgvControles.TabIndex = 5;
             // 
-            // txtBuscar
-            // 
-            this.txtBuscar.Location = new System.Drawing.Point(271, 41);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(200, 20);
-            this.txtBuscar.TabIndex = 2;
-            this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(6, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(256, 28);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Buscar por nombre de animal:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // fecha_control
             // 
             this.fecha_control.DataPropertyName = "fecha_control";
@@ -268,6 +249,25 @@
             this.porcentaje_grasa.ReadOnly = true;
             this.porcentaje_grasa.Visible = false;
             // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(271, 41);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(200, 20);
+            this.txtBuscar.TabIndex = 2;
+            this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(6, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(256, 28);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Buscar por nombre de animal:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // GestionControles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -280,6 +280,7 @@
             this.Name = "GestionControles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de Controles";
+            this.Activated += new System.EventHandler(this.GestionControles_Activated);
             this.tlpControles.ResumeLayout(false);
             this.tlpControles.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvControles)).EndInit();

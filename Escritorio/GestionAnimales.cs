@@ -70,7 +70,7 @@ namespace Escritorio
             edicion.txtHBAPadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba_padre"].Value);
             edicion.chkHabilitado.Checked = Convert.ToBoolean(this.dgvAnimales.CurrentRow.Cells["habilitado"].Value);
 
-            edicion.ShowDialog();
+            edicion.Show();
             CargarGrilla(id_tambo);
             
         }
@@ -126,6 +126,11 @@ namespace Escritorio
             {
                 this.txtBuscar.Enabled = true;
             }
+        }
+
+        private void GestionAnimales_Activated(object sender, EventArgs e)
+        {
+            this.CargarGrilla(Login.Tambo.Id_tambo);
         }
     }
 }

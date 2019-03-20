@@ -216,6 +216,7 @@
             this.Name = "GestionTambos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión Tambos";
+            this.Activated += new System.EventHandler(this.GestionTambos_Activated);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTambos)).EndInit();

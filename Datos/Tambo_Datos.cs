@@ -243,7 +243,7 @@ namespace Datos
         public DataTable FiltrarPorNombre(string texto,int idtambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @idtambo and t.nombre_tambo like ('" + texto + "%')", Conn);
+            SqlCommand cmdFiltro = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @idtambo and t.nombre_tambo like ('%" + texto + "%')", Conn);
             cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
             SqlDataReader dr = cmdFiltro.ExecuteReader();

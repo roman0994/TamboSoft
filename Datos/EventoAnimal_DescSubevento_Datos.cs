@@ -415,7 +415,7 @@ namespace Datos
             this.AbrirConexion();
             SqlCommand cmdFiltro = Conn.CreateCommand();
             cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and a.nombre_animal like ('" + texto + "%') and e.estado_evento = 'true'";
+            cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and a.nombre_animal like ('%" + texto + "%') and e.estado_evento = 'true'";
             cmdFiltro.Parameters.Add("id_tambo", SqlDbType.Int).Value = idtambo;
             cmdFiltro.ExecuteNonQuery();
 
@@ -432,7 +432,7 @@ namespace Datos
             this.AbrirConexion();
             SqlCommand cmdFiltro = Conn.CreateCommand();
             cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and ev.nombre_evento like ('" + texto + "%') and e.estado_evento = 'true'";
+            cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and ev.nombre_evento like ('%" + texto + "%') and e.estado_evento = 'true'";
             cmdFiltro.Parameters.Add("id_tambo", SqlDbType.Int).Value = idtambo;
             cmdFiltro.ExecuteNonQuery();
 
@@ -449,7 +449,7 @@ namespace Datos
             this.AbrirConexion();
             SqlCommand cmdFiltro = Conn.CreateCommand();
             cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and s.nombre_subevento like ('" + texto + "%') and e.estado_evento = 'true'";
+            cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and s.nombre_subevento like ('%" + texto + "%') and e.estado_evento = 'true'";
             cmdFiltro.Parameters.Add("id_tambo", SqlDbType.Int).Value = idtambo;
             cmdFiltro.ExecuteNonQuery();
 

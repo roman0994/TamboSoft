@@ -81,9 +81,14 @@ namespace Escritorio
             edicion.txtGrasaSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["grasa_segundocontrol"].Value);
             edicion.cbAnimal.Text = animal.Nombre_animal;
 
-            edicion.ShowDialog();
+            edicion.Show();
             CargarGrilla(id_tambo);
 
+        }
+
+        private void GestionControles_Activated(object sender, EventArgs e)
+        {
+            this.CargarGrilla(Login.Tambo.Id_tambo);
         }
     }
 }

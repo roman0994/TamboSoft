@@ -72,7 +72,7 @@ namespace Escritorio
             CargarDatosTambo(tambo.Id_tambo);
             CargarTextBoxTambo(tambo.Id_tambo);
 
-            edicionTambo.ShowDialog();
+            edicionTambo.Show();
 
             CargarDatosTambo(idtambo);
             CargarTextBoxTambo(idtambo);
@@ -95,6 +95,12 @@ namespace Escritorio
                 MessageBox.Show("El tambo " + tambo.Nombre_tambo + " fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.Exit();
             }
+        }
+
+        private void DatosTambo_Activated(object sender, EventArgs e)
+        {
+            CargarDatosTambo(Login.Tambo.Id_tambo);
+            CargarTextBoxTambo(Login.Tambo.Id_tambo);
         }
 
         /*private void btnEliminarTambo_Click(object sender, EventArgs e)

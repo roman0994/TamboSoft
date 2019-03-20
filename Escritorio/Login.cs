@@ -14,11 +14,13 @@ namespace Escritorio
 {
     public partial class Login : Form
     {
+        public static Tambo Tambo { get; set; }
         public Login()
         {
             InitializeComponent();
             CargaComboTambo();
             InicializarbtnIngresar();
+            Tambo = new Tambo();
         }
 
         public void CargaComboTambo()
@@ -42,7 +44,9 @@ namespace Escritorio
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            
             int id_tambo = Convert.ToInt32(this.cbTambo.SelectedValue);
+            Tambo.Id_tambo = id_tambo;
             Principal principal = new Principal(id_tambo);
             principal.id_tambo = id_tambo;
             principal.Show();

@@ -105,15 +105,34 @@ namespace Util
             }
         }
 
-        public bool ValidarEdicionAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba)
+        public string ValidarEdicionAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba)
         {
+            string mensaje;
             if (indexCategoria != -1 && indexRaza != -1 && edad != null && edad != string.Empty && nombre != null && nombre != string.Empty && hba != null && hba != string.Empty)
             {
-                return true;
+                if(edad.Length <= 3)
+                {
+                    if(hba.Length <= 6)
+                    {
+                        mensaje = "true";
+                        return mensaje;
+                    }
+                    else
+                    {
+                        mensaje = "El campo HBA no puede ser mayor a 6 (seis) dígitos";
+                        return mensaje;
+                    }
+                }
+                else
+                {
+                    mensaje = "El valor del campo Edad no es válido";
+                    return mensaje;
+                }
             }
             else
             {
-                return false;
+                mensaje = "Debe completar los campos vacíos";
+                return mensaje;
             }
         }
 
