@@ -64,12 +64,13 @@ namespace Escritorio
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Validaciones validaciones = new Validaciones();
+            bool validar = validaciones.ValidarCargaPersonal(cbLocalidad.SelectedIndex, cbProvincia.SelectedIndex, txtNombre.Text, txtDireccion.Text, txtDni.Text);
 
-            if (cbProvincia.SelectedIndex != -1 && cbLocalidad.SelectedIndex != -1 && txtNombre.Text != null && txtNombre.Text != string.Empty && txtDni.Text != null && txtDni.Text != string.Empty)
+            if (validar == true)
             {
                 if (txtDni.Text.Length == 7 || txtDni.Text.Length == 8)
                 {
-                    if (txtTelefono.Text.Length >= 8 && txtTelefono.Text.Length <= 12)
+                    if ((txtTelefono.Text.Length >= 8 && txtTelefono.Text.Length <= 12) || txtTelefono.Text == string.Empty)
                     {
                         //Agrego el nuevo inseminador y en el método de insertar, agrego la relacion del tambo inseminador
                         Tambo tambo = new Tambo();
@@ -161,78 +162,6 @@ namespace Escritorio
             else
             {
                 e.Handled = true;
-            }
-        }
-
-        private void txtNombre_Enter(object sender, EventArgs e)
-        {
-            if (this.txtNombre.Text == "Nombre completo")
-            {
-                this.txtNombre.Text = "";
-                this.txtNombre.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtNombre_Leave(object sender, EventArgs e)
-        {
-            if (this.txtNombre.Text == "")
-            {
-                this.txtNombre.Text = "Nombre completo";
-                this.txtNombre.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtTelefono_Enter(object sender, EventArgs e)
-        {
-            if (this.txtTelefono.Text == "Sin el 0 ni el 15 y sin espacios")
-            {
-                this.txtTelefono.Text = "";
-                this.txtTelefono.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtTelefono_Leave(object sender, EventArgs e)
-        {
-            if (this.txtTelefono.Text == "")
-            {
-                this.txtTelefono.Text = "Sin el 0 ni el 15 y sin espacios";
-                this.txtTelefono.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtDireccion_Enter(object sender, EventArgs e)
-        {
-            if (this.txtDireccion.Text == "Ej: Libertad 554")
-            {
-                this.txtDireccion.Text = "";
-                this.txtDireccion.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtDireccion_Leave(object sender, EventArgs e)
-        {
-            if (this.txtDireccion.Text == "")
-            {
-                this.txtDireccion.Text = "Ej: Libertad 554";
-                this.txtDireccion.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtDni_Enter(object sender, EventArgs e)
-        {
-            if (this.txtDni.Text == "Debe tener entre 7 y 8 dígitos")
-            {
-                this.txtDni.Text = "";
-                this.txtDni.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtDni_Leave(object sender, EventArgs e)
-        {
-            if (this.txtDni.Text == "")
-            {
-                this.txtDni.Text = "Debe tener entre 7 y 8 dígitos";
-                this.txtDni.ForeColor = Color.Silver;
             }
         }
 

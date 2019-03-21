@@ -41,33 +41,33 @@ namespace Escritorio
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             Tambo tambo = new Tambo();
 
-            tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
+            tambo = tamboNegocio.RecuperarUno(Login.Tambo.Id_tambo);
 
             MapearDatos(tambo);
         }
 
         public void MapearDatos(Tambo tambo)
         {
-            txtNombreTambo.Text = tambo.Nombre_tambo;
+            txtNombreTambo.Text = Convert.ToString(tambo.Nombre_tambo);
             txtSuperficie.Text = Convert.ToString(tambo.Superficie);
-            chbEstado.Checked = tambo.Estado_tambo;
-            txtLocalidad.Text = tambo.Nombre_localidad;
-            txtProvincia.Text = tambo.Nombre_provincia;
+            chbEstado.Checked = Convert.ToBoolean(tambo.Estado_tambo);
+            txtLocalidad.Text = Convert.ToString(tambo.Nombre_localidad);
+            txtProvincia.Text = Convert.ToString(tambo.Nombre_provincia);
         }
 
         private void btnModificarDatos_Click(object sender, EventArgs e)
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             Tambo tambo = new Tambo(); 
-            tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
+            tambo = tamboNegocio.RecuperarUno(Login.Tambo.Id_tambo);
 
             EdicionDatosTambo edicionTambo = new EdicionDatosTambo();
             edicionTambo.txtIdTambo.Text = Convert.ToString(tambo.Id_tambo);
-            edicionTambo.txtNombre.Text = tambo.Nombre_tambo;
+            edicionTambo.txtNombre.Text = Convert.ToString(tambo.Nombre_tambo);
             edicionTambo.txtSuperficie.Text = Convert.ToString(tambo.Superficie);
-            edicionTambo.chkEstado.Checked = tambo.Estado_tambo;
-            edicionTambo.cbProvincia.Text = tambo.Nombre_provincia;
-            edicionTambo.cbLocalidad.Text = tambo.Nombre_localidad;
+            edicionTambo.chkEstado.Checked = Convert.ToBoolean(tambo.Estado_tambo);
+            edicionTambo.cbProvincia.Text = Convert.ToString(tambo.Nombre_provincia);
+            edicionTambo.cbLocalidad.Text = Convert.ToString(tambo.Nombre_localidad);
 
             CargarDatosTambo(tambo.Id_tambo);
             CargarTextBoxTambo(tambo.Id_tambo);

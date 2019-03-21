@@ -57,6 +57,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.epDni = new System.Windows.Forms.ErrorProvider(this.components);
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbPersonal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epDni)).BeginInit();
@@ -110,6 +113,9 @@
             // gbPersonal
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.gbPersonal, 4);
+            this.gbPersonal.Controls.Add(this.label16);
+            this.gbPersonal.Controls.Add(this.label15);
+            this.gbPersonal.Controls.Add(this.label14);
             this.gbPersonal.Controls.Add(this.txtTambo);
             this.gbPersonal.Controls.Add(this.label13);
             this.gbPersonal.Controls.Add(this.label12);
@@ -292,9 +298,9 @@
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.Location = new System.Drawing.Point(22, 201);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(55, 13);
+            this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 5;
-            this.label7.Text = "Dirección:";
+            this.label7.Text = "Dirección: *";
             // 
             // label6
             // 
@@ -364,6 +370,36 @@
             // 
             this.epDni.ContainerControl = this;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(338, 244);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(151, 13);
+            this.label14.TabIndex = 22;
+            this.label14.Text = "Debe tener entre 7 y 8 dígitos.";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(338, 201);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(81, 13);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "Ej. Libertad 443";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(338, 160);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(151, 13);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "Sin el 0 ni el 15 y sin espacios.";
+            // 
             // EdicionPersonal
             // 
             this.AcceptButton = this.btnGuardar;
@@ -418,5 +454,8 @@
         private System.Windows.Forms.Label label12;
         public System.Windows.Forms.TextBox txtTambo;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
     }
 }

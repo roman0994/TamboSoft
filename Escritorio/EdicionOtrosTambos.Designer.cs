@@ -279,6 +279,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "EdicionOtrosTambos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edición Tambos";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

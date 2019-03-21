@@ -95,7 +95,7 @@ namespace Util
 
         public bool ValidarCargaAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba)
         {
-            if (indexCategoria != -1  && indexRaza != -1 && edad != null && edad != "Edad del animal" && nombre != null && nombre != "Nombre del animal" && hba != null && hba != "Código numérico")
+            if (indexCategoria != -1  && indexRaza != -1 && edad != null && edad != "Edad del animal" && (! string.IsNullOrWhiteSpace((nombre))) && nombre != "Nombre del animal" && hba != null && hba != "Código numérico")
             {
                 return true;
             }
@@ -108,7 +108,7 @@ namespace Util
         public string ValidarEdicionAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba)
         {
             string mensaje;
-            if (indexCategoria != -1 && indexRaza != -1 && edad != null && edad != string.Empty && nombre != null && nombre != string.Empty && hba != null && hba != string.Empty)
+            if (indexCategoria != -1 && indexRaza != -1 && edad != null && edad != string.Empty && (!string.IsNullOrWhiteSpace((nombre))) && nombre != string.Empty && hba != null && hba != string.Empty)
             {
                 if(edad.Length <= 3)
                 {
@@ -136,9 +136,21 @@ namespace Util
             }
         }
 
+        public bool ValidarCargaPersonal(int indexLocalidad, int indexProvincia, string nombre, string direccion, string dni)
+        {
+            if (indexProvincia != -1 && indexLocalidad != -1 && (!string.IsNullOrWhiteSpace((nombre))) && nombre != string.Empty && (!string.IsNullOrWhiteSpace((dni))) && dni != string.Empty && (!string.IsNullOrWhiteSpace((direccion))) && direccion != string.Empty)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         public bool ValidarCargaTambos(int indexProvincia, int indexLocalidad, string nombre, string superficie)
         {
-            if (indexProvincia != -1 && indexLocalidad != -1 && nombre != null && nombre != "Nombre tambo" && superficie != null && superficie != "Ej: 200,00")
+            if (indexProvincia != -1 && indexLocalidad != -1 && (!string.IsNullOrWhiteSpace((nombre))) && nombre != "Nombre tambo" && superficie != null && superficie != "Ej: 200,00")
             {
                 return true;
             }
@@ -150,7 +162,7 @@ namespace Util
 
         public bool ValidarEdicionTambos(int indexProvincia, int indexLocalidad, string nombre, string superficie)
         {
-            if (indexProvincia != -1 && indexLocalidad != -1 && nombre != null && nombre != string.Empty && superficie != null && superficie != string.Empty)
+            if (indexProvincia != -1 && indexLocalidad != -1 && (!string.IsNullOrWhiteSpace((nombre))) && nombre != string.Empty && superficie != null && superficie != string.Empty)
             {
                 return true;
             }

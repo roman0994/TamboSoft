@@ -90,11 +90,12 @@ namespace Escritorio
             inseminadorNegocio.Actualizar(inseminador);
         }
 
-        public bool validarCampos() {
+        public bool validarCampos()
+        {
+            Validaciones validaciones = new Validaciones();
+            bool validar = validaciones.ValidarCargaPersonal(cbLocalidad.SelectedIndex, cbProvincia.SelectedIndex, txtNombre.Text, txtDireccion.Text, txtDni.Text);
 
-           
-
-            if (cbProvincia.SelectedIndex != -1 && cbLocalidad.SelectedIndex != -1 && txtNombre.Text != null && txtNombre.Text != string.Empty && txtDni.Text != null && txtDni.Text != string.Empty)
+            if (validar == true)
             {
                 if (txtDni.Text.Length == 7 || txtDni.Text.Length == 8)
                 {

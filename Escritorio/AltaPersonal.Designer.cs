@@ -33,6 +33,9 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.gbNuevo = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -103,6 +106,9 @@
             // gbNuevo
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.gbNuevo, 4);
+            this.gbNuevo.Controls.Add(this.label13);
+            this.gbNuevo.Controls.Add(this.label12);
+            this.gbNuevo.Controls.Add(this.label3);
             this.gbNuevo.Controls.Add(this.txtTambo);
             this.gbNuevo.Controls.Add(this.label11);
             this.gbNuevo.Controls.Add(this.label10);
@@ -127,6 +133,36 @@
             this.gbNuevo.TabIndex = 2;
             this.gbNuevo.TabStop = false;
             this.gbNuevo.Text = "Nuevo inseminador";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(391, 208);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(151, 13);
+            this.label13.TabIndex = 21;
+            this.label13.Text = "Debe tener entre 7 y 8 dígitos.";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(391, 166);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 13);
+            this.label12.TabIndex = 20;
+            this.label12.Text = "Ej. Libertad 443";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(391, 126);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(151, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Sin el 0 ni el 15 y sin espacios.";
             // 
             // txtTambo
             // 
@@ -177,50 +213,38 @@
             // 
             // txtDni
             // 
-            this.txtDni.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtDni.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtDni.Location = new System.Drawing.Point(177, 205);
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(200, 20);
             this.txtDni.TabIndex = 6;
-            this.txtDni.Text = "Debe tener entre 7 y 8 dígitos";
-            this.txtDni.Enter += new System.EventHandler(this.txtDni_Enter);
             this.txtDni.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDni_KeyPress);
-            this.txtDni.Leave += new System.EventHandler(this.txtDni_Leave);
             // 
             // txtDireccion
             // 
-            this.txtDireccion.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtDireccion.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtDireccion.Location = new System.Drawing.Point(176, 163);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(200, 20);
             this.txtDireccion.TabIndex = 5;
-            this.txtDireccion.Text = "Ej: Libertad 554";
-            this.txtDireccion.Enter += new System.EventHandler(this.txtDireccion_Enter);
-            this.txtDireccion.Leave += new System.EventHandler(this.txtDireccion_Leave);
             // 
             // txtTelefono
             // 
-            this.txtTelefono.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtTelefono.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtTelefono.Location = new System.Drawing.Point(176, 123);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(200, 20);
             this.txtTelefono.TabIndex = 4;
-            this.txtTelefono.Text = "Sin el 0 ni el 15 y sin espacios";
-            this.txtTelefono.Enter += new System.EventHandler(this.txtTelefono_Enter);
             this.txtTelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtTelefono_KeyPress);
-            this.txtTelefono.Leave += new System.EventHandler(this.txtTelefono_Leave);
             // 
             // txtNombre
             // 
-            this.txtNombre.ForeColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtNombre.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtNombre.Location = new System.Drawing.Point(176, 80);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(200, 20);
             this.txtNombre.TabIndex = 2;
-            this.txtNombre.Text = "Nombre completo";
-            this.txtNombre.Enter += new System.EventHandler(this.txtNombre_Enter);
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
-            this.txtNombre.Leave += new System.EventHandler(this.txtNombre_Leave);
             // 
             // label9
             // 
@@ -268,9 +292,9 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(30, 166);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.Size = new System.Drawing.Size(62, 13);
             this.label5.TabIndex = 3;
-            this.label5.Text = "Dirección:";
+            this.label5.Text = "Dirección: *";
             // 
             // label4
             // 
@@ -358,5 +382,8 @@
         private System.Windows.Forms.ErrorProvider epDni;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtTambo;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label3;
     }
 }

@@ -126,42 +126,6 @@ namespace Escritorio
             }
         }
 
-        private void txtNombre_Enter(object sender, EventArgs e)
-        {
-            if (this.txtNombre.Text == "Nombre tambo")
-            {
-                this.txtNombre.Text = "";
-                this.txtNombre.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtNombre_Leave(object sender, EventArgs e)
-        {
-            if (this.txtNombre.Text == "")
-            {
-                this.txtNombre.Text = "Nombre tambo";
-                this.txtNombre.ForeColor = Color.Silver;
-            }
-        }
-
-        private void txtSuperficie_Enter(object sender, EventArgs e)
-        {
-            if (this.txtSuperficie.Text == "Ej: 200,00")
-            {
-                this.txtSuperficie.Text = "";
-                this.txtSuperficie.ForeColor = Color.Black;
-            }
-        }
-
-        private void txtSuperficie_Leave(object sender, EventArgs e)
-        {
-            if (this.txtSuperficie.Text == "")
-            {
-                this.txtSuperficie.Text = "Ej: 200,00";
-                this.txtSuperficie.ForeColor = Color.Silver;
-            }
-        }
-
         private void AltaTambos_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (e.CloseReason == CloseReason.UserClosing && sender.Equals(btnGuardar) == false)
