@@ -18,10 +18,7 @@ namespace Escritorio
         static void Main()
         {
             Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-
-            int idtambo;
+            Application.SetCompatibleTextRenderingDefault(false);           
 
             CargarTablas cargarTablas = new CargarTablas();
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();

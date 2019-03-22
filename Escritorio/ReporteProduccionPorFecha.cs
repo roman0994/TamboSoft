@@ -178,13 +178,14 @@ namespace Escritorio
             {
                 vpProduccionPorFechaDia vistaPreviaProduccionPorDia = new vpProduccionPorFechaDia();
                 vistaPreviaProduccionPorDia.idtambo = idtambo;
-                vistaPreviaProduccionPorDia.fecha = Convert.ToDateTime(this.dtpDia.Value.ToString("dd/MM/yyyy"));
+                vistaPreviaProduccionPorDia.bandera = 0;
                 vistaPreviaProduccionPorDia.Show();
             }
             else if(this.bandera == 1)
             {
                 vpProduccionPorFechaDia vistaPreviaProduccionPorDia = new vpProduccionPorFechaDia();
                 vistaPreviaProduccionPorDia.idtambo = idtambo;
+                vistaPreviaProduccionPorDia.bandera = 1;
                 vistaPreviaProduccionPorDia.fecha = Convert.ToDateTime(this.dtpDia.Value.ToString("dd/MM/yyyy"));
                 vistaPreviaProduccionPorDia.Show();
             }
