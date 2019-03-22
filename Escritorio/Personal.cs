@@ -84,8 +84,8 @@ namespace Escritorio
             if (result == DialogResult.Yes)
             {
                 tamboInseminadorNegocio.Eliminar(id_inseminador);
-                MessageBox.Show("El personal "+ inseminador.Nombre_inseminador + " fue eliminado del tambo "+tambo.Nombre_tambo, "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.CargarGrilla(id_tambo);
+                MessageBox.Show("El personal "+ inseminador.Nombre_inseminador + " fue eliminado del tambo "+tambo.Nombre_tambo, "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 

@@ -35,6 +35,7 @@
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.cbFiltro = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvEventos = new System.Windows.Forms.DataGridView();
@@ -140,6 +141,7 @@
             // groupBox2
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox2, 2);
+            this.groupBox2.Controls.Add(this.btnLimpiar);
             this.groupBox2.Controls.Add(this.cbFiltro);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -149,6 +151,16 @@
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtro de búsqueda";
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Location = new System.Drawing.Point(554, 18);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
+            this.btnLimpiar.TabIndex = 4;
+            this.btnLimpiar.Text = "Limpiar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // cbFiltro
             // 
@@ -384,5 +396,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rp_madre;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp_padre;
         private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
+        private System.Windows.Forms.Button btnLimpiar;
     }
 }

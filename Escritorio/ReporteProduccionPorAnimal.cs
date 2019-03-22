@@ -19,23 +19,25 @@ namespace Escritorio
         public ReporteProduccionPorAnimal(int id_tambo)
         {
             InitializeComponent();
+            CargaComboAnimal(id_tambo); 
             CargarGrilla(id_tambo);
             CargarTextBoxTambo(id_tambo);
-            CargaComboAnimal(id_tambo);
-            btnBuscar.Enabled = false;
         }
 
         public void CargarGrilla(int id_tambo)
         {
-            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-            this.dgvProduccionAnimal.DataSource = controlAnimalNegocio.ProduccionPorAnimal(id_tambo);
-            if (this.dgvProduccionAnimal.Rows.Count != 0 && this.dgvProduccionAnimal.Rows != null)
+            if (this.cbAnimal.SelectedIndex==-1)
             {
-                this.btnExportar.Enabled = true;
-            }
-            else
-            {
-                this.btnExportar.Enabled = false;
+                Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+                this.dgvProduccionAnimal.DataSource = controlAnimalNegocio.ProduccionPorAnimal(id_tambo);
+                if (this.dgvProduccionAnimal.Rows.Count != 0 && this.dgvProduccionAnimal.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
             }
         }
 
@@ -65,11 +67,6 @@ namespace Escritorio
 
         private void cbAnimal_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnBuscar.Enabled = true;
-        }
-
-        private void btnBuscar_Click(object sender, EventArgs e)
-        {
             Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
             Animal_Negocio animalNegocio = new Animal_Negocio();
             Animal animal = new Animal();
@@ -87,9 +84,16 @@ namespace Escritorio
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            CargarGrilla(idtambo);
             this.cbAnimal.SelectedIndex = -1;
-            this.btnBuscar.Enabled = false;
+            this.CargarGrilla(Login.Tambo.Id_tambo);
+            if (this.dgvProduccionAnimal.Rows.Count != 0 && this.dgvProduccionAnimal.Rows != null)
+            {
+                this.btnExportar.Enabled = true;
+            }
+            else
+            {
+                this.btnExportar.Enabled = false;
+            }
         }
 
         private void btnExportar_Click(object sender, EventArgs e)

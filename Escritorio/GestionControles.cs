@@ -60,8 +60,9 @@ namespace Escritorio
             if (result == DialogResult.Yes)
             {
                 controlAnimalNegocio.Eliminar(fecha_control,id_control,rp);
-                MessageBox.Show("El control fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.CargarGrilla(id_tambo);
+                MessageBox.Show("El control fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
         }
 

@@ -88,8 +88,9 @@ namespace Escritorio
             if (result == DialogResult.Yes)
             {
                 eventoNegocio.Eliminar(estado_evento, id_evento, rp, fecha_desc);
-                MessageBox.Show("El evento fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.CargarGrilla(id_tambo);
+                MessageBox.Show("El evento fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
         }
 
@@ -110,6 +111,9 @@ namespace Escritorio
 
         private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.CargarGrilla(Login.Tambo.Id_tambo);
+            this.txtBuscar.Text = string.Empty;
+
             if (this.cbBuscar.SelectedIndex == -1)
             {
                 this.txtBuscar.Enabled = false;

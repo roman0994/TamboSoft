@@ -922,7 +922,7 @@ namespace Datos
         public DataTable FiltrarPorNombre(string texto, int idtambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where nombre_animal like ('% " + texto + "%') and a.id_tambo=@idtambo", Conn);
+            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true'  and a.estado_animal!='Vendido'", Conn);
 
             cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
@@ -956,7 +956,7 @@ namespace Datos
         public DataTable FiltrarPorEstado(string texto, int idtambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where estado_animal like ('%" + texto + "%') and a.id_tambo=@idtambo", Conn);
+            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where estado_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true'  and a.estado_animal!='Vendido'", Conn);
             cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
             SqlDataReader dr = cmdFiltro.ExecuteReader();

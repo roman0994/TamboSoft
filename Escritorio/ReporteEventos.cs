@@ -43,15 +43,18 @@ namespace Escritorio
 
         public void CargarGrilla(int id_tambo)
         {
-            Animal_Negocio animalNegocio = new Animal_Negocio();
-            this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
-            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            if (this.cbFiltro.SelectedIndex == -1)
             {
-                this.btnExportar.Enabled = true;
-            }
-            else
-            {
-                this.btnExportar.Enabled = false;
+                Animal_Negocio animalNegocio = new Animal_Negocio();
+                this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
             }
         }
 
@@ -62,8 +65,19 @@ namespace Escritorio
             Tambo tambo = new Tambo();
 
             tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
-
-            if (this.cbFiltro.SelectedItem.ToString() == "Vacas en celo")
+            if (this.cbFiltro.SelectedIndex == -1)
+            {
+                this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(Login.Tambo.Id_tambo);
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
+            }
+            else if (this.cbFiltro.SelectedItem.ToString() == "Vacas en celo")
             {
                 this.dgvEventos.DataSource = animalNegocio.RecuperarVacasEnCeloPorTambo(tambo.Id_tambo);
                 if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
@@ -131,6 +145,20 @@ namespace Escritorio
                 vistaPreviaEventos.opcioncombo = "vacio";
             }
             vistaPreviaEventos.Show();
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            this.cbFiltro.SelectedIndex = -1;
+            this.CargarGrilla(Login.Tambo.Id_tambo);
+            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            {
+                this.btnExportar.Enabled = true;
+            }
+            else
+            {
+                this.btnExportar.Enabled = false;
+            }
         }
 
 

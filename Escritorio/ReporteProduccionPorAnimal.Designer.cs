@@ -36,7 +36,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnLimpiar = new System.Windows.Forms.Button();
-            this.btnBuscar = new System.Windows.Forms.Button();
             this.cbAnimal = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvProduccionAnimal = new System.Windows.Forms.DataGridView();
@@ -76,9 +75,9 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(561, 416);
+            this.btnSalir.Location = new System.Drawing.Point(561, 415);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 28);
+            this.btnSalir.Size = new System.Drawing.Size(75, 29);
             this.btnSalir.TabIndex = 1;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -87,9 +86,9 @@
             // btnExportar
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnExportar.Location = new System.Drawing.Point(163, 416);
+            this.btnExportar.Location = new System.Drawing.Point(163, 415);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(75, 28);
+            this.btnExportar.Size = new System.Drawing.Size(75, 29);
             this.btnExportar.TabIndex = 0;
             this.btnExportar.Text = "Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
@@ -129,7 +128,6 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox2, 2);
             this.groupBox2.Controls.Add(this.btnLimpiar);
-            this.groupBox2.Controls.Add(this.btnBuscar);
             this.groupBox2.Controls.Add(this.cbAnimal);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -142,24 +140,13 @@
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(615, 21);
+            this.btnLimpiar.Location = new System.Drawing.Point(525, 21);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 3;
             this.btnLimpiar.Text = "Limpiar";
             this.btnLimpiar.UseVisualStyleBackColor = true;
             this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
-            // 
-            // btnBuscar
-            // 
-            this.btnBuscar.Enabled = false;
-            this.btnBuscar.Location = new System.Drawing.Point(502, 21);
-            this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
-            this.btnBuscar.TabIndex = 2;
-            this.btnBuscar.Text = "Buscar";
-            this.btnBuscar.UseVisualStyleBackColor = true;
-            this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click);
             // 
             // cbAnimal
             // 
@@ -193,7 +180,7 @@
             this.dgvProduccionAnimal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProduccionAnimal.Location = new System.Drawing.Point(6, 132);
             this.dgvProduccionAnimal.Name = "dgvProduccionAnimal";
-            this.dgvProduccionAnimal.Size = new System.Drawing.Size(788, 275);
+            this.dgvProduccionAnimal.Size = new System.Drawing.Size(788, 274);
             this.dgvProduccionAnimal.TabIndex = 4;
             // 
             // Litros_leche
@@ -264,7 +251,6 @@
         private System.Windows.Forms.ComboBox cbAnimal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvProduccionAnimal;
-        private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Litros_leche;
         private System.Windows.Forms.DataGridViewTextBoxColumn Grasa_total;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;

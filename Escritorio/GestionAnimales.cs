@@ -34,7 +34,7 @@ namespace Escritorio
 
         public void CargarComboBusqueda()
         {
-            this.cbBuscar.Items.Add("Nombre");
+            this.cbBuscar.Items.Add("Nombre animal");
             this.cbBuscar.Items.Add("Estado");
             this.cbBuscar.SelectedIndex = -1;
         }
@@ -85,8 +85,9 @@ namespace Escritorio
             if (result == DialogResult.Yes)
             {
                 animalNegocio.Eliminar(id);
-                MessageBox.Show("El animal "+ animal.Nombre_animal +" fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.CargarGrilla(id_tambo);
+                MessageBox.Show("El animal "+ animal.Nombre_animal +" fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
         }
 
@@ -106,7 +107,7 @@ namespace Escritorio
                 this.txtBuscar.Enabled = false;
                 //MessageBox.Show("Debe seleccionar un parámetro a buscar en el combo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else if (this.cbBuscar.SelectedItem.ToString() == "Nombre")
+            else if (this.cbBuscar.SelectedItem.ToString() == "Nombre animal")
             {
                  this.dgvAnimales.DataSource = animalNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo);
             }
@@ -118,6 +119,9 @@ namespace Escritorio
 
         private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
+            this.CargarGrilla(Login.Tambo.Id_tambo);
+            this.txtBuscar.Text = string.Empty;
+
             if (this.cbBuscar.SelectedIndex == -1)
             {
                 this.txtBuscar.Enabled = false;

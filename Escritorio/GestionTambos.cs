@@ -69,8 +69,9 @@ namespace Escritorio
             if (result == DialogResult.Yes)
             {
                 tamboNegocio.Eliminar(id);
-                MessageBox.Show("El tambo " + tambo.Nombre_tambo + " fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.CargarGrilla(idtambo);
+                MessageBox.Show("El tambo " + tambo.Nombre_tambo + " fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
         }
 
