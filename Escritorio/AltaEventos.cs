@@ -397,13 +397,25 @@ namespace Escritorio
                     
                     //Actualizo el estado del animal
                     Animal_Negocio animalNegocio = new Animal_Negocio();
-                    if (this.lbEventos.SelectedIndex == 3)  //sería el evento de venta
+                    if (this.lbEventos.SelectedIndex == 1)  //sería el evento de aborto
+                    {
+                        animalNegocio.ActualizarEstado("Aborto", eventoAnimal1.Rp);
+                    }
+                    else if (this.lbEventos.SelectedIndex == 3)  //sería el evento de venta
                     {
                         animalNegocio.ActualizarEstado("Vendido",eventoAnimal1.Rp);
                     }
                     else if(this.lbEventos.SelectedIndex == 4)    //sería el evento de muerte
                     {
                         animalNegocio.ActualizarEstadoMuerto("Muerto",eventoAnimal1.Rp);
+                    }
+                    else if (this.lbEventos.SelectedIndex == 8)    //sería el evento de rechazo
+                    {
+                        animalNegocio.ActualizarEstadoMuerto("Rechazo", eventoAnimal1.Rp);
+                    }
+                    else if (this.lbEventos.SelectedIndex == 9)    //sería el evento de análisis
+                    {
+                        animalNegocio.ActualizarEstadoMuerto("Analisis", eventoAnimal1.Rp);
                     }
 
                     this.Limpiar();
@@ -432,6 +444,10 @@ namespace Escritorio
                     if (this.lbEventos.SelectedIndex == 5)  //sería el evento de enfermedad
                     {
                         animalNegocio.ActualizarEstado("Enfermo", eventoAnimal1.Rp);
+                    }
+                    else if (this.lbEventos.SelectedIndex == 7)  //sería el evento de medicación
+                    {
+                        animalNegocio.ActualizarEstado("Medicado", eventoAnimal1.Rp);
                     }
 
                     this.Limpiar();
@@ -463,9 +479,9 @@ namespace Escritorio
                     {
                         animalNegocio.ActualizarEstado("Celo", eventoAnimal1.Rp);
                     }
-                    else if (this.lbEventos.SelectedIndex == 0)  //sería el evento de celo
+                    else if (this.lbEventos.SelectedIndex == 0)  //sería el evento de parto
                     {
-                        animalNegocio.ActualizarEstado("Vivo", eventoAnimal1.Rp);
+                        animalNegocio.ActualizarEstado("Parto", eventoAnimal1.Rp);
                     }
 
                     this.Limpiar();
@@ -493,6 +509,18 @@ namespace Escritorio
                     listaEventoAnimal.Add(eventoAnimal4);
                     eventoNegocio.Insertar(listaEventoAnimal);
                     MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    //Actualizo el estado del animal
+                    Animal_Negocio animalNegocio = new Animal_Negocio();
+                    if (Convert.ToInt32(comboBox1.SelectedValue) == 95)  //sería la descripcion preñada
+                    {
+                        animalNegocio.ActualizarEstado("Preñada", eventoAnimal1.Rp);
+                    }
+                    else if (Convert.ToInt32(comboBox1.SelectedValue) == 96)  //sería la descripcion preñada dudosa
+                    {
+                        animalNegocio.ActualizarEstado("Preñada dudosa", eventoAnimal1.Rp);
+                    }
+
                     this.Limpiar();
                 }
                 else

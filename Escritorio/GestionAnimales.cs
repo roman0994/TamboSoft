@@ -2,6 +2,7 @@
 using Negocio;
 using System;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace Escritorio
 {
@@ -72,7 +73,7 @@ namespace Escritorio
 
             edicion.Show();
             CargarGrilla(id_tambo);
-            
+
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -81,19 +82,19 @@ namespace Escritorio
             int id = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
             Animal animal = animalNegocio.RecuperarUno(id);
             int id_tambo = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value);
-            DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el animal "+ animal.Nombre_animal +"?","Verificación",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el animal " + animal.Nombre_animal + "?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 animalNegocio.Eliminar(id);
                 this.CargarGrilla(id_tambo);
-                MessageBox.Show("El animal "+ animal.Nombre_animal +" fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+                MessageBox.Show("El animal " + animal.Nombre_animal + " fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
             }
         }
 
         public void InicializarTextBox()
         {
-            if(this.cbBuscar.SelectedIndex == -1)
+            if (this.cbBuscar.SelectedIndex == -1)
             {
                 this.txtBuscar.Enabled = false;
             }
@@ -109,12 +110,13 @@ namespace Escritorio
             }
             else if (this.cbBuscar.SelectedItem.ToString() == "Nombre animal")
             {
-                 this.dgvAnimales.DataSource = animalNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo);
+                this.dgvAnimales.DataSource = animalNegocio.FiltrarPorNombre(this.txtBuscar.Text, idtambo);
             }
             else if (this.cbBuscar.SelectedItem.ToString() == "Estado")
             {
-                this.dgvAnimales.DataSource = animalNegocio.FiltrarPorEstado(this.txtBuscar.Text,idtambo);
+                this.dgvAnimales.DataSource = animalNegocio.FiltrarPorEstado(this.txtBuscar.Text, idtambo);
             }
+
         }
 
         private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)
@@ -126,7 +128,7 @@ namespace Escritorio
             {
                 this.txtBuscar.Enabled = false;
             }
-            else 
+            else
             {
                 this.txtBuscar.Enabled = true;
             }
@@ -135,6 +137,18 @@ namespace Escritorio
         private void GestionAnimales_Activated(object sender, EventArgs e)
         {
             this.CargarGrilla(Login.Tambo.Id_tambo);
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

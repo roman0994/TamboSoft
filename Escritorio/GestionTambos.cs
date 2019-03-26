@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocio;
 using Entidades;
+using System.Text.RegularExpressions;
 
 namespace Escritorio
 {
@@ -84,6 +85,18 @@ namespace Escritorio
         private void GestionTambos_Activated(object sender, EventArgs e)
         {
             this.CargarGrilla(Login.Tambo.Id_tambo);
+        }
+
+        private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }
