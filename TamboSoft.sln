@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util", "Util\Util.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Escritorio", "Escritorio\Escritorio.csproj", "{70BFB1A5-D165-41F2-9D23-4BE29D1A1DD6}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{D7591E5E-AF3E-4485-9C99-EEBB519A38E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,12 @@ Global
 		{70BFB1A5-D165-41F2-9D23-4BE29D1A1DD6}.Release|x64.Build.0 = Release|Any CPU
 		{70BFB1A5-D165-41F2-9D23-4BE29D1A1DD6}.Release|x86.ActiveCfg = Release|Any CPU
 		{70BFB1A5-D165-41F2-9D23-4BE29D1A1DD6}.Release|x86.Build.0 = Release|Any CPU
+		{D7591E5E-AF3E-4485-9C99-EEBB519A38E6}.Debug|Any CPU.ActiveCfg = Debug
+		{D7591E5E-AF3E-4485-9C99-EEBB519A38E6}.Debug|x64.ActiveCfg = Debug
+		{D7591E5E-AF3E-4485-9C99-EEBB519A38E6}.Debug|x86.ActiveCfg = Debug
+		{D7591E5E-AF3E-4485-9C99-EEBB519A38E6}.Release|Any CPU.ActiveCfg = Release
+		{D7591E5E-AF3E-4485-9C99-EEBB519A38E6}.Release|x64.ActiveCfg = Release
+		{D7591E5E-AF3E-4485-9C99-EEBB519A38E6}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
