@@ -48,6 +48,11 @@ namespace Negocio
             tamboDatos.Insertar(tambo);
         }
 
+        public int InsertarDevolviendoID(Tambo tambo)
+        {
+            return tamboDatos.InsertarDevolviendoID(tambo);
+        }
+
         public void Eliminar(int id)
         {
             tamboDatos.Eliminar(id);

@@ -251,10 +251,29 @@ namespace Escritorio
 
         private void AltaAnimales_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result != DialogResult.Yes)
+            if (HayCamposModificados())
             {
-                e.Cancel = true;
+                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    this.Dispose();
+                }
+            }
+        }
+
+        public bool HayCamposModificados()
+        {
+            if (txtNombre.Text == string.Empty && txtEdad.Text == string.Empty && txtHBA.Text == string.Empty && txtRPMadre.Text == string.Empty && txtRPPadre.Text == string.Empty && txtHBAMadre.Text == string.Empty && txtHBAPadre.Text == string.Empty && cbCategoria.SelectedIndex == -1 && cbRaza.SelectedIndex == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

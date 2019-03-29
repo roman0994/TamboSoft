@@ -33,6 +33,9 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.gbPersonal = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -45,21 +48,16 @@
             this.txtIdPersonal = new System.Windows.Forms.TextBox();
             this.cbLocalidad = new System.Windows.Forms.ComboBox();
             this.cbProvincia = new System.Windows.Forms.ComboBox();
-            this.chkEstado = new System.Windows.Forms.CheckBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.epDni = new System.Windows.Forms.ErrorProvider(this.components);
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbPersonal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epDni)).BeginInit();
@@ -128,13 +126,11 @@
             this.gbPersonal.Controls.Add(this.txtIdPersonal);
             this.gbPersonal.Controls.Add(this.cbLocalidad);
             this.gbPersonal.Controls.Add(this.cbProvincia);
-            this.gbPersonal.Controls.Add(this.chkEstado);
             this.gbPersonal.Controls.Add(this.label10);
             this.gbPersonal.Controls.Add(this.label9);
             this.gbPersonal.Controls.Add(this.label8);
             this.gbPersonal.Controls.Add(this.label7);
             this.gbPersonal.Controls.Add(this.label6);
-            this.gbPersonal.Controls.Add(this.label5);
             this.gbPersonal.Controls.Add(this.label4);
             this.gbPersonal.Controls.Add(this.label3);
             this.gbPersonal.Controls.Add(this.label2);
@@ -146,6 +142,36 @@
             this.gbPersonal.TabIndex = 2;
             this.gbPersonal.TabStop = false;
             this.gbPersonal.Text = "Datos Personal";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(338, 124);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(151, 13);
+            this.label16.TabIndex = 24;
+            this.label16.Text = "Sin el 0 ni el 15 y sin espacios.";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(337, 175);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(81, 13);
+            this.label15.TabIndex = 23;
+            this.label15.Text = "Ej. Libertad 443";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(338, 227);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(151, 13);
+            this.label14.TabIndex = 22;
+            this.label14.Text = "Debe tener entre 7 y 8 dígitos.";
             // 
             // txtTambo
             // 
@@ -187,7 +213,7 @@
             // 
             // txtDni
             // 
-            this.txtDni.Location = new System.Drawing.Point(132, 241);
+            this.txtDni.Location = new System.Drawing.Point(132, 224);
             this.txtDni.Name = "txtDni";
             this.txtDni.Size = new System.Drawing.Size(200, 20);
             this.txtDni.TabIndex = 7;
@@ -195,14 +221,14 @@
             // 
             // txtDireccion
             // 
-            this.txtDireccion.Location = new System.Drawing.Point(132, 198);
+            this.txtDireccion.Location = new System.Drawing.Point(131, 172);
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(200, 20);
             this.txtDireccion.TabIndex = 6;
             // 
             // txtTelefono
             // 
-            this.txtTelefono.Location = new System.Drawing.Point(132, 157);
+            this.txtTelefono.Location = new System.Drawing.Point(131, 121);
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(200, 20);
             this.txtTelefono.TabIndex = 5;
@@ -251,17 +277,6 @@
             this.cbProvincia.TabIndex = 8;
             this.cbProvincia.SelectedIndexChanged += new System.EventHandler(this.cbProvincia_SelectedIndexChanged);
             // 
-            // chkEstado
-            // 
-            this.chkEstado.AutoSize = true;
-            this.chkEstado.Checked = true;
-            this.chkEstado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEstado.Location = new System.Drawing.Point(132, 117);
-            this.chkEstado.Name = "chkEstado";
-            this.chkEstado.Size = new System.Drawing.Size(15, 14);
-            this.chkEstado.TabIndex = 4;
-            this.chkEstado.UseVisualStyleBackColor = true;
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -286,7 +301,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(22, 244);
+            this.label8.Location = new System.Drawing.Point(23, 227);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(36, 13);
             this.label8.TabIndex = 6;
@@ -296,7 +311,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(22, 201);
+            this.label7.Location = new System.Drawing.Point(23, 175);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(62, 13);
             this.label7.TabIndex = 5;
@@ -306,21 +321,11 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(22, 160);
+            this.label6.Location = new System.Drawing.Point(23, 124);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(52, 13);
             this.label6.TabIndex = 4;
             this.label6.Text = "Teléfono:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(22, 117);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Activo:";
             // 
             // label4
             // 
@@ -370,36 +375,6 @@
             // 
             this.epDni.ContainerControl = this;
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(338, 244);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(151, 13);
-            this.label14.TabIndex = 22;
-            this.label14.Text = "Debe tener entre 7 y 8 dígitos.";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(338, 201);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(81, 13);
-            this.label15.TabIndex = 23;
-            this.label15.Text = "Ej. Libertad 443";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(338, 160);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(151, 13);
-            this.label16.TabIndex = 24;
-            this.label16.Text = "Sin el 0 ni el 15 y sin espacios.";
-            // 
             // EdicionPersonal
             // 
             this.AcceptButton = this.btnGuardar;
@@ -408,13 +383,13 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnSalir;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EdicionPersonal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edición de Personal";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EdicionPersonal_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.gbPersonal.ResumeLayout(false);
@@ -435,7 +410,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
@@ -447,7 +421,6 @@
         public System.Windows.Forms.TextBox txtIdPersonal;
         public System.Windows.Forms.ComboBox cbLocalidad;
         public System.Windows.Forms.ComboBox cbProvincia;
-        public System.Windows.Forms.CheckBox chkEstado;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.ErrorProvider epDni;

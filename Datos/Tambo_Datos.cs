@@ -214,6 +214,36 @@ namespace Datos
             }
         }
 
+        public int InsertarDevolviendoID(Tambo tambo)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdInsertar = new SqlCommand("insert into Tambo(nombre_tambo,superficie,estado_tambo,id_localidad) values (@nombre_tambo,@superficie,@estado_tambo,@id_localidad) SELECT SCOPE_IDENTITY()", Conn);
+                cmdInsertar.Parameters.Add("nombre_tambo", SqlDbType.VarChar, 50).Value = tambo.Nombre_tambo;
+                cmdInsertar.Parameters.Add("superficie", SqlDbType.Decimal).Value = tambo.Superficie;
+                cmdInsertar.Parameters.Add("estado_tambo", SqlDbType.Bit).Value = tambo.Estado_tambo;
+                cmdInsertar.Parameters.Add("id_localidad", SqlDbType.Int).Value = tambo.Id_localidad;
+
+                int id_tambo = Convert.ToInt32(cmdInsertar.ExecuteScalar());   //la consulta retorna el id autogenerado
+                return id_tambo;
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al insertar tambo", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
         public void Eliminar(int id)
         {
             try

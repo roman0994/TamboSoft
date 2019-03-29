@@ -57,5 +57,12 @@ namespace Escritorio
         {
             Application.Exit();
         }
+
+        private void btnNuevoTambo_Click(object sender, EventArgs e)
+        {
+            LoginAltaTambos loginAlta = new LoginAltaTambos();
+            loginAlta.Show();
+            this.Hide();
+        }
     }
 }

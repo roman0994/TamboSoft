@@ -27,7 +27,7 @@ namespace Escritorio
         public void CargarGrilla(int id_tambo)
         {
             EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-            this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarPorTambo(id_tambo);
+            this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarSoloEventosPorTambo(id_tambo);
             //gvEventos.Columns[0].HeaderText = "TextoAMostrarEnLaCabecera";
             if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
             {
@@ -45,7 +45,6 @@ namespace Escritorio
         {
             this.cbBuscar.Items.Add("Nombre animal");
             this.cbBuscar.Items.Add("Evento");
-            this.cbBuscar.Items.Add("Subevento");
             this.cbBuscar.SelectedIndex = -1;
         }
 
@@ -70,10 +69,6 @@ namespace Escritorio
             {
                 this.dgvEventos.DataSource = eventoNegocio.FiltrarPorNombreEvento(this.txtBuscar.Text, idtambo);
             }
-            else if (this.cbBuscar.SelectedItem.ToString() == "Subevento")
-            {
-                this.dgvEventos.DataSource = eventoNegocio.FiltrarPorNombreSubevento(this.txtBuscar.Text, idtambo);
-            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -81,6 +76,8 @@ namespace Escritorio
             EventoAnimal_DescSubevento_Negocio eventoNegocio = new EventoAnimal_DescSubevento_Negocio();
             int id_evento = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_evento"].Value);
             int rp = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["rp"].Value);
+
+
             DateTime fecha_desc = Convert.ToDateTime(this.dgvEventos.CurrentRow.Cells["fecha_desc"].Value);
             bool estado_evento = false;
             int id_tambo = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_tambo"].Value);

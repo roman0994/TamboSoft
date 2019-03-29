@@ -82,9 +82,9 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(16, 127);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(105, 13);
+            this.label4.Size = new System.Drawing.Size(138, 13);
             this.label4.TabIndex = 4;
-            this.label4.Text = "Superficie (en m2) : *";
+            this.label4.Text = "Superficie (en hectáreas) : *";
             // 
             // label5
             // 
@@ -129,7 +129,7 @@
             // txtNombre
             // 
             this.txtNombre.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtNombre.Location = new System.Drawing.Point(166, 91);
+            this.txtNombre.Location = new System.Drawing.Point(207, 91);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(200, 20);
             this.txtNombre.TabIndex = 13;
@@ -137,7 +137,7 @@
             // txtSuperficie
             // 
             this.txtSuperficie.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtSuperficie.Location = new System.Drawing.Point(166, 124);
+            this.txtSuperficie.Location = new System.Drawing.Point(207, 124);
             this.txtSuperficie.Name = "txtSuperficie";
             this.txtSuperficie.Size = new System.Drawing.Size(200, 20);
             this.txtSuperficie.TabIndex = 14;
@@ -147,7 +147,7 @@
             // 
             this.cbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProvincia.FormattingEnabled = true;
-            this.cbProvincia.Location = new System.Drawing.Point(166, 161);
+            this.cbProvincia.Location = new System.Drawing.Point(207, 161);
             this.cbProvincia.Name = "cbProvincia";
             this.cbProvincia.Size = new System.Drawing.Size(201, 21);
             this.cbProvincia.TabIndex = 15;
@@ -157,7 +157,7 @@
             // 
             this.cbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocalidad.FormattingEnabled = true;
-            this.cbLocalidad.Location = new System.Drawing.Point(166, 199);
+            this.cbLocalidad.Location = new System.Drawing.Point(207, 199);
             this.cbLocalidad.Name = "cbLocalidad";
             this.cbLocalidad.Size = new System.Drawing.Size(201, 21);
             this.cbLocalidad.TabIndex = 16;

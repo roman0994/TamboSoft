@@ -15,6 +15,8 @@ namespace Escritorio
 {
     public partial class EdicionAnimales : Form
     {
+        public Animal animalGlobal;
+
         public EdicionAnimales()
         {
             InitializeComponent();
@@ -27,6 +29,11 @@ namespace Escritorio
             cbEstado.Items.Add("Vendido");
             cbEstado.Items.Add("Vivo");
             cbEstado.Items.Add("Muerto");
+            cbEstado.Items.Add("Enfermo");
+            cbEstado.Items.Add("Medicado");
+            cbEstado.Items.Add("Preñada");
+            cbEstado.Items.Add("Preñada dudosa");
+            cbEstado.Items.Add("Celo");
         }
         public void CargarComboCategoria()
         {
@@ -115,7 +122,7 @@ namespace Escritorio
             animal.Hba_padre = Convert.ToInt32(txtHBAPadre.Text);
             animal.Id_tambo = tambo.Id_tambo;
             animal.Id_raza = raza.Id_raza;
-            animal.Habilitado = chkHabilitado.Checked;
+            animal.Habilitado = true;
 
             return animal;
         }
@@ -207,27 +214,35 @@ namespace Escritorio
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            this.Close();
         }
 
-        /*private void EdicionAnimales_FormClosing(object sender, FormClosingEventArgs e)
+        private void EdicionAnimales_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (HayCamposModificados())
             {
                 DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result != DialogResult.Yes)
                 {
                     e.Cancel = true;
                 }
+                else
+                {
+                    this.Dispose();
+                }
+            }
+        }
+
+        public bool HayCamposModificados()
+        {
+            if (txtNombre.Text == animalGlobal.Nombre_animal && Convert.ToInt32(txtEdad.Text) == animalGlobal.Edad && Convert.ToInt32(txtHBA.Text) == animalGlobal.Hba && Convert.ToInt32(txtHBAMadre.Text) == animalGlobal.Hba_madre && Convert.ToInt32(txtHBAPadre.Text) == animalGlobal.Hba_padre && Convert.ToInt32(txtRPMadre.Text) == animalGlobal.Rp_madre && Convert.ToInt32(txtRPPadre.Text) == animalGlobal.Rp_padre && cbEstado.SelectedItem.ToString() == animalGlobal.Estado_animal && cbCategoria.SelectedItem.ToString() == animalGlobal.Categoria && Convert.ToInt32(cbRaza.SelectedValue) == animalGlobal.Id_raza && animalGlobal.Fecha_nacimiento == dtpFechaNacimiento.Value.Date)
+            {
+                return false;
             }
             else
             {
-                this.Dispose();
+                return true;
             }
-        }*/
+        }
     }
 }

@@ -57,6 +57,51 @@ namespace Datos
             }
         }
 
+        public List<Inseminador> RecuperarPorTambo(int idtambo)
+        {
+
+            try
+            {
+                List<Inseminador> lista = new List<Inseminador>();
+                this.AbrirConexion();
+                SqlCommand cmdInseminador = new SqlCommand("SELECT i.id_inseminador,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Inseminador i inner join Localidad l on i.id_localidad=l.id_localidad inner join Tambo_Inseminador ti on i.id_inseminador=ti.id_inseminador where i.estado_inseminador = 'true' and ti.id_tambo=@idtambo", Conn);
+                cmdInseminador.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+                SqlDataReader dr = cmdInseminador.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    Inseminador inseminador = new Inseminador();
+                    inseminador.Id_inseminador = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_inseminador"]));
+                    inseminador.Nombre_inseminador = dr.IsDBNull(1) ? string.Empty : dr["nombre_inseminador"].ToString();
+                    inseminador.Estado_inseminador = dr.IsDBNull(2) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["estado_inseminador"]));
+                    inseminador.Telefono = dr.IsDBNull(3) ? string.Empty : dr["telefono"].ToString();
+                    inseminador.Direccion = dr.IsDBNull(4) ? string.Empty : dr["direccion"].ToString();
+                    inseminador.Dni = dr.IsDBNull(5) ? string.Empty : dr["dni"].ToString();
+                    inseminador.Id_localidad = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_localidad"]));
+                    inseminador.Nombre_localidad = dr.IsDBNull(7) ? string.Empty : dr["nombre_localidad"].ToString();
+
+                    lista.Add(inseminador);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los inseminadores", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
         public Inseminador RecuperarUno(int id)
         {
             try

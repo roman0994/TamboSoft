@@ -15,6 +15,8 @@ namespace Escritorio
 {
     public partial class EdicionDatosTambo : Form
     {
+        public Tambo tamboGlobal;
+
         public EdicionDatosTambo()
         {
             InitializeComponent();
@@ -65,11 +67,11 @@ namespace Escritorio
                     tambo = MapearATambo();
                     tamboNegocio.Actualizar(tambo);
                     DialogResult result = MessageBox.Show("El tambo fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
+                    this.Dispose();
                 }
                 else
                 {
-                    MessageBox.Show("El valor de Superficie no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El valor de Superficie no es válido. Puede tener hasta 6 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -89,10 +91,10 @@ namespace Escritorio
             tambo.Id_tambo = Convert.ToInt32(txtIdTambo.Text);
             tambo.Nombre_tambo = txtNombre.Text;
             tambo.Superficie = Convert.ToDecimal(txtSuperficie.Text);
-            tambo.Estado_tambo = chkEstado.Checked;
             tambo.Id_localidad = localidad.Id_localidad;
             tambo.Nombre_localidad = localidad.Nombre_localidad;
             tambo.Nombre_provincia = provincia.Nombre_provincia;
+            tambo.Estado_tambo = true;
 
             return tambo;
         }
@@ -124,10 +126,37 @@ namespace Escritorio
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
+            this.Close();
+        }
+
+
+        private void EdicionDatosTambo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (HayCamposModificados())
             {
-                this.Close();
+                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    this.Dispose();
+                }
+            }
+        }
+
+        public bool HayCamposModificados()
+        {
+            Localidad_Negocio localidadNegocio = new Localidad_Negocio();
+            Localidad localidad = localidadNegocio.RecuperarUno(tamboGlobal.Id_localidad);
+            if (txtNombre.Text == tamboGlobal.Nombre_tambo && Convert.ToDecimal(txtSuperficie.Text) == tamboGlobal.Superficie && Convert.ToInt32(cbProvincia.SelectedValue) == localidad.Id_provincia && Convert.ToInt32(cbLocalidad.SelectedValue) == tamboGlobal.Id_localidad)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

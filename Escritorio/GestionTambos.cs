@@ -53,12 +53,26 @@ namespace Escritorio
             edicionTambo.txtIdTambo.Text = Convert.ToString(tambo.Id_tambo);
             edicionTambo.txtNombre.Text = tambo.Nombre_tambo;
             edicionTambo.txtSuperficie.Text = Convert.ToString(tambo.Superficie);
-            edicionTambo.chkEstado.Checked = tambo.Estado_tambo;
             edicionTambo.cbProvincia.Text = tambo.Nombre_provincia;
             edicionTambo.cbLocalidad.Text = tambo.Nombre_localidad;
 
+            edicionTambo.tamboGlobal = MapearATambo();
             edicionTambo.Show();
             CargarGrilla(idtambo);
+        }
+
+        public Tambo MapearATambo()
+        {
+            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            Tambo tambo = new Tambo();
+            tambo = tamboNegocio.RecuperarUno(Convert.ToInt32(this.dgvTambos.CurrentRow.Cells["id_tambo"].Value));
+
+            tambo.Id_tambo = Convert.ToInt32(tambo.Id_tambo);
+            tambo.Nombre_tambo = Convert.ToString(tambo.Nombre_tambo);
+            tambo.Superficie = Convert.ToDecimal(tambo.Superficie);
+            tambo.Nombre_provincia = Convert.ToString(tambo.Nombre_provincia);
+            tambo.Nombre_localidad = Convert.ToString(tambo.Nombre_localidad);
+            return tambo;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -66,7 +80,7 @@ namespace Escritorio
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             int id = Convert.ToInt32(this.dgvTambos.CurrentRow.Cells["id_tambo"].Value);
             Tambo tambo = tamboNegocio.RecuperarUno(id);
-            DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el tambo " + tambo.Nombre_tambo + "?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("ATENCIÓN!! Al eliminar el tambo " + tambo.Nombre_tambo + ", también eliminará todo su personal, animales, controles y eventos asociados. ¿Desea continuar?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 tamboNegocio.Eliminar(id);

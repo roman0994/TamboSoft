@@ -74,7 +74,7 @@ namespace Escritorio
                 }
                 else
                 {
-                    MessageBox.Show("El valor de Superficie no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El valor de Superficie no es válido. Puede tener hasta 6 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             else
@@ -130,15 +130,34 @@ namespace Escritorio
         {
             if (e.CloseReason == CloseReason.UserClosing && sender.Equals(btnGuardar) == false)
             {
-                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result != DialogResult.Yes)
+                if (HayCamposModificados())
                 {
-                    e.Cancel = true;
+                    DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                }
+                else
+                {
+                    this.Dispose();
                 }
             }
             else
             {
                 this.Dispose();
+            }
+        }
+
+        public bool HayCamposModificados()
+        {
+            if(txtNombre.Text == string.Empty && txtSuperficie.Text == string.Empty && cbLocalidad.SelectedIndex == -1 && cbProvincia.SelectedIndex == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

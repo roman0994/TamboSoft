@@ -34,7 +34,6 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.chkEstado = new System.Windows.Forms.CheckBox();
             this.txtSuperficie = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
             this.txtIdTambo = new System.Windows.Forms.TextBox();
@@ -44,7 +43,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -103,7 +101,6 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 3);
             this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.chkEstado);
             this.groupBox1.Controls.Add(this.txtSuperficie);
             this.groupBox1.Controls.Add(this.txtNombre);
             this.groupBox1.Controls.Add(this.txtIdTambo);
@@ -113,7 +110,6 @@
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
@@ -134,17 +130,6 @@
             this.label10.Size = new System.Drawing.Size(134, 13);
             this.label10.TabIndex = 13;
             this.label10.Text = "Formato de ingreso: XX,XX";
-            // 
-            // chkEstado
-            // 
-            this.chkEstado.AutoSize = true;
-            this.chkEstado.Checked = true;
-            this.chkEstado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEstado.Location = new System.Drawing.Point(180, 159);
-            this.chkEstado.Name = "chkEstado";
-            this.chkEstado.Size = new System.Drawing.Size(15, 14);
-            this.chkEstado.TabIndex = 13;
-            this.chkEstado.UseVisualStyleBackColor = true;
             // 
             // txtSuperficie
             // 
@@ -174,7 +159,7 @@
             // 
             this.cbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocalidad.FormattingEnabled = true;
-            this.cbLocalidad.Location = new System.Drawing.Point(179, 238);
+            this.cbLocalidad.Location = new System.Drawing.Point(179, 219);
             this.cbLocalidad.Name = "cbLocalidad";
             this.cbLocalidad.Size = new System.Drawing.Size(201, 21);
             this.cbLocalidad.TabIndex = 9;
@@ -183,7 +168,7 @@
             // 
             this.cbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProvincia.FormattingEnabled = true;
-            this.cbProvincia.Location = new System.Drawing.Point(179, 197);
+            this.cbProvincia.Location = new System.Drawing.Point(179, 167);
             this.cbProvincia.Name = "cbProvincia";
             this.cbProvincia.Size = new System.Drawing.Size(201, 21);
             this.cbProvincia.TabIndex = 8;
@@ -210,7 +195,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(29, 241);
+            this.label7.Location = new System.Drawing.Point(29, 222);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(63, 13);
             this.label7.TabIndex = 5;
@@ -219,20 +204,11 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(29, 200);
+            this.label6.Location = new System.Drawing.Point(31, 170);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 13);
             this.label6.TabIndex = 4;
             this.label6.Text = "Provincia: *";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(29, 159);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 13);
-            this.label5.TabIndex = 3;
-            this.label5.Text = "Activo:";
             // 
             // label4
             // 
@@ -276,11 +252,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "EdicionOtrosTambos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edición Tambos";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EdicionOtrosTambos_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -299,11 +275,9 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        public System.Windows.Forms.CheckBox chkEstado;
         public System.Windows.Forms.TextBox txtSuperficie;
         public System.Windows.Forms.TextBox txtNombre;
         public System.Windows.Forms.TextBox txtIdTambo;

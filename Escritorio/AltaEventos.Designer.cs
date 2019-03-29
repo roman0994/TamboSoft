@@ -52,6 +52,7 @@
             this.gbTambo = new System.Windows.Forms.GroupBox();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.tlpEventos.SuspendLayout();
             this.gbFecha.SuspendLayout();
             this.gbEvento.SuspendLayout();
@@ -272,6 +273,7 @@
             // gbAnimal
             // 
             this.tlpEventos.SetColumnSpan(this.gbAnimal, 2);
+            this.gbAnimal.Controls.Add(this.label10);
             this.gbAnimal.Controls.Add(this.cbAnimal);
             this.gbAnimal.Controls.Add(this.label5);
             this.gbAnimal.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -286,8 +288,9 @@
             // cbAnimal
             // 
             this.cbAnimal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbAnimal.Enabled = false;
             this.cbAnimal.FormattingEnabled = true;
-            this.cbAnimal.Location = new System.Drawing.Point(133, 28);
+            this.cbAnimal.Location = new System.Drawing.Point(137, 23);
             this.cbAnimal.Name = "cbAnimal";
             this.cbAnimal.Size = new System.Drawing.Size(201, 21);
             this.cbAnimal.TabIndex = 2;
@@ -296,11 +299,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(8, 31);
+            this.label5.Location = new System.Drawing.Point(6, 28);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(107, 13);
+            this.label5.Size = new System.Drawing.Size(114, 13);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Seleccione el animal:";
+            this.label5.Text = "Seleccione el animal: *";
             // 
             // gbTambo
             // 
@@ -333,6 +336,16 @@
             this.label9.Size = new System.Drawing.Size(106, 13);
             this.label9.TabIndex = 0;
             this.label9.Text = "Seleccione el tambo:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 58);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(281, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "* Los animales se cargarán cuando seleccione un evento.";
             // 
             // AltaEventos
             // 
@@ -389,5 +402,6 @@
         private System.Windows.Forms.GroupBox gbTambo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtTambo;
+        private System.Windows.Forms.Label label10;
     }
 }

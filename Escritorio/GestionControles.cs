@@ -83,9 +83,27 @@ namespace Escritorio
             edicion.txtGrasaSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["grasa_segundocontrol"].Value);
             edicion.cbAnimal.Text = animal.Nombre_animal;
 
+            edicion.controlAnimalGlobal = MapearAControlAnimal();
             edicion.Show();
             CargarGrilla(id_tambo);
 
+        }
+
+        public Control_Animal MapearAControlAnimal()
+        {
+            Control_Animal controlAnimal = new Control_Animal();
+            Animal_Negocio animalNegocio = new Animal_Negocio();
+            Animal animal = animalNegocio.RecuperarUno(Convert.ToInt32(this.dgvControles.CurrentRow.Cells["rp"].Value));
+
+            controlAnimal.Rp = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["rp"].Value);
+            controlAnimal.Id_control = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_control"].Value);
+            controlAnimal.Fecha_control = Convert.ToDateTime(this.dgvControles.CurrentRow.Cells["fecha_control"].Value);
+            controlAnimal.Primer_control = Convert.ToDecimal(this.dgvControles.CurrentRow.Cells["primer_control"].Value);
+            controlAnimal.Segundo_control = Convert.ToDecimal(this.dgvControles.CurrentRow.Cells["segundo_control"].Value);
+            controlAnimal.Grasa_primercontrol = Convert.ToDecimal(this.dgvControles.CurrentRow.Cells["grasa_primercontrol"].Value);
+            controlAnimal.Grasa_segundocontrol = Convert.ToDecimal(this.dgvControles.CurrentRow.Cells["grasa_segundocontrol"].Value);
+            controlAnimal.Nombre_animal = animal.Nombre_animal;
+            return controlAnimal;
         }
 
         private void GestionControles_Activated(object sender, EventArgs e)

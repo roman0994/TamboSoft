@@ -34,14 +34,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gbDatosTambo = new System.Windows.Forms.GroupBox();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.chbEstado = new System.Windows.Forms.CheckBox();
             this.txtProvincia = new System.Windows.Forms.TextBox();
             this.txtLocalidad = new System.Windows.Forms.TextBox();
             this.txtSuperficie = new System.Windows.Forms.TextBox();
             this.txtNombreTambo = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -112,14 +110,12 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.gbDatosTambo, 3);
             this.gbDatosTambo.Controls.Add(this.btnEliminar);
-            this.gbDatosTambo.Controls.Add(this.chbEstado);
             this.gbDatosTambo.Controls.Add(this.txtProvincia);
             this.gbDatosTambo.Controls.Add(this.txtLocalidad);
             this.gbDatosTambo.Controls.Add(this.txtSuperficie);
             this.gbDatosTambo.Controls.Add(this.txtNombreTambo);
             this.gbDatosTambo.Controls.Add(this.label6);
             this.gbDatosTambo.Controls.Add(this.label5);
-            this.gbDatosTambo.Controls.Add(this.label4);
             this.gbDatosTambo.Controls.Add(this.label3);
             this.gbDatosTambo.Controls.Add(this.label2);
             this.gbDatosTambo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -143,19 +139,9 @@
             this.btnEliminar.UseVisualStyleBackColor = false;
             this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // chbEstado
-            // 
-            this.chbEstado.AutoSize = true;
-            this.chbEstado.Enabled = false;
-            this.chbEstado.Location = new System.Drawing.Point(176, 151);
-            this.chbEstado.Name = "chbEstado";
-            this.chbEstado.Size = new System.Drawing.Size(15, 14);
-            this.chbEstado.TabIndex = 4;
-            this.chbEstado.UseVisualStyleBackColor = true;
-            // 
             // txtProvincia
             // 
-            this.txtProvincia.Location = new System.Drawing.Point(176, 246);
+            this.txtProvincia.Location = new System.Drawing.Point(176, 200);
             this.txtProvincia.Name = "txtProvincia";
             this.txtProvincia.ReadOnly = true;
             this.txtProvincia.Size = new System.Drawing.Size(200, 20);
@@ -163,7 +149,7 @@
             // 
             // txtLocalidad
             // 
-            this.txtLocalidad.Location = new System.Drawing.Point(176, 196);
+            this.txtLocalidad.Location = new System.Drawing.Point(176, 149);
             this.txtLocalidad.Name = "txtLocalidad";
             this.txtLocalidad.ReadOnly = true;
             this.txtLocalidad.Size = new System.Drawing.Size(200, 20);
@@ -189,7 +175,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(22, 249);
+            this.label6.Location = new System.Drawing.Point(22, 203);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 4;
@@ -199,21 +185,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(22, 199);
+            this.label5.Location = new System.Drawing.Point(22, 152);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 3;
             this.label5.Text = "Localidad:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(22, 151);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(43, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Estado:";
             // 
             // label3
             // 
@@ -298,14 +274,12 @@
         private System.Windows.Forms.GroupBox gbTambo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox gbDatosTambo;
-        private System.Windows.Forms.CheckBox chbEstado;
         private System.Windows.Forms.TextBox txtProvincia;
         private System.Windows.Forms.TextBox txtLocalidad;
         private System.Windows.Forms.TextBox txtSuperficie;
         private System.Windows.Forms.TextBox txtNombreTambo;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnModificarDatos;

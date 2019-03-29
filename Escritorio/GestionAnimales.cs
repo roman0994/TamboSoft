@@ -69,11 +69,37 @@ namespace Escritorio
             edicion.txtHBAMadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba_madre"].Value);
             edicion.txtRPPadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp_padre"].Value);
             edicion.txtHBAPadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba_padre"].Value);
-            edicion.chkHabilitado.Checked = Convert.ToBoolean(this.dgvAnimales.CurrentRow.Cells["habilitado"].Value);
 
+            edicion.animalGlobal = MapearAAnimal();
             edicion.Show();
             CargarGrilla(id_tambo);
 
+        }
+
+        public Animal MapearAAnimal()
+        {
+            Raza_Negocio razaNegocio = new Raza_Negocio();
+            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            Raza raza = razaNegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_raza"].Value));
+            Tambo tambo = tamboNegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value));
+            Animal animal = new Animal();
+            animal.Rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
+            animal.Fecha_nacimiento = Convert.ToDateTime(this.dgvAnimales.CurrentRow.Cells["fecha_nacimiento"].Value);
+            animal.Edad = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["edad"].Value);
+            animal.Nombre_animal = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["nombre_animal"].Value);
+            animal.Estado_animal = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["estado_animal"].Value);
+            animal.Hba = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["hba"].Value);
+            animal.Categoria = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["categoria"].Value);
+            animal.Nombre_tambo = tambo.Nombre_tambo;
+            animal.Nombre_raza = raza.Nombre_raza;
+            animal.Id_raza = raza.Id_raza;
+            animal.Habilitado = true;
+            animal.Rp_madre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp_madre"].Value);
+            animal.Hba_madre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["hba_madre"].Value);
+            animal.Rp_padre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp_padre"].Value);
+            animal.Hba_padre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["hba_padre"].Value);
+
+            return animal;
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -82,7 +108,7 @@ namespace Escritorio
             int id = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
             Animal animal = animalNegocio.RecuperarUno(id);
             int id_tambo = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value);
-            DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el animal " + animal.Nombre_animal + "?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("ATENCIÓN!! Al eliminar el animal " + animal.Nombre_animal + ", también eliminará sus controles y eventos asociados. ¿Desea continuar?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 animalNegocio.Eliminar(id);

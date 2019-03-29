@@ -88,7 +88,7 @@ namespace Escritorio
                     }
                     else
                     {
-                        MessageBox.Show("El campo Teléfono no es válido. Ingrese sin el 0 ni el 15 y sin espacios", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El campo Teléfono no es válido. Debe ingresar código de área + nro de teléfono (sin el 0 ni el 15)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -120,7 +120,7 @@ namespace Escritorio
         }
 
         public void Limpiar()
-        { 
+        {
             this.txtNombre.Text = string.Empty;
             this.txtTelefono.Text = string.Empty;
             this.txtDireccion.Text = string.Empty;
@@ -133,7 +133,7 @@ namespace Escritorio
         {
             if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
             {
-                e.Handled = false;   
+                e.Handled = false;
             }
             else
             {
@@ -167,10 +167,29 @@ namespace Escritorio
 
         private void AltaPersonal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result != DialogResult.Yes)
+            if (HayCamposModificados())
             {
-                e.Cancel = true;
+                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    this.Dispose();
+                }
+            }
+        }
+
+        public bool HayCamposModificados()
+        {
+            if (txtNombre.Text == string.Empty && txtTelefono.Text == string.Empty && txtDireccion.Text == string.Empty && txtDni.Text == string.Empty && cbLocalidad.SelectedIndex == -1 && cbProvincia.SelectedIndex == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

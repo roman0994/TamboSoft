@@ -15,11 +15,13 @@ namespace Escritorio
 {
     public partial class LoginAltaTambos : Form
     {
+        public static Tambo Tambo { get; set; }
         public LoginAltaTambos()
         {
             InitializeComponent();
             CargarComboProvincia();
             CargarToolTip();
+            Tambo = new Tambo();
         }
 
         public void CargarComboProvincia()
@@ -53,15 +55,24 @@ namespace Escritorio
 
             if (validar == true)
             {
-                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-                Tambo tambo = new Tambo();
-                tambo = MapearATambo();
-                tamboNegocio.Insertar(tambo);
-                DialogResult result = MessageBox.Show("El tambo fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                Login login = new Login();
-                login.ShowDialog();
-                this.Hide();
+                if (validaciones.ValidarDecimalSuperficieTambo(txtSuperficie.Text) == true)
+                {
+                    Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                    Tambo tambo = new Tambo();
+                    int id_tambo;
+                    tambo = MapearATambo();
+                    id_tambo = tamboNegocio.InsertarDevolviendoID(tambo);
+                    DialogResult result = MessageBox.Show("El tambo fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Principal principal = new Principal(id_tambo);
+                    principal.id_tambo = id_tambo;
+                    principal.Show();
+                    this.Hide();
+                }
+                else
+                {
+                    MessageBox.Show("El valor de Superficie no es válido. Puede tener hasta 6 caracteres enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {

@@ -16,6 +16,7 @@ namespace Escritorio
     public partial class EdicionPersonal : Form
     {
         Validaciones validaciones = new Validaciones();
+        public Tambo_Inseminador tamboInseminador;
 
         public EdicionPersonal(Tambo_Inseminador tambo_Inseminador)
         {
@@ -57,7 +58,6 @@ namespace Escritorio
             this.txtIdTambo.Text = Convert.ToString(tambo_Inseminador.Id_tambo);
             this.txtTambo.Text = Convert.ToString(tambo_Inseminador.Nombre_tambo);
             this.txtNombre.Text = Convert.ToString(tambo_Inseminador.Nombre_inseminador);
-            this.chkEstado.Checked = Convert.ToBoolean(tambo_Inseminador.Estado_inseminador);
             this.txtTelefono.Text = Convert.ToString(tambo_Inseminador.Telefono);
             this.txtDireccion.Text = Convert.ToString(tambo_Inseminador.Direccion);
             this.txtDni.Text = Convert.ToString(tambo_Inseminador.Dni);
@@ -72,7 +72,7 @@ namespace Escritorio
                 Guardar();
                 MessageBox.Show("El personal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
-                this.Close();
+                this.Dispose();
             }
             //else
             //{
@@ -140,12 +140,12 @@ namespace Escritorio
 
             inseminador.Id_inseminador = Convert.ToInt32(txtIdPersonal.Text);
             inseminador.Nombre_inseminador = txtNombre.Text;
-            inseminador.Estado_inseminador = chkEstado.Checked;
             inseminador.Telefono = txtTelefono.Text;
             inseminador.Direccion = txtDireccion.Text;
             inseminador.Dni = txtDni.Text;
             inseminador.Id_localidad = localidad.Id_localidad;
             inseminador.Nombre_localidad = localidad.Nombre_localidad;
+            inseminador.Estado_inseminador = true;
 
             return inseminador;
         }
@@ -188,10 +188,36 @@ namespace Escritorio
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
+            this.Close();
+        }
+
+        private void EdicionPersonal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (HayCamposModificados())
             {
-                this.Close();
+                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    this.Dispose();
+                }
+            }
+        }
+
+        public bool HayCamposModificados()
+        {
+            Localidad_Negocio localidadNegocio = new Localidad_Negocio();
+            Localidad localidad = localidadNegocio.RecuperarUno(tamboInseminador.Id_localidad);
+            if (txtNombre.Text == tamboInseminador.Nombre_inseminador && txtTelefono.Text == tamboInseminador.Telefono && txtDireccion.Text == tamboInseminador.Direccion && txtDni.Text == tamboInseminador.Dni && Convert.ToInt32(cbProvincia.SelectedValue) == localidad.Id_provincia && Convert.ToInt32(cbLocalidad.SelectedValue) == tamboInseminador.Id_localidad)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

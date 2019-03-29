@@ -33,6 +33,7 @@
             this.cbTambo = new System.Windows.Forms.ComboBox();
             this.btnIngresar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnNuevoTambo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -87,6 +88,16 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // btnNuevoTambo
+            // 
+            this.btnNuevoTambo.Location = new System.Drawing.Point(59, 266);
+            this.btnNuevoTambo.Name = "btnNuevoTambo";
+            this.btnNuevoTambo.Size = new System.Drawing.Size(99, 23);
+            this.btnNuevoTambo.TabIndex = 5;
+            this.btnNuevoTambo.Text = "Nuevo tambo";
+            this.btnNuevoTambo.UseVisualStyleBackColor = true;
+            this.btnNuevoTambo.Click += new System.EventHandler(this.btnNuevoTambo_Click);
+            // 
             // Login
             // 
             this.AcceptButton = this.btnIngresar;
@@ -94,6 +105,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnSalir;
             this.ClientSize = new System.Drawing.Size(524, 351);
+            this.Controls.Add(this.btnNuevoTambo);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnIngresar);
             this.Controls.Add(this.cbTambo);
@@ -116,5 +128,6 @@
         private System.Windows.Forms.ComboBox cbTambo;
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnNuevoTambo;
     }
 }

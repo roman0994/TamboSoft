@@ -16,6 +16,7 @@ namespace Escritorio
     public partial class EdicionControles : Form
     {
         Validaciones validaciones = new Validaciones();
+        public Control_Animal controlAnimalGlobal;
 
         public EdicionControles()
         {
@@ -27,7 +28,7 @@ namespace Escritorio
         public void CargaComboAnimal()
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            this.cbAnimal.DataSource = animalNegocio.RecuperarTodos();
+            this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(Login.Tambo.Id_tambo);
             this.cbAnimal.DisplayMember = "nombre_animal";
             this.cbAnimal.ValueMember = "rp";
             this.cbAnimal.SelectedIndex = -1;
@@ -104,8 +105,8 @@ namespace Escritorio
 
             control.Id_control = Convert.ToInt32(txtIdControl.Text);
             control.Fecha_control = dtpFechaControl.Value.Date;
-            control.Primer_control = Convert.ToInt32(txtPrimerControl.Text);
-            control.Segundo_control = Convert.ToInt32(txtSegundoControl.Text);
+            control.Primer_control = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToInt32(txtPrimerControl.Text);
+            control.Segundo_control = string.IsNullOrEmpty(txtSegundoControl.Text) ? 0 : Convert.ToInt32(txtSegundoControl.Text);
             control.Grasa_primercontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaPrimerControl.Text);
             control.Grasa_segundocontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaSegundoControl.Text);
             control.Nombre_animal = animal.Nombre_animal;
@@ -164,27 +165,35 @@ namespace Escritorio
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
-            {
-                this.Close();
-            }
+            this.Close();
         }
 
-        /*private void EdicionControles_FormClosing(object sender, FormClosingEventArgs e)
+        private void EdicionControles_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (HayCamposModificados())
             {
                 DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (result != DialogResult.Yes)
                 {
                     e.Cancel = true;
                 }
+                else
+                {
+                    this.Dispose();
+                }
+            }
+        }
+
+        public bool HayCamposModificados()
+        {
+            if (Convert.ToDecimal(txtPrimerControl.Text) == controlAnimalGlobal.Primer_control && Convert.ToDecimal(txtSegundoControl.Text) == controlAnimalGlobal.Segundo_control && Convert.ToDecimal(txtGrasaPrimerControl.Text) == controlAnimalGlobal.Grasa_primercontrol && Convert.ToDecimal(txtGrasaSegundoControl.Text) == controlAnimalGlobal.Grasa_segundocontrol && Convert.ToInt32(cbAnimal.SelectedValue) == controlAnimalGlobal.Rp && controlAnimalGlobal.Fecha_control == dtpFechaControl.Value.Date)
+            {
+                return false;
             }
             else
             {
-                this.Dispose();
+                return true;
             }
-        }*/
+        }
     }
 }

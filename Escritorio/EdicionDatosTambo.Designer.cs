@@ -41,11 +41,9 @@
             this.cbProvincia = new System.Windows.Forms.ComboBox();
             this.txtSuperficie = new System.Windows.Forms.TextBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.chkEstado = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -111,11 +109,9 @@
             this.dbDatosTambo.Controls.Add(this.cbProvincia);
             this.dbDatosTambo.Controls.Add(this.txtSuperficie);
             this.dbDatosTambo.Controls.Add(this.txtNombre);
-            this.dbDatosTambo.Controls.Add(this.chkEstado);
             this.dbDatosTambo.Controls.Add(this.label7);
             this.dbDatosTambo.Controls.Add(this.label6);
             this.dbDatosTambo.Controls.Add(this.label5);
-            this.dbDatosTambo.Controls.Add(this.label4);
             this.dbDatosTambo.Controls.Add(this.label3);
             this.dbDatosTambo.Controls.Add(this.label2);
             this.dbDatosTambo.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -141,7 +137,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(26, 346);
+            this.label9.Location = new System.Drawing.Point(26, 324);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(111, 13);
             this.label9.TabIndex = 13;
@@ -170,7 +166,7 @@
             this.cbLocalidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbLocalidad.FormattingEnabled = true;
             this.cbLocalidad.ItemHeight = 13;
-            this.cbLocalidad.Location = new System.Drawing.Point(188, 269);
+            this.cbLocalidad.Location = new System.Drawing.Point(188, 230);
             this.cbLocalidad.Name = "cbLocalidad";
             this.cbLocalidad.Size = new System.Drawing.Size(201, 21);
             this.cbLocalidad.TabIndex = 10;
@@ -180,7 +176,7 @@
             this.cbProvincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbProvincia.FormattingEnabled = true;
             this.cbProvincia.ItemHeight = 13;
-            this.cbProvincia.Location = new System.Drawing.Point(188, 225);
+            this.cbProvincia.Location = new System.Drawing.Point(187, 182);
             this.cbProvincia.Name = "cbProvincia";
             this.cbProvincia.Size = new System.Drawing.Size(201, 21);
             this.cbProvincia.TabIndex = 9;
@@ -202,22 +198,11 @@
             this.txtNombre.TabIndex = 2;
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
-            // chkEstado
-            // 
-            this.chkEstado.AutoSize = true;
-            this.chkEstado.Checked = true;
-            this.chkEstado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkEstado.Location = new System.Drawing.Point(188, 182);
-            this.chkEstado.Name = "chkEstado";
-            this.chkEstado.Size = new System.Drawing.Size(15, 14);
-            this.chkEstado.TabIndex = 4;
-            this.chkEstado.UseVisualStyleBackColor = true;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(26, 312);
+            this.label7.Location = new System.Drawing.Point(26, 287);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(380, 13);
             this.label7.TabIndex = 5;
@@ -227,7 +212,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(26, 272);
+            this.label6.Location = new System.Drawing.Point(26, 233);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(67, 13);
             this.label6.TabIndex = 4;
@@ -237,21 +222,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(26, 228);
+            this.label5.Location = new System.Drawing.Point(26, 185);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(61, 13);
             this.label5.TabIndex = 3;
             this.label5.Text = "Provincia: *";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(26, 183);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(40, 13);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Activo:";
             // 
             // label3
             // 
@@ -290,13 +265,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EdicionDatosTambo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edición de Tambo";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EdicionDatosTambo_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.dbDatosTambo.ResumeLayout(false);
@@ -319,11 +294,9 @@
         public System.Windows.Forms.ComboBox cbProvincia;
         public System.Windows.Forms.TextBox txtSuperficie;
         public System.Windows.Forms.TextBox txtNombre;
-        public System.Windows.Forms.CheckBox chkEstado;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSalir;

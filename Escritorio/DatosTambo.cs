@@ -50,7 +50,6 @@ namespace Escritorio
         {
             txtNombreTambo.Text = Convert.ToString(tambo.Nombre_tambo);
             txtSuperficie.Text = Convert.ToString(tambo.Superficie);
-            chbEstado.Checked = Convert.ToBoolean(tambo.Estado_tambo);
             txtLocalidad.Text = Convert.ToString(tambo.Nombre_localidad);
             txtProvincia.Text = Convert.ToString(tambo.Nombre_provincia);
         }
@@ -58,24 +57,37 @@ namespace Escritorio
         private void btnModificarDatos_Click(object sender, EventArgs e)
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            Tambo tambo = new Tambo(); 
+            Tambo tambo = new Tambo();
             tambo = tamboNegocio.RecuperarUno(Login.Tambo.Id_tambo);
 
             EdicionDatosTambo edicionTambo = new EdicionDatosTambo();
             edicionTambo.txtIdTambo.Text = Convert.ToString(tambo.Id_tambo);
             edicionTambo.txtNombre.Text = Convert.ToString(tambo.Nombre_tambo);
             edicionTambo.txtSuperficie.Text = Convert.ToString(tambo.Superficie);
-            edicionTambo.chkEstado.Checked = Convert.ToBoolean(tambo.Estado_tambo);
             edicionTambo.cbProvincia.Text = Convert.ToString(tambo.Nombre_provincia);
             edicionTambo.cbLocalidad.Text = Convert.ToString(tambo.Nombre_localidad);
 
             CargarDatosTambo(tambo.Id_tambo);
             CargarTextBoxTambo(tambo.Id_tambo);
 
+            edicionTambo.tamboGlobal = MapearATambo();
             edicionTambo.Show();
 
             CargarDatosTambo(idtambo);
             CargarTextBoxTambo(idtambo);
+        }
+
+        public Tambo MapearATambo()
+        {
+            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            Tambo tambo = new Tambo();
+            tambo = tamboNegocio.RecuperarUno(Login.Tambo.Id_tambo);
+            tambo.Id_tambo = Convert.ToInt32(tambo.Id_tambo);
+            tambo.Nombre_tambo = Convert.ToString(tambo.Nombre_tambo);
+            tambo.Superficie = Convert.ToDecimal(tambo.Superficie);
+            tambo.Nombre_provincia = Convert.ToString(tambo.Nombre_provincia);
+            tambo.Nombre_localidad = Convert.ToString(tambo.Nombre_localidad);
+            return tambo;
         }
 
         private void btnNuevoTambo_Click(object sender, EventArgs e)
@@ -88,7 +100,7 @@ namespace Escritorio
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             Tambo tambo = tamboNegocio.RecuperarPorNombre(this.txtNombreTambo.Text);
-            DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el tambo " + tambo.Nombre_tambo + "?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MessageBox.Show("ATENCIÓN!! Al eliminar el tambo " + tambo.Nombre_tambo + ", eliminará todo su personal, animales, controles y eventos asociados. ¿Desea continuar?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
             {
                 tamboNegocio.Eliminar(tambo.Id_tambo);

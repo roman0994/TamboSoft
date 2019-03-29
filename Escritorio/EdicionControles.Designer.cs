@@ -36,7 +36,10 @@
             this.cbAnimal = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.gbControl = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.txtGrasaSegundoControl = new System.Windows.Forms.TextBox();
             this.txtGrasaPrimerControl = new System.Windows.Forms.TextBox();
             this.txtSegundoControl = new System.Windows.Forms.TextBox();
@@ -46,6 +49,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.gbFechaControl = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.dtpFechaControl = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -53,10 +57,6 @@
             this.txtIdControl = new System.Windows.Forms.TextBox();
             this.btnSalir = new System.Windows.Forms.Button();
             this.tooltipControles = new System.Windows.Forms.ToolTip(this.components);
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.tlpControles.SuspendLayout();
             this.gbAnimal.SuspendLayout();
             this.gbControl.SuspendLayout();
@@ -174,15 +174,45 @@
             this.gbControl.TabStop = false;
             this.gbControl.Text = "Datos Control";
             // 
-            // label9
+            // label13
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(671, 42);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(111, 13);
-            this.label9.TabIndex = 8;
-            this.label9.Text = "* Campos obligatorios.";
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(397, 144);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(134, 13);
+            this.label13.TabIndex = 14;
+            this.label13.Text = "Formato de ingreso: XX,XX";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(397, 108);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(134, 13);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Formato de ingreso: XX,XX";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(397, 71);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(134, 13);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Formato de ingreso: XX,XX";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(397, 31);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(134, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Formato de ingreso: XX,XX";
             // 
             // txtGrasaSegundoControl
             // 
@@ -271,6 +301,16 @@
             this.gbFechaControl.TabStop = false;
             this.gbFechaControl.Text = "Fecha Control";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(671, 42);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(111, 13);
+            this.label9.TabIndex = 8;
+            this.label9.Text = "* Campos obligatorios.";
+            // 
             // dtpFechaControl
             // 
             this.dtpFechaControl.Location = new System.Drawing.Point(191, 20);
@@ -331,46 +371,6 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(397, 31);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(134, 13);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "Formato de ingreso: XX,XX";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(397, 71);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(134, 13);
-            this.label11.TabIndex = 12;
-            this.label11.Text = "Formato de ingreso: XX,XX";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(397, 108);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(134, 13);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Formato de ingreso: XX,XX";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(397, 144);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(134, 13);
-            this.label13.TabIndex = 14;
-            this.label13.Text = "Formato de ingreso: XX,XX";
-            // 
             // EdicionControles
             // 
             this.AcceptButton = this.btnGuardar;
@@ -378,13 +378,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
             this.Controls.Add(this.tlpControles);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EdicionControles";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edición de Controles";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EdicionControles_FormClosing);
             this.tlpControles.ResumeLayout(false);
             this.tlpControles.PerformLayout();
             this.gbAnimal.ResumeLayout(false);

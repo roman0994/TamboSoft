@@ -60,7 +60,7 @@ namespace Escritorio
             Tambo_Inseminador tamboIns = tamboNegocio.RecuperarUno(idtambo, Convert.ToInt32(this.dgvPersonal.CurrentRow.Cells["id_inseminador"].Value));
 
             EdicionPersonal edicion = new EdicionPersonal(tamboIns);
-
+            edicion.tamboInseminador = tamboIns;
             edicion.Show();
             CargarGrilla(idtambo);
         }

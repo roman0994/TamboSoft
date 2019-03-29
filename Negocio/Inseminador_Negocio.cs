@@ -18,6 +18,11 @@ namespace Negocio
             return inseminadorDatos.RecuperarTodos();
         }
 
+        public List<Inseminador> RecuperarPorTambo(int idtambo)
+        {
+            return inseminadorDatos.RecuperarPorTambo(idtambo);
+        }
+
         public Inseminador RecuperarUno(int id)
         {
             return inseminadorDatos.RecuperarUno(id);

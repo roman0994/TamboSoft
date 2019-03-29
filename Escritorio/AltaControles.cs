@@ -25,7 +25,7 @@ namespace Escritorio
         public void CargaComboAnimal(int id_tambo)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            this.cbAnimal.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
+            this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(id_tambo);
             this.cbAnimal.DisplayMember = "nombre_animal";
             this.cbAnimal.ValueMember = "rp";
             this.cbAnimal.SelectedIndex = -1;
@@ -70,22 +70,22 @@ namespace Escritorio
                                 }
                                 else
                                 {
-                                    MessageBox.Show("El valor de Grasa Segundo Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("El valor de Grasa Segundo Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("El valor de Segundo Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("El valor de Segundo Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("El valor de Grasa Primer Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("El valor de Grasa Primer Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("El valor de Primer Control no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El valor de Primer Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -177,10 +177,29 @@ namespace Escritorio
 
         private void AltaControles_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result != DialogResult.Yes)
+            if (HayCamposModificados())
             {
-                e.Cancel = true;
+                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                {
+                    e.Cancel = true;
+                }
+                else
+                {
+                    this.Dispose();
+                }
+            }
+        }
+
+        public bool HayCamposModificados()
+        {
+            if (txtPrimerControl.Text == string.Empty && txtSegundoControl.Text == string.Empty && txtGrasaPrimerControl.Text == string.Empty && txtGrasaSegundoControl.Text == string.Empty && cbAnimal.SelectedIndex == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
             }
         }
     }

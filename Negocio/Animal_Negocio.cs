@@ -23,6 +23,11 @@ namespace Negocio
             return animalDatos.RecuperarPorTambo(id_tambo);
         }
 
+        public List<Animal> RecuperarVacasPorTambo(int id_tambo)
+        {
+            return animalDatos.RecuperarVacasPorTambo(id_tambo);
+        }
+
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
             return animalDatos.RecuperarDTPorTambo(id_tambo);

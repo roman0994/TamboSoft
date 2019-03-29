@@ -19,7 +19,6 @@ namespace Escritorio
         {
             InitializeComponent();
             CargarTextBoxTambo(id_tambo);
-            CargaComboAnimal(id_tambo);
             CargarListaEventos();
         }
 
@@ -39,6 +38,18 @@ namespace Escritorio
             this.cbAnimal.ValueMember = "rp";
             this.cbAnimal.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
             this.cbAnimal.SelectedIndex = -1;
+            this.cbAnimal.Enabled = true;
+        }
+
+        public void CargaComboAnimalSoloVacas(int id_tambo)
+        {           
+            Animal_Negocio animalNegocio = new Animal_Negocio();
+            //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error   
+            this.cbAnimal.DisplayMember = "nombre_animal";
+            this.cbAnimal.ValueMember = "rp";
+            this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(id_tambo);
+            this.cbAnimal.SelectedIndex = -1;
+            this.cbAnimal.Enabled = true;
         }
 
         public void CargarListaEventos()
@@ -49,6 +60,7 @@ namespace Escritorio
             this.lbEventos.ValueMember = "id_evento";
             this.lbEventos.DataSource = eventoNegocio.RecuperarTodos();
             this.lbEventos.SelectedIndex = -1;
+            this.cbAnimal.Enabled = false;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -68,9 +80,11 @@ namespace Escritorio
                 this.comboBox2.Visible = false;
                 this.comboBox3.Visible = false;
                 this.comboBox4.Visible = false;
+                this.cbAnimal.Enabled = false;
             }
             else if (this.lbEventos.SelectedIndex == 0)
             {
+                CargaComboAnimalSoloVacas(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Sexo cría:";
                 this.label2.Visible = true;
@@ -88,6 +102,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 1)
             {
+                CargaComboAnimalSoloVacas(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Causa aborto:";
                 this.label2.Visible = false;
@@ -101,6 +116,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 2)
             {
+                CargaComboAnimalSoloVacas(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Causa de no inseminar:";
                 this.label2.Visible = true;
@@ -118,6 +134,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 3)
             {
+                CargaComboAnimal(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Especificación:";
                 this.label2.Visible = false;
@@ -131,6 +148,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 4)
             {
+                CargaComboAnimal(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Especificación:";
                 this.label2.Visible = false;
@@ -144,6 +162,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 5)
             {
+                CargaComboAnimal(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Tipo enfermedad:";
                 this.label2.Visible = true;
@@ -159,6 +178,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 6)
             {
+                CargaComboAnimalSoloVacas(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Diagnóstico útero:";
                 this.label2.Visible = true;
@@ -178,6 +198,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 7)
             {
+                CargaComboAnimal(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Medicamento:";
                 this.label2.Visible = true;
@@ -193,6 +214,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 8)
             {
+                CargaComboAnimal(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Causa rechazo:";
                 this.label2.Visible = false;
@@ -206,6 +228,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 9)
             {
+                CargaComboAnimal(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Tipo análisis:";
                 this.label2.Visible = false;
@@ -219,6 +242,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 10)
             {
+                CargaComboAnimalSoloVacas(Login.Tambo.Id_tambo);
                 this.label1.Visible = true;
                 this.label1.Text = "Inseminador:";
                 this.label2.Visible = false;
@@ -372,7 +396,7 @@ namespace Escritorio
         {
             Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
             //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
-            this.comboBox1.DataSource = inseminadorNegocio.RecuperarTodos();
+            this.comboBox1.DataSource = inseminadorNegocio.RecuperarPorTambo(Login.Tambo.Id_tambo);
             this.comboBox1.DisplayMember = "nombre_inseminador";
             this.comboBox1.ValueMember = "id_inseminador";
             this.comboBox1.SelectedIndex = -1;
@@ -548,7 +572,10 @@ namespace Escritorio
 
             EventoAnimal_DescSubevento eventoAnimal = new EventoAnimal_DescSubevento();
 
-            eventoAnimal.Fecha_desc = dtpFecha.Value.Date;
+            //Registro la fecha con hora minutos y segundos
+            String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
+            eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+
             eventoAnimal.Rp = animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
             eventoAnimal.Id_tambo = tambo.Id_tambo;
@@ -584,8 +611,10 @@ namespace Escritorio
             Desc_Subevento descSubevento = descSubeventoNegocio.RecuperarUno(Convert.ToInt32(comboBox2.SelectedValue));
 
             EventoAnimal_DescSubevento eventoAnimal = new EventoAnimal_DescSubevento();
+            //Registro la fecha con hora minutos y segundos
+            String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
+            eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
 
-            eventoAnimal.Fecha_desc = dtpFecha.Value.Date;
             eventoAnimal.Rp = animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
             eventoAnimal.Id_desc = descSubevento.Id_desc;
@@ -617,7 +646,10 @@ namespace Escritorio
 
             EventoAnimal_DescSubevento eventoAnimal = new EventoAnimal_DescSubevento();
 
-            eventoAnimal.Fecha_desc = dtpFecha.Value.Date;
+            //Registro la fecha con hora minutos y segundos
+            String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
+            eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+
             eventoAnimal.Rp = animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
             eventoAnimal.Id_desc = descSubevento.Id_desc;
@@ -650,7 +682,10 @@ namespace Escritorio
 
             EventoAnimal_DescSubevento eventoAnimal = new EventoAnimal_DescSubevento();
 
-            eventoAnimal.Fecha_desc = dtpFecha.Value.Date;
+            //Registro la fecha con hora minutos y segundos
+            String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
+            eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+
             eventoAnimal.Rp = animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
             eventoAnimal.Id_desc = descSubevento.Id_desc;
@@ -674,11 +709,14 @@ namespace Escritorio
 
         private void AltaEventos_FormClosing(object sender, FormClosingEventArgs e)
         {
-            DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            this.Dispose();
+            /*DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result != DialogResult.Yes)
             {
-                e.Cancel = true;
-            }
+                    e.Cancel = true;
+            }*/
+            
         }
+
     }   
 }

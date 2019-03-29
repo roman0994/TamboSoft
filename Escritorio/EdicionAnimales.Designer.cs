@@ -34,8 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTambo = new System.Windows.Forms.TextBox();
-            this.chkHabilitado = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.txtRP = new System.Windows.Forms.TextBox();
             this.txtHBA = new System.Windows.Forms.TextBox();
@@ -134,8 +132,6 @@
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 2);
             this.groupBox1.Controls.Add(this.txtTambo);
-            this.groupBox1.Controls.Add(this.chkHabilitado);
-            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.dtpFechaNacimiento);
             this.groupBox1.Controls.Add(this.txtRP);
             this.groupBox1.Controls.Add(this.txtHBA);
@@ -170,27 +166,6 @@
             this.txtTambo.ReadOnly = true;
             this.txtTambo.Size = new System.Drawing.Size(201, 20);
             this.txtTambo.TabIndex = 15;
-            // 
-            // chkHabilitado
-            // 
-            this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Checked = true;
-            this.chkHabilitado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkHabilitado.Location = new System.Drawing.Point(496, 126);
-            this.chkHabilitado.Name = "chkHabilitado";
-            this.chkHabilitado.Size = new System.Drawing.Size(15, 14);
-            this.chkHabilitado.TabIndex = 14;
-            this.chkHabilitado.UseVisualStyleBackColor = true;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(421, 126);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(57, 13);
-            this.label19.TabIndex = 13;
-            this.label19.Text = "Habilitado:";
             // 
             // dtpFechaNacimiento
             // 
@@ -466,14 +441,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.CancelButton = this.btnSalir;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EdicionAnimales";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Edición de Animales";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.EdicionAnimales_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -520,8 +496,6 @@
         public System.Windows.Forms.TextBox txtRPPadre;
         public System.Windows.Forms.Label label18;
         public System.Windows.Forms.Label label17;
-        public System.Windows.Forms.CheckBox chkHabilitado;
-        public System.Windows.Forms.Label label19;
         public System.Windows.Forms.TextBox txtTambo;
         private System.Windows.Forms.Button btnSalir;
     }
