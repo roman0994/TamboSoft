@@ -133,5 +133,25 @@ namespace Escritorio
                 e.Handled = true;
             }
         }
+
+        private void dgvEventos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    int id_tambo = Login.Tambo.Id_tambo;
+                    int rp = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["rp"].Value);
+                    int id_evento = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_evento"].Value);
+                    DateTime fecha = Convert.ToDateTime(this.dgvEventos.CurrentRow.Cells["fecha_desc"].Value);
+
+                    DetalleEventos detalle = new DetalleEventos();
+                    EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                    detalle.dgvDetalles.DataSource = eventoAnimalDescNegocio.RecuperarDescripcionesPorEvento(id_tambo,rp,id_evento,fecha);
+                    detalle.Show();
+
+                }
+            }
+        }
     }
 }

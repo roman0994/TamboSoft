@@ -32,18 +32,6 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvEventos = new System.Windows.Forms.DataGridView();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tbsRegresar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tbsNuevo = new System.Windows.Forms.ToolStripButton();
-            this.tbsImprimir = new System.Windows.Forms.ToolStripButton();
-            this.tbsExportar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.lblBuscar = new System.Windows.Forms.ToolStripLabel();
-            this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_desc_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,6 +46,17 @@
             this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tbsRegresar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tbsNuevo = new System.Windows.Forms.ToolStripButton();
+            this.tbsImprimir = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblBuscar = new System.Windows.Forms.ToolStripLabel();
+            this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -128,115 +127,6 @@
             this.dgvEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEventos.Size = new System.Drawing.Size(794, 390);
             this.dgvEventos.TabIndex = 0;
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(722, 399);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 1;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tbsRegresar,
-            this.toolStripSeparator1,
-            this.tbsNuevo,
-            this.tbsImprimir,
-            this.tbsExportar,
-            this.toolStripSeparator2,
-            this.lblBuscar,
-            this.tstxtBuscar,
-            this.toolStripSeparator3,
-            this.toolStripButton1});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(392, 25);
-            this.toolStrip1.TabIndex = 0;
-            // 
-            // tbsRegresar
-            // 
-            this.tbsRegresar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbsRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tbsRegresar.Image")));
-            this.tbsRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbsRegresar.Name = "tbsRegresar";
-            this.tbsRegresar.Size = new System.Drawing.Size(23, 22);
-            this.tbsRegresar.Text = "Regresar";
-            this.tbsRegresar.Click += new System.EventHandler(this.tbsRegresar_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tbsNuevo
-            // 
-            this.tbsNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbsNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tbsNuevo.Image")));
-            this.tbsNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbsNuevo.Name = "tbsNuevo";
-            this.tbsNuevo.Size = new System.Drawing.Size(23, 22);
-            this.tbsNuevo.Text = "Nuevo";
-            this.tbsNuevo.Click += new System.EventHandler(this.tbsNuevo_Click);
-            // 
-            // tbsImprimir
-            // 
-            this.tbsImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbsImprimir.Image = ((System.Drawing.Image)(resources.GetObject("tbsImprimir.Image")));
-            this.tbsImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbsImprimir.Name = "tbsImprimir";
-            this.tbsImprimir.Size = new System.Drawing.Size(23, 22);
-            this.tbsImprimir.Text = "Imprimir";
-            this.tbsImprimir.Click += new System.EventHandler(this.tbsImprimir_Click);
-            // 
-            // tbsExportar
-            // 
-            this.tbsExportar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tbsExportar.Image = ((System.Drawing.Image)(resources.GetObject("tbsExportar.Image")));
-            this.tbsExportar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tbsExportar.Name = "tbsExportar";
-            this.tbsExportar.Size = new System.Drawing.Size(23, 22);
-            this.tbsExportar.Text = "Exportar a Excel";
-            this.tbsExportar.Click += new System.EventHandler(this.tbsExportar_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // lblBuscar
-            // 
-            this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(105, 22);
-            this.lblBuscar.Text = "Buscar por evento:";
-            // 
-            // tstxtBuscar
-            // 
-            this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tstxtBuscar.Name = "tstxtBuscar";
-            this.tstxtBuscar.Size = new System.Drawing.Size(100, 25);
-            this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tstxtBuscar_KeyUp);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(63, 22);
-            this.toolStripButton1.Text = "Actualizar";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // rp
             // 
@@ -320,7 +210,6 @@
             this.nombre_inseminador.HeaderText = "Inseminador";
             this.nombre_inseminador.Name = "nombre_inseminador";
             this.nombre_inseminador.ReadOnly = true;
-            this.nombre_inseminador.Visible = false;
             // 
             // id_tambo
             // 
@@ -344,6 +233,104 @@
             this.estado_evento.Name = "estado_evento";
             this.estado_evento.ReadOnly = true;
             this.estado_evento.Visible = false;
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSalir.Location = new System.Drawing.Point(722, 399);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 23);
+            this.btnSalir.TabIndex = 1;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tbsRegresar,
+            this.toolStripSeparator1,
+            this.tbsNuevo,
+            this.tbsImprimir,
+            this.toolStripSeparator2,
+            this.lblBuscar,
+            this.tstxtBuscar,
+            this.toolStripSeparator3,
+            this.toolStripButton1});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(400, 25);
+            this.toolStrip1.TabIndex = 0;
+            // 
+            // tbsRegresar
+            // 
+            this.tbsRegresar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbsRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tbsRegresar.Image")));
+            this.tbsRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbsRegresar.Name = "tbsRegresar";
+            this.tbsRegresar.Size = new System.Drawing.Size(23, 22);
+            this.tbsRegresar.Text = "Regresar";
+            this.tbsRegresar.Click += new System.EventHandler(this.tbsRegresar_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tbsNuevo
+            // 
+            this.tbsNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbsNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tbsNuevo.Image")));
+            this.tbsNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbsNuevo.Name = "tbsNuevo";
+            this.tbsNuevo.Size = new System.Drawing.Size(23, 22);
+            this.tbsNuevo.Text = "Nuevo";
+            this.tbsNuevo.Click += new System.EventHandler(this.tbsNuevo_Click);
+            // 
+            // tbsImprimir
+            // 
+            this.tbsImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tbsImprimir.Image = ((System.Drawing.Image)(resources.GetObject("tbsImprimir.Image")));
+            this.tbsImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tbsImprimir.Name = "tbsImprimir";
+            this.tbsImprimir.Size = new System.Drawing.Size(23, 22);
+            this.tbsImprimir.Text = "Imprimir";
+            this.tbsImprimir.Click += new System.EventHandler(this.tbsImprimir_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // lblBuscar
+            // 
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(105, 22);
+            this.lblBuscar.Text = "Buscar por evento:";
+            // 
+            // tstxtBuscar
+            // 
+            this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tstxtBuscar.Name = "tstxtBuscar";
+            this.tstxtBuscar.Size = new System.Drawing.Size(100, 25);
+            this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tstxtBuscar_KeyUp);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(63, 22);
+            this.toolStripButton1.Text = "Actualizar";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // ListadoEventos
             // 
@@ -382,7 +369,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tbsNuevo;
         private System.Windows.Forms.ToolStripButton tbsImprimir;
-        private System.Windows.Forms.ToolStripButton tbsExportar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel lblBuscar;
         private System.Windows.Forms.ToolStripTextBox tstxtBuscar;

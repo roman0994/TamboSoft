@@ -48,7 +48,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
             this.tsbImprimir = new System.Windows.Forms.ToolStripButton();
-            this.tsbExportar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.lblBuscar = new System.Windows.Forms.ToolStripLabel();
             this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
@@ -218,7 +217,6 @@
             this.toolStripSeparator1,
             this.tsbNuevo,
             this.tsbImprimir,
-            this.tsbExportar,
             this.toolStripSeparator2,
             this.lblBuscar,
             this.tstxtBuscar,
@@ -226,7 +224,7 @@
             this.tsbActualizar});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(423, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(400, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbRegresar
@@ -263,16 +261,6 @@
             this.tsbImprimir.Size = new System.Drawing.Size(23, 22);
             this.tsbImprimir.Text = "Imprimir";
             this.tsbImprimir.Click += new System.EventHandler(this.tsbImprimir_Click);
-            // 
-            // tsbExportar
-            // 
-            this.tsbExportar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbExportar.Image = ((System.Drawing.Image)(resources.GetObject("tsbExportar.Image")));
-            this.tsbExportar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbExportar.Name = "tsbExportar";
-            this.tsbExportar.Size = new System.Drawing.Size(23, 22);
-            this.tsbExportar.Text = "Exportar a Excel";
-            this.tsbExportar.Click += new System.EventHandler(this.tbsExportar_Click);
             // 
             // toolStripSeparator2
             // 
@@ -345,7 +333,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton tsbNuevo;
         private System.Windows.Forms.ToolStripButton tsbImprimir;
-        private System.Windows.Forms.ToolStripButton tsbExportar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel lblBuscar;
         private System.Windows.Forms.ToolStripTextBox tstxtBuscar;

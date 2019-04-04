@@ -35,20 +35,20 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvEventos = new System.Windows.Forms.DataGridView();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_desc_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verdetalle = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.id_desc_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_subevento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.verdetalle = new System.Windows.Forms.DataGridViewLinkColumn();
             this.btnExportar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.tblEventos.SuspendLayout();
@@ -118,9 +118,9 @@
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(96, 416);
+            this.btnEliminar.Location = new System.Drawing.Point(96, 415);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 28);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 29);
             this.btnEliminar.TabIndex = 4;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -132,20 +132,20 @@
             this.dgvEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEventos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rp,
-            this.id_desc_evento,
-            this.id_evento,
             this.fecha_desc,
             this.nombre_animal,
             this.nombre_evento,
-            this.id_tambo,
             this.nombre_tambo,
+            this.verdetalle,
+            this.id_desc_evento,
+            this.id_evento,
+            this.id_tambo,
             this.id_inseminador,
             this.nombre_inseminador,
             this.estado_evento,
             this.id_desc,
             this.nombre_subevento,
-            this.Descripcion,
-            this.verdetalle});
+            this.Descripcion});
             this.tblEventos.SetColumnSpan(this.dgvEventos, 3);
             this.dgvEventos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEventos.Location = new System.Drawing.Point(6, 72);
@@ -153,8 +153,9 @@
             this.dgvEventos.Name = "dgvEventos";
             this.dgvEventos.ReadOnly = true;
             this.dgvEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEventos.Size = new System.Drawing.Size(788, 335);
+            this.dgvEventos.Size = new System.Drawing.Size(788, 334);
             this.dgvEventos.TabIndex = 3;
+            this.dgvEventos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEventos_CellContentClick);
             // 
             // rp
             // 
@@ -163,22 +164,6 @@
             this.rp.Name = "rp";
             this.rp.ReadOnly = true;
             this.rp.Width = 80;
-            // 
-            // id_desc_evento
-            // 
-            this.id_desc_evento.DataPropertyName = "id_desc_evento";
-            this.id_desc_evento.HeaderText = "ID";
-            this.id_desc_evento.Name = "id_desc_evento";
-            this.id_desc_evento.ReadOnly = true;
-            this.id_desc_evento.Visible = false;
-            // 
-            // id_evento
-            // 
-            this.id_evento.DataPropertyName = "id_evento";
-            this.id_evento.HeaderText = "ID Evento";
-            this.id_evento.Name = "id_evento";
-            this.id_evento.ReadOnly = true;
-            this.id_evento.Visible = false;
             // 
             // fecha_desc
             // 
@@ -201,6 +186,37 @@
             this.nombre_evento.Name = "nombre_evento";
             this.nombre_evento.ReadOnly = true;
             // 
+            // nombre_tambo
+            // 
+            this.nombre_tambo.DataPropertyName = "nombre_tambo";
+            this.nombre_tambo.HeaderText = "Tambo";
+            this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.ReadOnly = true;
+            // 
+            // verdetalle
+            // 
+            this.verdetalle.HeaderText = "Ver detalle";
+            this.verdetalle.Name = "verdetalle";
+            this.verdetalle.ReadOnly = true;
+            this.verdetalle.Text = "Ver detalle";
+            this.verdetalle.UseColumnTextForLinkValue = true;
+            // 
+            // id_desc_evento
+            // 
+            this.id_desc_evento.DataPropertyName = "id_desc_evento";
+            this.id_desc_evento.HeaderText = "ID";
+            this.id_desc_evento.Name = "id_desc_evento";
+            this.id_desc_evento.ReadOnly = true;
+            this.id_desc_evento.Visible = false;
+            // 
+            // id_evento
+            // 
+            this.id_evento.DataPropertyName = "id_evento";
+            this.id_evento.HeaderText = "ID Evento";
+            this.id_evento.Name = "id_evento";
+            this.id_evento.ReadOnly = true;
+            this.id_evento.Visible = false;
+            // 
             // id_tambo
             // 
             this.id_tambo.DataPropertyName = "id_tambo";
@@ -208,13 +224,6 @@
             this.id_tambo.Name = "id_tambo";
             this.id_tambo.ReadOnly = true;
             this.id_tambo.Visible = false;
-            // 
-            // nombre_tambo
-            // 
-            this.nombre_tambo.DataPropertyName = "nombre_tambo";
-            this.nombre_tambo.HeaderText = "Tambo";
-            this.nombre_tambo.Name = "nombre_tambo";
-            this.nombre_tambo.ReadOnly = true;
             // 
             // id_inseminador
             // 
@@ -264,20 +273,12 @@
             this.Descripcion.ReadOnly = true;
             this.Descripcion.Visible = false;
             // 
-            // verdetalle
-            // 
-            this.verdetalle.HeaderText = "Ver detalle";
-            this.verdetalle.Name = "verdetalle";
-            this.verdetalle.ReadOnly = true;
-            this.verdetalle.Text = "Ver detalle";
-            this.verdetalle.UseColumnTextForLinkValue = true;
-            // 
             // btnExportar
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnExportar.Location = new System.Drawing.Point(361, 416);
+            this.btnExportar.Location = new System.Drawing.Point(361, 415);
             this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(75, 28);
+            this.btnExportar.Size = new System.Drawing.Size(75, 29);
             this.btnExportar.TabIndex = 5;
             this.btnExportar.Text = "Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
@@ -287,9 +288,9 @@
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(627, 416);
+            this.btnSalir.Location = new System.Drawing.Point(627, 415);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 28);
+            this.btnSalir.Size = new System.Drawing.Size(75, 29);
             this.btnSalir.TabIndex = 6;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -326,19 +327,19 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_evento;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_desc;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
+        private System.Windows.Forms.DataGridViewLinkColumn verdetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc_evento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_evento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_inseminador;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_inseminador;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado_evento;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_desc;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_subevento;
         private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
-        private System.Windows.Forms.DataGridViewLinkColumn verdetalle;
     }
 }

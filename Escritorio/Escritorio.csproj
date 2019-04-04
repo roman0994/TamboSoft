@@ -163,6 +163,12 @@
     <Compile Include="DatosTambo.Designer.cs">
       <DependentUpon>DatosTambo.cs</DependentUpon>
     </Compile>
+    <Compile Include="DetalleEventos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DetalleEventos.Designer.cs">
+      <DependentUpon>DetalleEventos.cs</DependentUpon>
+    </Compile>
     <Compile Include="dsTamboSoft.cs">
       <DependentUpon>dsTamboSoft.xsd</DependentUpon>
     </Compile>
@@ -428,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DatosTambo.resx">
       <DependentUpon>DatosTambo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DetalleEventos.resx">
+      <DependentUpon>DetalleEventos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EdicionAnimales.resx">
       <DependentUpon>EdicionAnimales.cs</DependentUpon>

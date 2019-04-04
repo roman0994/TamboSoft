@@ -56,7 +56,7 @@ namespace Escritorio
             //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error   
             this.cbAnimal.DisplayMember = "nombre_animal";
             this.cbAnimal.ValueMember = "rp";
-            this.cbAnimal.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
+            this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(id_tambo);
             this.cbAnimal.SelectedIndex = -1;
         }
 

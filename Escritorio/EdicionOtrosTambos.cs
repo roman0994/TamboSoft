@@ -94,6 +94,7 @@ namespace Escritorio
             tambo.Id_localidad = localidad.Id_localidad;
             tambo.Nombre_localidad = localidad.Nombre_localidad;
             tambo.Nombre_provincia = provincia.Nombre_provincia;
+            tambo.Estado_tambo = true;
 
             return tambo;
         }

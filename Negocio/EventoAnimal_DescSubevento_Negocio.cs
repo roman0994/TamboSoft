@@ -28,7 +28,12 @@ namespace Negocio
             return eventoAnimal_DescSubevento.RecuperarSoloEventosPorTambo(id_tambo);
         }
 
-        public DataTable RecuperarDTPorTambo(int id_tambo)
+        public List<EventoAnimal_DescSubevento> RecuperarDescripcionesPorEvento(int id_tambo, int rp, int id_evento, DateTime fecha)
+        {
+            return eventoAnimal_DescSubevento.RecuperarDescripcionesPorEvento(id_tambo, rp, id_evento, fecha);
+        }
+
+            public DataTable RecuperarDTPorTambo(int id_tambo)
         {
             return eventoAnimal_DescSubevento.RecuperarDTPorTambo(id_tambo);
         }
