@@ -118,7 +118,7 @@ namespace Escritorio
 
         public void Limpiar()
         {
-            this.cbAnimal.Text = string.Empty;
+            this.cbAnimal.SelectedIndex = -1;
             this.txtPrimerControl.Text = string.Empty;
             this.txtSegundoControl.Text = string.Empty;
             this.txtGrasaPrimerControl.Text = string.Empty;
