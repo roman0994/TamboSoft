@@ -41,7 +41,7 @@ namespace Datos
             List<Tambo> lista = new List<Tambo>();
             this.AbrirConexion();
             SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @id_tambo", Conn);
-            cmdTambos.Parameters.Add("id_tambo", SqlDbType.VarChar, 50).Value = id_tambo;
+            cmdTambos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
             SqlDataReader drTambo = cmdTambos.ExecuteReader();
 
             while (drTambo.Read())
@@ -147,6 +147,23 @@ namespace Datos
             SqlDataReader drTambo = cmdTambos.ExecuteReader();
             
             if(drTambo.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool HayOtrosTambos(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @id_tambo", Conn);
+            cmdTambos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            SqlDataReader drTambo = cmdTambos.ExecuteReader();
+
+            if (drTambo.Read())
             {
                 return true;
             }

@@ -31,17 +31,19 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.btnSincronizar = new System.Windows.Forms.Button();
+            this.btnSubir = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
+            this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnSincronizar, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnSubir, 1, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -54,6 +56,7 @@
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.tableLayoutPanel1.SetColumnSpan(this.dataGridView1, 2);
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(3, 3);
             this.dataGridView1.Name = "dataGridView1";
@@ -69,6 +72,16 @@
             this.btnSincronizar.Text = "Sincronizar";
             this.btnSincronizar.UseVisualStyleBackColor = true;
             this.btnSincronizar.Click += new System.EventHandler(this.btnSincronizar_Click);
+            // 
+            // btnSubir
+            // 
+            this.btnSubir.Location = new System.Drawing.Point(403, 327);
+            this.btnSubir.Name = "btnSubir";
+            this.btnSubir.Size = new System.Drawing.Size(75, 23);
+            this.btnSubir.TabIndex = 2;
+            this.btnSubir.Text = "Subir datos";
+            this.btnSubir.UseVisualStyleBackColor = true;
+            this.btnSubir.Click += new System.EventHandler(this.btnSubir_Click);
             // 
             // PruebaSincronizacion
             // 
@@ -89,5 +102,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button btnSincronizar;
+        private System.Windows.Forms.Button btnSubir;
     }
 }

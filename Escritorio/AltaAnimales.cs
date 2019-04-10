@@ -43,7 +43,7 @@ namespace Escritorio
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             Tambo tambo = new Tambo();
-            tambo = tamboNegocio.RecuperarUno(id_tambo);
+            tambo = tamboNegocio.RecuperarUno(Principal.Tambo.Id_tambo);
             this.txtTambo.Text = tambo.Nombre_tambo;
         }
 
@@ -145,7 +145,7 @@ namespace Escritorio
             animal.Hba_padre = string.IsNullOrEmpty(txtHBAPadre.Text) ? 0 : Convert.ToInt32(txtHBAPadre.Text);
             animal.Id_tambo = tambo.Id_tambo;
             animal.Id_raza = raza.Id_raza;
-            animal.Habilitado = chkHabilitado.Checked;
+            animal.Habilitado = true;
 
             return animal;
         }

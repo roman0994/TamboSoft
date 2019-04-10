@@ -40,6 +40,15 @@ namespace Escritorio
             this.cbBuscar.SelectedIndex = -1;
         }
 
+        public void ValidarAnimales()
+        {
+            Animal_Negocio animalNegocio = new Animal_Negocio();
+            if (!animalNegocio.HayAnimales(Principal.Tambo.Id_tambo))
+            {
+                MessageBox.Show("El tambo no posee animales", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Dispose();
@@ -147,7 +156,7 @@ namespace Escritorio
 
         private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.CargarGrilla(Login.Tambo.Id_tambo);
+            this.CargarGrilla(Principal.Tambo.Id_tambo);
             this.txtBuscar.Text = string.Empty;
 
             if (this.cbBuscar.SelectedIndex == -1)
@@ -162,7 +171,7 @@ namespace Escritorio
 
         private void GestionAnimales_Activated(object sender, EventArgs e)
         {
-            this.CargarGrilla(Login.Tambo.Id_tambo);
+            this.CargarGrilla(Principal.Tambo.Id_tambo);
         }
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)

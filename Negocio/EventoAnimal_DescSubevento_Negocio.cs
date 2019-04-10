@@ -97,5 +97,10 @@ namespace Negocio
         {
             return eventoAnimal_DescSubevento.FiltrarPorNombreTambo(texto);
         }
+
+        public bool HayEventos(int id_tambo)
+        {
+            return eventoAnimal_DescSubevento.HayEventos(id_tambo);
+        }
     }
 }

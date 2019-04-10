@@ -18,8 +18,10 @@ namespace Escritorio
         public AltaControles(int id_tambo)
         {
             InitializeComponent();
-            CargaComboAnimal(id_tambo);
-            CargarToolTips();
+
+                CargaComboAnimal(id_tambo);
+                CargarToolTips();
+
         }
 
         public void CargaComboAnimal(int id_tambo)

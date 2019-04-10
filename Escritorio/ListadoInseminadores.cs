@@ -20,6 +20,7 @@ namespace Escritorio
         {
             InitializeComponent();
             CargarGrilla(idtambo);
+
         }
 
         public void CargarGrilla(int id_tambo)

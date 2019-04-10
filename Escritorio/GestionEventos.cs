@@ -109,7 +109,7 @@ namespace Escritorio
 
         private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.CargarGrilla(Login.Tambo.Id_tambo);
+            this.CargarGrilla(Principal.Tambo.Id_tambo);
             this.txtBuscar.Text = string.Empty;
 
             if (this.cbBuscar.SelectedIndex == -1)
@@ -140,7 +140,7 @@ namespace Escritorio
             {
                 if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
                 {
-                    int id_tambo = Login.Tambo.Id_tambo;
+                    int id_tambo = Principal.Tambo.Id_tambo;
                     int rp = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["rp"].Value);
                     int id_evento = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_evento"].Value);
                     DateTime fecha = Convert.ToDateTime(this.dgvEventos.CurrentRow.Cells["fecha_desc"].Value);

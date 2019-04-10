@@ -15,13 +15,12 @@ namespace Escritorio
 {
     public partial class LoginAltaTambos : Form
     {
-        public static Tambo Tambo { get; set; }
+        
         public LoginAltaTambos()
         {
             InitializeComponent();
             CargarComboProvincia();
             CargarToolTip();
-            Tambo = new Tambo();
         }
 
         public void CargarComboProvincia()
@@ -63,7 +62,7 @@ namespace Escritorio
                     tambo = MapearATambo();
                     id_tambo = tamboNegocio.InsertarDevolviendoID(tambo);
                     DialogResult result = MessageBox.Show("El tambo fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                    
                     Principal principal = new Principal(id_tambo);
                     principal.id_tambo = id_tambo;
                     principal.Show();

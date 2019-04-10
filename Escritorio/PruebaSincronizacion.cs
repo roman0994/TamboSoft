@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using TamboSoft.ViewModels;
 using System.Net.Http;
+using Negocio;
 using Entidades;
 
 namespace Escritorio
@@ -32,6 +32,20 @@ namespace Escritorio
 
             dataGridView1.DataSource = await comApi.Get<List<Animal>>(Url);
 
+        }
+
+        private async void btnSubir_Click(object sender, EventArgs e)
+        {
+            Animal_Negocio an = new Animal_Negocio();
+            List<AnimalApi> listaAnimales = new List<AnimalApi>
+            {
+                new AnimalApi{Rp=2,Fecha_nacimiento= DateTime.Now,Edad=2,Foto="Puta",Nombre_animal="Pepe",Estado_animal="Vivo",Hba=1,Categoria="Vaca",Rp_madre=1,Rp_padre=1,Hba_madre=1,Hba_padre=1,Habilitado=true,Id_raza=1,Id_tambo=1 }
+
+            }; 
+            
+            ComunicacionApi comApi = new ComunicacionApi();
+            var Url = "http://localhost:8080/api/animal";
+            dataGridView1.DataSource= await comApi.Post<string, List<AnimalApi>>(Url,listaAnimales);
         }
     }
 }

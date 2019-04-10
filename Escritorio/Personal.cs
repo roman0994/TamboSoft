@@ -101,12 +101,12 @@ namespace Escritorio
 
         private void Personal_Load(object sender, EventArgs e)
         {
-            this.CargarGrilla(Login.Tambo.Id_tambo);
+            this.CargarGrilla(Principal.Tambo.Id_tambo);
         }
 
         private void Personal_Activated(object sender, EventArgs e)
         {
-            this.CargarGrilla(Login.Tambo.Id_tambo);
+            this.CargarGrilla(Principal.Tambo.Id_tambo);
         }
     }
 }

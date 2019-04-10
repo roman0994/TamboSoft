@@ -38,6 +38,11 @@ namespace Negocio
             return tamboDatos.HayTambos();
         }
 
+        public bool HayOtrosTambos(int id_tambo)
+        {
+            return tamboDatos.HayOtrosTambos(id_tambo);
+        }
+
         public void Actualizar(Tambo tambo)
         {
             tamboDatos.Actualizar(tambo);

@@ -87,5 +87,10 @@ namespace Negocio
         {
             return FiltrarPorFechaControl(fechaControl);
         }
+
+        public bool HayControles(int id_tambo)
+        {
+            return controlAnimalDatos.HayControles(id_tambo);
+        }
     }
 }

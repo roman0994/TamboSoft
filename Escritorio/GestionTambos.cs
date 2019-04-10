@@ -98,7 +98,7 @@ namespace Escritorio
 
         private void GestionTambos_Activated(object sender, EventArgs e)
         {
-            this.CargarGrilla(Login.Tambo.Id_tambo);
+            this.CargarGrilla(Principal.Tambo.Id_tambo);
         }
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)

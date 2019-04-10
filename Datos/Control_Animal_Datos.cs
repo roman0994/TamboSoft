@@ -323,7 +323,7 @@ namespace Datos
         public DataTable ProduccionPorFecha(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo  and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by ca.fecha_control,t.nombre_tambo", Conn);
+            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by ca.fecha_control,t.nombre_tambo", Conn);
 
             cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -456,6 +456,23 @@ namespace Datos
             this.CerrarConexion();
             return dt;
 
+        }
+
+        public bool HayControles(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+            cmdControles.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            SqlDataReader drControles = cmdControles.ExecuteReader();
+
+            if (drControles.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

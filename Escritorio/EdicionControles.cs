@@ -28,7 +28,7 @@ namespace Escritorio
         public void CargaComboAnimal()
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(Login.Tambo.Id_tambo);
+            this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(Principal.Tambo.Id_tambo);
             this.cbAnimal.DisplayMember = "nombre_animal";
             this.cbAnimal.ValueMember = "rp";
             this.cbAnimal.SelectedIndex = -1;

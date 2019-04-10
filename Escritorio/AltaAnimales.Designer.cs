@@ -45,9 +45,7 @@
             this.gbAnimal = new System.Windows.Forms.GroupBox();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.cbEstado = new System.Windows.Forms.ComboBox();
-            this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.chkHabilitado = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.cbRaza = new System.Windows.Forms.ComboBox();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
@@ -243,9 +241,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.gbAnimal, 4);
             this.gbAnimal.Controls.Add(this.txtTambo);
             this.gbAnimal.Controls.Add(this.cbEstado);
-            this.gbAnimal.Controls.Add(this.label18);
             this.gbAnimal.Controls.Add(this.label17);
-            this.gbAnimal.Controls.Add(this.chkHabilitado);
             this.gbAnimal.Controls.Add(this.label16);
             this.gbAnimal.Controls.Add(this.cbRaza);
             this.gbAnimal.Controls.Add(this.dtpFechaNacimiento);
@@ -271,7 +267,7 @@
             // 
             // txtTambo
             // 
-            this.txtTambo.Location = new System.Drawing.Point(484, 190);
+            this.txtTambo.Location = new System.Drawing.Point(485, 148);
             this.txtTambo.Name = "txtTambo";
             this.txtTambo.ReadOnly = true;
             this.txtTambo.Size = new System.Drawing.Size(200, 20);
@@ -286,16 +282,6 @@
             this.cbEstado.Size = new System.Drawing.Size(201, 21);
             this.cbEstado.TabIndex = 26;
             // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(419, 112);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(57, 13);
-            this.label18.TabIndex = 25;
-            this.label18.Text = "Habilitado:";
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -306,22 +292,11 @@
             this.label17.TabIndex = 24;
             this.label17.Text = "Estado:";
             // 
-            // chkHabilitado
-            // 
-            this.chkHabilitado.AutoSize = true;
-            this.chkHabilitado.Checked = true;
-            this.chkHabilitado.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkHabilitado.Location = new System.Drawing.Point(484, 112);
-            this.chkHabilitado.Name = "chkHabilitado";
-            this.chkHabilitado.Size = new System.Drawing.Size(15, 14);
-            this.chkHabilitado.TabIndex = 22;
-            this.chkHabilitado.UseVisualStyleBackColor = true;
-            // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(21, 261);
+            this.label16.Location = new System.Drawing.Point(21, 240);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(111, 13);
             this.label16.TabIndex = 21;
@@ -331,7 +306,7 @@
             // 
             this.cbRaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRaza.FormattingEnabled = true;
-            this.cbRaza.Location = new System.Drawing.Point(484, 226);
+            this.cbRaza.Location = new System.Drawing.Point(484, 190);
             this.cbRaza.Name = "cbRaza";
             this.cbRaza.Size = new System.Drawing.Size(200, 21);
             this.cbRaza.TabIndex = 9;
@@ -383,7 +358,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(419, 193);
+            this.label13.Location = new System.Drawing.Point(419, 151);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(50, 13);
             this.label13.TabIndex = 7;
@@ -393,7 +368,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(419, 229);
+            this.label8.Location = new System.Drawing.Point(420, 193);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(42, 13);
             this.label8.TabIndex = 5;
@@ -509,9 +484,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbEstado;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.CheckBox chkHabilitado;
         private System.Windows.Forms.TextBox txtTambo;
     }
 }

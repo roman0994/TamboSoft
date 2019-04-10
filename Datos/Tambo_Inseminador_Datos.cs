@@ -213,5 +213,22 @@ namespace Datos
 
         }
 
+        public bool HayInseminadores(int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdIns = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@id_tambo and i.estado_inseminador='true'", Conn);
+            cmdIns.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            SqlDataReader drIns = cmdIns.ExecuteReader();
+
+            if (drIns.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

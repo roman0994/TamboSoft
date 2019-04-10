@@ -67,7 +67,7 @@ namespace Escritorio
             tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
             if (this.cbFiltro.SelectedIndex == -1)
             {
-                this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(Login.Tambo.Id_tambo);
+                this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(Principal.Tambo.Id_tambo);
                 if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
                 {
                     this.btnExportar.Enabled = true;
@@ -150,7 +150,7 @@ namespace Escritorio
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             this.cbFiltro.SelectedIndex = -1;
-            this.CargarGrilla(Login.Tambo.Id_tambo);
+            this.CargarGrilla(Principal.Tambo.Id_tambo);
             if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
             {
                 this.btnExportar.Enabled = true;

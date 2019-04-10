@@ -43,5 +43,10 @@ namespace Negocio
         {
             return tamboInseminadorDatos.FiltrarPorNombre(texto, idtambo);
         }
+
+        public bool HayInseminadores(int id_tambo)
+        {
+            return tamboInseminadorDatos.HayInseminadores(id_tambo);
+        }
     }
 }

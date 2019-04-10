@@ -167,5 +167,15 @@ namespace Negocio
         {
             return animalDatos.FiltrarPorAnimalesEnfermosPorTambo(id_tambo);
         }
+
+        public bool HayVacas(int id_tambo)
+        {
+            return animalDatos.HayVacas(id_tambo);
+        }
+
+        public bool HayAnimales(int id_tambo)
+        {
+            return animalDatos.HayAnimales(id_tambo);
+        }
     }
 }

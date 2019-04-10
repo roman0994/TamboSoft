@@ -41,7 +41,7 @@ namespace Escritorio
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             Tambo tambo = new Tambo();
 
-            tambo = tamboNegocio.RecuperarUno(Login.Tambo.Id_tambo);
+            tambo = tamboNegocio.RecuperarUno(Principal.Tambo.Id_tambo);
 
             MapearDatos(tambo);
         }
@@ -58,7 +58,7 @@ namespace Escritorio
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             Tambo tambo = new Tambo();
-            tambo = tamboNegocio.RecuperarUno(Login.Tambo.Id_tambo);
+            tambo = tamboNegocio.RecuperarUno(Principal.Tambo.Id_tambo);
 
             EdicionDatosTambo edicionTambo = new EdicionDatosTambo();
             edicionTambo.txtIdTambo.Text = Convert.ToString(tambo.Id_tambo);
@@ -81,7 +81,7 @@ namespace Escritorio
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
             Tambo tambo = new Tambo();
-            tambo = tamboNegocio.RecuperarUno(Login.Tambo.Id_tambo);
+            tambo = tamboNegocio.RecuperarUno(Principal.Tambo.Id_tambo);
             tambo.Id_tambo = Convert.ToInt32(tambo.Id_tambo);
             tambo.Nombre_tambo = Convert.ToString(tambo.Nombre_tambo);
             tambo.Superficie = Convert.ToDecimal(tambo.Superficie);
@@ -111,8 +111,8 @@ namespace Escritorio
 
         private void DatosTambo_Activated(object sender, EventArgs e)
         {
-            CargarDatosTambo(Login.Tambo.Id_tambo);
-            CargarTextBoxTambo(Login.Tambo.Id_tambo);
+            CargarDatosTambo(Principal.Tambo.Id_tambo);
+            CargarTextBoxTambo(Principal.Tambo.Id_tambo);
         }
 
         /*private void btnEliminarTambo_Click(object sender, EventArgs e)
