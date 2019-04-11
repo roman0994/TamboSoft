@@ -18,7 +18,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo and a.habilitado='true'", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.habilitado='true'", Conn);
 
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -41,9 +41,9 @@ namespace Datos
                     animal.Hba_padre = dr.IsDBNull(11) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_padre"]));
                     animal.Id_tambo = dr.IsDBNull(12) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
                     animal.Id_raza = dr.IsDBNull(13) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_raza"]));
-                    //animal.Nombre_raza = dr.IsDBNull(14) ? string.Empty : dr["nombre_raza"].ToString();
-                    //animal.Nombre_tambo = dr.IsDBNull(15) ? string.Empty : dr["nombre_tambo"].ToString();
-                    animal.Habilitado = dr.IsDBNull(14) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
+                    animal.Nombre_raza = dr.IsDBNull(14) ? string.Empty : dr["nombre_raza"].ToString();
+                    animal.Nombre_tambo = dr.IsDBNull(15) ? string.Empty : dr["nombre_tambo"].ToString();
+                    animal.Habilitado = dr.IsDBNull(16) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
 
                     lista.Add(animal);
 

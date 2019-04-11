@@ -301,5 +301,11 @@ namespace Escritorio
         {
             Application.Exit();
         }
+
+        private void sincronizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            PruebaSincronizacion sincronizacion = new PruebaSincronizacion();
+            sincronizacion.ShowDialog();
+        }
     }
 }

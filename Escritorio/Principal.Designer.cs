@@ -61,6 +61,8 @@
             this.reproducciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeTamboSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sincronizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sincronizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -135,6 +137,7 @@
             this.animalesToolStripMenuItem,
             this.listadosToolStripMenuItem,
             this.reporteMenuItem,
+            this.sincronizaciónToolStripMenuItem,
             this.acercaDeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -153,7 +156,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -359,6 +362,21 @@
             this.acercaDeTamboSoftToolStripMenuItem.Text = "Acerca de TamboSoft";
             this.acercaDeTamboSoftToolStripMenuItem.Click += new System.EventHandler(this.acercaDeTamboSoftToolStripMenuItem_Click);
             // 
+            // sincronizaciónToolStripMenuItem
+            // 
+            this.sincronizaciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sincronizarToolStripMenuItem});
+            this.sincronizaciónToolStripMenuItem.Name = "sincronizaciónToolStripMenuItem";
+            this.sincronizaciónToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.sincronizaciónToolStripMenuItem.Text = "Sincronización";
+            // 
+            // sincronizarToolStripMenuItem
+            // 
+            this.sincronizarToolStripMenuItem.Name = "sincronizarToolStripMenuItem";
+            this.sincronizarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sincronizarToolStripMenuItem.Text = "Sincronizar";
+            this.sincronizarToolStripMenuItem.Click += new System.EventHandler(this.sincronizarToolStripMenuItem_Click);
+            // 
             // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -418,5 +436,7 @@
         private System.Windows.Forms.ToolStripMenuItem reproducciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem porFechaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem porAnimalToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sincronizaciónToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sincronizarToolStripMenuItem;
     }
 }

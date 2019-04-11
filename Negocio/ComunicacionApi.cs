@@ -48,7 +48,6 @@ namespace Negocio
 
                 HttpResponseMessage response = null;
 
-
                 var client = new HttpClient();
                 //var contentjson = JsonConvert.SerializeObject(objettosend);
                 //var buffer = Encoding.UTF8.GetBytes(contentjson);
@@ -60,27 +59,16 @@ namespace Negocio
 
                 if (response != null && response.IsSuccessStatusCode)
                 {
-                    
                     var jsonstring = await response.Content.ReadAsStringAsync();
-
+                
                     return Newtonsoft.Json.JsonConvert.DeserializeObject<K>(jsonstring);
-
                 }
-
-
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
-
             return default(K);
-
-
-
         }
-
-
     }
 }

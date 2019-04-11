@@ -108,6 +108,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AnimalApi_Negocio.cs" />
     <Compile Include="Animal_Negocio.cs" />
     <Compile Include="ComunicacionApi.cs" />
     <Compile Include="Control_Animal_Negocio.cs" />
