@@ -62,6 +62,8 @@
             this.txtRPPadre = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.txtCaravana = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -94,6 +96,7 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSalir.Location = new System.Drawing.Point(561, 415);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 29);
@@ -131,6 +134,8 @@
             // groupBox1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 2);
+            this.groupBox1.Controls.Add(this.label7);
+            this.groupBox1.Controls.Add(this.txtCaravana);
             this.groupBox1.Controls.Add(this.txtTambo);
             this.groupBox1.Controls.Add(this.dtpFechaNacimiento);
             this.groupBox1.Controls.Add(this.txtRP);
@@ -435,6 +440,23 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "RP:";
             // 
+            // txtCaravana
+            // 
+            this.txtCaravana.Location = new System.Drawing.Point(496, 108);
+            this.txtCaravana.Name = "txtCaravana";
+            this.txtCaravana.Size = new System.Drawing.Size(201, 20);
+            this.txtCaravana.TabIndex = 16;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(421, 111);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(63, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Caravana: *";
+            // 
             // EdicionAnimales
             // 
             this.AcceptButton = this.btnGuardar;
@@ -498,5 +520,7 @@
         public System.Windows.Forms.Label label17;
         public System.Windows.Forms.TextBox txtTambo;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Label label7;
+        public System.Windows.Forms.TextBox txtCaravana;
     }
 }

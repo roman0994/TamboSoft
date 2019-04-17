@@ -15,12 +15,16 @@ namespace Escritorio
 {
     public partial class LoginAltaTambos : Form
     {
-        
+        public int id_usuario;
+        public static Usuario Usuario { get; set; }
+
         public LoginAltaTambos()
         {
             InitializeComponent();
             CargarComboProvincia();
             CargarToolTip();
+            Usuario = new Usuario();
+            Usuario.Id_usuario = id_usuario;
         }
 
         public void CargarComboProvincia()
@@ -59,12 +63,14 @@ namespace Escritorio
                     Tambo_Negocio tamboNegocio = new Tambo_Negocio();
                     Tambo tambo = new Tambo();
                     int id_tambo;
+              
                     tambo = MapearATambo();
                     id_tambo = tamboNegocio.InsertarDevolviendoID(tambo);
                     DialogResult result = MessageBox.Show("El tambo fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     
                     Principal principal = new Principal(id_tambo);
                     principal.id_tambo = id_tambo;
+                    principal.id_usuario = Usuario.Id_usuario;
                     principal.Show();
                     this.Hide();
                 }
@@ -93,6 +99,7 @@ namespace Escritorio
             tambo.Id_localidad = localidad.Id_localidad;
             tambo.Nombre_localidad = localidad.Nombre_localidad;
             tambo.Nombre_provincia = provincia.Nombre_provincia;
+            tambo.Id_usuario = id_usuario;
 
             return tambo;
         }

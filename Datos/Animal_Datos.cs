@@ -18,7 +18,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.habilitado='true'", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.habilitado='true'", Conn);
 
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -44,6 +44,7 @@ namespace Datos
                     animal.Nombre_raza = dr.IsDBNull(14) ? string.Empty : dr["nombre_raza"].ToString();
                     animal.Nombre_tambo = dr.IsDBNull(15) ? string.Empty : dr["nombre_tambo"].ToString();
                     animal.Habilitado = dr.IsDBNull(16) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
+                    animal.Caravana = dr.IsDBNull(17) ? string.Empty : dr["caravana"].ToString();
 
                     lista.Add(animal);
 
@@ -72,7 +73,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -98,6 +99,7 @@ namespace Datos
                     animal.Nombre_raza = dr.IsDBNull(14) ? string.Empty : dr["nombre_raza"].ToString();
                     animal.Nombre_tambo = dr.IsDBNull(15) ? string.Empty : dr["nombre_tambo"].ToString();
                     animal.Habilitado = dr.IsDBNull(16) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
+                    animal.Caravana = dr.IsDBNull(17) ? string.Empty : dr["caravana"].ToString();
 
 
                     lista.Add(animal);
@@ -127,7 +129,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' and a.categoria='Vaca' order by a.nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' and a.categoria='Vaca' order by a.nombre_animal", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -153,7 +155,7 @@ namespace Datos
                     animal.Nombre_raza = dr.IsDBNull(14) ? string.Empty : dr["nombre_raza"].ToString();
                     animal.Nombre_tambo = dr.IsDBNull(15) ? string.Empty : dr["nombre_tambo"].ToString();
                     animal.Habilitado = dr.IsDBNull(16) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
-
+                    animal.Caravana = dr.IsDBNull(17) ? string.Empty : dr["caravana"].ToString();
 
                     lista.Add(animal);
 
@@ -179,7 +181,7 @@ namespace Datos
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
+            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
 
             cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -200,7 +202,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Servicio' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo,a.caravana FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Servicio' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -219,6 +221,7 @@ namespace Datos
                     animal.Estado_animal = dr.IsDBNull(8) ? string.Empty : dr["estado_animal"].ToString();
                     animal.Nombre_raza = dr.IsDBNull(9) ? string.Empty : dr["nombre_raza"].ToString();
                     animal.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
+                    animal.Caravana = dr.IsDBNull(11) ? string.Empty : dr["caravana"].ToString();
 
 
                     lista.Add(animal);
@@ -245,7 +248,7 @@ namespace Datos
         public DataTable RecuperarDTVacasServidasPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Servicio' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
+            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo,a.caravana FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Servicio' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
 
             cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -266,7 +269,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT DISTINCT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Parto' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT DISTINCT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo,a.caravana FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Parto' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -286,7 +289,7 @@ namespace Datos
                     animal.Estado_animal = dr.IsDBNull(8) ? string.Empty : dr["estado_animal"].ToString();
                     animal.Nombre_raza = dr.IsDBNull(9) ? string.Empty : dr["nombre_raza"].ToString();
                     animal.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
-
+                    animal.Caravana = dr.IsDBNull(11) ? string.Empty : dr["caravana"].ToString();
 
 
                     lista.Add(animal);
@@ -313,7 +316,7 @@ namespace Datos
         public DataTable RecuperarDTVacasConPartoPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT DISTINCT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Parto' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
+            SqlCommand cmdAnimal = new SqlCommand("SELECT DISTINCT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo,a.caravana FROM Animal a inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp inner join Evento e on ev.id_evento = e.id_evento inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and e.nombre_evento = 'Parto' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by a.nombre_animal", Conn);
 
             cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -334,7 +337,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' order by a.nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' order by a.nombre_animal", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -354,6 +357,7 @@ namespace Datos
                     animal.Estado_animal = dr.IsDBNull(8) ? string.Empty : dr["estado_animal"].ToString();
                     animal.Nombre_raza = dr.IsDBNull(9) ? string.Empty : dr["nombre_raza"].ToString();
                     animal.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
+                    animal.Caravana = dr.IsDBNull(11) ? string.Empty : dr["caravana"].ToString();
 
                     lista.Add(animal);
 
@@ -379,7 +383,7 @@ namespace Datos
         public DataTable RecuperarDTAnimalesEnfermosPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' order by a.nombre_animal", Conn);
+            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' order by a.nombre_animal", Conn);
 
             cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -400,7 +404,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Celo' order by a.nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Celo' order by a.nombre_animal", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -420,7 +424,7 @@ namespace Datos
                     animal.Estado_animal = dr.IsDBNull(8) ? string.Empty : dr["estado_animal"].ToString();
                     animal.Nombre_raza = dr.IsDBNull(9) ? string.Empty : dr["nombre_raza"].ToString();
                     animal.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
-
+                    animal.Caravana = dr.IsDBNull(11) ? string.Empty : dr["caravana"].ToString();
 
                     lista.Add(animal);
 
@@ -446,7 +450,7 @@ namespace Datos
         public DataTable RecuperarDTVacasEnCeloPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Celo' order by a.nombre_animal", Conn);
+            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.estado_animal,r.nombre_raza,t.nombre_tambo,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Celo' order by a.nombre_animal", Conn);
 
             cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -671,7 +675,7 @@ namespace Datos
             {
                 Animal animal = new Animal();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.rp=@rp and a.estado_animal!='Vendido'", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.rp=@rp and a.estado_animal!='Vendido'", Conn);
                 cmdAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
                 SqlDataReader drAnimal = cmdAnimal.ExecuteReader();
 
@@ -695,6 +699,7 @@ namespace Datos
                     animal.Nombre_raza = drAnimal.IsDBNull(14) ? string.Empty : drAnimal["nombre_raza"].ToString();
                     animal.Nombre_tambo = drAnimal.IsDBNull(15) ? string.Empty : drAnimal["nombre_tambo"].ToString();
                     animal.Habilitado = drAnimal.IsDBNull(16) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(drAnimal["habilitado"]));
+                    animal.Caravana = drAnimal.IsDBNull(17) ? string.Empty : drAnimal["caravana"].ToString();
                 }
                 drAnimal.Close();
                 return animal;
@@ -720,9 +725,9 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdInsertar = new SqlCommand("insert into Animal(fecha_nacimiento,edad,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado) values (@fecha_nacimiento,@edad,@nombre_animal,@estado_animal,@hba,@categoria,@rp_madre,@rp_padre,@hba_madre,@hba_padre,@id_tambo,@id_raza,@habilitado)", Conn);
+                SqlCommand cmdInsertar = new SqlCommand("insert into Animal(fecha_nacimiento,edad,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana) values (@fecha_nacimiento,@edad,@nombre_animal,@estado_animal,@hba,@categoria,@rp_madre,@rp_padre,@hba_madre,@hba_padre,@id_tambo,@id_raza,@habilitado,@caravana)", Conn);
                 cmdInsertar.Parameters.Add("fecha_nacimiento", SqlDbType.DateTime).Value = animal.Fecha_nacimiento;
-                cmdInsertar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
+                cmdInsertar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; 
                 cmdInsertar.Parameters.Add("nombre_animal", SqlDbType.VarChar, 50).Value = animal.Nombre_animal;
                 cmdInsertar.Parameters.Add("estado_animal", SqlDbType.VarChar, 50).Value = animal.Estado_animal;
                 cmdInsertar.Parameters.Add("hba", SqlDbType.Int).Value = animal.Hba;
@@ -734,6 +739,7 @@ namespace Datos
                 cmdInsertar.Parameters.Add("id_tambo", SqlDbType.Int).Value = animal.Id_tambo;
                 cmdInsertar.Parameters.Add("id_raza", SqlDbType.Int).Value = animal.Id_raza;
                 cmdInsertar.Parameters.Add("habilitado", SqlDbType.Bit).Value = animal.Habilitado;
+                cmdInsertar.Parameters.Add("caravana", SqlDbType.VarChar, 50).Value = animal.Caravana;
                 cmdInsertar.ExecuteNonQuery();
 
             }
@@ -757,7 +763,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdActualizar = new SqlCommand("update Animal set fecha_nacimiento=@fecha_nacimiento,edad=@edad,nombre_animal=@nombre_animal,estado_animal=@estado_animal,hba=@hba,categoria=@categoria,rp_madre=@rp_madre,rp_padre=@rp_padre,hba_madre=@hba_madre,hba_padre=@hba_padre,id_tambo=@id_tambo,id_raza=@id_raza,habilitado=@habilitado where rp = @rp", Conn);
+                SqlCommand cmdActualizar = new SqlCommand("update Animal set fecha_nacimiento=@fecha_nacimiento,edad=@edad,nombre_animal=@nombre_animal,estado_animal=@estado_animal,hba=@hba,categoria=@categoria,rp_madre=@rp_madre,rp_padre=@rp_padre,hba_madre=@hba_madre,hba_padre=@hba_padre,id_tambo=@id_tambo,id_raza=@id_raza,habilitado=@habilitado,caravana=@caravana where rp = @rp", Conn);
                 cmdActualizar.Parameters.Add("rp", SqlDbType.Int).Value = animal.Rp;
                 cmdActualizar.Parameters.Add("fecha_nacimiento", SqlDbType.DateTime).Value = animal.Fecha_nacimiento;
                 cmdActualizar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
@@ -772,6 +778,7 @@ namespace Datos
                 cmdActualizar.Parameters.Add("id_tambo", SqlDbType.Int).Value = animal.Id_tambo;
                 cmdActualizar.Parameters.Add("id_raza", SqlDbType.Int).Value = animal.Id_raza;
                 cmdActualizar.Parameters.Add("habilitado", SqlDbType.Bit).Value = animal.Habilitado;
+                cmdActualizar.Parameters.Add("caravana", SqlDbType.VarChar, 50).Value = animal.Caravana;
 
                 cmdActualizar.ExecuteNonQuery();
 
@@ -880,7 +887,7 @@ namespace Datos
             {
                 Animal animal = new Animal();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.rp=@rp", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.rp=@rp", Conn);
                 cmdAnimal.Parameters.Add("rp",SqlDbType.Int).Value = rp;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -904,6 +911,7 @@ namespace Datos
                     animal.Nombre_raza = dr.IsDBNull(14) ? string.Empty : dr["nombre_raza"].ToString();
                     animal.Nombre_tambo = dr.IsDBNull(15) ? string.Empty : dr["nombre_tambo"].ToString();
                     animal.Habilitado = dr.IsDBNull(16) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["habilitado"]);
+                    animal.Caravana = dr.IsDBNull(17) ? string.Empty : dr["caravana"].ToString();
                 }
                 dr.Close();
                 return animal;
@@ -930,7 +938,7 @@ namespace Datos
             {
                 Animal animal = new Animal();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal=@nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal=@nombre_animal", Conn);
                 cmdAnimal.Parameters.Add("nombre_animal", SqlDbType.VarChar,50).Value = nombre;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -954,6 +962,7 @@ namespace Datos
                     animal.Nombre_raza = dr.IsDBNull(14) ? string.Empty : dr["nombre_raza"].ToString();
                     animal.Nombre_tambo = dr.IsDBNull(15) ? string.Empty : dr["nombre_tambo"].ToString();
                     animal.Habilitado = dr.IsDBNull(16) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["habilitado"]);
+                    animal.Caravana = dr.IsDBNull(17) ? string.Empty : dr["caravana"].ToString();
 
                 }
                 dr.Close();
@@ -977,7 +986,7 @@ namespace Datos
         public DataTable FiltrarPorNombre(string texto, int idtambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true'  and a.estado_animal!='Vendido' order by a.nombre_animal", Conn);
+            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true'  and a.estado_animal!='Vendido' order by a.nombre_animal", Conn);
 
             cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
@@ -997,7 +1006,7 @@ namespace Datos
             this.AbrirConexion();
             SqlCommand cmdFiltro = Conn.CreateCommand();
             cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where rp like ('" + rp + "%')";
+            cmdFiltro.CommandText = "SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where rp like ('" + rp + "%')";
             cmdFiltro.ExecuteNonQuery();
 
             DataTable dt = new DataTable();
@@ -1011,7 +1020,7 @@ namespace Datos
         public DataTable FiltrarPorEstado(string texto, int idtambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where estado_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' order by a.nombre_animal", Conn);
+            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where estado_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' order by a.nombre_animal", Conn);
             cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
             SqlDataReader dr = cmdFiltro.ExecuteReader();
@@ -1030,7 +1039,7 @@ namespace Datos
             this.AbrirConexion();
             SqlCommand cmdFiltro = Conn.CreateCommand();
             cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT a.rp,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,r.nombre_raza FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.habilitado='true' and a.estado_animal = 'Celo' and a.id_tambo = ('" + id_tambo + "') order by a.nombre_animal";
+            cmdFiltro.CommandText = "SELECT a.rp,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,r.nombre_raza,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.habilitado='true' and a.estado_animal = 'Celo' and a.id_tambo = ('" + id_tambo + "') order by a.nombre_animal";
             cmdFiltro.ExecuteNonQuery();
 
             DataTable dt = new DataTable();
@@ -1046,7 +1055,7 @@ namespace Datos
             this.AbrirConexion();
             SqlCommand cmdFiltro = Conn.CreateCommand();
             cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT a.rp,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,r.nombre_raza FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' order by a.nombre_animal";
+            cmdFiltro.CommandText = "SELECT a.rp,a.nombre_animal,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,r.nombre_raza,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' order by a.nombre_animal";
             cmdFiltro.ExecuteNonQuery();
 
             DataTable dt = new DataTable();
@@ -1060,7 +1069,7 @@ namespace Datos
         public bool HayVacas(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.categoria = 'Vaca'", Conn);
+            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.categoria = 'Vaca'", Conn);
             cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
             SqlDataReader drAnimal = cmdAnimal.ExecuteReader();
 
@@ -1076,18 +1085,35 @@ namespace Datos
 
         public bool HayAnimales(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true'", Conn);
-            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            SqlDataReader drAnimal = cmdAnimal.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true'", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                SqlDataReader drAnimal = cmdAnimal.ExecuteReader();
 
-            if (drAnimal.Read())
-            {
-                return true;
+                if (drAnimal.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+                        
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del animal", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
     }

@@ -136,7 +136,7 @@
             this.groupBox2.Location = new System.Drawing.Point(3, 61);
             this.groupBox2.Name = "groupBox2";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox2, 2);
-            this.groupBox2.Size = new System.Drawing.Size(234, 351);
+            this.groupBox2.Size = new System.Drawing.Size(234, 350);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Intervalo de tiempo";
@@ -224,7 +224,7 @@
             this.dgvPartos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPartos.Location = new System.Drawing.Point(243, 61);
             this.dgvPartos.Name = "dgvPartos";
-            this.dgvPartos.Size = new System.Drawing.Size(554, 268);
+            this.dgvPartos.Size = new System.Drawing.Size(554, 267);
             this.dgvPartos.TabIndex = 4;
             // 
             // id_desc_evento
@@ -322,9 +322,9 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(482, 418);
+            this.btnSalir.Location = new System.Drawing.Point(482, 417);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 29);
+            this.btnSalir.Size = new System.Drawing.Size(75, 30);
             this.btnSalir.TabIndex = 1;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -333,7 +333,7 @@
             // btnExportar
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportar.Location = new System.Drawing.Point(162, 418);
+            this.btnExportar.Location = new System.Drawing.Point(162, 417);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(75, 27);
             this.btnExportar.TabIndex = 0;
@@ -350,7 +350,7 @@
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Controls.Add(this.label5);
             this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(243, 335);
+            this.groupBox3.Location = new System.Drawing.Point(243, 334);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(554, 77);
             this.groupBox3.TabIndex = 5;
@@ -418,6 +418,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;

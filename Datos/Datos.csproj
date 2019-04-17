@@ -125,6 +125,7 @@
     <Compile Include="Subevento_Datos.cs" />
     <Compile Include="Tambo_Datos.cs" />
     <Compile Include="Tambo_Inseminador_Datos.cs" />
+    <Compile Include="Usuario_Datos.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Entidades\Entidades.csproj">

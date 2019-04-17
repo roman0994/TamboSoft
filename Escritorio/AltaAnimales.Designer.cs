@@ -60,6 +60,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtCaravana = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbMadre.SuspendLayout();
             this.gbPadre.SuspendLayout();
@@ -239,6 +241,8 @@
             // gbAnimal
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.gbAnimal, 4);
+            this.gbAnimal.Controls.Add(this.txtCaravana);
+            this.gbAnimal.Controls.Add(this.label12);
             this.gbAnimal.Controls.Add(this.txtTambo);
             this.gbAnimal.Controls.Add(this.cbEstado);
             this.gbAnimal.Controls.Add(this.label17);
@@ -277,7 +281,7 @@
             // 
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FormattingEnabled = true;
-            this.cbEstado.Location = new System.Drawing.Point(484, 72);
+            this.cbEstado.Location = new System.Drawing.Point(485, 37);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(201, 21);
             this.cbEstado.TabIndex = 26;
@@ -286,7 +290,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(419, 75);
+            this.label17.Location = new System.Drawing.Point(420, 40);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(43, 13);
             this.label17.TabIndex = 24;
@@ -424,6 +428,23 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Fecha Nacimiento:";
             // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(416, 85);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(63, 13);
+            this.label12.TabIndex = 28;
+            this.label12.Text = "Caravana: *";
+            // 
+            // txtCaravana
+            // 
+            this.txtCaravana.Location = new System.Drawing.Point(485, 82);
+            this.txtCaravana.Name = "txtCaravana";
+            this.txtCaravana.Size = new System.Drawing.Size(201, 20);
+            this.txtCaravana.TabIndex = 29;
+            // 
             // AltaAnimales
             // 
             this.AcceptButton = this.btnGuardar;
@@ -486,5 +507,7 @@
         private System.Windows.Forms.ComboBox cbEstado;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.TextBox txtTambo;
+        private System.Windows.Forms.TextBox txtCaravana;
+        private System.Windows.Forms.Label label12;
     }
 }

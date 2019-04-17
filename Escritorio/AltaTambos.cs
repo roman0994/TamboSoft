@@ -94,6 +94,7 @@ namespace Escritorio
             tambo.Nombre_tambo = txtNombre.Text;
             tambo.Superficie = Convert.ToDecimal(txtSuperficie.Text);
             tambo.Estado_tambo = true;
+            tambo.Id_usuario = Principal.Usuario.Id_usuario;
             tambo.Id_localidad = localidad.Id_localidad;
             tambo.Nombre_localidad = localidad.Nombre_localidad;
             tambo.Nombre_provincia = provincia.Nombre_provincia;

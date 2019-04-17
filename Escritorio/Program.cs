@@ -20,17 +20,11 @@ namespace Escritorio
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);           
 
-            CargarTablas cargarTablas = new CargarTablas();
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            if (tamboNegocio.HayTambos())
+            Usuario_Negocio usuarioNegocio = new Usuario_Negocio();
+
+            if (usuarioNegocio.HayUsuarios())
             {
-                cargarTablas.CargaTablasData();
-                Application.Run(new Login());
-            }
-            else
-            {
-                cargarTablas.CargaTablasData();
-                Application.Run(new LoginAltaTambos());
+                Application.Run(new LoginUsuario());
             }
         }
     }

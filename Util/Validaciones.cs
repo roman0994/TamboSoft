@@ -93,9 +93,9 @@ namespace Util
             }
         }
 
-        public bool ValidarCargaAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba)
+        public bool ValidarCargaAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba, string caravana)
         {
-            if (indexCategoria != -1  && indexRaza != -1 && edad != null && edad != "Edad del animal" && (! string.IsNullOrWhiteSpace((nombre))) && nombre != "Nombre del animal" && hba != null && hba != "Código numérico")
+            if (indexCategoria != -1  && indexRaza != -1 && edad != null && edad != "Edad del animal" && (! string.IsNullOrWhiteSpace((nombre))) && nombre != "Nombre del animal" && hba != null && hba != "Código numérico" && caravana != null && caravana != string.Empty)
             {
                 return true;
             }
@@ -105,10 +105,10 @@ namespace Util
             }
         }
 
-        public string ValidarEdicionAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba)
+        public string ValidarEdicionAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba, string caravana)
         {
             string mensaje;
-            if (indexCategoria != -1 && indexRaza != -1 && edad != null && edad != string.Empty && (!string.IsNullOrWhiteSpace((nombre))) && nombre != string.Empty && hba != null && hba != string.Empty)
+            if (indexCategoria != -1 && indexRaza != -1 && edad != null && edad != string.Empty && (!string.IsNullOrWhiteSpace((nombre))) && nombre != string.Empty && hba != null && hba != string.Empty && caravana != null && caravana != string.Empty)
             {
                 if(edad.Length <= 3)
                 {
@@ -250,6 +250,32 @@ namespace Util
                 return false;
             }
         }*/
+
+        public bool ValidarCargaUsuarios(string usu, string contraseña, string repetircontraseña, string email)
+        {
+            if (!string.IsNullOrWhiteSpace(usu) && usu != string.Empty && (!string.IsNullOrWhiteSpace(contraseña)) && contraseña != string.Empty && (!string.IsNullOrWhiteSpace(repetircontraseña)) && repetircontraseña != string.Empty && (!string.IsNullOrWhiteSpace(email)) && email != string.Empty)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ValidarEmail(string email)
+        {
+            Regex regex = new Regex("^(([\\w-]+\\.)+[\\w-]+|([a-zA-Z]{1}|[\\w-]{2,}))@(([a-zA-Z]+[\\w-]+\\.){1,2}[a-zA-Z]{2,4})$");
+            if (regex.IsMatch(email))
+            {
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }

@@ -135,7 +135,7 @@ namespace Escritorio
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-
+            
             if (this.cbBuscar.SelectedItem.ToString() == "Día")
             {
                 this.bandera = 1;

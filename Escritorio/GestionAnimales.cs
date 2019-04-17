@@ -78,6 +78,7 @@ namespace Escritorio
             edicion.txtHBAMadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba_madre"].Value);
             edicion.txtRPPadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp_padre"].Value);
             edicion.txtHBAPadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba_padre"].Value);
+            edicion.txtCaravana.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["caravana"].Value);
 
             edicion.animalGlobal = MapearAAnimal();
             edicion.Show();
@@ -107,6 +108,7 @@ namespace Escritorio
             animal.Hba_madre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["hba_madre"].Value);
             animal.Rp_padre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp_padre"].Value);
             animal.Hba_padre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["hba_padre"].Value);
+            animal.Caravana = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["caravana"].Value);
 
             return animal;
         }
@@ -183,6 +185,36 @@ namespace Escritorio
             else
             {
                 e.Handled = true;
+            }
+        }
+
+        private void dgvAnimales_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 0)
+            {
+                if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+                {
+                    int id_tambo = Principal.Tambo.Id_tambo;
+                    int rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
+
+                    HistoriaClinica historiaClinica = new HistoriaClinica();
+                    EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                    historiaClinica.dgvHistorialClinico.DataSource = eventoAnimalDescNegocio.RecuperarPorTamboYAnimal(id_tambo, rp);
+                    historiaClinica.Show();
+                }
+            }
+            else if (e.ColumnIndex == 1)
+            {
+                if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+                {
+                    int id_tambo = Principal.Tambo.Id_tambo;
+                    int rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
+
+                    HistorialProduccion historialProd = new HistorialProduccion();
+                    Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+                    historialProd.dgvHistorialProduccion.DataSource = controlAnimalNegocio.RecuperarPorTamboYAnimal(id_tambo, rp);
+                    historialProd.Show();
+                }
             }
         }
     }

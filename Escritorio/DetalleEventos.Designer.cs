@@ -106,6 +106,7 @@
             this.estado_evento});
             this.dgvDetalles.Location = new System.Drawing.Point(9, 19);
             this.dgvDetalles.Name = "dgvDetalles";
+            this.dgvDetalles.ReadOnly = true;
             this.dgvDetalles.Size = new System.Drawing.Size(529, 171);
             this.dgvDetalles.TabIndex = 0;
             // 
@@ -117,6 +118,7 @@
             this.nombre_subevento.HeaderText = "Subevento";
             this.nombre_subevento.MinimumWidth = 10;
             this.nombre_subevento.Name = "nombre_subevento";
+            this.nombre_subevento.ReadOnly = true;
             // 
             // descripcion
             // 
@@ -126,12 +128,14 @@
             this.descripcion.HeaderText = "Descripción";
             this.descripcion.MinimumWidth = 10;
             this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
             // 
             // rp
             // 
             this.rp.DataPropertyName = "rp";
             this.rp.HeaderText = "RP";
             this.rp.Name = "rp";
+            this.rp.ReadOnly = true;
             this.rp.Visible = false;
             // 
             // id_evento
@@ -139,6 +143,7 @@
             this.id_evento.DataPropertyName = "id_evento";
             this.id_evento.HeaderText = "ID Evento";
             this.id_evento.Name = "id_evento";
+            this.id_evento.ReadOnly = true;
             this.id_evento.Visible = false;
             // 
             // id_subevento
@@ -146,6 +151,7 @@
             this.id_subevento.DataPropertyName = "id_subevento";
             this.id_subevento.HeaderText = "ID Subevento";
             this.id_subevento.Name = "id_subevento";
+            this.id_subevento.ReadOnly = true;
             this.id_subevento.Visible = false;
             // 
             // id_desc_evento
@@ -153,6 +159,7 @@
             this.id_desc_evento.DataPropertyName = "id_desc_evento";
             this.id_desc_evento.HeaderText = "ID Desc Evento";
             this.id_desc_evento.Name = "id_desc_evento";
+            this.id_desc_evento.ReadOnly = true;
             this.id_desc_evento.Visible = false;
             // 
             // id_inseminador
@@ -160,6 +167,7 @@
             this.id_inseminador.DataPropertyName = "id_inseminador";
             this.id_inseminador.HeaderText = "ID Inseminador";
             this.id_inseminador.Name = "id_inseminador";
+            this.id_inseminador.ReadOnly = true;
             this.id_inseminador.Visible = false;
             // 
             // nombre_inseminador
@@ -170,12 +178,14 @@
             this.nombre_inseminador.HeaderText = "Inseminador";
             this.nombre_inseminador.MinimumWidth = 10;
             this.nombre_inseminador.Name = "nombre_inseminador";
+            this.nombre_inseminador.ReadOnly = true;
             // 
             // id_tambo
             // 
             this.id_tambo.DataPropertyName = "id_tambo";
             this.id_tambo.HeaderText = "ID Tambo";
             this.id_tambo.Name = "id_tambo";
+            this.id_tambo.ReadOnly = true;
             this.id_tambo.Visible = false;
             // 
             // nombre_tambo
@@ -183,6 +193,7 @@
             this.nombre_tambo.DataPropertyName = "nombre_tambo";
             this.nombre_tambo.HeaderText = "Tambo";
             this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.ReadOnly = true;
             this.nombre_tambo.Visible = false;
             // 
             // fecha_desc
@@ -193,6 +204,7 @@
             this.fecha_desc.HeaderText = "Fecha";
             this.fecha_desc.MinimumWidth = 10;
             this.fecha_desc.Name = "fecha_desc";
+            this.fecha_desc.ReadOnly = true;
             this.fecha_desc.Width = 95;
             // 
             // nombre_animal
@@ -203,6 +215,7 @@
             this.nombre_animal.HeaderText = "Animal";
             this.nombre_animal.MinimumWidth = 10;
             this.nombre_animal.Name = "nombre_animal";
+            this.nombre_animal.ReadOnly = true;
             this.nombre_animal.Width = 90;
             // 
             // nombre_evento
@@ -210,6 +223,7 @@
             this.nombre_evento.DataPropertyName = "nombre_evento";
             this.nombre_evento.HeaderText = "Evento";
             this.nombre_evento.Name = "nombre_evento";
+            this.nombre_evento.ReadOnly = true;
             this.nombre_evento.Visible = false;
             // 
             // id_desc
@@ -217,6 +231,7 @@
             this.id_desc.DataPropertyName = "id_desc";
             this.id_desc.HeaderText = "ID Desc";
             this.id_desc.Name = "id_desc";
+            this.id_desc.ReadOnly = true;
             this.id_desc.Visible = false;
             // 
             // estado_evento
@@ -224,6 +239,7 @@
             this.estado_evento.DataPropertyName = "estado_evento";
             this.estado_evento.HeaderText = "Estado";
             this.estado_evento.Name = "estado_evento";
+            this.estado_evento.ReadOnly = true;
             this.estado_evento.Visible = false;
             // 
             // DetalleEventos

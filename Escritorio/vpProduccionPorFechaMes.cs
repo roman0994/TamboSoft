@@ -16,6 +16,7 @@ namespace Escritorio
         public int idtambo;
         public int mes;
         public int año;
+        public int rp;
 
         public vpProduccionPorFechaMes()
         {
@@ -26,7 +27,7 @@ namespace Escritorio
         {
             Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
             rptProduccionPorFechaMes reporte = new rptProduccionPorFechaMes();
-            reporte.SetDataSource(controlAnimalNegocio.ProduccionPorFiltroMes(idtambo,mes,año));
+            reporte.SetDataSource(controlAnimalNegocio.ProduccionPorFiltroMesYAnimal(idtambo,mes,año, rp));
             crvProduccionPorMes.ReportSource = reporte;
             crvProduccionPorMes.Refresh();
         }

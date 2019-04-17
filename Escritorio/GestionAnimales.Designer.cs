@@ -37,6 +37,7 @@
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvAnimales = new System.Windows.Forms.DataGridView();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +54,8 @@
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verhistorial = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.verproduccion = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAnimales)).BeginInit();
             this.SuspendLayout();
@@ -60,9 +63,9 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnEditar.Location = new System.Drawing.Point(361, 415);
+            this.btnEditar.Location = new System.Drawing.Point(531, 573);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 29);
+            this.btnEditar.Size = new System.Drawing.Size(75, 32);
             this.btnEditar.TabIndex = 4;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -90,13 +93,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 85F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1140, 611);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // cbBuscar
             // 
             this.cbBuscar.FormattingEnabled = true;
-            this.cbBuscar.Location = new System.Drawing.Point(6, 41);
+            this.cbBuscar.Location = new System.Drawing.Point(6, 53);
             this.cbBuscar.Name = "cbBuscar";
             this.cbBuscar.Size = new System.Drawing.Size(200, 21);
             this.cbBuscar.TabIndex = 1;
@@ -107,9 +110,9 @@
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(627, 415);
+            this.btnSalir.Location = new System.Drawing.Point(911, 573);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 29);
+            this.btnSalir.Size = new System.Drawing.Size(75, 32);
             this.btnSalir.TabIndex = 5;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -117,7 +120,7 @@
             // 
             // txtBuscar
             // 
-            this.txtBuscar.Location = new System.Drawing.Point(271, 41);
+            this.txtBuscar.Location = new System.Drawing.Point(384, 53);
             this.txtBuscar.Name = "txtBuscar";
             this.txtBuscar.Size = new System.Drawing.Size(200, 20);
             this.txtBuscar.TabIndex = 2;
@@ -132,7 +135,7 @@
             this.label1.Location = new System.Drawing.Point(6, 6);
             this.label1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(788, 29);
+            this.label1.Size = new System.Drawing.Size(1128, 41);
             this.label1.TabIndex = 7;
             this.label1.Text = "A continuación, se presenta la posibilidad de buscar un animal según el parámetro" +
     " requerido por el usuario, además para editar o eliminar debe seleccionar un ani" +
@@ -145,9 +148,9 @@
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(96, 415);
+            this.btnEliminar.Location = new System.Drawing.Point(153, 573);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 29);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 32);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -159,6 +162,7 @@
             this.dgvAnimales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAnimales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rp,
+            this.caravana,
             this.habilitado,
             this.fecha_nacimiento,
             this.edad,
@@ -174,16 +178,19 @@
             this.id_tambo,
             this.nombre_tambo,
             this.id_raza,
-            this.nombre_raza});
+            this.nombre_raza,
+            this.verhistorial,
+            this.verproduccion});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvAnimales, 3);
             this.dgvAnimales.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAnimales.Location = new System.Drawing.Point(6, 72);
+            this.dgvAnimales.Location = new System.Drawing.Point(6, 95);
             this.dgvAnimales.MultiSelect = false;
             this.dgvAnimales.Name = "dgvAnimales";
             this.dgvAnimales.ReadOnly = true;
             this.dgvAnimales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnimales.Size = new System.Drawing.Size(788, 334);
+            this.dgvAnimales.Size = new System.Drawing.Size(1128, 469);
             this.dgvAnimales.TabIndex = 8;
+            this.dgvAnimales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnimales_CellContentClick);
             // 
             // rp
             // 
@@ -192,6 +199,13 @@
             this.rp.Name = "rp";
             this.rp.ReadOnly = true;
             this.rp.Width = 40;
+            // 
+            // caravana
+            // 
+            this.caravana.DataPropertyName = "caravana";
+            this.caravana.HeaderText = "Caravana";
+            this.caravana.Name = "caravana";
+            this.caravana.ReadOnly = true;
             // 
             // habilitado
             // 
@@ -318,13 +332,29 @@
             this.nombre_raza.Name = "nombre_raza";
             this.nombre_raza.ReadOnly = true;
             // 
+            // verhistorial
+            // 
+            this.verhistorial.HeaderText = "Ver historial clínico";
+            this.verhistorial.Name = "verhistorial";
+            this.verhistorial.ReadOnly = true;
+            this.verhistorial.Text = "Historia clínica";
+            this.verhistorial.UseColumnTextForLinkValue = true;
+            // 
+            // verproduccion
+            // 
+            this.verproduccion.HeaderText = "Ver historial producción";
+            this.verproduccion.Name = "verproduccion";
+            this.verproduccion.ReadOnly = true;
+            this.verproduccion.Text = "Historial producción";
+            this.verproduccion.UseColumnTextForLinkValue = true;
+            // 
             // GestionAnimales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1140, 611);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -350,6 +380,7 @@
         public System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.ComboBox cbBuscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_nacimiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn edad;
@@ -366,5 +397,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_raza;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_raza;
+        private System.Windows.Forms.DataGridViewLinkColumn verhistorial;
+        private System.Windows.Forms.DataGridViewLinkColumn verproduccion;
     }
 }

@@ -16,7 +16,10 @@ namespace Escritorio
     {
         public int id_tambo;
         public static Tambo Tambo { get; set; }
-        
+
+        public int id_usuario;
+        public static Usuario Usuario { get; set; }
+
         public Principal(int id_tambo)
         {
             InitializeComponent();
@@ -26,6 +29,8 @@ namespace Escritorio
             Tambo = new Tambo();
             Tambo.Id_tambo = id_tambo;
 
+            Usuario = new Usuario();
+            Usuario.Id_usuario = id_usuario;
         }
 
         private void CargarTambo(int id_tambo)
@@ -191,7 +196,7 @@ namespace Escritorio
         {
             this.Dispose();
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            if (tamboNegocio.HayTambos())
+            if (tamboNegocio.HayTambos(Principal.Usuario.Id_usuario))
             {
                 Login login = new Login();
                 login.ShowDialog();
@@ -213,7 +218,7 @@ namespace Escritorio
         private void otrosTambosToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            if (tamboNegocio.HayOtrosTambos(Principal.Tambo.Id_tambo))
+            if (tamboNegocio.HayOtrosTambos(Principal.Tambo.Id_tambo,Principal.Usuario.Id_usuario))
             {
                 GestionTambos gestionTambos = new GestionTambos(id_tambo);
                 gestionTambos.idtambo = id_tambo;
@@ -249,6 +254,20 @@ namespace Escritorio
             else
             {
                 MessageBox.Show("El tambo no posee animales", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void reporteProduccionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Animal_Negocio animalNegocio = new Animal_Negocio();
+            if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
+            {
+                ReporteProduccion reporteEventos = new ReporteProduccion();
+                reporteEventos.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("El tambo no posee vacas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -306,6 +325,16 @@ namespace Escritorio
         {
             PruebaSincronizacion sincronizacion = new PruebaSincronizacion();
             sincronizacion.ShowDialog();
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+
+            LoginUsuario login = new LoginUsuario();
+            login.ShowDialog();
+
         }
     }
 }

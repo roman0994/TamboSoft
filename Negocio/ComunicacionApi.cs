@@ -9,6 +9,7 @@ namespace Negocio
 {
     public class ComunicacionApi
     {
+        public HttpResponseMessage response;
         public async Task<T> Get<T>(string Url)
         {
 
@@ -46,23 +47,53 @@ namespace Negocio
                 var json = JsonConvert.SerializeObject(objettosend);
                 var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = null;
+                response = null;
 
                 var client = new HttpClient();
-                //var contentjson = JsonConvert.SerializeObject(objettosend);
-                //var buffer = Encoding.UTF8.GetBytes(contentjson);
-                //var rawcontent = new ByteArrayContent(buffer);
-                //rawcontent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-                //var response = await client.PostAsync(url, rawcontent);
+                
 
                 response = await client.PostAsync(uri, content);
 
                 if (response != null && response.IsSuccessStatusCode)
                 {
                     var jsonstring = await response.Content.ReadAsStringAsync();
-                
+
                     return Newtonsoft.Json.JsonConvert.DeserializeObject<K>(jsonstring);
                 }
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return default(K);
+        }
+
+        public async Task<K> Put<T, K>(string url, K objettosend)
+        {
+
+            try
+            {
+                var uri = new Uri(string.Format(url, string.Empty));
+
+
+                var json = JsonConvert.SerializeObject(objettosend);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                response = null;
+
+                var client = new HttpClient();
+
+                response = await client.PutAsync(uri, content);
+
+
+                if (response != null && response.IsSuccessStatusCode)
+                {
+                    var jsonstring = await response.Content.ReadAsStringAsync();
+
+                    return Newtonsoft.Json.JsonConvert.DeserializeObject<K>(jsonstring);
+                }
+
             }
             catch (Exception ex)
             {

@@ -64,7 +64,7 @@ namespace Escritorio
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarCargaAnimales(cbCategoria.SelectedIndex,cbRaza.SelectedIndex,txtEdad.Text,txtNombre.Text,txtHBA.Text);
+            bool validar = validaciones.ValidarCargaAnimales(cbCategoria.SelectedIndex,cbRaza.SelectedIndex,txtEdad.Text,txtNombre.Text,txtHBA.Text,txtCaravana.Text);
 
             if(validar == true) 
             {
@@ -80,12 +80,19 @@ namespace Escritorio
                                 {
                                     if (txtHBAPadre.Text.Length <= 6 || txtHBAPadre.Text == string.Empty)
                                     {
-                                        Animal_Negocio animal_Negocio = new Animal_Negocio();
-                                        Animal animal = new Animal();
-                                        animal = MapearAAnimal();
-                                        animal_Negocio.Insertar(animal);
-                                        MessageBox.Show("El animal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                                        this.Limpiar();
+                                        if (txtCaravana.Text.Length <= 5)
+                                        {
+                                            Animal_Negocio animal_Negocio = new Animal_Negocio();
+                                            Animal animal = new Animal();
+                                            animal = MapearAAnimal();
+                                            animal_Negocio.Insertar(animal);
+                                            MessageBox.Show("El animal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                            this.Limpiar();
+                                        }
+                                        else
+                                        {
+                                            MessageBox.Show("El campo Caravana no puede ser mayor a 5 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
                                     }
                                     else
                                     {
@@ -146,6 +153,7 @@ namespace Escritorio
             animal.Id_tambo = tambo.Id_tambo;
             animal.Id_raza = raza.Id_raza;
             animal.Habilitado = true;
+            animal.Caravana = txtCaravana.Text;
 
             return animal;
         }
@@ -160,6 +168,7 @@ namespace Escritorio
             this.txtHBAPadre.Text = string.Empty;
             this.txtRPMadre.Text = string.Empty;
             this.txtRPPadre.Text = string.Empty;
+            txtCaravana.Text = string.Empty;
             this.cbCategoria.SelectedIndex = -1;
             this.cbRaza.SelectedIndex = -1;
         }

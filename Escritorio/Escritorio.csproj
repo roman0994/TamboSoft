@@ -161,6 +161,12 @@
     <Compile Include="AltaTambos.Designer.cs">
       <DependentUpon>AltaTambos.cs</DependentUpon>
     </Compile>
+    <Compile Include="AltaUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AltaUsuarios.Designer.cs">
+      <DependentUpon>AltaUsuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="DatosTambo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -236,6 +242,18 @@
     <Compile Include="GestionTambos.Designer.cs">
       <DependentUpon>GestionTambos.cs</DependentUpon>
     </Compile>
+    <Compile Include="HistoriaClinica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistoriaClinica.Designer.cs">
+      <DependentUpon>HistoriaClinica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HistorialProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="HistorialProduccion.Designer.cs">
+      <DependentUpon>HistorialProduccion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListadoAnimales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +290,12 @@
     <Compile Include="LoginAltaTambos.Designer.cs">
       <DependentUpon>LoginAltaTambos.cs</DependentUpon>
     </Compile>
+    <Compile Include="LoginUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginUsuario.Designer.cs">
+      <DependentUpon>LoginUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Personal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -292,11 +316,23 @@
     <Compile Include="PruebaSincronizacion.Designer.cs">
       <DependentUpon>PruebaSincronizacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="RecuperarContraseña.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecuperarContraseña.Designer.cs">
+      <DependentUpon>RecuperarContraseña.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReporteEventos.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReporteEventos.Designer.cs">
       <DependentUpon>ReporteEventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReporteProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReporteProduccion.Designer.cs">
+      <DependentUpon>ReporteProduccion.cs</DependentUpon>
     </Compile>
     <Compile Include="ReporteProduccionPorAnimal.cs">
       <SubType>Form</SubType>
@@ -320,6 +356,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptEventos.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptHistoriaClinica.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptHistoriaClinica.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptHistorialProduccion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptHistorialProduccion.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="rptListadoAnimales.cs">
@@ -375,6 +423,18 @@
     </Compile>
     <Compile Include="vpEventos.Designer.cs">
       <DependentUpon>vpEventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpHistoriaClinica.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpHistoriaClinica.Designer.cs">
+      <DependentUpon>vpHistoriaClinica.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpHistorialProduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpHistorialProduccion.Designer.cs">
+      <DependentUpon>vpHistorialProduccion.cs</DependentUpon>
     </Compile>
     <Compile Include="vpListadoAnimales.cs">
       <SubType>Form</SubType>
@@ -442,6 +502,9 @@
     <EmbeddedResource Include="AltaTambos.resx">
       <DependentUpon>AltaTambos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="AltaUsuarios.resx">
+      <DependentUpon>AltaUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DatosTambo.resx">
       <DependentUpon>DatosTambo.cs</DependentUpon>
     </EmbeddedResource>
@@ -475,6 +538,12 @@
     <EmbeddedResource Include="GestionTambos.resx">
       <DependentUpon>GestionTambos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HistoriaClinica.resx">
+      <DependentUpon>HistoriaClinica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HistorialProduccion.resx">
+      <DependentUpon>HistorialProduccion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ListadoAnimales.resx">
       <DependentUpon>ListadoAnimales.cs</DependentUpon>
     </EmbeddedResource>
@@ -492,6 +561,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="LoginAltaTambos.resx">
       <DependentUpon>LoginAltaTambos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginUsuario.resx">
+      <DependentUpon>LoginUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Personal.resx">
       <DependentUpon>Personal.cs</DependentUpon>
@@ -511,8 +583,14 @@
     <EmbeddedResource Include="PruebaSincronizacion.resx">
       <DependentUpon>PruebaSincronizacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RecuperarContraseña.resx">
+      <DependentUpon>RecuperarContraseña.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReporteEventos.resx">
       <DependentUpon>ReporteEventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReporteProduccion.resx">
+      <DependentUpon>ReporteProduccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReporteProduccionPorAnimal.resx">
       <DependentUpon>ReporteProduccionPorAnimal.cs</DependentUpon>
@@ -526,6 +604,14 @@
     <EmbeddedResource Include="rptEventos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEventos.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptHistoriaClinica.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptHistoriaClinica.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptHistorialProduccion.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptHistorialProduccion.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="rptListadoAnimales.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -561,6 +647,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="vpEventos.resx">
       <DependentUpon>vpEventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpHistoriaClinica.resx">
+      <DependentUpon>vpHistoriaClinica.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpHistorialProduccion.resx">
+      <DependentUpon>vpHistorialProduccion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vpListadoAnimales.resx">
       <DependentUpon>vpListadoAnimales.cs</DependentUpon>

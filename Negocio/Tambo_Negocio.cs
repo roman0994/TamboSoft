@@ -13,14 +13,14 @@ namespace Negocio
     {
         Tambo_Datos tamboDatos = new Tambo_Datos();
 
-        public List<Tambo> RecuperarTodos()
+        public List<Tambo> RecuperarTodos(int id_usuario)
         {
-            return tamboDatos.RecuperarTodos();
+            return tamboDatos.RecuperarTodos(id_usuario);
         }
 
-        public List<Tambo> RecuperarOtrosTambos(int id_tambo)
+        public List<Tambo> RecuperarOtrosTambos(int id_tambo, int id_usuario)
         {
-            return tamboDatos.RecuperarOtrosTambos(id_tambo);
+            return tamboDatos.RecuperarOtrosTambos(id_tambo,id_usuario);
         }
 
         public Tambo RecuperarUno(int id)
@@ -33,14 +33,14 @@ namespace Negocio
             return tamboDatos.RecuperarPorNombre(nombre_tambo);
         }
 
-        public bool HayTambos()
+        public bool HayTambos(int id_usuario)
         {
-            return tamboDatos.HayTambos();
+            return tamboDatos.HayTambos(id_usuario);
         }
 
-        public bool HayOtrosTambos(int id_tambo)
+        public bool HayOtrosTambos(int id_tambo, int id_usuario)
         {
-            return tamboDatos.HayOtrosTambos(id_tambo);
+            return tamboDatos.HayOtrosTambos(id_tambo, id_usuario);
         }
 
         public void Actualizar(Tambo tambo)
@@ -63,9 +63,9 @@ namespace Negocio
             tamboDatos.Eliminar(id);
         }
 
-        public DataTable FiltrarPorNombre(string texto, int idtambo)
+        public DataTable FiltrarPorNombre(string texto, int idtambo, int id_usuario)
         {
-            return tamboDatos.FiltrarPorNombre(texto, idtambo);
+            return tamboDatos.FiltrarPorNombre(texto, idtambo, id_usuario);
         }
     }
 }

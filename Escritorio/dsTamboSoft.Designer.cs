@@ -587,6 +587,8 @@ namespace Escritorio {
             
             private global::System.Data.DataColumn columnnombre_raza;
             
+            private global::System.Data.DataColumn columncaravana;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtAnimalesDataTable() {
@@ -734,6 +736,14 @@ namespace Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn caravanaColumn {
+                get {
+                    return this.columncaravana;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -769,7 +779,7 @@ namespace Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public dtAnimalesRow AdddtAnimalesRow(int rp, System.DateTime fecha_nacimiento, int edad, string foto, string nombre_animal, string estado_animal, string hba, string categoria, int rp_madre, int rp_padre, int hba_madre, int hba_padre, string nombre_tambo, string nombre_raza) {
+            public dtAnimalesRow AdddtAnimalesRow(int rp, System.DateTime fecha_nacimiento, int edad, string foto, string nombre_animal, string estado_animal, string hba, string categoria, int rp_madre, int rp_padre, int hba_madre, int hba_padre, string nombre_tambo, string nombre_raza, string caravana) {
                 dtAnimalesRow rowdtAnimalesRow = ((dtAnimalesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         rp,
@@ -785,7 +795,8 @@ namespace Escritorio {
                         hba_madre,
                         hba_padre,
                         nombre_tambo,
-                        nombre_raza};
+                        nombre_raza,
+                        caravana};
                 rowdtAnimalesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtAnimalesRow);
                 return rowdtAnimalesRow;
@@ -822,6 +833,7 @@ namespace Escritorio {
                 this.columnhba_padre = base.Columns["hba_padre"];
                 this.columnnombre_tambo = base.Columns["nombre_tambo"];
                 this.columnnombre_raza = base.Columns["nombre_raza"];
+                this.columncaravana = base.Columns["caravana"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -855,6 +867,8 @@ namespace Escritorio {
                 base.Columns.Add(this.columnnombre_tambo);
                 this.columnnombre_raza = new global::System.Data.DataColumn("nombre_raza", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnombre_raza);
+                this.columncaravana = new global::System.Data.DataColumn("caravana", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncaravana);
                 this.columnfoto.MaxLength = 100;
                 this.columnnombre_animal.MaxLength = 50;
                 this.columnestado_animal.MaxLength = 50;
@@ -2943,6 +2957,10 @@ namespace Escritorio {
             
             private global::System.Data.DataColumn columnnombre_tambo;
             
+            private global::System.Data.DataColumn columnrp;
+            
+            private global::System.Data.DataColumn columnnombre_animal;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtProduccionPorDiaDataTable() {
@@ -3010,6 +3028,22 @@ namespace Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn rpColumn {
+                get {
+                    return this.columnrp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn nombre_animalColumn {
+                get {
+                    return this.columnnombre_animal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3045,13 +3079,15 @@ namespace Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public dtProduccionPorDiaRow AdddtProduccionPorDiaRow(System.DateTime fecha_control, decimal litrostotales, decimal grasatotal, string nombre_tambo) {
+            public dtProduccionPorDiaRow AdddtProduccionPorDiaRow(System.DateTime fecha_control, decimal litrostotales, decimal grasatotal, string nombre_tambo, int rp, string nombre_animal) {
                 dtProduccionPorDiaRow rowdtProduccionPorDiaRow = ((dtProduccionPorDiaRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         fecha_control,
                         litrostotales,
                         grasatotal,
-                        nombre_tambo};
+                        nombre_tambo,
+                        rp,
+                        nombre_animal};
                 rowdtProduccionPorDiaRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtProduccionPorDiaRow);
                 return rowdtProduccionPorDiaRow;
@@ -3078,6 +3114,8 @@ namespace Escritorio {
                 this.columnlitrostotales = base.Columns["litrostotales"];
                 this.columngrasatotal = base.Columns["grasatotal"];
                 this.columnnombre_tambo = base.Columns["nombre_tambo"];
+                this.columnrp = base.Columns["rp"];
+                this.columnnombre_animal = base.Columns["nombre_animal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3091,6 +3129,10 @@ namespace Escritorio {
                 base.Columns.Add(this.columngrasatotal);
                 this.columnnombre_tambo = new global::System.Data.DataColumn("nombre_tambo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnombre_tambo);
+                this.columnrp = new global::System.Data.DataColumn("rp", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrp);
+                this.columnnombre_animal = new global::System.Data.DataColumn("nombre_animal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnombre_animal);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3234,6 +3276,10 @@ namespace Escritorio {
             
             private global::System.Data.DataColumn columnnombre_tambo;
             
+            private global::System.Data.DataColumn columnrp;
+            
+            private global::System.Data.DataColumn columnnombre_animal;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public dtProduccionPorMesDataTable() {
@@ -3309,6 +3355,22 @@ namespace Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn rpColumn {
+                get {
+                    return this.columnrp;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn nombre_animalColumn {
+                get {
+                    return this.columnnombre_animal;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3344,14 +3406,16 @@ namespace Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public dtProduccionPorMesRow AdddtProduccionPorMesRow(decimal litrostotales, decimal grasatotal, int mes, int año, string nombre_tambo) {
+            public dtProduccionPorMesRow AdddtProduccionPorMesRow(decimal litrostotales, decimal grasatotal, int mes, int año, string nombre_tambo, int rp, string nombre_animal) {
                 dtProduccionPorMesRow rowdtProduccionPorMesRow = ((dtProduccionPorMesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         litrostotales,
                         grasatotal,
                         mes,
                         año,
-                        nombre_tambo};
+                        nombre_tambo,
+                        rp,
+                        nombre_animal};
                 rowdtProduccionPorMesRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowdtProduccionPorMesRow);
                 return rowdtProduccionPorMesRow;
@@ -3379,6 +3443,8 @@ namespace Escritorio {
                 this.columnmes = base.Columns["mes"];
                 this.columnaño = base.Columns["año"];
                 this.columnnombre_tambo = base.Columns["nombre_tambo"];
+                this.columnrp = base.Columns["rp"];
+                this.columnnombre_animal = base.Columns["nombre_animal"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3394,6 +3460,10 @@ namespace Escritorio {
                 base.Columns.Add(this.columnaño);
                 this.columnnombre_tambo = new global::System.Data.DataColumn("nombre_tambo", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnombre_tambo);
+                this.columnrp = new global::System.Data.DataColumn("rp", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnrp);
+                this.columnnombre_animal = new global::System.Data.DataColumn("nombre_animal", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnombre_animal);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3760,6 +3830,22 @@ namespace Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string caravana {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtAnimales.caravanaColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'caravana\' de la tabla \'dtAnimales\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtAnimales.caravanaColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IsrpNull() {
                 return this.IsNull(this.tabledtAnimales.rpColumn);
             }
@@ -3924,6 +4010,18 @@ namespace Escritorio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Setnombre_razaNull() {
                 this[this.tabledtAnimales.nombre_razaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IscaravanaNull() {
+                return this.IsNull(this.tabledtAnimales.caravanaColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetcaravanaNull() {
+                this[this.tabledtAnimales.caravanaColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5174,6 +5272,39 @@ namespace Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int rp {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtProduccionPorDia.rpColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'rp\' de la tabla \'dtProduccionPorDia\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtProduccionPorDia.rpColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string nombre_animal {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtProduccionPorDia.nombre_animalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombre_animal\' de la tabla \'dtProduccionPorDia\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tabledtProduccionPorDia.nombre_animalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool Isfecha_controlNull() {
                 return this.IsNull(this.tabledtProduccionPorDia.fecha_controlColumn);
             }
@@ -5218,6 +5349,30 @@ namespace Escritorio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Setnombre_tamboNull() {
                 this[this.tabledtProduccionPorDia.nombre_tamboColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsrpNull() {
+                return this.IsNull(this.tabledtProduccionPorDia.rpColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetrpNull() {
+                this[this.tabledtProduccionPorDia.rpColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Isnombre_animalNull() {
+                return this.IsNull(this.tabledtProduccionPorDia.nombre_animalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setnombre_animalNull() {
+                this[this.tabledtProduccionPorDia.nombre_animalColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -5319,6 +5474,39 @@ namespace Escritorio {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int rp {
+                get {
+                    try {
+                        return ((int)(this[this.tabledtProduccionPorMes.rpColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'rp\' de la tabla \'dtProduccionPorMes\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tabledtProduccionPorMes.rpColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string nombre_animal {
+                get {
+                    try {
+                        return ((string)(this[this.tabledtProduccionPorMes.nombre_animalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombre_animal\' de la tabla \'dtProduccionPorMes\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tabledtProduccionPorMes.nombre_animalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public bool IslitrostotalesNull() {
                 return this.IsNull(this.tabledtProduccionPorMes.litrostotalesColumn);
             }
@@ -5375,6 +5563,30 @@ namespace Escritorio {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void Setnombre_tamboNull() {
                 this[this.tabledtProduccionPorMes.nombre_tamboColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsrpNull() {
+                return this.IsNull(this.tabledtProduccionPorMes.rpColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetrpNull() {
+                this[this.tabledtProduccionPorMes.rpColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool Isnombre_animalNull() {
+                return this.IsNull(this.tabledtProduccionPorMes.nombre_animalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void Setnombre_animalNull() {
+                this[this.tabledtProduccionPorMes.nombre_animalColumn] = global::System.Convert.DBNull;
             }
         }
         

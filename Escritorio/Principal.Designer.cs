@@ -55,14 +55,13 @@
             this.inseminadoresToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteProduccionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.porFechaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.porAnimalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reporteEventosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.reproducciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.acercaDeTamboSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sincronizaciónToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sincronizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.acercaDeTamboSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -75,6 +74,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.toolStripContainer1.ContentPanel.Controls.Add(this.btnCerrarSesion);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.btnVolver);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.txtTambo);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.label1);
@@ -156,7 +156,7 @@
             // salirToolStripMenuItem
             // 
             this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.salirToolStripMenuItem.Size = new System.Drawing.Size(96, 22);
             this.salirToolStripMenuItem.Text = "Salir";
             this.salirToolStripMenuItem.Click += new System.EventHandler(this.salirToolStripMenuItem_Click);
             // 
@@ -312,40 +312,39 @@
             // 
             // reporteProduccionToolStripMenuItem
             // 
-            this.reporteProduccionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.porFechaToolStripMenuItem,
-            this.porAnimalToolStripMenuItem});
             this.reporteProduccionToolStripMenuItem.Name = "reporteProduccionToolStripMenuItem";
-            this.reporteProduccionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reporteProduccionToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.reporteProduccionToolStripMenuItem.Text = "Producción";
-            // 
-            // porFechaToolStripMenuItem
-            // 
-            this.porFechaToolStripMenuItem.Name = "porFechaToolStripMenuItem";
-            this.porFechaToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.porFechaToolStripMenuItem.Text = "Por fecha";
-            this.porFechaToolStripMenuItem.Click += new System.EventHandler(this.porFechaToolStripMenuItem_Click);
-            // 
-            // porAnimalToolStripMenuItem
-            // 
-            this.porAnimalToolStripMenuItem.Name = "porAnimalToolStripMenuItem";
-            this.porAnimalToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
-            this.porAnimalToolStripMenuItem.Text = "Por animal";
-            this.porAnimalToolStripMenuItem.Click += new System.EventHandler(this.porAnimalToolStripMenuItem_Click);
+            this.reporteProduccionToolStripMenuItem.Click += new System.EventHandler(this.reporteProduccionToolStripMenuItem_Click);
             // 
             // reporteEventosToolStripMenuItem1
             // 
             this.reporteEventosToolStripMenuItem1.Name = "reporteEventosToolStripMenuItem1";
-            this.reporteEventosToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.reporteEventosToolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
             this.reporteEventosToolStripMenuItem1.Text = "Estado de animales";
             this.reporteEventosToolStripMenuItem1.Click += new System.EventHandler(this.reporteEventosToolStripMenuItem1_Click);
             // 
             // reproducciónToolStripMenuItem
             // 
             this.reproducciónToolStripMenuItem.Name = "reproducciónToolStripMenuItem";
-            this.reproducciónToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.reproducciónToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.reproducciónToolStripMenuItem.Text = "Reproducción";
             this.reproducciónToolStripMenuItem.Click += new System.EventHandler(this.reproducciónToolStripMenuItem_Click);
+            // 
+            // sincronizaciónToolStripMenuItem
+            // 
+            this.sincronizaciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sincronizarToolStripMenuItem});
+            this.sincronizaciónToolStripMenuItem.Name = "sincronizaciónToolStripMenuItem";
+            this.sincronizaciónToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
+            this.sincronizaciónToolStripMenuItem.Text = "Sincronización";
+            // 
+            // sincronizarToolStripMenuItem
+            // 
+            this.sincronizarToolStripMenuItem.Name = "sincronizarToolStripMenuItem";
+            this.sincronizarToolStripMenuItem.Size = new System.Drawing.Size(132, 22);
+            this.sincronizarToolStripMenuItem.Text = "Sincronizar";
+            this.sincronizarToolStripMenuItem.Click += new System.EventHandler(this.sincronizarToolStripMenuItem_Click);
             // 
             // acercaDeToolStripMenuItem
             // 
@@ -362,20 +361,16 @@
             this.acercaDeTamboSoftToolStripMenuItem.Text = "Acerca de TamboSoft";
             this.acercaDeTamboSoftToolStripMenuItem.Click += new System.EventHandler(this.acercaDeTamboSoftToolStripMenuItem_Click);
             // 
-            // sincronizaciónToolStripMenuItem
+            // btnCerrarSesion
             // 
-            this.sincronizaciónToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sincronizarToolStripMenuItem});
-            this.sincronizaciónToolStripMenuItem.Name = "sincronizaciónToolStripMenuItem";
-            this.sincronizaciónToolStripMenuItem.Size = new System.Drawing.Size(96, 20);
-            this.sincronizaciónToolStripMenuItem.Text = "Sincronización";
-            // 
-            // sincronizarToolStripMenuItem
-            // 
-            this.sincronizarToolStripMenuItem.Name = "sincronizarToolStripMenuItem";
-            this.sincronizarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sincronizarToolStripMenuItem.Text = "Sincronizar";
-            this.sincronizarToolStripMenuItem.Click += new System.EventHandler(this.sincronizarToolStripMenuItem_Click);
+            this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(51, 247);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(181, 28);
+            this.btnCerrarSesion.TabIndex = 4;
+            this.btnCerrarSesion.Text = "Cerrar Sesión";
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // Principal
             // 
@@ -434,9 +429,8 @@
         private System.Windows.Forms.ToolStripMenuItem acercaDeTamboSoftToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reporteEventosToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem reproducciónToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem porFechaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem porAnimalToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sincronizaciónToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sincronizarToolStripMenuItem;
+        private System.Windows.Forms.Button btnCerrarSesion;
     }
 }

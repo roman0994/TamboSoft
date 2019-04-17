@@ -25,6 +25,7 @@ namespace Entidades
         private int _id_raza;
         private string _nombre_raza;
         private bool _habilitado;
+        private string caravana;
 
 
         public int Rp
@@ -131,13 +132,15 @@ namespace Entidades
             set { _habilitado = value; }
         }
 
+        public string Caravana { get => caravana; set => caravana = value; }
+
         public Animal()
         {
 
         }
 
 
-        public Animal(int rp, DateTime fecha_nacimiento, int edad, string foto, string nombre_animal, string estado, int hba, string categoria, int rp_madre, int rp_padre, int hba_padre, int hba_madre, int id_tambo, int id_raza,string nombre_raza,string nombre_tambo,bool habilitado)
+        public Animal(int rp, DateTime fecha_nacimiento, int edad, string foto, string nombre_animal, string estado, int hba, string categoria, int rp_madre, int rp_padre, int hba_padre, int hba_madre, int id_tambo, int id_raza,string nombre_raza,string nombre_tambo,bool habilitado, string caravana)
         {
             Rp = rp;
             Fecha_nacimiento = fecha_nacimiento;
@@ -156,6 +159,7 @@ namespace Entidades
             Nombre_raza = nombre_raza;
             Nombre_tambo = nombre_tambo;
             Habilitado = habilitado;
+            Caravana = caravana;
         }
         public Animal(int rp, DateTime fecha_nacimiento, int edad, string foto, string nombre_animal, string estado, int hba, string categoria,  int rp_madre, int rp_padre, int hba_padre, int hba_madre, int id_tambo, int id_raza,bool habilitado)
         {

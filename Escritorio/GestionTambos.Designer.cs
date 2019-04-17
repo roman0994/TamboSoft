@@ -145,6 +145,7 @@
             this.dgvTambos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTambos.Location = new System.Drawing.Point(6, 72);
             this.dgvTambos.Name = "dgvTambos";
+            this.dgvTambos.ReadOnly = true;
             this.dgvTambos.Size = new System.Drawing.Size(788, 334);
             this.dgvTambos.TabIndex = 5;
             // 
@@ -153,6 +154,7 @@
             this.id_tambo.DataPropertyName = "id_tambo";
             this.id_tambo.HeaderText = "ID Tambo";
             this.id_tambo.Name = "id_tambo";
+            this.id_tambo.ReadOnly = true;
             this.id_tambo.Visible = false;
             // 
             // nombre_tambo
@@ -160,6 +162,7 @@
             this.nombre_tambo.DataPropertyName = "nombre_tambo";
             this.nombre_tambo.HeaderText = "Tambo";
             this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.ReadOnly = true;
             this.nombre_tambo.Width = 200;
             // 
             // estado_tambo
@@ -167,6 +170,7 @@
             this.estado_tambo.DataPropertyName = "estado_tambo";
             this.estado_tambo.HeaderText = "Estado Tambo";
             this.estado_tambo.Name = "estado_tambo";
+            this.estado_tambo.ReadOnly = true;
             this.estado_tambo.Visible = false;
             // 
             // superficie
@@ -174,6 +178,7 @@
             this.superficie.DataPropertyName = "superficie";
             this.superficie.HeaderText = "Superficie";
             this.superficie.Name = "superficie";
+            this.superficie.ReadOnly = true;
             this.superficie.Width = 150;
             // 
             // nombre_localidad
@@ -181,6 +186,7 @@
             this.nombre_localidad.DataPropertyName = "nombre_localidad";
             this.nombre_localidad.HeaderText = "Localidad";
             this.nombre_localidad.Name = "nombre_localidad";
+            this.nombre_localidad.ReadOnly = true;
             this.nombre_localidad.Width = 200;
             // 
             // id_localidad
@@ -188,6 +194,7 @@
             this.id_localidad.DataPropertyName = "id_localidad";
             this.id_localidad.HeaderText = "ID Localidad";
             this.id_localidad.Name = "id_localidad";
+            this.id_localidad.ReadOnly = true;
             this.id_localidad.Visible = false;
             // 
             // nombre_provincia
@@ -195,6 +202,7 @@
             this.nombre_provincia.DataPropertyName = "nombre_provincia";
             this.nombre_provincia.HeaderText = "Provincia";
             this.nombre_provincia.Name = "nombre_provincia";
+            this.nombre_provincia.ReadOnly = true;
             this.nombre_provincia.Width = 200;
             // 
             // label2

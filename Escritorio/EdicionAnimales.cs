@@ -53,7 +53,7 @@ namespace Escritorio
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Validaciones validaciones = new Validaciones();
-            string validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex, txtEdad.Text, txtNombre.Text, txtHBA.Text);
+            string validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex, txtEdad.Text, txtNombre.Text, txtHBA.Text, txtCaravana.Text);
 
             if (validar == "true")
             {
@@ -66,12 +66,19 @@ namespace Escritorio
                         {
                             if (txtHBAPadre.Text.Length <= 6 || txtHBAPadre.Text == string.Empty)
                             {
-                                 Animal_Negocio animalNegocio = new Animal_Negocio();
-                                 Animal animal = new Animal();
-                                 animal = MapearAAnimal();
-                                 animalNegocio.Actualizar(animal);
-                                 DialogResult result = MessageBox.Show("El animal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                 this.Dispose();
+                                if (txtCaravana.Text.Length<=5)
+                                {
+                                    Animal_Negocio animalNegocio = new Animal_Negocio();
+                                    Animal animal = new Animal();
+                                    animal = MapearAAnimal();
+                                    animalNegocio.Actualizar(animal);
+                                    DialogResult result = MessageBox.Show("El animal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    this.Dispose();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("El campo Caravana no puede ser mayor a 5 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
                             else
                             {

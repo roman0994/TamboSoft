@@ -85,6 +85,7 @@ namespace Escritorio
             tambo.Id_tambo = Convert.ToInt32(tambo.Id_tambo);
             tambo.Nombre_tambo = Convert.ToString(tambo.Nombre_tambo);
             tambo.Superficie = Convert.ToDecimal(tambo.Superficie);
+            tambo.Id_usuario = Principal.Usuario.Id_usuario; 
             tambo.Nombre_provincia = Convert.ToString(tambo.Nombre_provincia);
             tambo.Nombre_localidad = Convert.ToString(tambo.Nombre_localidad);
             return tambo;

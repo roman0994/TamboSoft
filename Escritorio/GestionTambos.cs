@@ -30,7 +30,7 @@ namespace Escritorio
         public void CargarGrilla(int id_tambo)
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            this.dgvTambos.DataSource = tamboNegocio.RecuperarOtrosTambos(id_tambo);
+            this.dgvTambos.DataSource = tamboNegocio.RecuperarOtrosTambos(id_tambo, Principal.Usuario.Id_usuario);
             if (this.dgvTambos.Rows.Count != 0 && this.dgvTambos.Rows != null)
             {
                 this.btnEditar.Enabled = true;
@@ -72,6 +72,7 @@ namespace Escritorio
             tambo.Superficie = Convert.ToDecimal(tambo.Superficie);
             tambo.Nombre_provincia = Convert.ToString(tambo.Nombre_provincia);
             tambo.Nombre_localidad = Convert.ToString(tambo.Nombre_localidad);
+            tambo.Id_usuario = Principal.Usuario.Id_usuario;
             return tambo;
         }
 
@@ -93,7 +94,7 @@ namespace Escritorio
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            this.dgvTambos.DataSource = tamboNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo);
+            this.dgvTambos.DataSource = tamboNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo,Principal.Usuario.Id_usuario);
         }
 
         private void GestionTambos_Activated(object sender, EventArgs e)

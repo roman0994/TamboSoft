@@ -23,9 +23,19 @@ namespace Negocio
             return controlAnimalDatos.RecuperarPorTambo(id_tambo);
         }
 
+        public List<Control_Animal> RecuperarPorTamboYAnimal(int id_tambo, int rp)
+        {
+            return controlAnimalDatos.RecuperarPorTamboYAnimal(id_tambo,rp);
+        }
+
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
             return controlAnimalDatos.RecuperarDTPorTambo(id_tambo);
+        }
+
+        public DataTable RecuperarDTPorTamboYAnimal(int id_tambo, int rp)
+        {
+            return controlAnimalDatos.RecuperarDTPorTamboYAnimal(id_tambo, rp);
         }
 
         public List<Control_Animal> RecuperarPorTamboPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
@@ -58,9 +68,19 @@ namespace Negocio
             return controlAnimalDatos.ProduccionPorFiltroDia(id_tambo,fecha);
         }
 
+        public DataTable ProduccionPorFiltroDiaYAnimal(int id_tambo, DateTime fecha,int rp)
+        {
+            return controlAnimalDatos.ProduccionPorFiltroDiaYAnimal(id_tambo, fecha,rp);
+        }
+
         public DataTable ProduccionPorFiltroMes(int id_tambo, int mes, int año)
         {
             return controlAnimalDatos.ProduccionPorFiltroMes(id_tambo, mes, año);
+        }
+
+        public DataTable ProduccionPorFiltroMesYAnimal(int id_tambo, int mes, int año, int rp)
+        {
+            return controlAnimalDatos.ProduccionPorFiltroMesYAnimal(id_tambo, mes, año, rp);
         }
 
         public DataTable ProduccionPorAnimal(int id_tambo)

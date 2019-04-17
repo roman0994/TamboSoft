@@ -134,6 +134,7 @@
     <Compile Include="Subevento.cs" />
     <Compile Include="Tambo.cs" />
     <Compile Include="Tambo_Inseminador.cs" />
+    <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
