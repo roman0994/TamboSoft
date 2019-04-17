@@ -1034,6 +1034,23 @@ namespace Datos
 
         }
 
+        public DataTable FiltrarPorCaravana(string texto, int idtambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where caravana like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' order by a.nombre_animal", Conn);
+            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+
+            SqlDataReader dr = cmdFiltro.ExecuteReader();
+            DataTable dt = new DataTable();
+
+            dt.Load(dr);
+
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
+
+        }
+
         public DataTable FiltrarPorAnimalesEnCeloPorTambo(int id_tambo)
         {
             this.AbrirConexion();
@@ -1102,6 +1119,41 @@ namespace Datos
                 }
             }
                         
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del animal", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public bool ExisteLaCaravana(int id_tambo, string caravana)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and caravana=@caravana and a.habilitado='true'", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdAnimal.Parameters.Add("caravana", SqlDbType.VarChar, 50).Value = caravana;
+                SqlDataReader drAnimal = cmdAnimal.ExecuteReader();
+
+                if (drAnimal.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
             catch (SqlException sqe)
             {
                 throw sqe;

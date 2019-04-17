@@ -32,6 +32,7 @@ namespace Escritorio
                 if (pass != null)
                 {
                     EnviarEmail(txtEmail.Text, pass);
+                    this.Dispose();
                 }
                 else
                 {

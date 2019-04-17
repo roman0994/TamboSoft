@@ -37,6 +37,7 @@ namespace Escritorio
         {
             this.cbBuscar.Items.Add("Nombre animal");
             this.cbBuscar.Items.Add("Estado");
+            this.cbBuscar.Items.Add("Caravana");
             this.cbBuscar.SelectedIndex = -1;
         }
 
@@ -153,7 +154,10 @@ namespace Escritorio
             {
                 this.dgvAnimales.DataSource = animalNegocio.FiltrarPorEstado(this.txtBuscar.Text, idtambo);
             }
-
+            else if (this.cbBuscar.SelectedItem.ToString() == "Caravana")
+            {
+                this.dgvAnimales.DataSource = animalNegocio.FiltrarPorCaravana(this.txtBuscar.Text, idtambo);
+            }
         }
 
         private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)

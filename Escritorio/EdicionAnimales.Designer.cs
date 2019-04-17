@@ -33,6 +33,8 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCaravana = new System.Windows.Forms.TextBox();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.dtpFechaNacimiento = new System.Windows.Forms.DateTimePicker();
             this.txtRP = new System.Windows.Forms.TextBox();
@@ -62,8 +64,7 @@
             this.txtRPPadre = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.txtCaravana = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -134,6 +135,7 @@
             // groupBox1
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 2);
+            this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtCaravana);
             this.groupBox1.Controls.Add(this.txtTambo);
@@ -163,6 +165,24 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Animal";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(421, 96);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 13);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Caravana: **";
+            // 
+            // txtCaravana
+            // 
+            this.txtCaravana.Location = new System.Drawing.Point(496, 93);
+            this.txtCaravana.Name = "txtCaravana";
+            this.txtCaravana.ReadOnly = true;
+            this.txtCaravana.Size = new System.Drawing.Size(201, 20);
+            this.txtCaravana.TabIndex = 16;
             // 
             // txtTambo
             // 
@@ -199,7 +219,7 @@
             // 
             this.cbRaza.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbRaza.FormattingEnabled = true;
-            this.cbRaza.Location = new System.Drawing.Point(496, 159);
+            this.cbRaza.Location = new System.Drawing.Point(495, 135);
             this.cbRaza.Name = "cbRaza";
             this.cbRaza.Size = new System.Drawing.Size(201, 21);
             this.cbRaza.TabIndex = 11;
@@ -254,15 +274,15 @@
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(421, 25);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(25, 13);
+            this.label13.Size = new System.Drawing.Size(36, 13);
             this.label13.TabIndex = 11;
-            this.label13.Text = "RP:";
+            this.label13.Text = "RP: **";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(421, 195);
+            this.label12.Location = new System.Drawing.Point(421, 179);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(111, 13);
             this.label12.TabIndex = 10;
@@ -272,7 +292,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(421, 162);
+            this.label11.Location = new System.Drawing.Point(421, 138);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(42, 13);
             this.label11.TabIndex = 9;
@@ -284,9 +304,9 @@
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(421, 57);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(46, 13);
+            this.label8.Size = new System.Drawing.Size(54, 13);
             this.label8.TabIndex = 6;
-            this.label8.Text = "Tambo: ";
+            this.label8.Text = "Tambo: **";
             // 
             // label6
             // 
@@ -440,22 +460,15 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "RP:";
             // 
-            // txtCaravana
+            // label9
             // 
-            this.txtCaravana.Location = new System.Drawing.Point(496, 108);
-            this.txtCaravana.Name = "txtCaravana";
-            this.txtCaravana.Size = new System.Drawing.Size(201, 20);
-            this.txtCaravana.TabIndex = 16;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(421, 111);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Caravana: *";
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(421, 213);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(135, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "** Campos no modificables.";
             // 
             // EdicionAnimales
             // 
@@ -522,5 +535,6 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label7;
         public System.Windows.Forms.TextBox txtCaravana;
+        public System.Windows.Forms.Label label9;
     }
 }

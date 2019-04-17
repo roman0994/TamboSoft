@@ -158,6 +158,11 @@ namespace Negocio
             return animalDatos.FiltrarPorEstado(texto,idtambo);
         }
 
+        public DataTable FiltrarPorCaravana(string texto, int idtambo)
+        {
+            return animalDatos.FiltrarPorCaravana(texto, idtambo);
+        }
+
         public DataTable FiltrarPorAnimalesEnCeloPorTambo(int id_tambo)
         {
             return animalDatos.FiltrarPorAnimalesEnCeloPorTambo(id_tambo);
@@ -176,6 +181,11 @@ namespace Negocio
         public bool HayAnimales(int id_tambo)
         {
             return animalDatos.HayAnimales(id_tambo);
+        }
+
+        public bool ExisteLaCaravana(int id_tambo,string caravana)
+        {
+            return animalDatos.ExisteLaCaravana(id_tambo,caravana);
         }
     }
 }

@@ -55,11 +55,16 @@ namespace Escritorio
                             animalapinegocio.Insertar(item);
                             
                         }
+                        MessageBox.Show("Los animales fueron subidos correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    DialogResult dialogResult2 = MessageBox.Show(this, "¿Desea actualizar los registros modificados?", "Guardar", MessageBoxButtons.YesNo);
+                    if (dialogResult2.Equals(DialogResult.Yes))
+                    {
                         foreach (var item in listaModificados)
                         {
                             animalapinegocio.Actualizar(item);
                         }
-                        MessageBox.Show("Los animales fueron subidos correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Los animales fueron actualizados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 else

@@ -49,7 +49,7 @@ namespace Escritorio
         private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();    
-            this.dgvAnimales.DataSource = animalNegocio.FiltrarPorNombre(this.tstxtBuscar.Text, idtambo);   
+            this.dgvAnimales.DataSource = animalNegocio.FiltrarPorCaravana(this.tstxtBuscar.Text, idtambo);   
         }
 
         private void tbsActualizar_Click(object sender, EventArgs e)

@@ -52,8 +52,8 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 3;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 72F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 28F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
             this.tableLayoutPanel1.TabIndex = 0;
@@ -68,12 +68,13 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(794, 303);
+            this.dataGridView1.Size = new System.Drawing.Size(794, 383);
             this.dataGridView1.TabIndex = 0;
             // 
             // btnSincronizar
             // 
-            this.btnSincronizar.Location = new System.Drawing.Point(3, 312);
+            this.btnSincronizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSincronizar.Location = new System.Drawing.Point(148, 392);
             this.btnSincronizar.Name = "btnSincronizar";
             this.btnSincronizar.Size = new System.Drawing.Size(75, 35);
             this.btnSincronizar.TabIndex = 1;
@@ -83,9 +84,10 @@
             // 
             // btnSubir
             // 
-            this.btnSubir.Location = new System.Drawing.Point(229, 312);
+            this.btnSubir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSubir.Location = new System.Drawing.Point(475, 392);
             this.btnSubir.Name = "btnSubir";
-            this.btnSubir.Size = new System.Drawing.Size(75, 23);
+            this.btnSubir.Size = new System.Drawing.Size(75, 35);
             this.btnSubir.TabIndex = 2;
             this.btnSubir.Text = "Subir datos";
             this.btnSubir.UseVisualStyleBackColor = true;
@@ -93,15 +95,15 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(3, 432);
+            this.progressBar1.Location = new System.Drawing.Point(3, 433);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(100, 15);
+            this.progressBar1.Size = new System.Drawing.Size(100, 14);
             this.progressBar1.TabIndex = 3;
             // 
             // lbSincronizacion
             // 
             this.lbSincronizacion.AutoSize = true;
-            this.lbSincronizacion.Location = new System.Drawing.Point(229, 429);
+            this.lbSincronizacion.Location = new System.Drawing.Point(229, 430);
             this.lbSincronizacion.Name = "lbSincronizacion";
             this.lbSincronizacion.Size = new System.Drawing.Size(0, 13);
             this.lbSincronizacion.TabIndex = 4;
@@ -110,10 +112,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.MaximizeBox = false;
             this.Name = "PruebaSincronizacion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PruebaSincronizacion";

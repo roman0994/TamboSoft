@@ -63,6 +63,7 @@ namespace Escritorio
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            Animal_Negocio an = new Animal_Negocio();
             Validaciones validaciones = new Validaciones();
             bool validar = validaciones.ValidarCargaAnimales(cbCategoria.SelectedIndex,cbRaza.SelectedIndex,txtEdad.Text,txtNombre.Text,txtHBA.Text,txtCaravana.Text);
 
@@ -82,12 +83,19 @@ namespace Escritorio
                                     {
                                         if (txtCaravana.Text.Length <= 5)
                                         {
-                                            Animal_Negocio animal_Negocio = new Animal_Negocio();
-                                            Animal animal = new Animal();
-                                            animal = MapearAAnimal();
-                                            animal_Negocio.Insertar(animal);
-                                            MessageBox.Show("El animal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                                            this.Limpiar();
+                                            if (an.ExisteLaCaravana(Principal.Tambo.Id_tambo, txtCaravana.Text) == false)
+                                            {
+                                                Animal_Negocio animal_Negocio = new Animal_Negocio();
+                                                Animal animal = new Animal();
+                                                animal = MapearAAnimal();
+                                                animal_Negocio.Insertar(animal);
+                                                MessageBox.Show("El animal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                                                this.Limpiar();
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show("El campo Caravana ya existe. Intente con otro valor", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
                                         }
                                         else
                                         {

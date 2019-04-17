@@ -52,6 +52,7 @@ namespace Escritorio
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            Animal_Negocio an = new Animal_Negocio();
             Validaciones validaciones = new Validaciones();
             string validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex, txtEdad.Text, txtNombre.Text, txtHBA.Text, txtCaravana.Text);
 
@@ -74,6 +75,7 @@ namespace Escritorio
                                     animalNegocio.Actualizar(animal);
                                     DialogResult result = MessageBox.Show("El animal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     this.Dispose();
+                                    
                                 }
                                 else
                                 {
@@ -130,6 +132,7 @@ namespace Escritorio
             animal.Id_tambo = tambo.Id_tambo;
             animal.Id_raza = raza.Id_raza;
             animal.Habilitado = true;
+            animal.Caravana = txtCaravana.Text;
 
             return animal;
         }

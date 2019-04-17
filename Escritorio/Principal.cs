@@ -196,7 +196,7 @@ namespace Escritorio
         {
             this.Dispose();
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            if (tamboNegocio.HayTambos(Principal.Usuario.Id_usuario))
+            if (tamboNegocio.HayTambos(id_usuario))
             {
                 Login login = new Login();
                 login.ShowDialog();
