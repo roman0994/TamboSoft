@@ -133,8 +133,10 @@
             // 
             this.txtRepitePass.Location = new System.Drawing.Point(186, 152);
             this.txtRepitePass.Name = "txtRepitePass";
+            this.txtRepitePass.PasswordChar = '*';
             this.txtRepitePass.Size = new System.Drawing.Size(209, 20);
             this.txtRepitePass.TabIndex = 3;
+            this.txtRepitePass.UseSystemPasswordChar = true;
             // 
             // txtEmail
             // 
@@ -147,8 +149,10 @@
             // 
             this.txtPass.Location = new System.Drawing.Point(186, 110);
             this.txtPass.Name = "txtPass";
+            this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(209, 20);
             this.txtPass.TabIndex = 2;
+            this.txtPass.UseSystemPasswordChar = true;
             // 
             // AltaUsuarios
             // 

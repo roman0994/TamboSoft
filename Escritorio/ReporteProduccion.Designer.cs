@@ -72,13 +72,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 80F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(869, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnExportar
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportar.Location = new System.Drawing.Point(162, 423);
+            this.btnExportar.Location = new System.Drawing.Point(182, 423);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(75, 23);
             this.btnExportar.TabIndex = 0;
@@ -89,7 +89,7 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(482, 423);
+            this.btnSalir.Location = new System.Drawing.Point(527, 423);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 24);
             this.btnSalir.TabIndex = 1;
@@ -105,7 +105,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(794, 78);
+            this.groupBox1.Size = new System.Drawing.Size(863, 78);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Animal";
@@ -140,7 +140,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(3, 87);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(234, 330);
+            this.groupBox2.Size = new System.Drawing.Size(254, 330);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Fecha reporte";
@@ -224,10 +224,10 @@
             this.grasatotal,
             this.nombre_tambo});
             this.dgvProduccion.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvProduccion.Location = new System.Drawing.Point(243, 87);
+            this.dgvProduccion.Location = new System.Drawing.Point(263, 87);
             this.dgvProduccion.Name = "dgvProduccion";
             this.dgvProduccion.ReadOnly = true;
-            this.dgvProduccion.Size = new System.Drawing.Size(554, 330);
+            this.dgvProduccion.Size = new System.Drawing.Size(603, 330);
             this.dgvProduccion.TabIndex = 4;
             // 
             // rp
@@ -236,6 +236,7 @@
             this.rp.HeaderText = "RP Animal";
             this.rp.Name = "rp";
             this.rp.ReadOnly = true;
+            this.rp.Width = 80;
             // 
             // nombre_animal
             // 
@@ -257,6 +258,7 @@
             this.litrostotales.HeaderText = "Litros totales ordeñe";
             this.litrostotales.Name = "litrostotales";
             this.litrostotales.ReadOnly = true;
+            this.litrostotales.Width = 90;
             // 
             // grasatotal
             // 
@@ -264,6 +266,7 @@
             this.grasatotal.HeaderText = "Kg grasa total";
             this.grasatotal.Name = "grasatotal";
             this.grasatotal.ReadOnly = true;
+            this.grasatotal.Width = 90;
             // 
             // nombre_tambo
             // 
@@ -276,9 +279,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(869, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "ReporteProduccion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Producción Lechera";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
