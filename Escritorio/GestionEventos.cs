@@ -27,6 +27,8 @@ namespace Escritorio
         public void CargarGrilla(int id_tambo)
         {
             EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+            //this.dgvEventos.DataSource = null;
+            this.dgvEventos.AutoGenerateColumns = false;
             this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarSoloEventosPorTambo(id_tambo);
             //gvEventos.Columns[0].HeaderText = "TextoAMostrarEnLaCabecera";
             if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
@@ -94,9 +96,11 @@ namespace Escritorio
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
-            vistaPreviaListadoEventos.idtambo = idtambo;
-            vistaPreviaListadoEventos.Show();        
+            //vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
+            //vistaPreviaListadoEventos.idtambo = idtambo;
+            //vistaPreviaListadoEventos.Show();        
+            vpEventos_Animal vp = new vpEventos_Animal();
+            vp.Show();
         }
 
         public void InicializarTextBox()
@@ -136,8 +140,8 @@ namespace Escritorio
 
         private void dgvEventos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
-            {
+            //if (e.ColumnIndex == 0)
+            //{
                 if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
                 {
                     int id_tambo = Principal.Tambo.Id_tambo;
@@ -151,7 +155,7 @@ namespace Escritorio
                     detalle.Show();
 
                 }
-            }
+            //}
         }
     }
 }

@@ -25,6 +25,7 @@ namespace Escritorio
         public void CargarGrilla(int id_tambo)
         {
             Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+            this.dgvControles.AutoGenerateColumns = false;
             this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTambo(id_tambo);
             if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
             {
@@ -56,6 +57,7 @@ namespace Escritorio
             DateTime fecha_control = Convert.ToDateTime(this.dgvControles.CurrentRow.Cells["fecha_control"].Value);
             int id_control = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_control"].Value);
             int rp = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["rp"].Value);
+            
             int id_tambo = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_tambo"].Value);
             DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el control del animal?","Verificación",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
             if (result == DialogResult.Yes)
@@ -74,15 +76,16 @@ namespace Escritorio
             int id_tambo = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_tambo"].Value);
 
             EdicionControles edicion = new EdicionControles();
-
+            edicion.Animal = animal;
             edicion.txtIdControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["id_control"].Value);
             edicion.dtpFechaControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["fecha_control"].Value);
             edicion.txtPrimerControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["primer_control"].Value);
             edicion.txtSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["segundo_control"].Value);
             edicion.txtGrasaPrimerControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["grasa_primercontrol"].Value);
             edicion.txtGrasaSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["grasa_segundocontrol"].Value);
-            edicion.cbAnimal.Text = animal.Nombre_animal;
-
+            //edicion.cbAnimal.Text = animal.Nombre_animal;
+            edicion.txtCaravana.Text = animal.Caravana;
+            edicion.txtNombreAnimal.Text = animal.Nombre_animal;
             edicion.controlAnimalGlobal = MapearAControlAnimal();
             edicion.Show();
             CargarGrilla(id_tambo);

@@ -25,7 +25,7 @@ namespace Entidades
         private int _id_raza;
         private string _nombre_raza;
         private bool _habilitado;
-        private string caravana;
+
 
 
         public int Rp
@@ -132,8 +132,8 @@ namespace Entidades
             set { _habilitado = value; }
         }
 
-        public string Caravana { get => caravana; set => caravana = value; }
 
+        public string  Caravana { get; set; }
         public Animal()
         {
 

@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Negocio;
 using Datos;
+using Entidades;
 
 namespace Escritorio
 {
     static class Program
     {
-        
+        public static Usuario UsuarioSesion { get; set; }
         /// <summary>
         /// Punto de entrada principal para la aplicación.
         /// </summary>
@@ -21,9 +22,10 @@ namespace Escritorio
             Application.SetCompatibleTextRenderingDefault(false);           
 
             Usuario_Negocio usuarioNegocio = new Usuario_Negocio();
-
+            UsuarioSesion = new Usuario();
             if (usuarioNegocio.HayUsuarios())
             {
+
                 Application.Run(new LoginUsuario());
             }
         }

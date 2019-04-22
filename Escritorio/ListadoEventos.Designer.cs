@@ -32,20 +32,6 @@
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgvEventos = new System.Windows.Forms.DataGridView();
-            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_desc_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_subevento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnSalir = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbsRegresar = new System.Windows.Forms.ToolStripButton();
@@ -57,6 +43,22 @@
             this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verdetalle = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_subevento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_desc_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -101,23 +103,27 @@
             // 
             // dgvEventos
             // 
+            this.dgvEventos.AllowUserToAddRows = false;
+            this.dgvEventos.AllowUserToDeleteRows = false;
             this.dgvEventos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEventos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rp,
-            this.id_desc_evento,
-            this.id_evento,
-            this.id_desc,
+            this.caravana,
             this.fecha_desc,
             this.nombre_animal,
             this.nombre_evento,
-            this.nombre_subevento,
-            this.descripcion,
-            this.id_inseminador,
-            this.nombre_inseminador,
-            this.id_tambo,
             this.nombre_tambo,
-            this.estado_evento});
+            this.verdetalle,
+            this.nombre_inseminador,
+            this.estado_evento,
+            this.descripcion,
+            this.nombre_subevento,
+            this.id_desc_evento,
+            this.id_desc,
+            this.id_evento,
+            this.id_inseminador,
+            this.id_tambo});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvEventos, 2);
             this.dgvEventos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEventos.Location = new System.Drawing.Point(3, 3);
@@ -127,112 +133,7 @@
             this.dgvEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvEventos.Size = new System.Drawing.Size(794, 390);
             this.dgvEventos.TabIndex = 0;
-            // 
-            // rp
-            // 
-            this.rp.DataPropertyName = "rp";
-            this.rp.HeaderText = "RP Animal";
-            this.rp.Name = "rp";
-            this.rp.ReadOnly = true;
-            this.rp.Width = 80;
-            // 
-            // id_desc_evento
-            // 
-            this.id_desc_evento.DataPropertyName = "id_desc_evento";
-            this.id_desc_evento.HeaderText = "ID";
-            this.id_desc_evento.Name = "id_desc_evento";
-            this.id_desc_evento.ReadOnly = true;
-            this.id_desc_evento.Visible = false;
-            // 
-            // id_evento
-            // 
-            this.id_evento.DataPropertyName = "id_evento";
-            this.id_evento.HeaderText = "ID Evento";
-            this.id_evento.Name = "id_evento";
-            this.id_evento.ReadOnly = true;
-            this.id_evento.Visible = false;
-            // 
-            // id_desc
-            // 
-            this.id_desc.DataPropertyName = "id_desc";
-            this.id_desc.HeaderText = "ID Descripcion";
-            this.id_desc.Name = "id_desc";
-            this.id_desc.ReadOnly = true;
-            this.id_desc.Visible = false;
-            // 
-            // fecha_desc
-            // 
-            this.fecha_desc.DataPropertyName = "fecha_desc";
-            this.fecha_desc.HeaderText = "Fecha";
-            this.fecha_desc.Name = "fecha_desc";
-            this.fecha_desc.ReadOnly = true;
-            this.fecha_desc.Width = 80;
-            // 
-            // nombre_animal
-            // 
-            this.nombre_animal.DataPropertyName = "nombre_animal";
-            this.nombre_animal.HeaderText = "Animal";
-            this.nombre_animal.Name = "nombre_animal";
-            this.nombre_animal.ReadOnly = true;
-            // 
-            // nombre_evento
-            // 
-            this.nombre_evento.DataPropertyName = "nombre_evento";
-            this.nombre_evento.HeaderText = "Evento";
-            this.nombre_evento.Name = "nombre_evento";
-            this.nombre_evento.ReadOnly = true;
-            // 
-            // nombre_subevento
-            // 
-            this.nombre_subevento.DataPropertyName = "nombre_subevento";
-            this.nombre_subevento.HeaderText = "Subevento";
-            this.nombre_subevento.Name = "nombre_subevento";
-            this.nombre_subevento.ReadOnly = true;
-            // 
-            // descripcion
-            // 
-            this.descripcion.DataPropertyName = "descripcion";
-            this.descripcion.HeaderText = "Descripcion";
-            this.descripcion.Name = "descripcion";
-            this.descripcion.ReadOnly = true;
-            // 
-            // id_inseminador
-            // 
-            this.id_inseminador.DataPropertyName = "id_inseminador";
-            this.id_inseminador.HeaderText = "ID Inseminador";
-            this.id_inseminador.Name = "id_inseminador";
-            this.id_inseminador.ReadOnly = true;
-            this.id_inseminador.Visible = false;
-            // 
-            // nombre_inseminador
-            // 
-            this.nombre_inseminador.DataPropertyName = "nombre_inseminador";
-            this.nombre_inseminador.HeaderText = "Inseminador";
-            this.nombre_inseminador.Name = "nombre_inseminador";
-            this.nombre_inseminador.ReadOnly = true;
-            // 
-            // id_tambo
-            // 
-            this.id_tambo.DataPropertyName = "id_tambo";
-            this.id_tambo.HeaderText = "ID Tambo";
-            this.id_tambo.Name = "id_tambo";
-            this.id_tambo.ReadOnly = true;
-            this.id_tambo.Visible = false;
-            // 
-            // nombre_tambo
-            // 
-            this.nombre_tambo.DataPropertyName = "nombre_tambo";
-            this.nombre_tambo.HeaderText = "Tambo";
-            this.nombre_tambo.Name = "nombre_tambo";
-            this.nombre_tambo.ReadOnly = true;
-            // 
-            // estado_evento
-            // 
-            this.estado_evento.DataPropertyName = "estado_evento";
-            this.estado_evento.HeaderText = "Estado";
-            this.estado_evento.Name = "estado_evento";
-            this.estado_evento.ReadOnly = true;
-            this.estado_evento.Visible = false;
+            this.dgvEventos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEventos_CellContentClick);
             // 
             // btnSalir
             // 
@@ -314,6 +215,7 @@
             this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tstxtBuscar.Name = "tstxtBuscar";
             this.tstxtBuscar.Size = new System.Drawing.Size(100, 25);
+            this.tstxtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstxtBuscar_KeyPress);
             this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tstxtBuscar_KeyUp);
             // 
             // toolStripSeparator3
@@ -331,6 +233,146 @@
             this.toolStripButton1.Size = new System.Drawing.Size(63, 22);
             this.toolStripButton1.Text = "Actualizar";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // rp
+            // 
+            this.rp.DataPropertyName = "rp";
+            this.rp.Frozen = true;
+            this.rp.HeaderText = "RP Animal";
+            this.rp.Name = "rp";
+            this.rp.ReadOnly = true;
+            this.rp.Width = 80;
+            // 
+            // caravana
+            // 
+            this.caravana.DataPropertyName = "caravana";
+            this.caravana.Frozen = true;
+            this.caravana.HeaderText = "Caravana";
+            this.caravana.Name = "caravana";
+            this.caravana.ReadOnly = true;
+            // 
+            // fecha_desc
+            // 
+            this.fecha_desc.DataPropertyName = "fecha_desc";
+            this.fecha_desc.Frozen = true;
+            this.fecha_desc.HeaderText = "Fecha";
+            this.fecha_desc.Name = "fecha_desc";
+            this.fecha_desc.ReadOnly = true;
+            this.fecha_desc.Width = 80;
+            // 
+            // nombre_animal
+            // 
+            this.nombre_animal.DataPropertyName = "nombre_animal";
+            this.nombre_animal.Frozen = true;
+            this.nombre_animal.HeaderText = "Animal";
+            this.nombre_animal.Name = "nombre_animal";
+            this.nombre_animal.ReadOnly = true;
+            // 
+            // nombre_evento
+            // 
+            this.nombre_evento.DataPropertyName = "nombre_evento";
+            this.nombre_evento.Frozen = true;
+            this.nombre_evento.HeaderText = "Evento";
+            this.nombre_evento.Name = "nombre_evento";
+            this.nombre_evento.ReadOnly = true;
+            // 
+            // nombre_tambo
+            // 
+            this.nombre_tambo.DataPropertyName = "nombre_tambo";
+            this.nombre_tambo.Frozen = true;
+            this.nombre_tambo.HeaderText = "Tambo";
+            this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.ReadOnly = true;
+            // 
+            // verdetalle
+            // 
+            this.verdetalle.Frozen = true;
+            this.verdetalle.HeaderText = "Ver detalle";
+            this.verdetalle.Name = "verdetalle";
+            this.verdetalle.ReadOnly = true;
+            this.verdetalle.Text = "Ver detalle";
+            this.verdetalle.UseColumnTextForLinkValue = true;
+            // 
+            // nombre_inseminador
+            // 
+            this.nombre_inseminador.DataPropertyName = "nombre_inseminador";
+            this.nombre_inseminador.Frozen = true;
+            this.nombre_inseminador.HeaderText = "Inseminador";
+            this.nombre_inseminador.Name = "nombre_inseminador";
+            this.nombre_inseminador.ReadOnly = true;
+            this.nombre_inseminador.Visible = false;
+            // 
+            // estado_evento
+            // 
+            this.estado_evento.DataPropertyName = "estado_evento";
+            this.estado_evento.Frozen = true;
+            this.estado_evento.HeaderText = "Estado";
+            this.estado_evento.Name = "estado_evento";
+            this.estado_evento.ReadOnly = true;
+            this.estado_evento.Visible = false;
+            // 
+            // descripcion
+            // 
+            this.descripcion.DataPropertyName = "descripcion";
+            this.descripcion.Frozen = true;
+            this.descripcion.HeaderText = "Descripcion";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            this.descripcion.Visible = false;
+            // 
+            // nombre_subevento
+            // 
+            this.nombre_subevento.DataPropertyName = "nombre_subevento";
+            this.nombre_subevento.Frozen = true;
+            this.nombre_subevento.HeaderText = "Subevento";
+            this.nombre_subevento.Name = "nombre_subevento";
+            this.nombre_subevento.ReadOnly = true;
+            this.nombre_subevento.Visible = false;
+            // 
+            // id_desc_evento
+            // 
+            this.id_desc_evento.DataPropertyName = "id_desc_evento";
+            this.id_desc_evento.Frozen = true;
+            this.id_desc_evento.HeaderText = "ID";
+            this.id_desc_evento.Name = "id_desc_evento";
+            this.id_desc_evento.ReadOnly = true;
+            this.id_desc_evento.Visible = false;
+            // 
+            // id_desc
+            // 
+            this.id_desc.DataPropertyName = "id_desc";
+            this.id_desc.Frozen = true;
+            this.id_desc.HeaderText = "ID Descripcion";
+            this.id_desc.Name = "id_desc";
+            this.id_desc.ReadOnly = true;
+            this.id_desc.Visible = false;
+            // 
+            // id_evento
+            // 
+            this.id_evento.DataPropertyName = "id_evento";
+            this.id_evento.Frozen = true;
+            this.id_evento.HeaderText = "ID Evento";
+            this.id_evento.Name = "id_evento";
+            this.id_evento.ReadOnly = true;
+            this.id_evento.Visible = false;
+            // 
+            // id_inseminador
+            // 
+            this.id_inseminador.DataPropertyName = "id_inseminador";
+            this.id_inseminador.Frozen = true;
+            this.id_inseminador.HeaderText = "ID Inseminador";
+            this.id_inseminador.Name = "id_inseminador";
+            this.id_inseminador.ReadOnly = true;
+            this.id_inseminador.Visible = false;
+            // 
+            // id_tambo
+            // 
+            this.id_tambo.DataPropertyName = "id_tambo";
+            this.id_tambo.Frozen = true;
+            this.id_tambo.HeaderText = "ID Tambo";
+            this.id_tambo.Name = "id_tambo";
+            this.id_tambo.ReadOnly = true;
+            this.id_tambo.Visible = false;
             // 
             // ListadoEventos
             // 
@@ -375,18 +417,20 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_desc;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_subevento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_inseminador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_inseminador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
+        private System.Windows.Forms.DataGridViewLinkColumn verdetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_inseminador;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado_evento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_subevento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc_evento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_evento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_inseminador;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
     }
 }

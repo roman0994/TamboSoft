@@ -114,6 +114,7 @@
     <Compile Include="Conexion.cs" />
     <Compile Include="Control_Animal_Datos.cs" />
     <Compile Include="Desc_Subevento_Datos.cs" />
+    <Compile Include="EventoAnimal_Datos.cs" />
     <Compile Include="EventoAnimal_DescSubevento_Datos.cs" />
     <Compile Include="Evento_Datos.cs" />
     <Compile Include="Evento_Subevento_Datos.cs" />

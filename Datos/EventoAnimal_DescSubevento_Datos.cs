@@ -68,7 +68,18 @@ namespace Datos
             {
                 List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
                 this.AbrirConexion();
-                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento,e.id_inseminador,i.nombre_inseminador FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento left join Inseminador i on e.id_inseminador=i.id_inseminador where e.id_tambo = @id_tambo and e.estado_evento = 'true' and a.habilitado='true' order by e.fecha_desc", Conn);
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand(" SELECT e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal, " +
+                                                                          " ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo, " +
+                                                                          " e.estado_evento,e.id_inseminador,i.nombre_inseminador " +
+                                                                          " FROM EventoAnimal_DescSubevento e " +
+                                                                          " left join Evento ev on e.id_evento=ev.id_evento " +
+                                                                          " left join Animal a on e.rp=a.rp " +
+                                                                          " left join Tambo t on e.id_tambo=t.id_tambo " +
+                                                                          " left join Desc_Subevento d on e.id_desc=d.id_desc " +
+                                                                          " left join Subevento s on d.id_subevento=s.id_subevento " +
+                                                                          " left join Inseminador i on e.id_inseminador=i.id_inseminador " +
+                                                                          " where e.id_tambo = @id_tambo and e.estado_evento = 'true' " +
+                                                                          " and a.habilitado='true' order by e.fecha_desc", Conn);
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdEventosAnimalDescSubevento.ExecuteReader();
@@ -77,7 +88,7 @@ namespace Datos
                 {
 
                     EventoAnimal_DescSubevento eventoAnimal_DescSubevento = new EventoAnimal_DescSubevento();
-                    eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
+                    //eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
                     eventoAnimal_DescSubevento.Rp = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
                     eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
                     eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(3) ? 0 : (Convert.ToInt32(dr["id_desc"]));
@@ -88,9 +99,9 @@ namespace Datos
                     eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(8) ? "N/D" : dr["descripcion"].ToString();
                     eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
                     eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
-                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(11) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
+                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(11) ? true : Convert.ToBoolean(dr["estado_evento"]);
                     eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(12) ? 0 : Convert.ToInt32(dr["id_inseminador"]);
-                    eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(13) ? "N/D" : dr["nombre_inseminador"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(12) ? "N/D" : dr["nombre_inseminador"].ToString();
 
                     lista.Add(eventoAnimal_DescSubevento);
 
@@ -119,7 +130,17 @@ namespace Datos
             {
                 List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
                 this.AbrirConexion();
-                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento,e.id_inseminador,i.nombre_inseminador FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento left join Inseminador i on e.id_inseminador=i.id_inseminador where e.id_tambo = @id_tambo and e.rp=@rp and e.estado_evento = 'true' and a.habilitado='true' order by e.fecha_desc", Conn);
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("select ed.rp,ed.id_evento,ed.fecha_desc,a.nombre_animal,e.nombre_evento,t.nombre_tambo,a.caravana " +
+                                                            " from EventoAnimal_DescSubevento ed " +
+                                                            " inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+                                                            " inner join Animal a on ea.rp = a.rp " +
+                                                            " inner join Evento e on e.id_evento = ea.id_evento " +
+                                                            " inner join Tambo t on ed.id_tambo = t.id_tambo " +
+                                                            " where ed.id_tambo = @id_tambo and ed.estado_evento = 'true' " +
+                                                            " and a.habilitado = 'true' and ed.rp=@rp " +
+                                                            " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo " +
+                                                            " order by ed.fecha_desc desc ", Conn);
+
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdEventosAnimalDescSubevento.Parameters.Add("rp", SqlDbType.Int).Value = rp;
 
@@ -129,20 +150,15 @@ namespace Datos
                 {
 
                     EventoAnimal_DescSubevento eventoAnimal_DescSubevento = new EventoAnimal_DescSubevento();
-                    eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
-                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
-                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
-                    eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(3) ? 0 : (Convert.ToInt32(dr["id_desc"]));
-                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(4) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
-                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(5) ? string.Empty : dr["nombre_animal"].ToString();
-                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(6) ? string.Empty : dr["nombre_evento"].ToString();
-                    eventoAnimal_DescSubevento.Nombre_subevento = dr.IsDBNull(7) ? "N/D" : dr["nombre_subevento"].ToString();
-                    eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(8) ? "N/D" : dr["descripcion"].ToString();
-                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
-                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
-                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(11) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
-                    eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(12) ? 0 : Convert.ToInt32(dr["id_inseminador"]);
-                    eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(13) ? "N/D" : dr["nombre_inseminador"].ToString();
+                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
+                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(2) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
+                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(3) ? string.Empty : dr["nombre_animal"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(4) ? string.Empty : dr["nombre_evento"].ToString();
+                    //eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(5) ? string.Empty : dr["nombre_tambo"].ToString();
+                    // eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(7) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
+                    eventoAnimal_DescSubevento.Caravana = dr.IsDBNull(6) ? string.Empty : dr["caravana"].ToString();
 
                     lista.Add(eventoAnimal_DescSubevento);
 
@@ -171,25 +187,36 @@ namespace Datos
             {
                 List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
                 this.AbrirConexion();
-                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT min(e.id_desc_evento) id_desc_evento,e.rp,e.id_evento,e.fecha_desc,a.nombre_animal,ev.nombre_evento,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento = ev.id_evento left join Animal a on e.rp = a.rp left join Tambo t on e.id_tambo = t.id_tambo where e.id_tambo = @id_tambo and e.estado_evento = 'true' and a.habilitado = 'true' group by e.rp, e.id_evento, e.fecha_desc, a.nombre_animal, ev.nombre_evento, e.id_tambo, t.nombre_tambo, e.estado_evento order by e.fecha_desc", Conn);
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("select ed.rp,ed.id_evento,ed.fecha_desc,a.nombre_animal,e.nombre_evento,t.nombre_tambo,a.caravana " +
+                                                                            " from EventoAnimal_DescSubevento ed " +
+                                                                            " inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+                                                                            " inner join Animal a on ea.rp = a.rp " +
+                                                                            " inner join Evento e on e.id_evento = ea.id_evento " +
+                                                                            " inner join Tambo t on ed.id_tambo = t.id_tambo " +
+                                                                            " where ed.id_tambo = @id_tambo and ed.estado_evento = 'true' " +
+                                                                            " and a.habilitado = 'true' " +
+                                                                            " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo " +
+                                                                            " order by ed.fecha_desc desc ", Conn);
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdEventosAnimalDescSubevento.ExecuteReader();
 
                 while (dr.Read())
                 {
-
+                    
+                    
                     EventoAnimal_DescSubevento eventoAnimal_DescSubevento = new EventoAnimal_DescSubevento();
-                    eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
-                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
-                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
-                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(3) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
-                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
-                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(5) ? string.Empty : dr["nombre_evento"].ToString();
-                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
-                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(7) ? string.Empty : dr["nombre_tambo"].ToString();
-                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(8) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
+                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
+                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(2) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
+                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(3) ? string.Empty : dr["nombre_animal"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(4) ? string.Empty : dr["nombre_evento"].ToString();
+                    //eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(5) ? string.Empty : dr["nombre_tambo"].ToString();
+                   // eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(7) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
+                    eventoAnimal_DescSubevento.Caravana = dr.IsDBNull(6) ? string.Empty : dr["caravana"].ToString();
 
+                  
                     lista.Add(eventoAnimal_DescSubevento);
 
                 }
@@ -217,7 +244,19 @@ namespace Datos
             {
                 List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
                 this.AbrirConexion();
-                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento,e.id_inseminador,i.nombre_inseminador FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento left join Inseminador i on e.id_inseminador=i.id_inseminador where e.id_tambo = @id_tambo and e.rp = @rp and e.id_evento = @id_evento and e.fecha_desc = @fecha and e.estado_evento = 'true' and a.habilitado = 'true'", Conn);
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT ed.rp,e.id_evento,ed.id_desc,ed.fecha_desc,a.nombre_animal,e.nombre_evento, " +
+                                                                        "s.nombre_subevento, d.descripcion, t.id_tambo, t.nombre_tambo, ed.estado_evento, ed.id_inseminador, i.nombre_inseminador,a.caravana " +
+                                                                        "FROM EventoAnimal_DescSubevento ed " +
+                                                                        "inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+                                                                        "inner join Animal a on ea.rp = a.rp " +
+                                                                        "inner join Evento e on e.id_evento = ea.id_evento " +
+                                                                        "inner join Tambo t on ed.id_tambo = t.id_tambo " +
+                                                                        "inner join Desc_Subevento d on ed.id_desc = d.id_desc " +
+                                                                        "inner join Subevento s on d.id_subevento = s.id_subevento " +
+                                                                        "left join Inseminador i on ed.id_inseminador = i.id_inseminador " +
+                                                                        "where ed.id_tambo = @id_tambo and ed.rp = @rp and " +
+                                                                        " e.id_evento = @id_evento and ed.fecha_desc = @fecha " +
+                                                                        " and ed.estado_evento = 'true' and a.habilitado = 'true'", Conn);
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdEventosAnimalDescSubevento.Parameters.Add("rp", SqlDbType.Int).Value = rp;
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_evento", SqlDbType.Int).Value = id_evento;
@@ -229,21 +268,21 @@ namespace Datos
                 {
 
                     EventoAnimal_DescSubevento eventoAnimal_DescSubevento = new EventoAnimal_DescSubevento();
-                    eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
-                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
-                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
-                    eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(3) ? 0 : (Convert.ToInt32(dr["id_desc"]));
-                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(4) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
-                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(5) ? string.Empty : dr["nombre_animal"].ToString();
-                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(6) ? string.Empty : dr["nombre_evento"].ToString();
-                    eventoAnimal_DescSubevento.Nombre_subevento = dr.IsDBNull(7) ? "N/D" : dr["nombre_subevento"].ToString();
-                    eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(8) ? "N/D" : dr["descripcion"].ToString();
-                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
-                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
-                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(11) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
-                    eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(12) ? 0 : Convert.ToInt32(dr["id_inseminador"]);
-                    eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(13) ? "N/D" : dr["nombre_inseminador"].ToString();
-
+                   // eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
+                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
+                    eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(2) ? 0 : (Convert.ToInt32(dr["id_desc"]));
+                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(3) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
+                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(5) ? string.Empty : dr["nombre_evento"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_subevento = dr.IsDBNull(6) ? "N/D" : dr["nombre_subevento"].ToString();
+                    eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(7) ? "N/D" : dr["descripcion"].ToString();
+                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(8) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(9) ? string.Empty : dr["nombre_tambo"].ToString();
+                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(10) ? true : Convert.ToBoolean(dr["estado_evento"]);
+                    eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(11) ? 0 : Convert.ToInt32(dr["id_inseminador"]);
+                    eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(12) ? "N/D" : dr["nombre_inseminador"].ToString();
+                    eventoAnimal_DescSubevento.Caravana = dr.IsDBNull(13) ? string.Empty : dr["caravana"].ToString();
                     lista.Add(eventoAnimal_DescSubevento);
 
                 }
@@ -268,7 +307,17 @@ namespace Datos
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdEvento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and a.habilitado='true' order by e.fecha_desc", Conn);
+             SqlCommand cmdEvento = new SqlCommand("SELECT e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento, " +
+                                                    "s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento  " +
+                                                    " FROM EventoAnimal_DescSubevento e " +
+                                                    " left join Evento ev on e.id_evento=ev.id_evento " +
+                                                    " left join Animal a on e.rp=a.rp " +
+                                                    " left join Tambo t on e.id_tambo=t.id_tambo " +
+                                                    " left join Desc_Subevento d on e.id_desc=d.id_desc " +
+                                                    " left join Subevento s on d.id_subevento=s.id_subevento " +
+                                                    " where e.id_tambo = @id_tambo and e.estado_evento = 'true' " +
+                                                    " and a.habilitado='true' " +
+                                                    " order by e.fecha_desc", Conn);
 
             cmdEvento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -354,29 +403,45 @@ namespace Datos
             {
                 List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
                 this.AbrirConexion();
-                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and d.id_subevento = 1 and a.habilitado='true' order by e.fecha_desc", Conn);
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT ed.rp, e.id_evento, ed.id_desc, ed.fecha_desc, a.nombre_animal, e.nombre_evento, " +
+                                                                        "s.nombre_subevento,d.descripcion,t.id_tambo,t.nombre_tambo,ed.estado_evento,ed.id_inseminador,i.nombre_inseminador, " +
+                                                                        "a.caravana " +
+                                                                        "FROM EventoAnimal_DescSubevento ed " +
+                                                                        "inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+                                                                        "inner join Animal a on ea.rp = a.rp " +
+                                                                        "inner join Evento e on e.id_evento = ea.id_evento " +
+                                                                        "inner join Tambo t on ed.id_tambo = t.id_tambo " +
+                                                                         "inner join Desc_Subevento d on ed.id_desc = d.id_desc " +
+                                                                        "inner join Subevento s on d.id_subevento = s.id_subevento " +
+                                                                        "left join Inseminador i on ed.id_inseminador = i.id_inseminador " +
+                                                                         " where ed.id_tambo = @id_tambo and ed.estado_evento = 'true' " +
+                                                                        " and e.nombre_evento = 'Parto' and d.id_subevento = 1 " +
+                                                                        " and a.habilitado='true' order by ea.fecha_desc desc", Conn);
+
+
+
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdEventosAnimalDescSubevento.ExecuteReader();
 
                 while (dr.Read())
                 {
-
+        
                     EventoAnimal_DescSubevento eventoAnimal_DescSubevento = new EventoAnimal_DescSubevento();
-                    eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
-                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
-                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
-                    eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(3) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc"]));
-                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(4) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
-                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(5) ? string.Empty : dr["nombre_animal"].ToString();
-                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(6) ? string.Empty : dr["nombre_evento"].ToString();
-                    eventoAnimal_DescSubevento.Nombre_subevento = dr.IsDBNull(7) ? string.Empty : dr["nombre_subevento"].ToString();
-                    eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(8) ? string.Empty : dr["descripcion"].ToString();
-                    //eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_inseminador"]));
-                    //eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(10) ? string.Empty : dr["nombre_inseminador"].ToString();
-                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
-                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
-                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(11) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
+                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
+                    eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc"]));
+                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(3) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
+                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(5) ? string.Empty : dr["nombre_evento"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_subevento = dr.IsDBNull(6) ? string.Empty : dr["nombre_subevento"].ToString();
+                    eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(7) ? string.Empty : dr["descripcion"].ToString();
+                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(8) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(9) ? string.Empty : dr["nombre_tambo"].ToString();
+                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(10) ? true : Convert.ToBoolean(dr["estado_evento"]);
+                    eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(11) ? 0 : (Convert.ToInt32(dr["id_inseminador"]));
+                    eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(12) ? "NN" : dr["nombre_inseminador"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(13) ? string.Empty : dr["caravana"].ToString();
 
                     lista.Add(eventoAnimal_DescSubevento);
 
@@ -405,7 +470,23 @@ namespace Datos
             {
                 List<EventoAnimal_DescSubevento> lista = new List<EventoAnimal_DescSubevento>();
                 this.AbrirConexion();
-                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and d.id_subevento = 1 and e.fecha_desc>=@fechaDesde and e.fecha_desc<=@fechaHasta and a.habilitado='true' order by e.fecha_desc", Conn);
+
+                SqlCommand cmdEventosAnimalDescSubevento = new SqlCommand("SELECT ed.rp, e.id_evento, ed.id_desc, ed.fecha_desc, a.nombre_animal, e.nombre_evento, " +
+                                                                        "s.nombre_subevento,d.descripcion,t.id_tambo,t.nombre_tambo,ed.estado_evento,ed.id_inseminador,i.nombre_inseminador, " +
+                                                                        "a.caravana " +
+                                                                        "FROM EventoAnimal_DescSubevento ed " +
+                                                                        "inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+                                                                        "inner join Animal a on ea.rp = a.rp " +
+                                                                        "inner join Evento e on e.id_evento = ea.id_evento " +
+                                                                        "inner join Tambo t on ed.id_tambo = t.id_tambo " +
+                                                                         "inner join Desc_Subevento d on ed.id_desc = d.id_desc " +
+                                                                        "inner join Subevento s on d.id_subevento = s.id_subevento " +
+                                                                        "left join Inseminador i on ed.id_inseminador = i.id_inseminador " +
+                                                                        " where ed.id_tambo = @id_tambo and ed.estado_evento = 'true' " +
+                                                                        " and e.nombre_evento = 'Parto' and d.id_subevento = 1 " +
+                                                                        " and ed.fecha_desc>=@fechaDesde and ed.fecha_desc<=@fechaHasta " +
+                                                                        " and a.habilitado='true' order by ed.fecha_desc", Conn);
+
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdEventosAnimalDescSubevento.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
                 cmdEventosAnimalDescSubevento.Parameters.Add("fechaHasta", SqlDbType.DateTime).Value = fechaHasta;
@@ -416,20 +497,20 @@ namespace Datos
                 {
 
                     EventoAnimal_DescSubevento eventoAnimal_DescSubevento = new EventoAnimal_DescSubevento();
-                    eventoAnimal_DescSubevento.Id_desc_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc_evento"]));
-                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
-                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
-                    eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(3) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc"]));
-                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(4) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
-                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(5) ? string.Empty : dr["nombre_animal"].ToString();
-                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(6) ? string.Empty : dr["nombre_evento"].ToString();
-                    eventoAnimal_DescSubevento.Nombre_subevento = dr.IsDBNull(7) ? string.Empty : dr["nombre_subevento"].ToString();
-                    eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(8) ? string.Empty : dr["descripcion"].ToString();
-                    //eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_inseminador"]));
-                    //eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(10) ? string.Empty : dr["nombre_inseminador"].ToString();
-                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
-                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(10) ? string.Empty : dr["nombre_tambo"].ToString();
-                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(11) ? Convert.ToBoolean(string.Empty) : Convert.ToBoolean(dr["estado_evento"]);
+                    eventoAnimal_DescSubevento.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
+                    eventoAnimal_DescSubevento.Id_evento = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
+                    eventoAnimal_DescSubevento.Id_desc = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc"]));
+                    eventoAnimal_DescSubevento.Fecha_desc = dr.IsDBNull(3) ? Convert.ToDateTime(string.Empty) : (Convert.ToDateTime(dr["fecha_desc"]));
+                    eventoAnimal_DescSubevento.Nombre_animal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_evento = dr.IsDBNull(5) ? string.Empty : dr["nombre_evento"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_subevento = dr.IsDBNull(6) ? string.Empty : dr["nombre_subevento"].ToString();
+                    eventoAnimal_DescSubevento.Descripcion = dr.IsDBNull(7) ? string.Empty : dr["descripcion"].ToString();
+                    eventoAnimal_DescSubevento.Id_tambo = dr.IsDBNull(8) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(9) ? string.Empty : dr["nombre_tambo"].ToString();
+                    eventoAnimal_DescSubevento.Estado_evento = dr.IsDBNull(10) ? true : Convert.ToBoolean(dr["estado_evento"]);
+                    eventoAnimal_DescSubevento.Id_inseminador = dr.IsDBNull(11) ? 0 : (Convert.ToInt32(dr["id_inseminador"]));
+                    eventoAnimal_DescSubevento.Nombre_inseminador = dr.IsDBNull(12) ? "NN" : dr["nombre_inseminador"].ToString();
+                    eventoAnimal_DescSubevento.Nombre_tambo = dr.IsDBNull(13) ? string.Empty : dr["caravana"].ToString();
 
                     lista.Add(eventoAnimal_DescSubevento);
 
@@ -586,7 +667,36 @@ namespace Datos
             this.AbrirConexion();
             SqlCommand cmdFiltro = Conn.CreateCommand();
             cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and a.nombre_animal like ('%" + texto + "%') and e.estado_evento = 'true' and a.habilitado='true'";
+
+            cmdFiltro.CommandText = "select ed.rp,ed.id_evento,ed.fecha_desc,a.nombre_animal,e.nombre_evento,ed.id_tambo,t.nombre_tambo,ed.estado_evento,a.caravana " +
+                                                                           " from EventoAnimal_DescSubevento ed " +
+                                                                           " inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+                                                                           " inner join Animal a on ea.rp = a.rp " +
+                                                                           " inner join Evento e on e.id_evento = ea.id_evento " +
+                                                                           " inner join Tambo t on ed.id_tambo = t.id_tambo " +
+                                                                          "where ed.id_tambo = @id_tambo and " +
+                                                                             "a.nombre_animal like('%" + texto + "%') " +
+                                                                            " and ed.estado_evento = 'true' and a.habilitado = 'true' " +
+                                                                           " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo,ed.id_tambo,ed.estado_evento " +
+                                                                           " order by ed.fecha_desc desc ";
+
+
+            //cmdFiltro.CommandText = "SELECT ed.rp,e.id_evento,ed.id_desc,ed.fecha_desc,a.nombre_animal,e.nombre_evento, " +
+            //                                                           "s.nombre_subevento, d.descripcion, t.id_tambo, t.nombre_tambo, ed.estado_evento, ed.id_inseminador, i.nombre_inseminador,a.caravana " +
+            //                                                           "FROM EventoAnimal_DescSubevento ed " +
+            //                                                           "inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+            //                                                           "inner join Animal a on ea.rp = a.rp " +
+            //                                                           "inner join Evento e on e.id_evento = ea.id_evento " +
+            //                                                           "inner join Tambo t on ed.id_tambo = t.id_tambo " +
+            //                                                           "inner join Desc_Subevento d on ed.id_desc = d.id_desc " +
+            //                                                           "inner join Subevento s on d.id_subevento = s.id_subevento " +
+            //                                                           "left join Inseminador i on ed.id_inseminador = i.id_inseminador " +
+            //                                                           "where ed.id_tambo = @id_tambo and " +
+            //                                                           "a.nombre_animal like('%" + texto + "%') " +
+            //                                                           " and ed.estado_evento = 'true' and a.habilitado = 'true'";
+
+
+            //cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and a.nombre_animal like ('%" + texto + "%') and e.estado_evento = 'true' and a.habilitado='true'";
             cmdFiltro.Parameters.Add("id_tambo", SqlDbType.Int).Value = idtambo;
             cmdFiltro.ExecuteNonQuery();
 
@@ -603,7 +713,39 @@ namespace Datos
             this.AbrirConexion();
             SqlCommand cmdFiltro = Conn.CreateCommand();
             cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and ev.nombre_evento like ('%" + texto + "%') and e.estado_evento = 'true' and a.habilitado='true'";
+
+            //cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and ev.nombre_evento like ('%" + texto + "%') and e.estado_evento = 'true' and a.habilitado='true'";
+
+
+            cmdFiltro.CommandText = "select ed.rp,ed.id_evento,ed.fecha_desc,a.nombre_animal,e.nombre_evento,ed.id_tambo,t.nombre_tambo,ed.estado_evento,a.caravana " +
+                                                                           " from EventoAnimal_DescSubevento ed " +
+                                                                           " inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+                                                                           " inner join Animal a on ea.rp = a.rp " +
+                                                                           " inner join Evento e on e.id_evento = ea.id_evento " +
+                                                                           " inner join Tambo t on ed.id_tambo = t.id_tambo " +
+                                                                          "where ed.id_tambo = @id_tambo and " +
+                                                                       "e.nombre_evento like('%" + texto + "%') " +
+                                                                      " and ed.estado_evento = 'true' and a.habilitado = 'true' " +
+                                                                           " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo,ed.id_tambo,ed.estado_evento " +
+                                                                           " order by ed.fecha_desc desc ";
+
+
+
+            //cmdFiltro.CommandText = "SELECT ed.rp,e.id_evento,ed.id_desc,ed.fecha_desc,a.nombre_animal,e.nombre_evento, " +
+            //                                                           "s.nombre_subevento, d.descripcion, t.id_tambo, t.nombre_tambo, ed.estado_evento, ed.id_inseminador, i.nombre_inseminador,a.caravana " +
+            //                                                           "FROM EventoAnimal_DescSubevento ed " +
+            //                                                           "inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+            //                                                           "inner join Animal a on ea.rp = a.rp " +
+            //                                                           "inner join Evento e on e.id_evento = ea.id_evento " +
+            //                                                           "inner join Tambo t on ed.id_tambo = t.id_tambo " +
+            //                                                           "inner join Desc_Subevento d on ed.id_desc = d.id_desc " +
+            //                                                           "inner join Subevento s on d.id_subevento = s.id_subevento " +
+            //                                                           "left join Inseminador i on ed.id_inseminador = i.id_inseminador " +
+            //                                                           "where ed.id_tambo = @id_tambo and " +
+            //                                                           "e.nombre_evento like('%" + texto + "%') " +
+            //                                                           " and ed.estado_evento = 'true' and a.habilitado = 'true'";
+
+
             cmdFiltro.Parameters.Add("id_tambo", SqlDbType.Int).Value = idtambo;
             cmdFiltro.ExecuteNonQuery();
 
@@ -683,7 +825,7 @@ namespace Datos
         public bool HayEventos(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdEventos = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento,e.id_inseminador,i.nombre_inseminador FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento left join Inseminador i on e.id_inseminador=i.id_inseminador where e.id_tambo = @id_tambo and e.estado_evento = 'true' and a.habilitado='true' order by e.fecha_desc", Conn);
+            SqlCommand cmdEventos = new SqlCommand("SELECT e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento,e.id_inseminador,i.nombre_inseminador FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento left join Inseminador i on e.id_inseminador=i.id_inseminador where e.id_tambo = @id_tambo and e.estado_evento = 'true' and a.habilitado='true' order by e.fecha_desc", Conn);
             cmdEventos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
             SqlDataReader drEventos = cmdEventos.ExecuteReader();
 

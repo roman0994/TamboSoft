@@ -15,7 +15,13 @@ namespace Datos
         {
             List<Tambo> lista = new List<Tambo>();
             this.AbrirConexion();
-            SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,t.id_usuario,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true'",Conn);
+            SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,t.id_usuario,l.id_localidad," +
+                " l.nombre_localidad,p.nombre_provincia " +
+                " from Tambo t " +
+                " inner join Localidad l on t.id_localidad=l.id_localidad " +
+                " inner join Provincia p on l.id_provincia=p.id_provincia " +
+                " where t.estado_tambo = 'true' and t.id_usuario = @id_usuario ", Conn);
+            cmdTambos.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
             SqlDataReader drTambo = cmdTambos.ExecuteReader();
 
             while(drTambo.Read())
@@ -178,6 +184,8 @@ namespace Datos
                 this.CerrarConexion();
             }
         }
+
+        
 
         public bool HayOtrosTambos(int id_tambo, int id_usuario)
         {

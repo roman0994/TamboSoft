@@ -18,6 +18,7 @@ namespace Escritorio
         public LoginUsuario()
         {
             InitializeComponent();
+            Program.UsuarioSesion = null;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -34,21 +35,21 @@ namespace Escritorio
             else
             {
                 Usuario_Negocio usuarioNegocio = new Usuario_Negocio();
-                Usuario usuario = new Usuario();
+                //Usuario usuario = new Usuario();
                 bool validar = usuarioNegocio.ExisteUsuario((txtUser.Text).ToLower(),txtPass.Text);
 
                 if (validar == true)
                 {
-                    usuario = usuarioNegocio.RecuperarUno(txtUser.Text.ToLower(),txtPass.Text);
-
+                    
+                    Program.UsuarioSesion = usuarioNegocio.RecuperarUno(txtUser.Text.ToLower(), txtPass.Text);
                     MessageBox.Show("Ingreso correcto", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     CargarTablas cargarTablas = new CargarTablas();
                     Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-                    if (tamboNegocio.HayTambos(usuario.Id_usuario))
+                    if (tamboNegocio.HayTambos(Program.UsuarioSesion.Id_usuario))
                     {
                         cargarTablas.CargaTablasData();
                         Login login = new Login();
-                        login.id_usuario = usuario.Id_usuario;
+                        //login.id_usuario = Program.UsuarioSesion.Id_usuario;
                         login.Show();
                         this.Hide();
                     }
@@ -56,7 +57,7 @@ namespace Escritorio
                     {
                         cargarTablas.CargaTablasData();
                         LoginAltaTambos loginAltaTambos = new LoginAltaTambos();
-                        loginAltaTambos.id_usuario = usuario.Id_usuario;
+                        loginAltaTambos.id_usuario = Program.UsuarioSesion.Id_usuario;
                         loginAltaTambos.Show();
                         this.Hide();
                     }

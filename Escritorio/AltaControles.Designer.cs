@@ -32,10 +32,14 @@
             this.tlpControles = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.gbAnimal = new System.Windows.Forms.GroupBox();
+            this.lbNombreAnimal = new System.Windows.Forms.Label();
             this.cbAnimal = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbControl = new System.Windows.Forms.GroupBox();
-            this.label9 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.txtGrasaSegundoControl = new System.Windows.Forms.TextBox();
             this.txtGrasaPrimerControl = new System.Windows.Forms.TextBox();
             this.txtSegundoControl = new System.Windows.Forms.TextBox();
@@ -47,13 +51,10 @@
             this.gbFecha = new System.Windows.Forms.GroupBox();
             this.dtpFechaControl = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.tooltipControles = new System.Windows.Forms.ToolTip(this.components);
-            this.label8 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
             this.tlpControles.SuspendLayout();
             this.gbAnimal.SuspendLayout();
             this.gbControl.SuspendLayout();
@@ -79,8 +80,8 @@
             this.tlpControles.Name = "tlpControles";
             this.tlpControles.RowCount = 5;
             this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 21.54964F));
+            this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 47.69976F));
             this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -104,16 +105,26 @@
             // gbAnimal
             // 
             this.tlpControles.SetColumnSpan(this.gbAnimal, 4);
+            this.gbAnimal.Controls.Add(this.lbNombreAnimal);
             this.gbAnimal.Controls.Add(this.cbAnimal);
             this.gbAnimal.Controls.Add(this.label2);
             this.gbAnimal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAnimal.Location = new System.Drawing.Point(6, 49);
             this.gbAnimal.Name = "gbAnimal";
-            this.gbAnimal.Size = new System.Drawing.Size(788, 74);
+            this.gbAnimal.Size = new System.Drawing.Size(788, 81);
             this.gbAnimal.TabIndex = 1;
             this.gbAnimal.TabStop = false;
             this.gbAnimal.Text = "Animal";
+            // 
+            // lbNombreAnimal
+            // 
+            this.lbNombreAnimal.AutoSize = true;
+            this.lbNombreAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNombreAnimal.Location = new System.Drawing.Point(25, 54);
+            this.lbNombreAnimal.Name = "lbNombreAnimal";
+            this.lbNombreAnimal.Size = new System.Drawing.Size(0, 13);
+            this.lbNombreAnimal.TabIndex = 2;
             // 
             // cbAnimal
             // 
@@ -123,6 +134,7 @@
             this.cbAnimal.Name = "cbAnimal";
             this.cbAnimal.Size = new System.Drawing.Size(201, 21);
             this.cbAnimal.TabIndex = 1;
+            this.cbAnimal.SelectionChangeCommitted += new System.EventHandler(this.cbAnimal_SelectionChangeCommitted);
             // 
             // label2
             // 
@@ -151,22 +163,52 @@
             this.gbControl.Controls.Add(this.label4);
             this.gbControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbControl.Location = new System.Drawing.Point(6, 132);
+            this.gbControl.Location = new System.Drawing.Point(6, 139);
             this.gbControl.Name = "gbControl";
-            this.gbControl.Size = new System.Drawing.Size(788, 195);
+            this.gbControl.Size = new System.Drawing.Size(788, 187);
             this.gbControl.TabIndex = 2;
             this.gbControl.TabStop = false;
             this.gbControl.Text = "Datos Control";
             // 
-            // label9
+            // label12
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(671, 58);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(111, 13);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "* Campos obligatorios.";
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(449, 161);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(134, 13);
+            this.label12.TabIndex = 13;
+            this.label12.Text = "Formato de ingreso: XX,XX";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(449, 116);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(134, 13);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Formato de ingreso: XX,XX";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(449, 74);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(134, 13);
+            this.label10.TabIndex = 11;
+            this.label10.Text = "Formato de ingreso: XX,XX";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(449, 35);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(134, 13);
+            this.label8.TabIndex = 10;
+            this.label8.Text = "Formato de ingreso: XX,XX";
             // 
             // txtGrasaSegundoControl
             // 
@@ -252,9 +294,9 @@
             this.gbFecha.Controls.Add(this.label9);
             this.gbFecha.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbFecha.Location = new System.Drawing.Point(6, 336);
+            this.gbFecha.Location = new System.Drawing.Point(6, 335);
             this.gbFecha.Name = "gbFecha";
-            this.gbFecha.Size = new System.Drawing.Size(788, 74);
+            this.gbFecha.Size = new System.Drawing.Size(788, 75);
             this.gbFecha.TabIndex = 3;
             this.gbFecha.TabStop = false;
             this.gbFecha.Text = "Fecha Control";
@@ -276,6 +318,16 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Seleccione la fecha del control: *";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(671, 58);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(111, 13);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "* Campos obligatorios.";
+            // 
             // btnGuardar
             // 
             this.btnGuardar.Location = new System.Drawing.Point(126, 419);
@@ -296,46 +348,6 @@
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(449, 35);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(134, 13);
-            this.label8.TabIndex = 10;
-            this.label8.Text = "Formato de ingreso: XX,XX";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(449, 74);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(134, 13);
-            this.label10.TabIndex = 11;
-            this.label10.Text = "Formato de ingreso: XX,XX";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(449, 116);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(134, 13);
-            this.label11.TabIndex = 12;
-            this.label11.Text = "Formato de ingreso: XX,XX";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(449, 161);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(134, 13);
-            this.label12.TabIndex = 13;
-            this.label12.Text = "Formato de ingreso: XX,XX";
             // 
             // AltaControles
             // 
@@ -391,5 +403,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lbNombreAnimal;
     }
 }

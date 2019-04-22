@@ -17,7 +17,7 @@ namespace Entidades
         public int Id_evento { get => _id_evento; set => _id_evento = value; }
         public string Nombre_animal { get => _nombre_animal; set => _nombre_animal = value; }
         public string Nombre_evento { get => _nombre_evento; set => _nombre_evento = value; }
-
+        public DateTime Fecha_desc { get; set; }
         public Evento_Animal()
         {
 

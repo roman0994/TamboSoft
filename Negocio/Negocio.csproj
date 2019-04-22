@@ -114,6 +114,7 @@
     <Compile Include="Control_Animal_Negocio.cs" />
     <Compile Include="Desc_Subevento_Negocio.cs" />
     <Compile Include="EventoAnimal_DescSubevento_Negocio.cs" />
+    <Compile Include="EventoAnimal_Negocio.cs" />
     <Compile Include="Evento_Negocio.cs" />
     <Compile Include="Evento_Subevento_Negocio.cs" />
     <Compile Include="Inseminador_Negocio.cs" />

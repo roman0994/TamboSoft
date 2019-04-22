@@ -23,13 +23,27 @@ namespace Escritorio
             InitializeComponent();
         }
 
+        public vpProduccionPorFechaMes(int Mes,int Anio)
+        {
+            InitializeComponent();
+            mes = Mes;
+            año = Anio;
+        }
+
         private void vpProduccionPorFechaMes_Load(object sender, EventArgs e)
         {
-            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-            rptProduccionPorFechaMes reporte = new rptProduccionPorFechaMes();
-            reporte.SetDataSource(controlAnimalNegocio.ProduccionPorFiltroMesYAnimal(idtambo,mes,año, rp));
+            //Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+            //rptProduccionPorFechaMes reporte = new rptProduccionPorFechaMes();
+            //reporte.SetDataSource(controlAnimalNegocio.ProduccionPorFiltroMesYAnimal(idtambo,mes,año, rp));
+            //crvProduccionPorMes.ReportSource = reporte;
+            //crvProduccionPorMes.Refresh();
+            RankingProduccionMesAnio reporte = new RankingProduccionMesAnio();
+            reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
+            reporte.SetParameterValue("@mes", mes);
+            reporte.SetParameterValue("@anio", año);
+            reporte.SetDatabaseLogon("abcd", "123456");
             crvProduccionPorMes.ReportSource = reporte;
-            crvProduccionPorMes.Refresh();
+
         }
     }
 }

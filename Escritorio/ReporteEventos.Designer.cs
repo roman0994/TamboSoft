@@ -58,6 +58,7 @@
             this.rp_madre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp_padre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -67,14 +68,16 @@
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.OutsetDouble;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 70F));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 22.45922F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 157F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 77.54078F));
             this.tableLayoutPanel1.Controls.Add(this.btnExportar, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnSalir, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.groupBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.groupBox2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.dgvEventos, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnSalir, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.button1, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -89,7 +92,7 @@
             // btnExportar
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportar.Location = new System.Drawing.Point(162, 415);
+            this.btnExportar.Location = new System.Drawing.Point(66, 415);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(75, 29);
             this.btnExportar.TabIndex = 2;
@@ -100,7 +103,7 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(482, 415);
+            this.btnSalir.Location = new System.Drawing.Point(514, 415);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 29);
             this.btnSalir.TabIndex = 3;
@@ -110,7 +113,7 @@
             // 
             // groupBox1
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.groupBox1, 3);
             this.groupBox1.Controls.Add(this.txtTambo);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -140,7 +143,7 @@
             // 
             // groupBox2
             // 
-            this.tableLayoutPanel1.SetColumnSpan(this.groupBox2, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.groupBox2, 3);
             this.groupBox2.Controls.Add(this.btnLimpiar);
             this.groupBox2.Controls.Add(this.cbFiltro);
             this.groupBox2.Controls.Add(this.label2);
@@ -204,7 +207,7 @@
             this.rp_madre,
             this.rp_padre,
             this.habilitado});
-            this.tableLayoutPanel1.SetColumnSpan(this.dgvEventos, 2);
+            this.tableLayoutPanel1.SetColumnSpan(this.dgvEventos, 3);
             this.dgvEventos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEventos.Location = new System.Drawing.Point(6, 132);
             this.dgvEventos.Name = "dgvEventos";
@@ -344,6 +347,16 @@
             this.habilitado.Name = "habilitado";
             this.habilitado.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(150, 415);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(116, 29);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "Exp. Existencia";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // ReporteEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -398,5 +411,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rp_padre;
         private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
         private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button button1;
     }
 }

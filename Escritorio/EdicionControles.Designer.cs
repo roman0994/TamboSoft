@@ -33,8 +33,10 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.gbAnimal = new System.Windows.Forms.GroupBox();
-            this.cbAnimal = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.txtNombreAnimal = new System.Windows.Forms.TextBox();
+            this.lbNombre = new System.Windows.Forms.Label();
+            this.txtCaravana = new System.Windows.Forms.TextBox();
+            this.lbCaravana = new System.Windows.Forms.Label();
             this.gbControl = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -120,8 +122,10 @@
             // gbAnimal
             // 
             this.tlpControles.SetColumnSpan(this.gbAnimal, 3);
-            this.gbAnimal.Controls.Add(this.cbAnimal);
-            this.gbAnimal.Controls.Add(this.label3);
+            this.gbAnimal.Controls.Add(this.txtNombreAnimal);
+            this.gbAnimal.Controls.Add(this.lbNombre);
+            this.gbAnimal.Controls.Add(this.txtCaravana);
+            this.gbAnimal.Controls.Add(this.lbCaravana);
             this.gbAnimal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAnimal.Location = new System.Drawing.Point(6, 108);
@@ -131,24 +135,41 @@
             this.gbAnimal.TabStop = false;
             this.gbAnimal.Text = "Animal";
             // 
-            // cbAnimal
+            // txtNombreAnimal
             // 
-            this.cbAnimal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAnimal.FormattingEnabled = true;
-            this.cbAnimal.Location = new System.Drawing.Point(191, 26);
-            this.cbAnimal.Name = "cbAnimal";
-            this.cbAnimal.Size = new System.Drawing.Size(201, 21);
-            this.cbAnimal.TabIndex = 1;
+            this.txtNombreAnimal.Location = new System.Drawing.Point(192, 21);
+            this.txtNombreAnimal.Name = "txtNombreAnimal";
+            this.txtNombreAnimal.ReadOnly = true;
+            this.txtNombreAnimal.Size = new System.Drawing.Size(133, 20);
+            this.txtNombreAnimal.TabIndex = 6;
             // 
-            // label3
+            // lbNombre
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(28, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 13);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Seleccione el animal: *";
+            this.lbNombre.AutoSize = true;
+            this.lbNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNombre.Location = new System.Drawing.Point(139, 24);
+            this.lbNombre.Name = "lbNombre";
+            this.lbNombre.Size = new System.Drawing.Size(54, 13);
+            this.lbNombre.TabIndex = 5;
+            this.lbNombre.Text = "Nombre: *";
+            // 
+            // txtCaravana
+            // 
+            this.txtCaravana.Location = new System.Drawing.Point(69, 21);
+            this.txtCaravana.Name = "txtCaravana";
+            this.txtCaravana.ReadOnly = true;
+            this.txtCaravana.Size = new System.Drawing.Size(54, 20);
+            this.txtCaravana.TabIndex = 4;
+            // 
+            // lbCaravana
+            // 
+            this.lbCaravana.AutoSize = true;
+            this.lbCaravana.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCaravana.Location = new System.Drawing.Point(0, 24);
+            this.lbCaravana.Name = "lbCaravana";
+            this.lbCaravana.Size = new System.Drawing.Size(63, 13);
+            this.lbCaravana.TabIndex = 3;
+            this.lbCaravana.Text = "Caravana: *";
             // 
             // gbControl
             // 
@@ -405,8 +426,6 @@
         public System.Windows.Forms.Button btnGuardar;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.GroupBox gbAnimal;
-        public System.Windows.Forms.ComboBox cbAnimal;
-        public System.Windows.Forms.Label label3;
         public System.Windows.Forms.GroupBox gbControl;
         public System.Windows.Forms.TextBox txtGrasaSegundoControl;
         public System.Windows.Forms.TextBox txtGrasaPrimerControl;
@@ -429,5 +448,9 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label10;
+        public System.Windows.Forms.TextBox txtNombreAnimal;
+        public System.Windows.Forms.Label lbNombre;
+        public System.Windows.Forms.TextBox txtCaravana;
+        public System.Windows.Forms.Label lbCaravana;
     }
 }

@@ -32,20 +32,14 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnImprimir = new System.Windows.Forms.Button();
             this.dgvHistorialClinico = new System.Windows.Forms.DataGridView();
-            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_desc_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_subevento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.verdetalle = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorialClinico)).BeginInit();
@@ -84,50 +78,93 @@
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(75, 23);
             this.btnImprimir.TabIndex = 1;
-            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.Text = "Exportar";
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // dgvHistorialClinico
             // 
+            this.dgvHistorialClinico.AllowUserToAddRows = false;
+            this.dgvHistorialClinico.AllowUserToDeleteRows = false;
             this.dgvHistorialClinico.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvHistorialClinico.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHistorialClinico.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.rp,
-            this.id_desc_evento,
-            this.id_evento,
-            this.id_desc,
             this.fecha_desc,
+            this.rp,
+            this.Caravana,
             this.nombre_animal,
             this.nombre_evento,
-            this.nombre_subevento,
-            this.descripcion,
-            this.id_inseminador,
-            this.nombre_inseminador,
-            this.id_tambo,
             this.nombre_tambo,
-            this.estado_evento});
+            this.verdetalle,
+            this.id_evento});
             this.dgvHistorialClinico.Location = new System.Drawing.Point(23, 34);
+            this.dgvHistorialClinico.MultiSelect = false;
             this.dgvHistorialClinico.Name = "dgvHistorialClinico";
             this.dgvHistorialClinico.ReadOnly = true;
+            this.dgvHistorialClinico.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHistorialClinico.Size = new System.Drawing.Size(760, 345);
             this.dgvHistorialClinico.TabIndex = 0;
+            this.dgvHistorialClinico.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistorialClinico_CellContentClick);
+            // 
+            // fecha_desc
+            // 
+            this.fecha_desc.DataPropertyName = "fecha_desc";
+            this.fecha_desc.Frozen = true;
+            this.fecha_desc.HeaderText = "Fecha";
+            this.fecha_desc.Name = "fecha_desc";
+            this.fecha_desc.ReadOnly = true;
+            this.fecha_desc.Width = 90;
             // 
             // rp
             // 
             this.rp.DataPropertyName = "rp";
+            this.rp.Frozen = true;
             this.rp.HeaderText = "RP";
             this.rp.Name = "rp";
             this.rp.ReadOnly = true;
             this.rp.Width = 50;
             // 
-            // id_desc_evento
+            // Caravana
             // 
-            this.id_desc_evento.DataPropertyName = "id_desc_evento";
-            this.id_desc_evento.HeaderText = "ID";
-            this.id_desc_evento.Name = "id_desc_evento";
-            this.id_desc_evento.ReadOnly = true;
-            this.id_desc_evento.Visible = false;
+            this.Caravana.DataPropertyName = "caravana";
+            this.Caravana.Frozen = true;
+            this.Caravana.HeaderText = "caravana";
+            this.Caravana.Name = "Caravana";
+            this.Caravana.ReadOnly = true;
+            // 
+            // nombre_animal
+            // 
+            this.nombre_animal.DataPropertyName = "nombre_animal";
+            this.nombre_animal.Frozen = true;
+            this.nombre_animal.HeaderText = "Animal";
+            this.nombre_animal.Name = "nombre_animal";
+            this.nombre_animal.ReadOnly = true;
+            // 
+            // nombre_evento
+            // 
+            this.nombre_evento.DataPropertyName = "nombre_evento";
+            this.nombre_evento.Frozen = true;
+            this.nombre_evento.HeaderText = "Evento";
+            this.nombre_evento.Name = "nombre_evento";
+            this.nombre_evento.ReadOnly = true;
+            this.nombre_evento.Width = 80;
+            // 
+            // nombre_tambo
+            // 
+            this.nombre_tambo.DataPropertyName = "nombre_tambo";
+            this.nombre_tambo.Frozen = true;
+            this.nombre_tambo.HeaderText = "Tambo";
+            this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.ReadOnly = true;
+            // 
+            // verdetalle
+            // 
+            this.verdetalle.Frozen = true;
+            this.verdetalle.HeaderText = "Ver detalle";
+            this.verdetalle.Name = "verdetalle";
+            this.verdetalle.ReadOnly = true;
+            this.verdetalle.Text = "Ver detalle";
+            this.verdetalle.UseColumnTextForLinkValue = true;
             // 
             // id_evento
             // 
@@ -136,89 +173,6 @@
             this.id_evento.Name = "id_evento";
             this.id_evento.ReadOnly = true;
             this.id_evento.Visible = false;
-            // 
-            // id_desc
-            // 
-            this.id_desc.DataPropertyName = "id_desc";
-            this.id_desc.HeaderText = "ID Descripcion";
-            this.id_desc.Name = "id_desc";
-            this.id_desc.ReadOnly = true;
-            this.id_desc.Visible = false;
-            // 
-            // fecha_desc
-            // 
-            this.fecha_desc.DataPropertyName = "fecha_desc";
-            this.fecha_desc.HeaderText = "Fecha";
-            this.fecha_desc.Name = "fecha_desc";
-            this.fecha_desc.ReadOnly = true;
-            this.fecha_desc.Width = 90;
-            // 
-            // nombre_animal
-            // 
-            this.nombre_animal.DataPropertyName = "nombre_animal";
-            this.nombre_animal.HeaderText = "Animal";
-            this.nombre_animal.Name = "nombre_animal";
-            this.nombre_animal.ReadOnly = true;
-            // 
-            // nombre_evento
-            // 
-            this.nombre_evento.DataPropertyName = "nombre_evento";
-            this.nombre_evento.HeaderText = "Evento";
-            this.nombre_evento.Name = "nombre_evento";
-            this.nombre_evento.ReadOnly = true;
-            this.nombre_evento.Width = 80;
-            // 
-            // nombre_subevento
-            // 
-            this.nombre_subevento.DataPropertyName = "nombre_subevento";
-            this.nombre_subevento.HeaderText = "Subevento";
-            this.nombre_subevento.Name = "nombre_subevento";
-            this.nombre_subevento.ReadOnly = true;
-            // 
-            // descripcion
-            // 
-            this.descripcion.DataPropertyName = "descripcion";
-            this.descripcion.HeaderText = "Descripcion";
-            this.descripcion.Name = "descripcion";
-            this.descripcion.ReadOnly = true;
-            // 
-            // id_inseminador
-            // 
-            this.id_inseminador.DataPropertyName = "id_inseminador";
-            this.id_inseminador.HeaderText = "ID Inseminador";
-            this.id_inseminador.Name = "id_inseminador";
-            this.id_inseminador.ReadOnly = true;
-            this.id_inseminador.Visible = false;
-            // 
-            // nombre_inseminador
-            // 
-            this.nombre_inseminador.DataPropertyName = "nombre_inseminador";
-            this.nombre_inseminador.HeaderText = "Inseminador";
-            this.nombre_inseminador.Name = "nombre_inseminador";
-            this.nombre_inseminador.ReadOnly = true;
-            // 
-            // id_tambo
-            // 
-            this.id_tambo.DataPropertyName = "id_tambo";
-            this.id_tambo.HeaderText = "ID Tambo";
-            this.id_tambo.Name = "id_tambo";
-            this.id_tambo.ReadOnly = true;
-            this.id_tambo.Visible = false;
-            // 
-            // nombre_tambo
-            // 
-            this.nombre_tambo.DataPropertyName = "nombre_tambo";
-            this.nombre_tambo.HeaderText = "Tambo";
-            this.nombre_tambo.Name = "nombre_tambo";
-            this.nombre_tambo.ReadOnly = true;
-            // 
-            // estado_evento
-            // 
-            this.estado_evento.DataPropertyName = "estado_evento";
-            this.estado_evento.HeaderText = "Estado";
-            this.estado_evento.Name = "estado_evento";
-            this.estado_evento.ReadOnly = true;
-            this.estado_evento.Visible = false;
             // 
             // HistoriaClinica
             // 
@@ -232,6 +186,7 @@
             this.Name = "HistoriaClinica";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Historia Clínica";
+            this.Load += new System.EventHandler(this.HistoriaClinica_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorialClinico)).EndInit();
@@ -245,19 +200,13 @@
         private System.Windows.Forms.GroupBox groupBox1;
         public System.Windows.Forms.DataGridView dgvHistorialClinico;
         private System.Windows.Forms.Button btnImprimir;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_desc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_subevento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_inseminador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_inseminador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado_evento;
+        private System.Windows.Forms.DataGridViewLinkColumn verdetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_evento;
     }
 }

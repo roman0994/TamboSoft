@@ -47,12 +47,13 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.gbAnimal = new System.Windows.Forms.GroupBox();
+            this.lbNombreAnimal = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.cbAnimal = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.gbTambo = new System.Windows.Forms.GroupBox();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
             this.tlpEventos.SuspendLayout();
             this.gbFecha.SuspendLayout();
             this.gbEvento.SuspendLayout();
@@ -80,9 +81,9 @@
             this.tlpEventos.Name = "tlpEventos";
             this.tlpEventos.RowCount = 5;
             this.tlpEventos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
-            this.tlpEventos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tlpEventos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 52F));
-            this.tlpEventos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18F));
+            this.tlpEventos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 22.76029F));
+            this.tlpEventos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 49.87893F));
+            this.tlpEventos.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.70702F));
             this.tlpEventos.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpEventos.Size = new System.Drawing.Size(800, 450);
             this.tlpEventos.TabIndex = 0;
@@ -110,7 +111,7 @@
             this.gbFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbFecha.Location = new System.Drawing.Point(6, 49);
             this.gbFecha.Name = "gbFecha";
-            this.gbFecha.Size = new System.Drawing.Size(388, 74);
+            this.gbFecha.Size = new System.Drawing.Size(388, 86);
             this.gbFecha.TabIndex = 1;
             this.gbFecha.TabStop = false;
             this.gbFecha.Text = "Fecha";
@@ -147,9 +148,9 @@
             this.gbEvento.Controls.Add(this.label6);
             this.gbEvento.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbEvento.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbEvento.Location = new System.Drawing.Point(6, 132);
+            this.gbEvento.Location = new System.Drawing.Point(6, 144);
             this.gbEvento.Name = "gbEvento";
-            this.gbEvento.Size = new System.Drawing.Size(788, 203);
+            this.gbEvento.Size = new System.Drawing.Size(788, 196);
             this.gbEvento.TabIndex = 3;
             this.gbEvento.TabStop = false;
             this.gbEvento.Text = "Evento";
@@ -233,9 +234,9 @@
             // lbEventos
             // 
             this.lbEventos.FormattingEnabled = true;
-            this.lbEventos.Location = new System.Drawing.Point(23, 44);
+            this.lbEventos.Location = new System.Drawing.Point(21, 32);
             this.lbEventos.Name = "lbEventos";
-            this.lbEventos.Size = new System.Drawing.Size(120, 147);
+            this.lbEventos.Size = new System.Drawing.Size(120, 160);
             this.lbEventos.TabIndex = 3;
             this.lbEventos.SelectedIndexChanged += new System.EventHandler(this.lbEventos_SelectedIndexChanged);
             // 
@@ -243,7 +244,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(9, 25);
+            this.label6.Location = new System.Drawing.Point(9, 16);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(110, 13);
             this.label6.TabIndex = 0;
@@ -273,6 +274,7 @@
             // gbAnimal
             // 
             this.tlpEventos.SetColumnSpan(this.gbAnimal, 2);
+            this.gbAnimal.Controls.Add(this.lbNombreAnimal);
             this.gbAnimal.Controls.Add(this.label10);
             this.gbAnimal.Controls.Add(this.cbAnimal);
             this.gbAnimal.Controls.Add(this.label5);
@@ -280,30 +282,52 @@
             this.gbAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbAnimal.Location = new System.Drawing.Point(403, 49);
             this.gbAnimal.Name = "gbAnimal";
-            this.gbAnimal.Size = new System.Drawing.Size(391, 74);
+            this.gbAnimal.Size = new System.Drawing.Size(391, 86);
             this.gbAnimal.TabIndex = 8;
             this.gbAnimal.TabStop = false;
             this.gbAnimal.Text = "Animal";
+            this.gbAnimal.Enter += new System.EventHandler(this.gbAnimal_Enter);
+            // 
+            // lbNombreAnimal
+            // 
+            this.lbNombreAnimal.AutoSize = true;
+            this.lbNombreAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNombreAnimal.Location = new System.Drawing.Point(6, 41);
+            this.lbNombreAnimal.Name = "lbNombreAnimal";
+            this.lbNombreAnimal.Size = new System.Drawing.Size(0, 13);
+            this.lbNombreAnimal.TabIndex = 4;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(6, 69);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(281, 13);
+            this.label10.TabIndex = 3;
+            this.label10.Text = "* Los animales se cargarán cuando seleccione un evento.";
             // 
             // cbAnimal
             // 
             this.cbAnimal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAnimal.Enabled = false;
             this.cbAnimal.FormattingEnabled = true;
-            this.cbAnimal.Location = new System.Drawing.Point(137, 23);
+            this.cbAnimal.Location = new System.Drawing.Point(180, 12);
             this.cbAnimal.Name = "cbAnimal";
-            this.cbAnimal.Size = new System.Drawing.Size(201, 21);
+            this.cbAnimal.Size = new System.Drawing.Size(123, 21);
             this.cbAnimal.TabIndex = 2;
+            this.cbAnimal.SelectionChangeCommitted += new System.EventHandler(this.cbAnimal_SelectionChangeCommitted);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(6, 28);
+            this.label5.Location = new System.Drawing.Point(6, 20);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(114, 13);
+            this.label5.Size = new System.Drawing.Size(168, 13);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Seleccione el animal: *";
+            this.label5.Text = "Seleccione el animal (caravana): *";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // gbTambo
             // 
@@ -312,16 +336,16 @@
             this.gbTambo.Controls.Add(this.label9);
             this.gbTambo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbTambo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbTambo.Location = new System.Drawing.Point(6, 344);
+            this.gbTambo.Location = new System.Drawing.Point(6, 349);
             this.gbTambo.Name = "gbTambo";
-            this.gbTambo.Size = new System.Drawing.Size(788, 66);
+            this.gbTambo.Size = new System.Drawing.Size(788, 61);
             this.gbTambo.TabIndex = 12;
             this.gbTambo.TabStop = false;
             this.gbTambo.Text = "Tambo";
             // 
             // txtTambo
             // 
-            this.txtTambo.Location = new System.Drawing.Point(120, 26);
+            this.txtTambo.Location = new System.Drawing.Point(120, 19);
             this.txtTambo.Name = "txtTambo";
             this.txtTambo.ReadOnly = true;
             this.txtTambo.Size = new System.Drawing.Size(200, 20);
@@ -331,21 +355,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(9, 29);
+            this.label9.Location = new System.Drawing.Point(0, 26);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(106, 13);
             this.label9.TabIndex = 0;
             this.label9.Text = "Seleccione el tambo:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(6, 58);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(281, 13);
-            this.label10.TabIndex = 3;
-            this.label10.Text = "* Los animales se cargarán cuando seleccione un evento.";
             // 
             // AltaEventos
             // 
@@ -388,7 +402,6 @@
         private System.Windows.Forms.DateTimePicker dtpFecha;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ComboBox cbAnimal;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListBox lbEventos;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -403,5 +416,7 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtTambo;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lbNombreAnimal;
+        private System.Windows.Forms.Label label5;
     }
 }

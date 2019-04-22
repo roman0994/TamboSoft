@@ -20,6 +20,7 @@ namespace Escritorio
         public void CargarGrilla(int id_tambo)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
+            this.dgvAnimales.AutoGenerateColumns = false;
             this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
             if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
             {
@@ -66,7 +67,7 @@ namespace Escritorio
 
             edicion.txtRP.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
             edicion.dtpFechaNacimiento.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["fecha_nacimiento"].Value);
-            edicion.txtEdad.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["edad"].Value);
+            //edicion.txtEdad.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["edad"].Value);
             edicion.txtNombre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["nombre_animal"].Value);
             edicion.cbEstado.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["estado_animal"].Value);
             edicion.txtHBA.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba"].Value);
@@ -182,7 +183,7 @@ namespace Escritorio
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            if (char.IsLetter(e.KeyChar) || char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
             {
                 e.Handled = false;
             }
@@ -194,7 +195,7 @@ namespace Escritorio
 
         private void dgvAnimales_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 0)
+            if (e.ColumnIndex == 18)
             {
                 if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
                 {
@@ -203,11 +204,12 @@ namespace Escritorio
 
                     HistoriaClinica historiaClinica = new HistoriaClinica();
                     EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+
                     historiaClinica.dgvHistorialClinico.DataSource = eventoAnimalDescNegocio.RecuperarPorTamboYAnimal(id_tambo, rp);
                     historiaClinica.Show();
                 }
             }
-            else if (e.ColumnIndex == 1)
+            else if(e.ColumnIndex == 19)
             {
                 if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
                 {
@@ -220,6 +222,21 @@ namespace Escritorio
                     historialProd.Show();
                 }
             }
+
+
+            //else if (e.ColumnIndex == 1)
+            //{
+            //    if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+            //    {
+            //        int id_tambo = Principal.Tambo.Id_tambo;
+            //        int rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
+
+            //        HistorialProduccion historialProd = new HistorialProduccion();
+            //        Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+            //        historialProd.dgvHistorialProduccion.DataSource = controlAnimalNegocio.RecuperarPorTamboYAnimal(id_tambo, rp);
+            //        historialProd.Show();
+            //    }
+            //}
         }
     }
 }

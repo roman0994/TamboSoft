@@ -187,5 +187,12 @@ namespace Negocio
         {
             return animalDatos.ExisteLaCaravana(id_tambo,caravana);
         }
+        
+        public int ObtenerUltimaCaravana(int id_tambo)
+        {
+
+            return animalDatos.ObtenerUltimaCaravana(id_tambo);
+
+        }
     }
 }

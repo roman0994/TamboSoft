@@ -15,12 +15,24 @@ namespace Escritorio
 {
     public partial class AltaEventos : Form
     {
+        EventoAnimal_Negocio eventoanimal_negocio;
+        Animal_Negocio animalnegocio;
+        Evento_Negocio eventonegocio;
+        Animal Animal;
+        Evento Evento;
+
         public AltaEventos(int id_tambo)
         {
+            
             InitializeComponent();
+            eventoanimal_negocio = new EventoAnimal_Negocio();
+            animalnegocio = new Animal_Negocio();
+            eventonegocio = new Evento_Negocio();
+            Animal = new Animal();
+            Evento = new Evento();
             CargarTextBoxTambo(id_tambo);
             CargarListaEventos();
-
+            
         }
 
         public void CargarTextBoxTambo(int id_tambo)
@@ -282,22 +294,25 @@ namespace Escritorio
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error   
-            this.cbAnimal.DisplayMember = "nombre_animal";
+            this.cbAnimal.DisplayMember = "caravana";
             this.cbAnimal.ValueMember = "rp";
             this.cbAnimal.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
             this.cbAnimal.SelectedIndex = -1;
             this.cbAnimal.Enabled = true;
+            
+            
         }
 
         public void CargaComboAnimalSoloVacas(int id_tambo)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error   
-            this.cbAnimal.DisplayMember = "nombre_animal";
+            this.cbAnimal.DisplayMember = "caravana";
             this.cbAnimal.ValueMember = "rp";
             this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(id_tambo);
             this.cbAnimal.SelectedIndex = -1;
             this.cbAnimal.Enabled = true;
+            
         }
 
         Desc_Subevento_Negocio descSubeventoNegocio = new Desc_Subevento_Negocio();
@@ -452,7 +467,17 @@ namespace Escritorio
             EventoAnimal_DescSubevento_Negocio eventoNegocio = new EventoAnimal_DescSubevento_Negocio();
             List<EventoAnimal_DescSubevento> listaEventoAnimal = new List<EventoAnimal_DescSubevento>();
 
-            if (this.lbEventos.SelectedIndex == 1 || this.lbEventos.SelectedIndex == 3 || this.lbEventos.SelectedIndex == 4 || this.lbEventos.SelectedIndex == 8 || this.lbEventos.SelectedIndex == 9 || this.lbEventos.SelectedIndex == 10)
+            try
+            {
+
+                Evento_Animal evento_animal = new Evento_Animal();
+                evento_animal.Rp = animalnegocio.RecuperarUno(Convert.ToInt32(cbAnimal.SelectedValue)).Rp;
+                evento_animal.Id_evento = eventonegocio.RecuperarUno(Convert.ToInt32(lbEventos.SelectedValue)).Id_evento;
+                evento_animal.Fecha_desc = dtpFecha.Value;
+                eventoanimal_negocio.Insertar(evento_animal);
+
+
+                if (this.lbEventos.SelectedIndex == 1 || this.lbEventos.SelectedIndex == 3 || this.lbEventos.SelectedIndex == 4 || this.lbEventos.SelectedIndex == 8 || this.lbEventos.SelectedIndex == 9 || this.lbEventos.SelectedIndex == 10)
             {
                 if (validaciones.ValidarCargaEventosTipo1(dtpFecha.Value.Date, cbAnimal.SelectedIndex, lbEventos.SelectedIndex, comboBox1.SelectedIndex))
                 {
@@ -600,6 +625,12 @@ namespace Escritorio
             {
                 MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrió un error al intentar guardar el evento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                throw;
+            }
         }
 
         public EventoAnimal_DescSubevento MapearAEventoAnimal1()
@@ -612,13 +643,16 @@ namespace Escritorio
             Tambo tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
             Animal animal = animalNegocio.RecuperarUno(Convert.ToInt32(cbAnimal.SelectedValue));
             Evento evento = eventoNegocio.RecuperarUno(Convert.ToInt32(lbEventos.SelectedValue));
-            
+           
 
             EventoAnimal_DescSubevento eventoAnimal = new EventoAnimal_DescSubevento();
 
             //Registro la fecha con hora minutos y segundos
-            String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
-            eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+            //String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
+            //eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+            eventoAnimal.Fecha_desc = dtpFecha.Value;
+            
+
 
             eventoAnimal.Rp = animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
@@ -656,8 +690,11 @@ namespace Escritorio
 
             EventoAnimal_DescSubevento eventoAnimal = new EventoAnimal_DescSubevento();
             //Registro la fecha con hora minutos y segundos
-            String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
-            eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+            //String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
+            //eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+            eventoAnimal.Fecha_desc = dtpFecha.Value;
+           
+
 
             eventoAnimal.Rp = animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
@@ -691,8 +728,12 @@ namespace Escritorio
             EventoAnimal_DescSubevento eventoAnimal = new EventoAnimal_DescSubevento();
 
             //Registro la fecha con hora minutos y segundos
-            String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
-            eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+            //String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
+            //eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+            eventoAnimal.Fecha_desc = dtpFecha.Value;
+           
+
+
 
             eventoAnimal.Rp = animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
@@ -727,8 +768,13 @@ namespace Escritorio
             EventoAnimal_DescSubevento eventoAnimal = new EventoAnimal_DescSubevento();
 
             //Registro la fecha con hora minutos y segundos
-            String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
-            eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+            // String hora = dtpFecha.Value.ToShortDateString() + " " + DateTime.Now.Hour + ":" + DateTime.Now.Minute + ":" + DateTime.Now.Second + "." + "000";
+            //eventoAnimal.Fecha_desc = Convert.ToDateTime(hora);
+            eventoAnimal.Fecha_desc = dtpFecha.Value;
+
+          
+
+
 
             eventoAnimal.Rp = animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
@@ -762,5 +808,32 @@ namespace Escritorio
             
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbAnimal_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (cbAnimal.SelectedIndex > -1)
+            //{
+            //    Animal animal = (Animal)cbAnimal.SelectedItem;
+            //    lbNombreAnimal.Text = "Nombre: " + animal.Nombre_animal;
+            //}
+        }
+
+        private void gbAnimal_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbAnimal_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cbAnimal.SelectedIndex > -1)
+            {
+                Animal = (Animal)cbAnimal.SelectedItem;
+                lbNombreAnimal.Text = "Nombre: " + Animal.Nombre_animal;
+            }
+        }
     }   
 }

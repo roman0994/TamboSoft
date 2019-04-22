@@ -150,6 +150,7 @@
             this.txtIdTambo.ReadOnly = true;
             this.txtIdTambo.Size = new System.Drawing.Size(200, 20);
             this.txtIdTambo.TabIndex = 1;
+            this.txtIdTambo.Visible = false;
             // 
             // label8
             // 
@@ -160,6 +161,7 @@
             this.label8.Size = new System.Drawing.Size(21, 13);
             this.label8.TabIndex = 11;
             this.label8.Text = "ID:";
+            this.label8.Visible = false;
             // 
             // cbLocalidad
             // 

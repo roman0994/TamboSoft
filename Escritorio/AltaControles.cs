@@ -28,7 +28,7 @@ namespace Escritorio
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(id_tambo);
-            this.cbAnimal.DisplayMember = "nombre_animal";
+            this.cbAnimal.DisplayMember = "caravana";
             this.cbAnimal.ValueMember = "rp";
             this.cbAnimal.SelectedIndex = -1;
         }
@@ -202,6 +202,15 @@ namespace Escritorio
             else
             {
                 return true;
+            }
+        }
+
+        private void cbAnimal_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cbAnimal.SelectedIndex > -1)
+            {
+                Animal animal = (Animal)cbAnimal.SelectedItem;
+                lbNombreAnimal.Text = "Nombre: " + animal.Nombre_animal;
             }
         }
     }

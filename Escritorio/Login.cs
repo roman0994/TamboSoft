@@ -15,23 +15,24 @@ namespace Escritorio
     public partial class Login : Form
     {
         public static Tambo Tambo { get; set; }
-        public int id_usuario;
+        //public int id_usuario;
         public static Usuario Usuario { get; set; }
 
         public Login()
         {
             InitializeComponent();
-            CargaComboTambo();
-            InicializarbtnIngresar();
+            
             Tambo = new Tambo();
             Usuario = new Usuario();
-            Usuario.Id_usuario = id_usuario;
+            Usuario = Program.UsuarioSesion;
+            CargaComboTambo();
+            InicializarbtnIngresar();
         }
 
         public void CargaComboTambo()
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            this.cbTambo.DataSource = tamboNegocio.RecuperarTodos(id_usuario);
+            this.cbTambo.DataSource = tamboNegocio.RecuperarTodos(Usuario.Id_usuario);
             this.cbTambo.DisplayMember = "nombre_tambo";
             this.cbTambo.ValueMember = "id_tambo";
             this.cbTambo.SelectedIndex = -1;
@@ -54,7 +55,7 @@ namespace Escritorio
             Tambo.Id_tambo = id_tambo;
             Principal principal = new Principal(id_tambo);
             principal.id_tambo = id_tambo;
-            principal.id_usuario = id_usuario;
+            principal.id_usuario = Usuario.Id_usuario;
             principal.Show();
             this.Hide();
         }
@@ -68,6 +69,14 @@ namespace Escritorio
         {
             LoginAltaTambos loginAlta = new LoginAltaTambos();
             loginAlta.Show();
+            this.Hide();
+        }
+
+        private void lnkRegresarLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Program.UsuarioSesion = null;
+            LoginUsuario login = new LoginUsuario();
+            login.Show();
             this.Hide();
         }
     }

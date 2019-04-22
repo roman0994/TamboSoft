@@ -30,6 +30,7 @@ namespace Escritorio
         public void CargarGrilla(int id_tambo)
         {
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            this.dgvTambos.AutoGenerateColumns = false;
             this.dgvTambos.DataSource = tamboNegocio.RecuperarOtrosTambos(id_tambo, Principal.Usuario.Id_usuario);
             if (this.dgvTambos.Rows.Count != 0 && this.dgvTambos.Rows != null)
             {

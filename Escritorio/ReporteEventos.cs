@@ -161,6 +161,12 @@ namespace Escritorio
             }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            vpExistencia vp = new vpExistencia();
+            vp.Show();
+        }
+
 
         /*public void CargarGrillas(int id_tambo)
         {

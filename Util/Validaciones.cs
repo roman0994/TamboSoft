@@ -81,9 +81,9 @@ namespace Util
             }
         }
 
-        public bool ValidarEdicionControles(int indexAnimal, DateTime fecha)
+        public bool ValidarEdicionControles(DateTime fecha)
         {
-            if (indexAnimal != -1 && fecha != null)
+            if (fecha != null)
             {
                 return true;
             }
@@ -93,9 +93,9 @@ namespace Util
             }
         }
 
-        public bool ValidarCargaAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba, string caravana)
+        public bool ValidarCargaAnimales(int indexCategoria, int indexRaza, string nombre, string hba, string caravana)
         {
-            if (indexCategoria != -1  && indexRaza != -1 && edad != null && edad != "Edad del animal" && (! string.IsNullOrWhiteSpace((nombre))) && nombre != "Nombre del animal" && hba != null && hba != "Código numérico" && caravana != null && caravana != string.Empty)
+            if (indexCategoria != -1  && indexRaza != -1  && (! string.IsNullOrWhiteSpace((nombre))) && nombre != "Nombre del animal" && hba != null && hba != "Código numérico" && caravana != null && caravana != string.Empty)
             {
                 return true;
             }
@@ -105,13 +105,12 @@ namespace Util
             }
         }
 
-        public string ValidarEdicionAnimales(int indexCategoria, int indexRaza, string edad, string nombre, string hba, string caravana)
+        public string ValidarEdicionAnimales(int indexCategoria, int indexRaza,  string nombre, string hba, string caravana)
         {
             string mensaje;
-            if (indexCategoria != -1 && indexRaza != -1 && edad != null && edad != string.Empty && (!string.IsNullOrWhiteSpace((nombre))) && nombre != string.Empty && hba != null && hba != string.Empty && caravana != null && caravana != string.Empty)
+            if (indexCategoria != -1 && indexRaza != -1  && (!string.IsNullOrWhiteSpace((nombre))) && nombre != string.Empty && hba != null && hba != string.Empty && caravana != null && caravana != string.Empty)
             {
-                if(edad.Length <= 3)
-                {
+               
                     if(hba.Length <= 6)
                     {
                         mensaje = "true";
@@ -122,12 +121,8 @@ namespace Util
                         mensaje = "El campo HBA no puede ser mayor a 6 (seis) dígitos";
                         return mensaje;
                     }
-                }
-                else
-                {
-                    mensaje = "El valor del campo Edad no es válido";
-                    return mensaje;
-                }
+                
+                
             }
             else
             {

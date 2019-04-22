@@ -15,13 +15,24 @@ namespace Escritorio
 {
     public partial class AltaAnimales : Form
     {
+        Animal_Negocio animalnegocio;
+        int ultimacaravana;
         public AltaAnimales(int id_tambo)
         {
             InitializeComponent();
+            animalnegocio = new Animal_Negocio();
             CargarComboEstado();
             CargaComboCategoria();
             CargarTextBoxTambo(id_tambo);
             CargaComboRaza();
+            CargaUltimaCaravana();
+        }
+
+        private void CargaUltimaCaravana()
+        {
+            ultimacaravana = animalnegocio.ObtenerUltimaCaravana(Principal.Tambo.Id_tambo);
+            txtCaravana.Text = (ultimacaravana + 1).ToString();
+            lbUltCaravana.Text = "La ultima caravana utilizada en el tambo es: " + ultimacaravana;
         }
 
         public void CargarComboEstado()
@@ -65,12 +76,11 @@ namespace Escritorio
         {
             Animal_Negocio an = new Animal_Negocio();
             Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarCargaAnimales(cbCategoria.SelectedIndex,cbRaza.SelectedIndex,txtEdad.Text,txtNombre.Text,txtHBA.Text,txtCaravana.Text);
+            bool validar = validaciones.ValidarCargaAnimales(cbCategoria.SelectedIndex,cbRaza.SelectedIndex,txtNombre.Text,txtHBA.Text,txtCaravana.Text);
 
             if(validar == true) 
             {
-                if (txtEdad.Text.Length <= 3)
-                {
+                
                     if (txtHBA.Text.Length <= 6)
                     {
                         if (txtRPMadre.Text.Length<=6 || txtRPMadre.Text == string.Empty)
@@ -126,11 +136,8 @@ namespace Escritorio
                     {
                         MessageBox.Show("El campo HBA no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                else
-                {
-                    MessageBox.Show("El valor del campo Edad no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                
+                
             }
             else
             {
@@ -147,7 +154,7 @@ namespace Escritorio
             Animal animal = new Animal();
 
             animal.Fecha_nacimiento = dtpFechaNacimiento.Value.Date;
-            animal.Edad = Convert.ToInt32(txtEdad.Text);
+
             //animal.Foto = txtFoto.Text;
             animal.Nombre_animal = txtNombre.Text;
             animal.Estado_animal = "Vivo";
@@ -169,7 +176,7 @@ namespace Escritorio
         public void Limpiar()
         {
             this.dtpFechaNacimiento.Text = string.Empty;
-            this.txtEdad.Text = string.Empty;
+
             this.txtNombre.Text = string.Empty;
             this.txtHBA.Text = string.Empty;
             this.txtHBAMadre.Text = string.Empty;
@@ -284,7 +291,7 @@ namespace Escritorio
 
         public bool HayCamposModificados()
         {
-            if (txtNombre.Text == string.Empty && txtEdad.Text == string.Empty && txtHBA.Text == string.Empty && txtRPMadre.Text == string.Empty && txtRPPadre.Text == string.Empty && txtHBAMadre.Text == string.Empty && txtHBAPadre.Text == string.Empty && cbCategoria.SelectedIndex == -1 && cbRaza.SelectedIndex == -1)
+            if (txtNombre.Text == string.Empty && txtHBA.Text == string.Empty && txtRPMadre.Text == string.Empty && txtRPPadre.Text == string.Empty && txtHBAMadre.Text == string.Empty && txtHBAPadre.Text == string.Empty && cbCategoria.SelectedIndex == -1 && cbRaza.SelectedIndex == -1)
             {
                 return false;
             }

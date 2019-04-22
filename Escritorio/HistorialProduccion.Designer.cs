@@ -33,6 +33,7 @@
             this.btnImprimir = new System.Windows.Forms.Button();
             this.dgvHistorialProduccion = new System.Windows.Forms.DataGridView();
             this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,16 +83,19 @@
             this.btnImprimir.Name = "btnImprimir";
             this.btnImprimir.Size = new System.Drawing.Size(75, 23);
             this.btnImprimir.TabIndex = 1;
-            this.btnImprimir.Text = "Imprimir";
+            this.btnImprimir.Text = "Exportar";
             this.btnImprimir.UseVisualStyleBackColor = true;
             this.btnImprimir.Click += new System.EventHandler(this.btnImprimir_Click);
             // 
             // dgvHistorialProduccion
             // 
+            this.dgvHistorialProduccion.AllowUserToAddRows = false;
+            this.dgvHistorialProduccion.AllowUserToDeleteRows = false;
             this.dgvHistorialProduccion.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvHistorialProduccion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHistorialProduccion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fecha_control,
+            this.caravana,
             this.rp,
             this.nombre_animal,
             this.id_control,
@@ -104,17 +108,28 @@
             this.kg_grasa,
             this.nombre_tambo});
             this.dgvHistorialProduccion.Location = new System.Drawing.Point(20, 28);
+            this.dgvHistorialProduccion.MultiSelect = false;
             this.dgvHistorialProduccion.Name = "dgvHistorialProduccion";
             this.dgvHistorialProduccion.ReadOnly = true;
+            this.dgvHistorialProduccion.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHistorialProduccion.Size = new System.Drawing.Size(796, 357);
             this.dgvHistorialProduccion.TabIndex = 0;
             // 
             // fecha_control
             // 
             this.fecha_control.DataPropertyName = "fecha_control";
+            this.fecha_control.Frozen = true;
             this.fecha_control.HeaderText = "Fecha control";
             this.fecha_control.Name = "fecha_control";
             this.fecha_control.ReadOnly = true;
+            // 
+            // caravana
+            // 
+            this.caravana.DataPropertyName = "caravana";
+            this.caravana.Frozen = true;
+            this.caravana.HeaderText = "Caravana";
+            this.caravana.Name = "caravana";
+            this.caravana.ReadOnly = true;
             // 
             // rp
             // 
@@ -210,6 +225,7 @@
             this.Name = "HistorialProduccion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Historial de Producción";
+            this.Load += new System.EventHandler(this.HistorialProduccion_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorialProduccion)).EndInit();
@@ -224,6 +240,7 @@
         public System.Windows.Forms.DataGridView dgvHistorialProduccion;
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_control;
+        private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_control;

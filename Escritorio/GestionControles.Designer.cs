@@ -36,6 +36,7 @@
             this.dgvControles = new System.Windows.Forms.DataGridView();
             this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -130,11 +131,14 @@
             // 
             // dgvControles
             // 
+            this.dgvControles.AllowUserToAddRows = false;
+            this.dgvControles.AllowUserToDeleteRows = false;
             this.dgvControles.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvControles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvControles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fecha_control,
             this.rp,
+            this.caravana,
             this.nombre_animal,
             this.id_control,
             this.id_tambo,
@@ -165,10 +169,18 @@
             // rp
             // 
             this.rp.DataPropertyName = "rp";
-            this.rp.HeaderText = "RP Animal";
+            this.rp.HeaderText = "Rp";
             this.rp.Name = "rp";
             this.rp.ReadOnly = true;
-            this.rp.Width = 87;
+            this.rp.Visible = false;
+            // 
+            // caravana
+            // 
+            this.caravana.DataPropertyName = "caravana";
+            this.caravana.HeaderText = "Caravana";
+            this.caravana.Name = "caravana";
+            this.caravana.ReadOnly = true;
+            this.caravana.Width = 87;
             // 
             // nombre_animal
             // 
@@ -301,6 +313,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;

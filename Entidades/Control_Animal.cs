@@ -34,6 +34,11 @@ namespace Entidades
         public decimal Grasa_segundocontrol { get => grasa_segundocontrol; set => grasa_segundocontrol = value; }
         public decimal Grasa_primercontrol { get => grasa_primercontrol; set => grasa_primercontrol = value; }
 
+       
+
+        public string Caravana { get; set; }
+
+
         public Control_Animal()
         {
 

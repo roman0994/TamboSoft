@@ -34,23 +34,16 @@
             this.txtBuscar = new System.Windows.Forms.TextBox();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.dgvEventos = new System.Windows.Forms.DataGridView();
+            this.btnExportar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.verdetalle = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.id_desc_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_subevento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnExportar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
             this.tblEventos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEventos)).BeginInit();
             this.SuspendLayout();
@@ -128,24 +121,19 @@
             // 
             // dgvEventos
             // 
+            this.dgvEventos.AllowUserToAddRows = false;
+            this.dgvEventos.AllowUserToDeleteRows = false;
             this.dgvEventos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEventos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.rp,
+            this.Caravana,
             this.fecha_desc,
             this.nombre_animal,
             this.nombre_evento,
             this.nombre_tambo,
             this.verdetalle,
-            this.id_desc_evento,
-            this.id_evento,
-            this.id_tambo,
-            this.id_inseminador,
-            this.nombre_inseminador,
-            this.estado_evento,
-            this.id_desc,
-            this.nombre_subevento,
-            this.Descripcion});
+            this.id_evento});
             this.tblEventos.SetColumnSpan(this.dgvEventos, 3);
             this.dgvEventos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEventos.Location = new System.Drawing.Point(6, 72);
@@ -157,6 +145,30 @@
             this.dgvEventos.TabIndex = 3;
             this.dgvEventos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEventos_CellContentClick);
             // 
+            // btnExportar
+            // 
+            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnExportar.Location = new System.Drawing.Point(361, 415);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(75, 29);
+            this.btnExportar.TabIndex = 5;
+            this.btnExportar.Text = "Exportar";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Visible = false;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnSalir.Location = new System.Drawing.Point(627, 415);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 29);
+            this.btnSalir.TabIndex = 6;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // rp
             // 
             this.rp.DataPropertyName = "rp";
@@ -164,6 +176,13 @@
             this.rp.Name = "rp";
             this.rp.ReadOnly = true;
             this.rp.Width = 80;
+            // 
+            // Caravana
+            // 
+            this.Caravana.DataPropertyName = "caravana";
+            this.Caravana.HeaderText = "Caravana";
+            this.Caravana.Name = "Caravana";
+            this.Caravana.ReadOnly = true;
             // 
             // fecha_desc
             // 
@@ -201,14 +220,6 @@
             this.verdetalle.Text = "Ver detalle";
             this.verdetalle.UseColumnTextForLinkValue = true;
             // 
-            // id_desc_evento
-            // 
-            this.id_desc_evento.DataPropertyName = "id_desc_evento";
-            this.id_desc_evento.HeaderText = "ID";
-            this.id_desc_evento.Name = "id_desc_evento";
-            this.id_desc_evento.ReadOnly = true;
-            this.id_desc_evento.Visible = false;
-            // 
             // id_evento
             // 
             this.id_evento.DataPropertyName = "id_evento";
@@ -216,85 +227,6 @@
             this.id_evento.Name = "id_evento";
             this.id_evento.ReadOnly = true;
             this.id_evento.Visible = false;
-            // 
-            // id_tambo
-            // 
-            this.id_tambo.DataPropertyName = "id_tambo";
-            this.id_tambo.HeaderText = "ID Tambo";
-            this.id_tambo.Name = "id_tambo";
-            this.id_tambo.ReadOnly = true;
-            this.id_tambo.Visible = false;
-            // 
-            // id_inseminador
-            // 
-            this.id_inseminador.DataPropertyName = "id_inseminador";
-            this.id_inseminador.HeaderText = "ID Inseminador";
-            this.id_inseminador.Name = "id_inseminador";
-            this.id_inseminador.ReadOnly = true;
-            this.id_inseminador.Visible = false;
-            // 
-            // nombre_inseminador
-            // 
-            this.nombre_inseminador.DataPropertyName = "nombre_inseminador";
-            this.nombre_inseminador.HeaderText = "Inseminador";
-            this.nombre_inseminador.Name = "nombre_inseminador";
-            this.nombre_inseminador.ReadOnly = true;
-            this.nombre_inseminador.Visible = false;
-            // 
-            // estado_evento
-            // 
-            this.estado_evento.DataPropertyName = "estado_evento";
-            this.estado_evento.HeaderText = "Estado";
-            this.estado_evento.Name = "estado_evento";
-            this.estado_evento.ReadOnly = true;
-            this.estado_evento.Visible = false;
-            // 
-            // id_desc
-            // 
-            this.id_desc.DataPropertyName = "id_desc";
-            this.id_desc.HeaderText = "ID Desc";
-            this.id_desc.Name = "id_desc";
-            this.id_desc.ReadOnly = true;
-            this.id_desc.Visible = false;
-            // 
-            // nombre_subevento
-            // 
-            this.nombre_subevento.DataPropertyName = "nombre_subevento";
-            this.nombre_subevento.HeaderText = "Subevento";
-            this.nombre_subevento.Name = "nombre_subevento";
-            this.nombre_subevento.ReadOnly = true;
-            this.nombre_subevento.Visible = false;
-            // 
-            // Descripcion
-            // 
-            this.Descripcion.DataPropertyName = "descripcion";
-            this.Descripcion.HeaderText = "Descripcion";
-            this.Descripcion.Name = "Descripcion";
-            this.Descripcion.ReadOnly = true;
-            this.Descripcion.Visible = false;
-            // 
-            // btnExportar
-            // 
-            this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnExportar.Location = new System.Drawing.Point(361, 415);
-            this.btnExportar.Name = "btnExportar";
-            this.btnExportar.Size = new System.Drawing.Size(75, 29);
-            this.btnExportar.TabIndex = 5;
-            this.btnExportar.Text = "Exportar";
-            this.btnExportar.UseVisualStyleBackColor = true;
-            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(627, 415);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 29);
-            this.btnSalir.TabIndex = 6;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // GestionEventos
             // 
@@ -327,19 +259,12 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_desc;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_evento;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
         private System.Windows.Forms.DataGridViewLinkColumn verdetalle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc_evento;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_inseminador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_inseminador;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado_evento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_desc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre_subevento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Descripcion;
     }
 }

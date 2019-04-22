@@ -37,6 +37,8 @@ namespace Entidades
         public int Id_inseminador { get => _id_inseminador; set => _id_inseminador = value; }
         public string Nombre_inseminador { get => _nombre_inseminador; set => _nombre_inseminador = value; }
         public bool Estado_evento { get => _estado_evento; set => _estado_evento = value; }
+        public string Caravana { get; set; }
+
 
         public EventoAnimal_DescSubevento()
         {

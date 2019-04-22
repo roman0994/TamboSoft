@@ -62,7 +62,16 @@ namespace Datos
             {
                 List<Control_Animal> lista = new List<Control_Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo, " +
+                                                            " a.caravana,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol, " +
+                                                            " c.grasa_segundocontrol" +
+                                                            " from Control_Animal ca " +
+                                                            "inner join Animal a on ca.rp=a.rp " +
+                                                            "inner join Control c on ca.id_control=c.id_control " +
+                                                            "inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                                            "where a.id_tambo=@id_tambo and a.habilitado='true' " +
+                                                            "and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'" +
+                                                            " order by ca.fecha_control desc", Conn);
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdControlAnimal.ExecuteReader();
@@ -76,11 +85,12 @@ namespace Datos
                     controlAnimal.Rp = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
                     controlAnimal.Nombre_animal = dr.IsDBNull(3) ? string.Empty : dr["nombre_animal"].ToString();
                     controlAnimal.Id_tambo = dr.IsDBNull(4) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
-                    controlAnimal.Nombre_tambo = dr.IsDBNull(5) ? string.Empty : dr["nombre_tambo"].ToString();
-                    controlAnimal.Primer_control = dr.IsDBNull(6) ? 0 : (Convert.ToDecimal(dr["primer_control"]));
-                    controlAnimal.Segundo_control = dr.IsDBNull(7) ? 0 : (Convert.ToDecimal(dr["segundo_control"]));
-                    controlAnimal.Grasa_primercontrol = dr.IsDBNull(8) ? 0 : (Convert.ToDecimal(dr["grasa_primercontrol"]));
-                    controlAnimal.Grasa_segundocontrol = dr.IsDBNull(9) ? 0 : (Convert.ToDecimal(dr["grasa_segundocontrol"]));
+                    controlAnimal.Caravana = dr.IsDBNull(5) ? string.Empty : dr["caravana"].ToString();
+                    controlAnimal.Nombre_tambo = dr.IsDBNull(6) ? string.Empty : dr["nombre_tambo"].ToString();
+                    controlAnimal.Primer_control = dr.IsDBNull(7) ? 0 : (Convert.ToDecimal(dr["primer_control"]));
+                    controlAnimal.Segundo_control = dr.IsDBNull(8) ? 0 : (Convert.ToDecimal(dr["segundo_control"]));
+                    controlAnimal.Grasa_primercontrol = dr.IsDBNull(9) ? 0 : (Convert.ToDecimal(dr["grasa_primercontrol"]));
+                    controlAnimal.Grasa_segundocontrol = dr.IsDBNull(10) ? 0 : (Convert.ToDecimal(dr["grasa_segundocontrol"]));
                     
                     lista.Add(controlAnimal);
 
@@ -109,7 +119,20 @@ namespace Datos
             {
                 List<Control_Animal> lista = new List<Control_Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo, " +
+                                                           " a.caravana,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol, " +
+                                                           " c.grasa_segundocontrol" +
+                                                           " from Control_Animal ca " +
+                                                           "inner join Animal a on ca.rp=a.rp " +
+                                                           "inner join Control c on ca.id_control=c.id_control " +
+                                                           "inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                                           "where a.id_tambo=@id_tambo and a.habilitado='true' " +
+                                                           " and ca.rp = @rp " +
+                                                           "and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'" +
+                                                           " order by ca.fecha_control desc", Conn);
+
+
+               
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdControlAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
 
@@ -124,12 +147,12 @@ namespace Datos
                     controlAnimal.Rp = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
                     controlAnimal.Nombre_animal = dr.IsDBNull(3) ? string.Empty : dr["nombre_animal"].ToString();
                     controlAnimal.Id_tambo = dr.IsDBNull(4) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
-                    controlAnimal.Nombre_tambo = dr.IsDBNull(5) ? string.Empty : dr["nombre_tambo"].ToString();
-                    controlAnimal.Primer_control = dr.IsDBNull(6) ? 0 : (Convert.ToDecimal(dr["primer_control"]));
-                    controlAnimal.Segundo_control = dr.IsDBNull(7) ? 0 : (Convert.ToDecimal(dr["segundo_control"]));
-                    controlAnimal.Grasa_primercontrol = dr.IsDBNull(8) ? 0 : (Convert.ToDecimal(dr["grasa_primercontrol"]));
-                    controlAnimal.Grasa_segundocontrol = dr.IsDBNull(9) ? 0 : (Convert.ToDecimal(dr["grasa_segundocontrol"]));
-
+                    controlAnimal.Caravana = dr.IsDBNull(5) ? string.Empty : dr["caravana"].ToString();
+                    controlAnimal.Nombre_tambo = dr.IsDBNull(6) ? string.Empty : dr["nombre_tambo"].ToString();
+                    controlAnimal.Primer_control = dr.IsDBNull(7) ? 0 : (Convert.ToDecimal(dr["primer_control"]));
+                    controlAnimal.Segundo_control = dr.IsDBNull(8) ? 0 : (Convert.ToDecimal(dr["segundo_control"]));
+                    controlAnimal.Grasa_primercontrol = dr.IsDBNull(9) ? 0 : (Convert.ToDecimal(dr["grasa_primercontrol"]));
+                    controlAnimal.Grasa_segundocontrol = dr.IsDBNull(10) ? 0 : (Convert.ToDecimal(dr["grasa_segundocontrol"]));
                     lista.Add(controlAnimal);
 
                 }
@@ -154,7 +177,20 @@ namespace Datos
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdControl = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+            SqlCommand cmdControl = new SqlCommand(" SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal, " +
+                                                    " a.id_tambo, t.nombre_tambo, c.primer_control, c.segundo_control, c.grasa_primercontrol, " +
+                                                    " c.grasa_segundocontrol, Sum(c.primer_control + c.segundo_control)Total_Litros, " +
+                                                    " Sum(c.grasa_primercontrol + c.grasa_segundocontrol)Total_Grasa " +
+                                                    " from Control_Animal ca " +
+                                                    " innerjoin Animal a on ca.rp = a.rp " +
+                                                    " inner join Control c on ca.id_control = c.id_control " +
+                                                    " inner join Tambo t on a.id_tambo = t.id_tambo " +
+                                                    " where a.id_tambo = 1 and a.habilitado = 'true' " +
+                                                    "and a.estado_animal != 'Vendido' and a.estado_animal != 'Muerto' " +
+                                                    " group by ca.fecha_control, ca.id_control, ca.rp, a.nombre_animal, a.nombre_animal, " +
+                                                    " a.id_tambo, t.nombre_tambo, c.primer_control, c.segundo_control, c.grasa_primercontrol, " +
+                                                    " c.grasa_segundocontrol " +
+                                                    " order by ca.fecha_control desc", Conn);
 
             cmdControl.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 

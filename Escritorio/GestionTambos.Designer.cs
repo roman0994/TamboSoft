@@ -131,6 +131,8 @@
             // 
             // dgvTambos
             // 
+            this.dgvTambos.AllowUserToAddRows = false;
+            this.dgvTambos.AllowUserToDeleteRows = false;
             this.dgvTambos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvTambos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvTambos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {

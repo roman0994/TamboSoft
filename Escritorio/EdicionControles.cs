@@ -17,21 +17,25 @@ namespace Escritorio
     {
         Validaciones validaciones = new Validaciones();
         public Control_Animal controlAnimalGlobal;
+        public Animal Animal { get; set; }
+
 
         public EdicionControles()
         {
             InitializeComponent();
+            Animal = new Animal();
+
             CargaComboAnimal();
             CargarToolTips();
         }
 
         public void CargaComboAnimal()
         {
-            Animal_Negocio animalNegocio = new Animal_Negocio();
-            this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(Principal.Tambo.Id_tambo);
-            this.cbAnimal.DisplayMember = "nombre_animal";
-            this.cbAnimal.ValueMember = "rp";
-            this.cbAnimal.SelectedIndex = -1;
+            //Animal_Negocio animalNegocio = new Animal_Negocio();
+            //this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(Principal.Tambo.Id_tambo);
+            //this.cbAnimal.DisplayMember = "nombre_animal";
+            //this.cbAnimal.ValueMember = "rp";
+            //this.cbAnimal.SelectedIndex = -1;
         }
 
         public void CargarToolTips()
@@ -45,7 +49,7 @@ namespace Escritorio
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarEdicionControles(this.cbAnimal.SelectedIndex, this.dtpFechaControl.Value.Date);
+            bool validar = validaciones.ValidarEdicionControles(this.dtpFechaControl.Value.Date);
 
             if (validar == true)
             {
@@ -100,17 +104,17 @@ namespace Escritorio
         public Control_Animal MapearAControlAnimal()
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            Animal animal = animalNegocio.RecuperarUno(Convert.ToInt32(cbAnimal.SelectedValue));
+            //Animal animal = animalNegocio.RecuperarUno();
             Control_Animal control = new Control_Animal();
 
             control.Id_control = Convert.ToInt32(txtIdControl.Text);
             control.Fecha_control = dtpFechaControl.Value.Date;
-            control.Primer_control = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToInt32(txtPrimerControl.Text);
-            control.Segundo_control = string.IsNullOrEmpty(txtSegundoControl.Text) ? 0 : Convert.ToInt32(txtSegundoControl.Text);
+            control.Primer_control = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtPrimerControl.Text);
+            control.Segundo_control = string.IsNullOrEmpty(txtSegundoControl.Text) ? 0 : Convert.ToDecimal(txtSegundoControl.Text);
             control.Grasa_primercontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaPrimerControl.Text);
             control.Grasa_segundocontrol = string.IsNullOrEmpty(txtPrimerControl.Text) ? 0 : Convert.ToDecimal(txtGrasaSegundoControl.Text);
-            control.Nombre_animal = animal.Nombre_animal;
-            control.Rp = animal.Rp;
+            control.Nombre_animal = Animal.Nombre_animal;
+            control.Rp = Animal.Rp;
 
             return control;
         }
@@ -186,7 +190,7 @@ namespace Escritorio
 
         public bool HayCamposModificados()
         {
-            if (Convert.ToDecimal(txtPrimerControl.Text) == controlAnimalGlobal.Primer_control && Convert.ToDecimal(txtSegundoControl.Text) == controlAnimalGlobal.Segundo_control && Convert.ToDecimal(txtGrasaPrimerControl.Text) == controlAnimalGlobal.Grasa_primercontrol && Convert.ToDecimal(txtGrasaSegundoControl.Text) == controlAnimalGlobal.Grasa_segundocontrol && Convert.ToInt32(cbAnimal.SelectedValue) == controlAnimalGlobal.Rp && controlAnimalGlobal.Fecha_control == dtpFechaControl.Value.Date)
+            if (Convert.ToDecimal(txtPrimerControl.Text) == controlAnimalGlobal.Primer_control && Convert.ToDecimal(txtSegundoControl.Text) == controlAnimalGlobal.Segundo_control && Convert.ToDecimal(txtGrasaPrimerControl.Text) == controlAnimalGlobal.Grasa_primercontrol && Convert.ToDecimal(txtGrasaSegundoControl.Text) == controlAnimalGlobal.Grasa_segundocontrol &&  controlAnimalGlobal.Fecha_control == dtpFechaControl.Value.Date)
             {
                 return false;
             }

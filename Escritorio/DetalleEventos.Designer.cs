@@ -68,7 +68,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(553, 205);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(575, 205);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // groupBox1
@@ -79,13 +79,15 @@
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.tableLayoutPanel1.SetRowSpan(this.groupBox1, 2);
-            this.groupBox1.Size = new System.Drawing.Size(547, 199);
+            this.groupBox1.Size = new System.Drawing.Size(569, 199);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Detalles del evento";
             // 
             // dgvDetalles
             // 
+            this.dgvDetalles.AllowUserToAddRows = false;
+            this.dgvDetalles.AllowUserToDeleteRows = false;
             this.dgvDetalles.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvDetalles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDetalles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -107,7 +109,7 @@
             this.dgvDetalles.Location = new System.Drawing.Point(9, 19);
             this.dgvDetalles.Name = "dgvDetalles";
             this.dgvDetalles.ReadOnly = true;
-            this.dgvDetalles.Size = new System.Drawing.Size(529, 171);
+            this.dgvDetalles.Size = new System.Drawing.Size(549, 171);
             this.dgvDetalles.TabIndex = 0;
             // 
             // nombre_subevento
@@ -246,7 +248,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 205);
+            this.ClientSize = new System.Drawing.Size(575, 205);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

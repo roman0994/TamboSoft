@@ -54,7 +54,7 @@ namespace Escritorio
         {
             Animal_Negocio an = new Animal_Negocio();
             Validaciones validaciones = new Validaciones();
-            string validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex, txtEdad.Text, txtNombre.Text, txtHBA.Text, txtCaravana.Text);
+            string validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex,  txtNombre.Text, txtHBA.Text, txtCaravana.Text);
 
             if (validar == "true")
             {
@@ -118,7 +118,7 @@ namespace Escritorio
 
             animal.Rp = Convert.ToInt32(txtRP.Text);
             animal.Fecha_nacimiento = dtpFechaNacimiento.Value.Date;
-            animal.Edad = Convert.ToInt32(txtEdad.Text);
+
             //animal.Foto = txtFoto.Text;
             animal.Nombre_animal = txtNombre.Text;
             animal.Estado_animal = cbEstado.SelectedItem.ToString();
@@ -245,7 +245,7 @@ namespace Escritorio
 
         public bool HayCamposModificados()
         {
-            if (txtNombre.Text == animalGlobal.Nombre_animal && Convert.ToInt32(txtEdad.Text) == animalGlobal.Edad && Convert.ToInt32(txtHBA.Text) == animalGlobal.Hba && Convert.ToInt32(txtHBAMadre.Text) == animalGlobal.Hba_madre && Convert.ToInt32(txtHBAPadre.Text) == animalGlobal.Hba_padre && Convert.ToInt32(txtRPMadre.Text) == animalGlobal.Rp_madre && Convert.ToInt32(txtRPPadre.Text) == animalGlobal.Rp_padre && cbEstado.SelectedItem.ToString() == animalGlobal.Estado_animal && cbCategoria.SelectedItem.ToString() == animalGlobal.Categoria && Convert.ToInt32(cbRaza.SelectedValue) == animalGlobal.Id_raza && animalGlobal.Fecha_nacimiento == dtpFechaNacimiento.Value.Date)
+            if (txtNombre.Text == animalGlobal.Nombre_animal  && Convert.ToInt32(txtHBA.Text) == animalGlobal.Hba && Convert.ToInt32(txtHBAMadre.Text) == animalGlobal.Hba_madre && Convert.ToInt32(txtHBAPadre.Text) == animalGlobal.Hba_padre && Convert.ToInt32(txtRPMadre.Text) == animalGlobal.Rp_madre && Convert.ToInt32(txtRPPadre.Text) == animalGlobal.Rp_padre && cbEstado.SelectedItem.ToString() == animalGlobal.Estado_animal && cbCategoria.SelectedItem.ToString() == animalGlobal.Categoria && Convert.ToInt32(cbRaza.SelectedValue) == animalGlobal.Id_raza && animalGlobal.Fecha_nacimiento == dtpFechaNacimiento.Value.Date)
             {
                 return false;
             }

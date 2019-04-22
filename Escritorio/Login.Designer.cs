@@ -34,6 +34,7 @@
             this.btnIngresar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnNuevoTambo = new System.Windows.Forms.Button();
+            this.lnkRegresarLogin = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // label1
@@ -98,6 +99,17 @@
             this.btnNuevoTambo.UseVisualStyleBackColor = true;
             this.btnNuevoTambo.Click += new System.EventHandler(this.btnNuevoTambo_Click);
             // 
+            // lnkRegresarLogin
+            // 
+            this.lnkRegresarLogin.AutoSize = true;
+            this.lnkRegresarLogin.Location = new System.Drawing.Point(56, 307);
+            this.lnkRegresarLogin.Name = "lnkRegresarLogin";
+            this.lnkRegresarLogin.Size = new System.Drawing.Size(86, 13);
+            this.lnkRegresarLogin.TabIndex = 6;
+            this.lnkRegresarLogin.TabStop = true;
+            this.lnkRegresarLogin.Text = "Regresar al login";
+            this.lnkRegresarLogin.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkRegresarLogin_LinkClicked);
+            // 
             // Login
             // 
             this.AcceptButton = this.btnIngresar;
@@ -106,6 +118,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnSalir;
             this.ClientSize = new System.Drawing.Size(524, 351);
+            this.Controls.Add(this.lnkRegresarLogin);
             this.Controls.Add(this.btnNuevoTambo);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnIngresar);
@@ -130,5 +143,6 @@
         private System.Windows.Forms.Button btnIngresar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnNuevoTambo;
+        private System.Windows.Forms.LinkLabel lnkRegresarLogin;
     }
 }

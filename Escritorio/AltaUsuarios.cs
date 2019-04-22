@@ -23,6 +23,8 @@ namespace Escritorio
 
         private void btnSalir_Click(object sender, EventArgs e)
         {
+            LoginUsuario login = new LoginUsuario();
+            login.Show();
             this.Close();
         }
 

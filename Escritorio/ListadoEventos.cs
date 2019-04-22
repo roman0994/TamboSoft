@@ -23,8 +23,11 @@ namespace Escritorio
         }
         public void CargarGrilla(int id_tambo)
         {
+            //EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+            //this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarPorTambo(id_tambo);
             EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-            this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarPorTambo(id_tambo);
+            this.dgvEventos.AutoGenerateColumns = false;
+            this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarSoloEventosPorTambo(id_tambo);
             //gvEventos.Columns[0].HeaderText = "TextoAMostrarEnLaCabecera";
         }
 
@@ -79,9 +82,11 @@ namespace Escritorio
         {
             if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
             {
-                vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
-                vistaPreviaListadoEventos.idtambo = idtambo;
-                vistaPreviaListadoEventos.Show();
+                //vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
+                //vistaPreviaListadoEventos.idtambo = idtambo;
+                //vistaPreviaListadoEventos.Show();
+                vpEventos_Animal vp = new vpEventos_Animal();
+                vp.Show();
             }
             else
             {
@@ -90,6 +95,38 @@ namespace Escritorio
                 tambo = tambo_Negocio.RecuperarUno(idtambo);
                 MessageBox.Show("No se encontraron eventos en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void dgvEventos_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    int id_tambo = Principal.Tambo.Id_tambo;
+                    int rp = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["rp"].Value);
+                    int id_evento = Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_evento"].Value);
+                    DateTime fecha = Convert.ToDateTime(this.dgvEventos.CurrentRow.Cells["fecha_desc"].Value);
+
+                    DetalleEventos detalle = new DetalleEventos();
+                    EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                    detalle.dgvDetalles.DataSource = eventoAnimalDescNegocio.RecuperarDescripcionesPorEvento(id_tambo, rp, id_evento, fecha);
+                    detalle.Show();
+
+                }
+            
+        }
+
+        private void tstxtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
+            
         }
     }
 }

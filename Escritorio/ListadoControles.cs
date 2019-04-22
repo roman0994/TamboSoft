@@ -25,6 +25,7 @@ namespace Escritorio
         public void CargarGrilla(int id_tambo)
         {
             Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+            this.dgvControles.AutoGenerateColumns = false;
             this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTambo(id_tambo);
         }
 
@@ -79,9 +80,11 @@ namespace Escritorio
         {
             if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
             {
-                vpListadoControles vistaPreviaListadoControles = new vpListadoControles();
-                vistaPreviaListadoControles.idtambo = idtambo;
-                vistaPreviaListadoControles.Show();
+                //vpListadoControles vistaPreviaListadoControles = new vpListadoControles();
+                //vistaPreviaListadoControles.idtambo = idtambo;
+                //vistaPreviaListadoControles.Show();
+                vpListadoControlesPorFecha vp = new vpListadoControlesPorFecha();
+                vp.Show();
             }
             else
             {

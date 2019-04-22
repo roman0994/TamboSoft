@@ -33,6 +33,7 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.txtCaravana = new System.Windows.Forms.TextBox();
             this.txtTambo = new System.Windows.Forms.TextBox();
@@ -43,7 +44,6 @@
             this.cbCategoria = new System.Windows.Forms.ComboBox();
             this.cbEstado = new System.Windows.Forms.ComboBox();
             this.txtNombre = new System.Windows.Forms.TextBox();
-            this.txtEdad = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -52,7 +52,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtHBAMadre = new System.Windows.Forms.TextBox();
@@ -64,7 +63,6 @@
             this.txtRPPadre = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -146,7 +144,6 @@
             this.groupBox1.Controls.Add(this.cbCategoria);
             this.groupBox1.Controls.Add(this.cbEstado);
             this.groupBox1.Controls.Add(this.txtNombre);
-            this.groupBox1.Controls.Add(this.txtEdad);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.label13);
             this.groupBox1.Controls.Add(this.label12);
@@ -155,7 +152,6 @@
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -165,6 +161,16 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Animal";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(421, 213);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(135, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "** Campos no modificables.";
             // 
             // label7
             // 
@@ -209,7 +215,7 @@
             // 
             // txtHBA
             // 
-            this.txtHBA.Location = new System.Drawing.Point(146, 159);
+            this.txtHBA.Location = new System.Drawing.Point(145, 138);
             this.txtHBA.Name = "txtHBA";
             this.txtHBA.Size = new System.Drawing.Size(200, 20);
             this.txtHBA.TabIndex = 5;
@@ -228,7 +234,7 @@
             // 
             this.cbCategoria.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbCategoria.FormattingEnabled = true;
-            this.cbCategoria.Location = new System.Drawing.Point(146, 192);
+            this.cbCategoria.Location = new System.Drawing.Point(144, 176);
             this.cbCategoria.Name = "cbCategoria";
             this.cbCategoria.Size = new System.Drawing.Size(201, 21);
             this.cbCategoria.TabIndex = 6;
@@ -237,32 +243,24 @@
             // 
             this.cbEstado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbEstado.FormattingEnabled = true;
-            this.cbEstado.Location = new System.Drawing.Point(146, 123);
+            this.cbEstado.Location = new System.Drawing.Point(145, 96);
             this.cbEstado.Name = "cbEstado";
             this.cbEstado.Size = new System.Drawing.Size(201, 21);
             this.cbEstado.TabIndex = 4;
             // 
             // txtNombre
             // 
-            this.txtNombre.Location = new System.Drawing.Point(146, 90);
+            this.txtNombre.Location = new System.Drawing.Point(146, 54);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(200, 20);
             this.txtNombre.TabIndex = 3;
             this.txtNombre.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNombre_KeyPress);
             // 
-            // txtEdad
-            // 
-            this.txtEdad.Location = new System.Drawing.Point(146, 54);
-            this.txtEdad.Name = "txtEdad";
-            this.txtEdad.Size = new System.Drawing.Size(200, 20);
-            this.txtEdad.TabIndex = 2;
-            this.txtEdad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtEdad_KeyPress);
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(21, 93);
+            this.label14.Location = new System.Drawing.Point(21, 61);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(54, 13);
             this.label14.TabIndex = 12;
@@ -312,7 +310,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(21, 195);
+            this.label6.Location = new System.Drawing.Point(21, 179);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(64, 13);
             this.label6.TabIndex = 4;
@@ -322,7 +320,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(21, 162);
+            this.label5.Location = new System.Drawing.Point(21, 145);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 3;
@@ -332,21 +330,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(21, 126);
+            this.label4.Location = new System.Drawing.Point(21, 100);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 2;
             this.label4.Text = "Estado: *";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(21, 57);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(42, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Edad: *";
             // 
             // label2
             // 
@@ -460,16 +448,6 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "RP:";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(421, 213);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(135, 13);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "** Campos no modificables.";
-            // 
             // EdicionAnimales
             // 
             this.AcceptButton = this.btnGuardar;
@@ -510,7 +488,6 @@
         public System.Windows.Forms.ComboBox cbCategoria;
         public System.Windows.Forms.ComboBox cbEstado;
         public System.Windows.Forms.TextBox txtNombre;
-        public System.Windows.Forms.TextBox txtEdad;
         public System.Windows.Forms.Label label14;
         public System.Windows.Forms.Label label13;
         public System.Windows.Forms.Label label12;
@@ -519,7 +496,6 @@
         public System.Windows.Forms.Label label6;
         public System.Windows.Forms.Label label5;
         public System.Windows.Forms.Label label4;
-        public System.Windows.Forms.Label label3;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.GroupBox groupBox2;
         public System.Windows.Forms.TextBox txtHBAMadre;

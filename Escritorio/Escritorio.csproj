@@ -40,6 +40,12 @@
     <Reference Include="DocumentFormat.OpenXml, Version=2.8.1.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.8.1\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
@@ -59,6 +65,7 @@
       <HintPath>..\packages\System.AppContext.4.3.0\lib\net46\System.AppContext.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
     </Reference>
@@ -97,6 +104,7 @@
       <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
     </Reference>
@@ -166,6 +174,14 @@
     </Compile>
     <Compile Include="AltaUsuarios.Designer.cs">
       <DependentUpon>AltaUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetBasic.cs">
+      <DependentUpon>DataSetBasic.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetBasic.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetBasic.xsd</DependentUpon>
     </Compile>
     <Compile Include="DatosTambo.cs">
       <SubType>Form</SubType>
@@ -242,6 +258,12 @@
     <Compile Include="GestionTambos.Designer.cs">
       <DependentUpon>GestionTambos.cs</DependentUpon>
     </Compile>
+    <Compile Include="GrupoPrueba.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GrupoPrueba.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="HistoriaClinica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -316,6 +338,12 @@
     <Compile Include="PruebaSincronizacion.Designer.cs">
       <DependentUpon>PruebaSincronizacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="RankingProduccionMesAnio.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>RankingProduccionMesAnio.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="RecuperarContraseña.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -358,6 +386,24 @@
       <DependentUpon>rptEventos.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="rptEventoXAnimal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEventoXAnimal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptEvento_Animal.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptEvento_Animal.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptExistencia.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptExistencia.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="rptHistoriaClinica.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -376,10 +422,22 @@
       <DependentUpon>rptListadoAnimales.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="rptListadoControlePorAnimalUnico.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptListadoControlePorAnimalUnico.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="rptListadoControles.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptListadoControles.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptListadoControlesPorFechas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptListadoControlesPorFechas.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="rptListadoEventos.cs">
@@ -392,6 +450,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptListadoInseminadores.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptListadoSanidad.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptListadoSanidad.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="rptProduccionPorAnimal.cs">
@@ -412,6 +476,12 @@
       <DependentUpon>rptProduccionPorFechaMes.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="rptReporteReproduccionPorFechas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptReporteReproduccionPorFechas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="rptReproduccion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -423,6 +493,18 @@
     </Compile>
     <Compile Include="vpEventos.Designer.cs">
       <DependentUpon>vpEventos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpEventos_Animal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpEventos_Animal.Designer.cs">
+      <DependentUpon>vpEventos_Animal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpExistencia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpExistencia.Designer.cs">
+      <DependentUpon>vpExistencia.cs</DependentUpon>
     </Compile>
     <Compile Include="vpHistoriaClinica.cs">
       <SubType>Form</SubType>
@@ -448,6 +530,12 @@
     <Compile Include="vpListadoControles.Designer.cs">
       <DependentUpon>vpListadoControles.cs</DependentUpon>
     </Compile>
+    <Compile Include="vpListadoControlesPorFecha.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpListadoControlesPorFecha.Designer.cs">
+      <DependentUpon>vpListadoControlesPorFecha.cs</DependentUpon>
+    </Compile>
     <Compile Include="vpListadoEventos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -459,6 +547,12 @@
     </Compile>
     <Compile Include="vpListadoInseminadores.Designer.cs">
       <DependentUpon>vpListadoInseminadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpListadoSanidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpListadoSanidad.Designer.cs">
+      <DependentUpon>vpListadoSanidad.cs</DependentUpon>
     </Compile>
     <Compile Include="vpProduccionPorAnimal.cs">
       <SubType>Form</SubType>
@@ -477,6 +571,12 @@
     </Compile>
     <Compile Include="vpProduccionPorFechaMes.Designer.cs">
       <DependentUpon>vpProduccionPorFechaMes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="vpReporteReproduccion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="vpReporteReproduccion.Designer.cs">
+      <DependentUpon>vpReporteReproduccion.cs</DependentUpon>
     </Compile>
     <Compile Include="vpReproduccion.cs">
       <SubType>Form</SubType>
@@ -538,6 +638,10 @@
     <EmbeddedResource Include="GestionTambos.resx">
       <DependentUpon>GestionTambos.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GrupoPrueba.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>GrupoPrueba.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="HistoriaClinica.resx">
       <DependentUpon>HistoriaClinica.cs</DependentUpon>
     </EmbeddedResource>
@@ -583,6 +687,10 @@
     <EmbeddedResource Include="PruebaSincronizacion.resx">
       <DependentUpon>PruebaSincronizacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RankingProduccionMesAnio.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RankingProduccionMesAnio.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="RecuperarContraseña.resx">
       <DependentUpon>RecuperarContraseña.cs</DependentUpon>
     </EmbeddedResource>
@@ -605,6 +713,18 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptEventos.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptEventoXAnimal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEventoXAnimal.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptEvento_Animal.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptEvento_Animal.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptExistencia.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptExistencia.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptHistoriaClinica.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptHistoriaClinica.cs</LastGenOutput>
@@ -617,9 +737,17 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptListadoAnimales.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptListadoControlePorAnimalUnico.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListadoControlePorAnimalUnico.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptListadoControles.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptListadoControles.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptListadoControlesPorFechas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListadoControlesPorFechas.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="rptListadoEventos.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -628,6 +756,10 @@
     <EmbeddedResource Include="rptListadoInseminadores.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptListadoInseminadores.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptListadoSanidad.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptListadoSanidad.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="rptProduccionPorAnimal.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -641,12 +773,22 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptProduccionPorFechaMes.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="rptReporteReproduccionPorFechas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptReporteReproduccionPorFechas.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="rptReproduccion.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptReproduccion.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="vpEventos.resx">
       <DependentUpon>vpEventos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpEventos_Animal.resx">
+      <DependentUpon>vpEventos_Animal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpExistencia.resx">
+      <DependentUpon>vpExistencia.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vpHistoriaClinica.resx">
       <DependentUpon>vpHistoriaClinica.cs</DependentUpon>
@@ -660,11 +802,17 @@
     <EmbeddedResource Include="vpListadoControles.resx">
       <DependentUpon>vpListadoControles.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="vpListadoControlesPorFecha.resx">
+      <DependentUpon>vpListadoControlesPorFecha.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="vpListadoEventos.resx">
       <DependentUpon>vpListadoEventos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vpListadoInseminadores.resx">
       <DependentUpon>vpListadoInseminadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="vpListadoSanidad.resx">
+      <DependentUpon>vpListadoSanidad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="vpProduccionPorAnimal.resx">
       <DependentUpon>vpProduccionPorAnimal.cs</DependentUpon>
@@ -675,9 +823,23 @@
     <EmbeddedResource Include="vpProduccionPorFechaMes.resx">
       <DependentUpon>vpProduccionPorFechaMes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="vpReporteReproduccion.resx">
+      <DependentUpon>vpReporteReproduccion.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="vpReproduccion.resx">
       <DependentUpon>vpReproduccion.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="DataSetBasic.xsc">
+      <DependentUpon>DataSetBasic.xsd</DependentUpon>
+    </None>
+    <None Include="DataSetBasic.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetBasic.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DataSetBasic.xss">
+      <DependentUpon>DataSetBasic.xsd</DependentUpon>
+    </None>
     <None Include="dsTamboSoft.xsc">
       <DependentUpon>dsTamboSoft.xsd</DependentUpon>
     </None>
@@ -722,6 +884,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

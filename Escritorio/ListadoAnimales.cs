@@ -26,6 +26,7 @@ namespace Escritorio
         public void CargarGrilla(int idtambo)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
+            this.dgvAnimales.AutoGenerateColumns = false;
             this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTambo(idtambo);
         }
 
@@ -96,6 +97,25 @@ namespace Escritorio
                 Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
                 tambo = tambo_Negocio.RecuperarUno(idtambo);
                 MessageBox.Show("No se encontraron animales en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void tsbSanidad_Click(object sender, EventArgs e)
+        {
+            vpListadoSanidad vistaPreviaListadoAnimales = new vpListadoSanidad();
+           
+            vistaPreviaListadoAnimales.Show();
+        }
+
+        private void tstxtBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar) || char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Entidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,22 @@ namespace Escritorio
         public HistorialProduccion()
         {
             InitializeComponent();
+            this.dgvHistorialProduccion.AutoGenerateColumns = false;
+            
+        }
+
+        private void btnImprimir_Click(object sender, EventArgs e)
+        {
+            Animal animal = new Animal();
+           
+            //vpHistorialProduccion vistaPreviaHistorialProd = new vpHistorialProduccion();
+            animal.Rp = Convert.ToInt32(this.dgvHistorialProduccion.CurrentRow.Cells["rp"].Value);
+            vpListadoControlesPorFecha vp = new vpListadoControlesPorFecha(animal);
+            vp.Show();
+        }
+
+        private void HistorialProduccion_Load(object sender, EventArgs e)
+        {
             if (this.dgvHistorialProduccion.Rows.Count != 0 && this.dgvHistorialProduccion.Rows != null)
             {
                 btnImprimir.Enabled = true;
@@ -23,13 +40,6 @@ namespace Escritorio
             {
                 btnImprimir.Enabled = false;
             }
-        }
-
-        private void btnImprimir_Click(object sender, EventArgs e)
-        {
-            vpHistorialProduccion vistaPreviaHistorialProd = new vpHistorialProduccion();
-            vistaPreviaHistorialProd.rp = Convert.ToInt32(this.dgvHistorialProduccion.CurrentRow.Cells["rp"].Value); ;
-            vistaPreviaHistorialProd.Show();
         }
     }
 }
