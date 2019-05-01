@@ -8,12 +8,12 @@ namespace Entidades
 {
     public class Provincia
     {
-        int _id_provincia;
-        string _nombre_provincia;
 
 
-        public int Id_provincia { get => _id_provincia; set => _id_provincia = value; }
-        public string Nombre_provincia { get => _nombre_provincia; set => _nombre_provincia = value; }
+        public int Id_provincia { get; set; }
+        public string Nombre_provincia { get; set; }
+
+        public List<Localidad> Localidades { get; set; }
 
         public Provincia()
         {

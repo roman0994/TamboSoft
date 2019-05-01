@@ -8,13 +8,18 @@ namespace Entidades
 {
     public class Evento
     {
-        private int _id_evento;
-        private string _nombre_evento;
 
 
-        public int Id_evento { get => _id_evento; set => _id_evento = value; }
-        public string Nombre_evento { get => _nombre_evento; set => _nombre_evento = value; }
+
+        public int Id_evento { get; set; }
+        public string Nombre_evento { get; set; }
+        public int Tipo_Categoria { get; set; }
+
        
+        public List<Subevento> SubEventos { get; set; }
+        public List<Animal> Animales { get; set; }
+
+
 
         public Evento()
         {

@@ -111,6 +111,7 @@
     <Compile Include="AnimalApi_Datos.cs" />
     <Compile Include="Animal_Datos.cs" />
     <Compile Include="CargarTablas.cs" />
+    <Compile Include="Categoria_Datos.cs" />
     <Compile Include="Conexion.cs" />
     <Compile Include="Control_Animal_Datos.cs" />
     <Compile Include="Desc_Subevento_Datos.cs" />

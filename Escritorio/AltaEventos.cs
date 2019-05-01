@@ -626,7 +626,7 @@ namespace Escritorio
                 MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Ocurrió un error al intentar guardar el evento", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 throw;
@@ -835,5 +835,7 @@ namespace Escritorio
                 lbNombreAnimal.Text = "Nombre: " + Animal.Nombre_animal;
             }
         }
+
+
     }   
 }

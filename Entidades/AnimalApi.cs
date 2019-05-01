@@ -10,7 +10,7 @@ namespace Entidades
     {
         public int Rp { get; set; }
         public DateTime? FechaNacimiento { get; set; }
-        public int? Edad { get; set; }
+        //public int? Edad { get; set; }
         public string Foto { get; set; }
         public string NombreAnimal { get; set; }
         public string EstadoAnimal { get; set; }

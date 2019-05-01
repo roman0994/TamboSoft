@@ -34,17 +34,17 @@
             this.dgvHistorialProduccion = new System.Windows.Forms.DataGridView();
             this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.primer_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grasa_primercontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.segundo_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grasa_segundocontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentaje_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kg_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistorialProduccion)).BeginInit();
@@ -96,17 +96,17 @@
             this.dgvHistorialProduccion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fecha_control,
             this.caravana,
-            this.rp,
             this.nombre_animal,
-            this.id_control,
             this.primer_control,
             this.grasa_primercontrol,
             this.segundo_control,
             this.grasa_segundocontrol,
-            this.id_tambo,
             this.porcentaje_grasa,
             this.kg_grasa,
-            this.nombre_tambo});
+            this.rp,
+            this.nombre_tambo,
+            this.id_tambo,
+            this.id_control});
             this.dgvHistorialProduccion.Location = new System.Drawing.Point(20, 28);
             this.dgvHistorialProduccion.MultiSelect = false;
             this.dgvHistorialProduccion.Name = "dgvHistorialProduccion";
@@ -131,28 +131,12 @@
             this.caravana.Name = "caravana";
             this.caravana.ReadOnly = true;
             // 
-            // rp
-            // 
-            this.rp.DataPropertyName = "rp";
-            this.rp.HeaderText = "RP";
-            this.rp.Name = "rp";
-            this.rp.ReadOnly = true;
-            this.rp.Width = 60;
-            // 
             // nombre_animal
             // 
             this.nombre_animal.DataPropertyName = "nombre_animal";
             this.nombre_animal.HeaderText = "Animal";
             this.nombre_animal.Name = "nombre_animal";
             this.nombre_animal.ReadOnly = true;
-            // 
-            // id_control
-            // 
-            this.id_control.DataPropertyName = "id_control";
-            this.id_control.HeaderText = "ID Control";
-            this.id_control.Name = "id_control";
-            this.id_control.ReadOnly = true;
-            this.id_control.Visible = false;
             // 
             // primer_control
             // 
@@ -182,14 +166,6 @@
             this.grasa_segundocontrol.Name = "grasa_segundocontrol";
             this.grasa_segundocontrol.ReadOnly = true;
             // 
-            // id_tambo
-            // 
-            this.id_tambo.DataPropertyName = "id_tambo";
-            this.id_tambo.HeaderText = "ID Tambo";
-            this.id_tambo.Name = "id_tambo";
-            this.id_tambo.ReadOnly = true;
-            this.id_tambo.Visible = false;
-            // 
             // porcentaje_grasa
             // 
             this.porcentaje_grasa.DataPropertyName = "porcentaje_grasa";
@@ -206,12 +182,38 @@
             this.kg_grasa.ReadOnly = true;
             this.kg_grasa.Visible = false;
             // 
+            // rp
+            // 
+            this.rp.DataPropertyName = "rp";
+            this.rp.HeaderText = "RP";
+            this.rp.Name = "rp";
+            this.rp.ReadOnly = true;
+            this.rp.Visible = false;
+            this.rp.Width = 60;
+            // 
             // nombre_tambo
             // 
             this.nombre_tambo.DataPropertyName = "nombre_tambo";
             this.nombre_tambo.HeaderText = "Tambo";
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.ReadOnly = true;
+            this.nombre_tambo.Visible = false;
+            // 
+            // id_tambo
+            // 
+            this.id_tambo.DataPropertyName = "id_tambo";
+            this.id_tambo.HeaderText = "ID Tambo";
+            this.id_tambo.Name = "id_tambo";
+            this.id_tambo.ReadOnly = true;
+            this.id_tambo.Visible = false;
+            // 
+            // id_control
+            // 
+            this.id_control.DataPropertyName = "id_control";
+            this.id_control.HeaderText = "ID Control";
+            this.id_control.Name = "id_control";
+            this.id_control.ReadOnly = true;
+            this.id_control.Visible = false;
             // 
             // HistorialProduccion
             // 
@@ -241,16 +243,16 @@
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn primer_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn grasa_primercontrol;
         private System.Windows.Forms.DataGridViewTextBoxColumn segundo_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn grasa_segundocontrol;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn porcentaje_grasa;
         private System.Windows.Forms.DataGridViewTextBoxColumn kg_grasa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_control;
     }
 }

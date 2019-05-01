@@ -8,19 +8,18 @@ namespace Entidades
 {
     public class Desc_Subevento
     {
-        private int _id_desc;
-        private string _descripcion;
-        private string _abreviacion;
-        private bool _estado_desc;
-        private int _id_subevento;
-        private string _nombre_subevento;
+       
 
-        public int Id_desc { get => _id_desc; set => _id_desc = value; }
-        public string Descripcion { get => _descripcion; set => _descripcion = value; }
-        public string Abreviacion { get => _abreviacion; set => _abreviacion = value; }
-        public bool Estado_desc { get => _estado_desc; set => _estado_desc = value; }
-        public int Id_subevento { get => _id_subevento; set => _id_subevento = value; }
-        public string Nombre_subevento { get => _nombre_subevento; set => _nombre_subevento = value; }
+        public int Id_desc { get; set; }
+        public string Descripcion { get; set; }
+        public string Abreviacion { get; set; }
+        public bool Estado_desc { get; set; }
+        public int Id_subevento { get; set; }
+        public string Nombre_subevento { get; set; }
+        public Evento evento { get; set; }
+
+        public List<Evento_Animal> Evento_Animales { get; set; }
+
 
         public Desc_Subevento()
         {

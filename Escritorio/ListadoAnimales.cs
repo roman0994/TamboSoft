@@ -27,7 +27,9 @@ namespace Escritorio
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             this.dgvAnimales.AutoGenerateColumns = false;
-            this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTambo(idtambo);
+            this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTamboDT(idtambo);
+
+           
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -42,7 +44,7 @@ namespace Escritorio
 
         private void tbsNuevo_Click(object sender, EventArgs e)
         {
-            AltaAnimales altaAnimales = new AltaAnimales(idtambo);
+            AbmAnimales altaAnimales = new AbmAnimales(Principal.ModoForm.ALTA,null);
             altaAnimales.ShowDialog();
             this.CargarGrilla(idtambo);
         }
@@ -116,6 +118,21 @@ namespace Escritorio
             else
             {
                 e.Handled = true;
+            }
+        }
+
+        private void dgvAnimales_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            foreach (DataGridViewRow row in dgvAnimales.Rows)
+            {
+                if (row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Muerto.ToString() || row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Vendido.ToString())
+                {
+
+                    row.DefaultCellStyle.BackColor = Color.LightGray;
+                    
+                }
+               
+
             }
         }
     }

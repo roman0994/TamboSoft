@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Entidades;
+using Negocio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,25 +9,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Entidades;
-using Negocio;
-using Util;
+using static Escritorio.Principal;
 
 namespace Escritorio
 {
-    public partial class AltaAnimales : Form
+    public partial class AbmAnimales : Form
     {
         Animal_Negocio animalnegocio;
         Categoria_Negocio categorianegocio;
         int ultimacaravana;
         public Animal Animal { get; set; }
+        ModoForm ModoForm;
 
-        public AltaAnimales()
+        public AbmAnimales()
         {
             InitializeComponent();
-            Animal                  = new Animal();
-            animalnegocio           = new Animal_Negocio();
-            categorianegocio        = new Categoria_Negocio();
+            Animal = new Animal();
+            animalnegocio = new Animal_Negocio();
+            categorianegocio = new Categoria_Negocio();
             CargarComboEstado();
             CargaComboCategoria();
             CargarTextBoxTambo();
@@ -33,6 +34,37 @@ namespace Escritorio
             CargaUltimaCaravana();
         }
 
+        public AbmAnimales(ModoForm modo,Animal animal)
+        {
+            InitializeComponent();
+            ModoForm = modo;
+            Animal = new Animal();
+            animalnegocio = new Animal_Negocio();
+            categorianegocio = new Categoria_Negocio();
+            CargarComboEstado();
+            CargaComboCategoria();
+            CargarTextBoxTambo();
+            CargaComboRaza();
+            CargaUltimaCaravana();
+
+            lbTituloFormulario.Text = ModoForm.ToString(); 
+
+            if (ModoForm == ModoForm.MODIFICACION)
+            {
+                
+                if (animal != null)
+                {
+                    Animal = animal;
+                }
+                MapearDesdeAnimal();
+
+            }
+            
+
+           
+
+
+        }
 
         #region Metodos
 
@@ -49,7 +81,16 @@ namespace Escritorio
             {
                 Animal.Estado_animal = Principal.EstadoAnimales.Vivo.ToString();
             }
-          
+
+            if (cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Muerto.ToString() || cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Vendido.ToString())
+            {
+                Animal.Habilitado = false;
+            }
+            else
+            {
+                Animal.Habilitado = true;
+            }
+
 
             Animal.Fecha_nacimiento = dtpFechaNacimiento.Value;
 
@@ -64,11 +105,44 @@ namespace Escritorio
             Animal.Tambo = Principal.Tambo;
             Animal.Id_tambo = Principal.Tambo.Id_tambo;
 
-            Animal.Habilitado = true;
+           
             Animal.Caravana = txtCaravana.Text;
 
 
         }
+
+
+        public void MapearDesdeAnimal()
+        {
+            try
+            {
+
+                this.dtpFechaNacimiento.Value = Animal.Fecha_nacimiento;
+
+                this.txtNombre.Text = Animal.Nombre_animal;
+                this.cbEstado.SelectedItem = Animal.Estado_animal;
+                this.cbEstado.Text = Animal.Estado_animal;
+                this.txtHBA.Text = Animal.Hba.ToString();
+                this.cbCategoria.SelectedItem = Animal.Categoria;
+                this.cbCategoria.Text = Animal.Categoria.Descripcion;
+                this.cbRaza.SelectedItem = Animal.Raza;
+                this.cbRaza.Text = Animal.Raza.Nombre_raza;
+                this.txtRPMadre.Text = Animal.Rp_madre.ToString();
+                this.txtHBAMadre.Text = Animal.Hba_madre.ToString();
+                this.txtRPPadre.Text = Animal.Rp_padre.ToString();
+                this.txtHBAPadre.Text = Animal.Hba_padre.ToString();
+                this.txtCaravana.Text = Animal.Caravana.ToString();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error al cargar formulario ", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
+
+
+        }
+
 
         public void Limpiar()
         {
@@ -119,13 +193,23 @@ namespace Escritorio
                 return false;
             }
 
-            if (animalnegocio.ExisteLaCaravana(Principal.Tambo.Id_tambo, txtCaravana.Text))
+            if (ModoForm == ModoForm.ALTA)
+            {
+
+                if (animalnegocio.ExisteLaCaravana(Principal.Tambo.Id_tambo, txtCaravana.Text))
+                {
+                    MessageBox.Show("La caravana ingresada ya existe ", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    txtCaravana.Focus();
+                    return false;
+                }
+            }
+            else if (Animal.Caravana != txtCaravana.Text)
             {
                 MessageBox.Show("La caravana ingresada ya existe ", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtCaravana.Focus();
                 return false;
             }
-
+            
             if (Animal.Raza == null)
             {
                 MessageBox.Show("Debe seleccionar una raza para el animal ", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -153,8 +237,14 @@ namespace Escritorio
         private void CargaUltimaCaravana()
         {
             ultimacaravana = animalnegocio.ObtenerUltimaCaravana(Principal.Tambo.Id_tambo);
-            txtCaravana.Text = (ultimacaravana + 1).ToString();
+            
             lbUltCaravana.Text = "La ultima caravana utilizada en el tambo es: " + ultimacaravana;
+            if (ModoForm == ModoForm.ALTA)
+            {
+                txtCaravana.Text = (ultimacaravana + 1).ToString();
+            }
+           
+            
         }
 
         public void CargarComboEstado()
@@ -162,7 +252,7 @@ namespace Escritorio
 
             this.cbEstado.DataSource = Enum.GetValues(typeof(Principal.EstadoAnimales));
             this.cbEstado.SelectedItem = Principal.EstadoAnimales.Vivo;
-            
+
         }
 
         public void CargaComboCategoria()
@@ -199,7 +289,7 @@ namespace Escritorio
 
         #region Eventos
 
-       
+
 
         private void AltaAnimales_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -231,18 +321,26 @@ namespace Escritorio
 
             try
             {
-
                 if (ValidarCargaAnimal(Animal))
                 {
 
 
                     MapearAAnimal();
-                    animalnegocio.Insertar(Animal);
-                    MessageBox.Show("El animal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
 
+                    if (ModoForm == ModoForm.MODIFICACION)
+                    {
+                        animalnegocio.Actualizar(Animal);
+                        MessageBox.Show("El animal fue modificado exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        this.Dispose();
+                    }
+                    else if (ModoForm == ModoForm.ALTA)
+                    {
+                        animalnegocio.Insertar(Animal);
+                        MessageBox.Show("El animal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
                     this.Limpiar();
-
                 }
+
             }
             catch (Exception ex)
             {
@@ -407,10 +505,5 @@ namespace Escritorio
         #endregion
 
         #endregion
-
-        private void gbAnimal_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="Animal.cs" />
     <Compile Include="AnimalApi.cs" />
+    <Compile Include="Categoria.cs" />
     <Compile Include="Control.cs" />
     <Compile Include="Control_Animal.cs" />
     <Compile Include="Desc_Subevento.cs" />

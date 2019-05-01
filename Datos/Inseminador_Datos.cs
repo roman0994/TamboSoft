@@ -64,7 +64,13 @@ namespace Datos
             {
                 List<Inseminador> lista = new List<Inseminador>();
                 this.AbrirConexion();
-                SqlCommand cmdInseminador = new SqlCommand("SELECT i.id_inseminador,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Inseminador i inner join Localidad l on i.id_localidad=l.id_localidad inner join Tambo_Inseminador ti on i.id_inseminador=ti.id_inseminador where i.estado_inseminador = 'true' and ti.id_tambo=@idtambo order by i.nombre_inseminador", Conn);
+                SqlCommand cmdInseminador = new SqlCommand("SELECT i.id_inseminador,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad " +
+                                                         " FROM Inseminador i " +
+                                                         " inner join Localidad l on i.id_localidad=l.id_localidad " +
+                                                         " inner join Tambo_Inseminador ti on i.id_inseminador=ti.id_inseminador " +
+                                                         " where i.estado_inseminador = 'true' " +
+                                                         " and ti.id_tambo=@idtambo " +
+                                                         " order by i.nombre_inseminador", Conn);
                 cmdInseminador.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
                 SqlDataReader dr = cmdInseminador.ExecuteReader();
 

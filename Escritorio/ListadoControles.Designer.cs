@@ -33,18 +33,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dgvControles = new System.Windows.Forms.DataGridView();
-            this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.primer_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grasa_primercontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.segundo_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.grasa_segundocontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.porcentaje_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.kg_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbRegresar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -55,6 +43,18 @@
             this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbActualizar = new System.Windows.Forms.ToolStripButton();
+            this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.primer_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grasa_primercontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.segundo_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.grasa_segundocontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.porcentaje_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kg_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -116,7 +116,6 @@
             this.dgvControles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvControles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fecha_control,
-            this.rp,
             this.nombre_animal,
             this.id_control,
             this.primer_control,
@@ -126,7 +125,8 @@
             this.id_tambo,
             this.porcentaje_grasa,
             this.kg_grasa,
-            this.nombre_tambo});
+            this.nombre_tambo,
+            this.rp});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvControles, 2);
             this.dgvControles.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvControles.Location = new System.Drawing.Point(3, 3);
@@ -137,20 +137,99 @@
             this.dgvControles.Size = new System.Drawing.Size(794, 390);
             this.dgvControles.TabIndex = 1;
             // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRegresar,
+            this.toolStripSeparator1,
+            this.tsbNuevo,
+            this.tsbImprimir,
+            this.toolStripSeparator2,
+            this.lblBuscar,
+            this.tstxtBuscar,
+            this.toolStripSeparator3,
+            this.tsbActualizar});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(400, 25);
+            this.toolStrip1.TabIndex = 0;
+            // 
+            // tsbRegresar
+            // 
+            this.tsbRegresar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tsbRegresar.Image")));
+            this.tsbRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRegresar.Name = "tsbRegresar";
+            this.tsbRegresar.Size = new System.Drawing.Size(23, 22);
+            this.tsbRegresar.Text = "Regresar";
+            this.tsbRegresar.Click += new System.EventHandler(this.tbsRegresar_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbNuevo
+            // 
+            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
+            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNuevo.Name = "tsbNuevo";
+            this.tsbNuevo.Size = new System.Drawing.Size(23, 22);
+            this.tsbNuevo.Text = "Nuevo";
+            this.tsbNuevo.Click += new System.EventHandler(this.tbsNuevo_Click);
+            // 
+            // tsbImprimir
+            // 
+            this.tsbImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbImprimir.Image = ((System.Drawing.Image)(resources.GetObject("tsbImprimir.Image")));
+            this.tsbImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbImprimir.Name = "tsbImprimir";
+            this.tsbImprimir.Size = new System.Drawing.Size(23, 22);
+            this.tsbImprimir.Text = "Imprimir";
+            this.tsbImprimir.Click += new System.EventHandler(this.tsbImprimir_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // lblBuscar
+            // 
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(105, 22);
+            this.lblBuscar.Text = "Buscar por animal:";
+            // 
+            // tstxtBuscar
+            // 
+            this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tstxtBuscar.Name = "tstxtBuscar";
+            this.tstxtBuscar.Size = new System.Drawing.Size(100, 25);
+            this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tstxtBuscar_KeyUp);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // tsbActualizar
+            // 
+            this.tsbActualizar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.tsbActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbActualizar.Image = ((System.Drawing.Image)(resources.GetObject("tsbActualizar.Image")));
+            this.tsbActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbActualizar.Name = "tsbActualizar";
+            this.tsbActualizar.Size = new System.Drawing.Size(63, 22);
+            this.tsbActualizar.Text = "Actualizar";
+            this.tsbActualizar.Click += new System.EventHandler(this.tsbActualizar_Click);
+            // 
             // fecha_control
             // 
             this.fecha_control.DataPropertyName = "fecha_control";
             this.fecha_control.HeaderText = "Fecha control";
             this.fecha_control.Name = "fecha_control";
             this.fecha_control.ReadOnly = true;
-            // 
-            // rp
-            // 
-            this.rp.DataPropertyName = "rp";
-            this.rp.HeaderText = "RP Animal";
-            this.rp.Name = "rp";
-            this.rp.ReadOnly = true;
-            this.rp.Width = 87;
             // 
             // nombre_animal
             // 
@@ -231,92 +310,14 @@
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.ReadOnly = true;
             // 
-            // toolStrip1
+            // rp
             // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbRegresar,
-            this.toolStripSeparator1,
-            this.tsbNuevo,
-            this.tsbImprimir,
-            this.toolStripSeparator2,
-            this.lblBuscar,
-            this.tstxtBuscar,
-            this.toolStripSeparator3,
-            this.tsbActualizar});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(369, 25);
-            this.toolStrip1.TabIndex = 0;
-            // 
-            // tsbRegresar
-            // 
-            this.tsbRegresar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tsbRegresar.Image")));
-            this.tsbRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRegresar.Name = "tsbRegresar";
-            this.tsbRegresar.Size = new System.Drawing.Size(23, 22);
-            this.tsbRegresar.Text = "Regresar";
-            this.tsbRegresar.Click += new System.EventHandler(this.tbsRegresar_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsbNuevo
-            // 
-            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
-            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(23, 22);
-            this.tsbNuevo.Text = "Nuevo";
-            this.tsbNuevo.Click += new System.EventHandler(this.tbsNuevo_Click);
-            // 
-            // tsbImprimir
-            // 
-            this.tsbImprimir.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbImprimir.Image = ((System.Drawing.Image)(resources.GetObject("tsbImprimir.Image")));
-            this.tsbImprimir.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbImprimir.Name = "tsbImprimir";
-            this.tsbImprimir.Size = new System.Drawing.Size(23, 22);
-            this.tsbImprimir.Text = "Imprimir";
-            this.tsbImprimir.Click += new System.EventHandler(this.tsbImprimir_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
-            // 
-            // lblBuscar
-            // 
-            this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(105, 22);
-            this.lblBuscar.Text = "Buscar por animal:";
-            // 
-            // tstxtBuscar
-            // 
-            this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tstxtBuscar.Name = "tstxtBuscar";
-            this.tstxtBuscar.Size = new System.Drawing.Size(100, 25);
-            this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tstxtBuscar_KeyUp);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
-            // 
-            // tsbActualizar
-            // 
-            this.tsbActualizar.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.tsbActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbActualizar.Image = ((System.Drawing.Image)(resources.GetObject("tsbActualizar.Image")));
-            this.tsbActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbActualizar.Name = "tsbActualizar";
-            this.tsbActualizar.Size = new System.Drawing.Size(63, 22);
-            this.tsbActualizar.Text = "Actualizar";
-            this.tsbActualizar.Click += new System.EventHandler(this.tsbActualizar_Click);
+            this.rp.DataPropertyName = "rp";
+            this.rp.HeaderText = "RP Animal";
+            this.rp.Name = "rp";
+            this.rp.ReadOnly = true;
+            this.rp.Visible = false;
+            this.rp.Width = 87;
             // 
             // ListadoControles
             // 
@@ -361,7 +362,6 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton tsbActualizar;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_control;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn primer_control;
@@ -372,5 +372,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn porcentaje_grasa;
         private System.Windows.Forms.DataGridViewTextBoxColumn kg_grasa;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
     }
 }

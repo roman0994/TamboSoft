@@ -133,6 +133,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbmAnimales.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmAnimales.Designer.cs">
+      <DependentUpon>AbmAnimales.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AbmEvento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AbmEvento.Designer.cs">
+      <DependentUpon>AbmEvento.cs</DependentUpon>
+    </Compile>
     <Compile Include="AcercaDeTamboSoft.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -258,12 +270,6 @@
     <Compile Include="GestionTambos.Designer.cs">
       <DependentUpon>GestionTambos.cs</DependentUpon>
     </Compile>
-    <Compile Include="GrupoPrueba.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GrupoPrueba.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="HistoriaClinica.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +282,7 @@
     <Compile Include="HistorialProduccion.Designer.cs">
       <DependentUpon>HistorialProduccion.cs</DependentUpon>
     </Compile>
+    <Compile Include="IEstadosAnimales.cs" />
     <Compile Include="ListadoAnimales.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +306,12 @@
     </Compile>
     <Compile Include="ListadoInseminadores.Designer.cs">
       <DependentUpon>ListadoInseminadores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ListaSeleccionAnimal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaSeleccionAnimal.Designer.cs">
+      <DependentUpon>ListaSeleccionAnimal.cs</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
@@ -584,6 +597,12 @@
     <Compile Include="vpReproduccion.Designer.cs">
       <DependentUpon>vpReproduccion.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="AbmAnimales.resx">
+      <DependentUpon>AbmAnimales.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AbmEvento.resx">
+      <DependentUpon>AbmEvento.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AcercaDeTamboSoft.resx">
       <DependentUpon>AcercaDeTamboSoft.cs</DependentUpon>
     </EmbeddedResource>
@@ -638,10 +657,6 @@
     <EmbeddedResource Include="GestionTambos.resx">
       <DependentUpon>GestionTambos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="GrupoPrueba.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>GrupoPrueba.cs</LastGenOutput>
-    </EmbeddedResource>
     <EmbeddedResource Include="HistoriaClinica.resx">
       <DependentUpon>HistoriaClinica.cs</DependentUpon>
     </EmbeddedResource>
@@ -659,6 +674,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoInseminadores.resx">
       <DependentUpon>ListadoInseminadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaSeleccionAnimal.resx">
+      <DependentUpon>ListaSeleccionAnimal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -863,7 +881,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">

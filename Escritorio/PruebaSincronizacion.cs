@@ -17,10 +17,15 @@ namespace Escritorio
     {
         System.Threading.Thread t;
         AnimalApi_Negocio animalapinegocio;
+        List<AnimalApi> listaInexistentes;
+        List<AnimalApi> listaModificados;
         public PruebaSincronizacion()
         {
             InitializeComponent();
+            this.dataGridView1.AutoGenerateColumns = false;
              animalapinegocio = new AnimalApi_Negocio();
+            listaInexistentes = new List<AnimalApi>();
+            listaModificados = new List<AnimalApi>();
         }
 
         private async void btnSincronizar_Click(object sender, EventArgs e)
@@ -39,38 +44,47 @@ namespace Escritorio
 
 
                 listado = await TraerListadoAnimalesApi();
-                List<AnimalApi> listaInexistentes = animalapinegocio.Comparar_ApiBase(listado, Principal.Tambo.Id_tambo);
-                List<AnimalApi> listaModificados = animalapinegocio.CompararModif_ApiBase(listado, Principal.Tambo.Id_tambo);
+                listaInexistentes = animalapinegocio.Comparar_ApiBase(listado, Principal.Tambo.Id_tambo);
+                listaModificados = animalapinegocio.CompararModif_ApiBase(listado, Principal.Tambo.Id_tambo);
 
                 if (listaInexistentes.Count > 0)
                 {
                     dataGridView1.DataSource = listaInexistentes;
-
-                    DialogResult dialogResult = MessageBox.Show(this, "¿Desea guardar los nuevos registros?", "Guardar",
-                        MessageBoxButtons.YesNo);
-                    if (dialogResult.Equals(DialogResult.Yes))
-                    {
-                        foreach (var item in listaInexistentes)
-                        {
-                            animalapinegocio.Insertar(item);
+                    MessageBox.Show("Se obtuvieron registros nuevos", "Registros nuevos", MessageBoxButtons.OK);
+                    btnGuardar.Text = "Guardar Nuevos";
+                    btnGuardar.Visible = true;
+                    //DialogResult dialogResult = MessageBox.Show(this, "¿Desea guardar los nuevos registros?", "Guardar",
+                      //  MessageBoxButtons.YesNo);
+                    //if (dialogResult.Equals(DialogResult.Yes))
+                    //{
+                    //    foreach (var item in listaInexistentes)
+                    //    {
+                    //        animalapinegocio.Insertar(item);
                             
-                        }
-                        MessageBox.Show("Los animales fueron subidos correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    DialogResult dialogResult2 = MessageBox.Show(this, "¿Desea actualizar los registros modificados?", "Guardar", MessageBoxButtons.YesNo);
-                    if (dialogResult2.Equals(DialogResult.Yes))
-                    {
-                        foreach (var item in listaModificados)
-                        {
-                            animalapinegocio.Actualizar(item);
-                        }
-                        MessageBox.Show("Los animales fueron actualizados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
+                    //    }
+                    //    MessageBox.Show("Los animales fueron guardados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //}
+                   
                 }
-                else
+                if (listaModificados.Count > 0)
+                {
+                    //DialogResult dialogResult2 = MessageBox.Show(this, "¿Desea actualizar los registros modificados?", "Guardar", MessageBoxButtons.YesNo);
+                    dataGridView1.DataSource = listaModificados;
+                    MessageBox.Show("Se obtuvieron registros existentes que sufrieron modificaciones", "Actualizacion de registros", MessageBoxButtons.OK);
+                    btnGuardar.Text = "Guardar Modificados";
+                    btnGuardar.Visible = true;
+                    //foreach (var item in listaModificados)
+                    //{
+                    //    animalapinegocio.Actualizar(item);
+                    //}
+                    //MessageBox.Show("Los animales fueron actualizados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                if (listaInexistentes.Count == 0 && listaModificados.Count == 0)
                 {
                     MessageBox.Show(this, "No se obtuvieron registros nuevos");
                 }
+               
                 finishProcess();
                 
             }
@@ -129,7 +143,7 @@ namespace Escritorio
         {
             try
             {
-
+                btnGuardar.Visible = false;
                 dataGridView1.DataSource = null;
                 progressBar1.Style = ProgressBarStyle.Marquee;
                 btnSincronizar.Enabled = false;
@@ -154,7 +168,7 @@ namespace Escritorio
                 {
                     animal = item;
 
-                    if (!listadoanimalesApi.Exists(x => x.Rp == animal.Rp))
+                    if (listadoanimalesApi.Count == 0 || !listadoanimalesApi.Exists(x => x.Rp == animal.Rp))
                     {
                         Url = "http://localhost:8081/api/animales";
                         animal = await comApi.Post<string, AnimalApi>(Url, animal);
@@ -232,29 +246,7 @@ namespace Escritorio
 
 
 
-            //AnimalApi animal = new AnimalApi
-            //{
-            //    Rp = 3,
-            //    FechaNacimiento = DateTime.Now,
-            //    Edad = 12,
-            //    Foto = "NN",
-            //    NombreAnimal = "Natalia Natalia",
-            //    EstadoAnimal = "Vivo",
-            //    Hba = 12345,
-            //    Categoria = "Vaca",
-            //    RpMadre = 12,
-            //    RpPadre = 11,
-            //    HbaMadre = 1523,
-            //    HbaPadre = 1445,
-            //    IdTambo = 1,
-            //    IdRaza = 1,
-            //    Habilitado = true
-            //};
 
-            //ComunicacionApi api = new ComunicacionApi();
-            //var Url = "http://localhost:8081/api/animales/3";
-            //animal = await api.Put<string, AnimalApi>(Url, animal);
-            //MessageBox.Show(this, animal.NombreAnimal + " Fue registrado con exito");
         }
 
         private void PruebaSincronizacion_FormClosing(object sender, FormClosingEventArgs e)
@@ -263,6 +255,30 @@ namespace Escritorio
             {
                 t.Abort();
                 t = null;
+            }
+        }
+
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            if (btnGuardar.Text == "Guardar Nuevos")
+            {
+                foreach (var item in listaInexistentes)
+                {
+                    animalapinegocio.Insertar(item);
+
+                }
+                MessageBox.Show("Los animales fueron guardados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnGuardar.Visible = false;
+            }
+            else if(btnGuardar.Text == "Guardar Modificados")
+            {
+                foreach (var item in listaModificados)
+                {
+                    animalapinegocio.Actualizar(item);
+                }
+                MessageBox.Show("Los animales fueron actualizados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                btnGuardar.Visible = false;
+
             }
         }
     }

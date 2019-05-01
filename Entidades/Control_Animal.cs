@@ -8,35 +8,23 @@ namespace Entidades
 {
     public class Control_Animal
     {
-        private DateTime _fecha_control;
-        private int _id_control;
-        private int _rp;
-        private string _nombre_animal;
-        private int _id_tambo;
-        private string _nombre_tambo;
-        private decimal _primer_control;
-        private decimal _segundo_control;
-        private decimal _porcentaje_grasa;
-        private decimal _kg_grasa;
-        private decimal grasa_primercontrol;
-        private decimal grasa_segundocontrol;
 
-        public DateTime Fecha_control { get => _fecha_control; set => _fecha_control = value; }
-        public int Id_control { get => _id_control; set => _id_control = value; }
-        public int Rp { get => _rp; set => _rp = value; }
-        public decimal Primer_control { get => _primer_control; set => _primer_control = value; }
-        public decimal Segundo_control { get => _segundo_control; set => _segundo_control = value; }
-        public decimal Porcentaje_grasa { get => _porcentaje_grasa; set => _porcentaje_grasa = value; }
-        public decimal Kg_grasa { get => _kg_grasa; set => _kg_grasa = value; }
-        public string Nombre_animal { get => _nombre_animal; set => _nombre_animal = value; }
-        public int Id_tambo { get => _id_tambo; set => _id_tambo = value; }
-        public string Nombre_tambo { get => _nombre_tambo; set => _nombre_tambo = value; }
-        public decimal Grasa_segundocontrol { get => grasa_segundocontrol; set => grasa_segundocontrol = value; }
-        public decimal Grasa_primercontrol { get => grasa_primercontrol; set => grasa_primercontrol = value; }
 
-       
-
+        public DateTime Fecha_control { get; set; }
+        public int Id_control { get; set; }
+        public int Rp { get; set; }
+        public decimal Primer_control { get; set; }
+        public decimal Segundo_control { get; set; }
+        public decimal Porcentaje_grasa { get; set; }
+        public decimal Kg_grasa { get; set; }
+        public string Nombre_animal { get; set; }
+        public int Id_tambo { get; set; }
+        public string Nombre_tambo { get; set; }
+        public decimal Grasa_segundocontrol { get; set; }
+        public decimal Grasa_primercontrol { get; set; }
         public string Caravana { get; set; }
+
+        public List<Animal> Animales { get; set; }
 
 
         public Control_Animal()

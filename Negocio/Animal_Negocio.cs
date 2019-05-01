@@ -23,6 +23,11 @@ namespace Negocio
             return animalDatos.RecuperarPorTambo(id_tambo);
         }
 
+        public DataTable RecuperarPorTamboDT(int id_tambo)
+        {
+            return animalDatos.RecuperarPorTamboDT(id_tambo);
+        }
+
         public List<Animal> RecuperarVacasPorTambo(int id_tambo)
         {
             return animalDatos.RecuperarVacasPorTambo(id_tambo);
@@ -110,7 +115,16 @@ namespace Negocio
 
         public void Insertar(Animal animal)
         {
-            animalDatos.Insertar(animal);
+            try
+            {
+                animalDatos.Insertar(animal);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
 
         public void Actualizar(Animal animal)

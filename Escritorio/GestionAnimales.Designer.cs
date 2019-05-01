@@ -54,6 +54,7 @@
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.verhistorial = new System.Windows.Forms.DataGridViewLinkColumn();
             this.verproduccion = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tableLayoutPanel1.SuspendLayout();
@@ -63,9 +64,9 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnEditar.Location = new System.Drawing.Point(531, 572);
+            this.btnEditar.Location = new System.Drawing.Point(531, 566);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 33);
+            this.btnEditar.Size = new System.Drawing.Size(75, 39);
             this.btnEditar.TabIndex = 4;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -110,9 +111,9 @@
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(911, 572);
+            this.btnSalir.Location = new System.Drawing.Point(911, 566);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 33);
+            this.btnSalir.Size = new System.Drawing.Size(75, 39);
             this.btnSalir.TabIndex = 5;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -148,9 +149,9 @@
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(153, 572);
+            this.btnEliminar.Location = new System.Drawing.Point(153, 566);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 33);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 39);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -181,16 +182,17 @@
             this.nombre_tambo,
             this.id_raza,
             this.nombre_raza,
+            this.id_categoria,
             this.verhistorial,
             this.verproduccion});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvAnimales, 3);
             this.dgvAnimales.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvAnimales.Location = new System.Drawing.Point(6, 95);
+            this.dgvAnimales.Location = new System.Drawing.Point(6, 94);
             this.dgvAnimales.MultiSelect = false;
             this.dgvAnimales.Name = "dgvAnimales";
             this.dgvAnimales.ReadOnly = true;
             this.dgvAnimales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnimales.Size = new System.Drawing.Size(1128, 468);
+            this.dgvAnimales.Size = new System.Drawing.Size(1128, 463);
             this.dgvAnimales.TabIndex = 8;
             this.dgvAnimales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnimales_CellContentClick);
             // 
@@ -200,6 +202,7 @@
             this.rp.HeaderText = "RP";
             this.rp.Name = "rp";
             this.rp.ReadOnly = true;
+            this.rp.Visible = false;
             this.rp.Width = 40;
             // 
             // caravana
@@ -266,7 +269,7 @@
             // 
             // categoria
             // 
-            this.categoria.DataPropertyName = "categoria";
+            this.categoria.DataPropertyName = "descripcion";
             this.categoria.HeaderText = "Categoria";
             this.categoria.Name = "categoria";
             this.categoria.ReadOnly = true;
@@ -318,6 +321,7 @@
             this.nombre_tambo.HeaderText = "Tambo";
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.ReadOnly = true;
+            this.nombre_tambo.Visible = false;
             // 
             // id_raza
             // 
@@ -333,6 +337,14 @@
             this.nombre_raza.HeaderText = "Raza";
             this.nombre_raza.Name = "nombre_raza";
             this.nombre_raza.ReadOnly = true;
+            // 
+            // id_categoria
+            // 
+            this.id_categoria.DataPropertyName = "id_categoria";
+            this.id_categoria.HeaderText = "ID categoria";
+            this.id_categoria.Name = "id_categoria";
+            this.id_categoria.ReadOnly = true;
+            this.id_categoria.Visible = false;
             // 
             // verhistorial
             // 
@@ -399,6 +411,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_raza;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_raza;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_categoria;
         private System.Windows.Forms.DataGridViewLinkColumn verhistorial;
         private System.Windows.Forms.DataGridViewLinkColumn verproduccion;
     }

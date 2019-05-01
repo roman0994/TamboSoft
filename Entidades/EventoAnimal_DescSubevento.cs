@@ -8,37 +8,27 @@ namespace Entidades
 {
     public class EventoAnimal_DescSubevento
     {
-        private int _id_desc_evento;
-        private int _rp;
-        private int _id_evento;
-        private int _id_desc;
-        private DateTime _fecha_desc;
-        private string _nombre_animal;
-        private string _nombre_evento;
-        private string _nombre_subevento;
-        private string _descripcion;
-        private int _id_tambo;
-        private string _nombre_tambo;
-        private int _id_inseminador;
-        private string _nombre_inseminador;
-        private bool _estado_evento;
 
-        public int Id_desc_evento { get => _id_desc_evento; set => _id_desc_evento = value; }
-        public int Rp { get => _rp; set => _rp = value; }
-        public int Id_evento { get => _id_evento; set => _id_evento = value; }
-        public int Id_desc { get => _id_desc; set => _id_desc = value; }
-        public DateTime Fecha_desc { get => _fecha_desc; set => _fecha_desc = value; }
-        public string Nombre_animal { get => _nombre_animal; set => _nombre_animal = value; }
-        public string Nombre_evento { get => _nombre_evento; set => _nombre_evento = value; }
-        public string Nombre_subevento { get => _nombre_subevento; set => _nombre_subevento = value; }
-        public string Descripcion { get => _descripcion; set => _descripcion = value; }
-        public int Id_tambo { get => _id_tambo; set => _id_tambo = value; }
-        public string Nombre_tambo { get => _nombre_tambo; set => _nombre_tambo = value; }
-        public int Id_inseminador { get => _id_inseminador; set => _id_inseminador = value; }
-        public string Nombre_inseminador { get => _nombre_inseminador; set => _nombre_inseminador = value; }
-        public bool Estado_evento { get => _estado_evento; set => _estado_evento = value; }
+
+        public int Id_desc_evento { get; set; }
+        public int Rp { get; set; }
+        public int Id_evento { get; set; }
+        public int Id_desc { get; set; }
+        public DateTime Fecha_desc { get; set; }
+        public string Nombre_animal { get; set; }
+        public string Nombre_evento { get; set; }
+        public string Nombre_subevento { get; set; }
+        public string Descripcion { get; set; }
+        public int Id_tambo { get; set; }
+        public string Nombre_tambo { get; set; }
+        public int Id_inseminador { get; set; }
+        public string Nombre_inseminador { get; set; }
+        public bool Estado_evento { get; set; }
         public string Caravana { get; set; }
 
+        public Tambo Tambo { get; set; }
+
+        public Inseminador Inseminador { get; set; }
 
         public EventoAnimal_DescSubevento()
         {

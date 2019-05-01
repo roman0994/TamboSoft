@@ -27,25 +27,34 @@ namespace Escritorio
 
         private void vpListadoControlesPorFecha_Load(object sender, EventArgs e)
         {
-            if (Animal == null)
+            try
             {
-                
-                rptListadoControlesPorFechas reporte = new rptListadoControlesPorFechas();
-               
-                reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
-                reporte.SetDatabaseLogon("abcd", "123456");
-                crv.ReportSource = reporte;
+                if (Animal == null)
+                {
 
+                    rptListadoControlesPorFechas reporte = new rptListadoControlesPorFechas();
+
+                    reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
+                    reporte.SetDatabaseLogon("abcd", "123456");
+                    crv.ReportSource = reporte;
+
+                }
+                else
+                {
+
+                    rptListadoControlePorAnimalUnico reporte = new rptListadoControlePorAnimalUnico();
+                    reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
+                    reporte.SetParameterValue("@rp", Animal.Rp);
+                    reporte.SetDatabaseLogon("abcd", "123456");
+                    crv.ReportSource = reporte;
+                }
             }
-            else
+            catch (Exception ex)
             {
-
-                rptListadoControlePorAnimalUnico reporte = new rptListadoControlePorAnimalUnico();
-                reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
-                reporte.SetParameterValue("@rp", Animal.Rp);
-                reporte.SetDatabaseLogon("abcd", "123456");
-                crv.ReportSource = reporte;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
             }
+          
 
         }
     }

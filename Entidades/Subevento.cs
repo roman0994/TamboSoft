@@ -8,13 +8,16 @@ namespace Entidades
 {
     public class Subevento
     {
-        private int _id_subevento;
-        private string _nombre_subevento;
-        private bool _estado_subevento;
+        
 
-        public int Id_subevento { get => _id_subevento; set => _id_subevento = value; }
-        public string Nombre_subevento { get => _nombre_subevento; set => _nombre_subevento = value; }
-        public bool Estado_subevento { get => _estado_subevento; set => _estado_subevento = value; }
+        public int Id_subevento { get; set; }
+        public string Nombre_subevento { get; set; }
+        public bool Estado_subevento { get; set; }
+        
+        public List<Desc_Subevento> Descripciones_Subeventos { get; set; }
+
+        public List<Evento> Eventos { get; set; }
+
 
         public Subevento()
         {

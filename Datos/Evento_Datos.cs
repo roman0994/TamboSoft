@@ -52,6 +52,68 @@ namespace Datos
             }
         }
 
+        public List<Evento> RecuperarPorCategoria(int tipo_categoria)
+        {
+
+            try
+            {
+                List<Evento> lista = new List<Evento>();
+                this.AbrirConexion();
+                SqlCommand cmdEvento;
+                //Si la categoria es 0, tiene que traer solo los eventos para toro. Sino trae todos los eventos
+
+
+                if (tipo_categoria == 0)
+                {
+                   cmdEvento = new SqlCommand("SELECT id_evento,nombre_evento,tipo_categoria " +
+                                                     " FROM Evento " +
+                                                     " where tipo_categoria = @tipo_categoria" +
+                                                     " order by nombre_evento asc ", Conn);
+                    cmdEvento.Parameters.Add("tipo_categoria", SqlDbType.Int).Value = tipo_categoria;
+
+                }
+                else
+                {
+                    cmdEvento = new SqlCommand("SELECT id_evento,nombre_evento,tipo_categoria " +
+                                                     " FROM Evento " +
+                                                     " order by nombre_evento asc ", Conn);
+                    
+                }
+
+                SqlDataReader dr = cmdEvento.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    Evento evento = new Evento();
+                    evento.Id_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
+                    evento.Nombre_evento = dr.IsDBNull(1) ? string.Empty : dr["nombre_evento"].ToString();
+                    evento.Tipo_Categoria = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["tipo_categoria"]));
+
+                    lista.Add(evento);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de eventos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+
+
+
         public Evento RecuperarUno(int id)
         {
             try
@@ -129,5 +191,57 @@ namespace Datos
                 return false;
             }
         }
+
+
+       
+
+
+
+        public Evento TraerSubeventos(Evento evento)
+        {
+            List<Subevento> listado = new List<Subevento>();
+            Subevento subevento;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmsSubevento = new SqlCommand("select distinct es.id_evento,es.id_subevento,e.nombre_evento,se.nombre_subevento " +
+                                                            "from Evento_Subevento es " +
+                                                            "inner join Evento e on e.id_evento = es.id_evento " +
+                                                            "inner join Subevento se on se.id_subevento = es.id_subevento " +
+                                                            "where es.id_evento = @id_evento", Conn);
+
+                cmsSubevento.Parameters.Add("id_evento", SqlDbType.Int).Value = evento.Id_evento;
+
+                SqlDataReader dr = cmsSubevento.ExecuteReader();
+
+                while (dr.Read())
+                {
+                   
+                    subevento = new Subevento();
+                    subevento.Id_subevento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_subevento"]));
+                    subevento.Nombre_subevento = dr.IsDBNull(1) ? string.Empty : dr["nombre_subevento"].ToString();
+                    listado.Add(subevento);
+
+                }
+                dr.Close();
+                evento.SubEventos = new List<Subevento>();
+                evento.SubEventos = listado;
+                return evento;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del animal", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
     }
 }

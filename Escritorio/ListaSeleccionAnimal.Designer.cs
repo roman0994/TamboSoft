@@ -1,6 +1,6 @@
 ﻿namespace Escritorio
 {
-    partial class ListadoAnimales
+    partial class ListaSeleccionAnimal
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListadoAnimales));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaSeleccionAnimal));
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
             this.tlpAnimales = new System.Windows.Forms.TableLayoutPanel();
             this.btnSalir = new System.Windows.Forms.Button();
@@ -36,14 +36,12 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbRegresar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
-            this.tsbImpresora = new System.Windows.Forms.ToolStripButton();
-            this.tsbSanidad = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.lblBuscar = new System.Windows.Forms.ToolStripLabel();
             this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbActualizar = new System.Windows.Forms.ToolStripButton();
+            this.btn_seleccion = new System.Windows.Forms.DataGridViewButtonColumn();
             this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +58,7 @@
             this.foto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
@@ -76,12 +75,12 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tlpAnimales);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(884, 615);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 425);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(884, 641);
-            this.toolStripContainer1.TabIndex = 0;
+            this.toolStripContainer1.Size = new System.Drawing.Size(800, 450);
+            this.toolStripContainer1.TabIndex = 1;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
             // toolStripContainer1.TopToolStripPanel
@@ -102,13 +101,13 @@
             this.tlpAnimales.RowCount = 2;
             this.tlpAnimales.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpAnimales.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpAnimales.Size = new System.Drawing.Size(884, 615);
+            this.tlpAnimales.Size = new System.Drawing.Size(800, 425);
             this.tlpAnimales.TabIndex = 0;
             // 
             // btnSalir
             // 
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(806, 589);
+            this.btnSalir.Location = new System.Drawing.Point(722, 399);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 0;
@@ -123,6 +122,7 @@
             this.dgvAnimales.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvAnimales.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAnimales.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.btn_seleccion,
             this.caravana,
             this.fecha_nacimiento,
             this.edad,
@@ -139,6 +139,7 @@
             this.foto,
             this.habilitado,
             this.id_tambo,
+            this.id_categoria,
             this.nombre_tambo,
             this.id_raza});
             this.tlpAnimales.SetColumnSpan(this.dgvAnimales, 2);
@@ -149,8 +150,9 @@
             this.dgvAnimales.Name = "dgvAnimales";
             this.dgvAnimales.ReadOnly = true;
             this.dgvAnimales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnimales.Size = new System.Drawing.Size(878, 580);
+            this.dgvAnimales.Size = new System.Drawing.Size(794, 390);
             this.dgvAnimales.TabIndex = 1;
+            this.dgvAnimales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnimales_CellContentClick);
             this.dgvAnimales.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAnimales_DataBindingComplete);
             // 
             // toolStrip1
@@ -159,9 +161,6 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbRegresar,
             this.toolStripSeparator1,
-            this.tsbNuevo,
-            this.tsbImpresora,
-            this.tsbSanidad,
             this.toolStripSeparator2,
             this.lblBuscar,
             this.tstxtBuscar,
@@ -169,7 +168,7 @@
             this.tsbActualizar});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(464, 26);
+            this.toolStrip1.Size = new System.Drawing.Size(334, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbRegresar
@@ -178,56 +177,24 @@
             this.tsbRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tsbRegresar.Image")));
             this.tsbRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbRegresar.Name = "tsbRegresar";
-            this.tsbRegresar.Size = new System.Drawing.Size(23, 23);
+            this.tsbRegresar.Size = new System.Drawing.Size(23, 22);
             this.tsbRegresar.Text = "Regresar";
             this.tsbRegresar.Click += new System.EventHandler(this.tbsRegresar_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 26);
-            // 
-            // tsbNuevo
-            // 
-            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
-            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(23, 23);
-            this.tsbNuevo.Text = "Nuevo";
-            this.tsbNuevo.Click += new System.EventHandler(this.tbsNuevo_Click);
-            // 
-            // tsbImpresora
-            // 
-            this.tsbImpresora.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbImpresora.Image = ((System.Drawing.Image)(resources.GetObject("tsbImpresora.Image")));
-            this.tsbImpresora.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbImpresora.Name = "tsbImpresora";
-            this.tsbImpresora.Size = new System.Drawing.Size(23, 23);
-            this.tsbImpresora.Text = "Impresora";
-            this.tsbImpresora.Click += new System.EventHandler(this.tbsImpresora_Click);
-            // 
-            // tsbSanidad
-            // 
-            this.tsbSanidad.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.tsbSanidad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbSanidad.Image = ((System.Drawing.Image)(resources.GetObject("tsbSanidad.Image")));
-            this.tsbSanidad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSanidad.Name = "tsbSanidad";
-            this.tsbSanidad.Padding = new System.Windows.Forms.Padding(2);
-            this.tsbSanidad.Size = new System.Drawing.Size(84, 23);
-            this.tsbSanidad.Text = "Imp. Sanidad";
-            this.tsbSanidad.Click += new System.EventHandler(this.tsbSanidad_Click);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 26);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
             // 
             // lblBuscar
             // 
             this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(116, 23);
+            this.lblBuscar.Size = new System.Drawing.Size(116, 22);
             this.lblBuscar.Text = "Buscar por caravana:";
             // 
             // tstxtBuscar
@@ -235,14 +202,13 @@
             this.tstxtBuscar.BackColor = System.Drawing.SystemColors.Window;
             this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tstxtBuscar.Name = "tstxtBuscar";
-            this.tstxtBuscar.Size = new System.Drawing.Size(100, 26);
+            this.tstxtBuscar.Size = new System.Drawing.Size(100, 25);
             this.tstxtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstxtBuscar_KeyPress);
-            this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyUp);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 26);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
             // tsbActualizar
             // 
@@ -251,9 +217,18 @@
             this.tsbActualizar.Image = ((System.Drawing.Image)(resources.GetObject("tsbActualizar.Image")));
             this.tsbActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbActualizar.Name = "tsbActualizar";
-            this.tsbActualizar.Size = new System.Drawing.Size(63, 23);
+            this.tsbActualizar.Size = new System.Drawing.Size(63, 22);
             this.tsbActualizar.Text = "Actualizar";
             this.tsbActualizar.Click += new System.EventHandler(this.tbsActualizar_Click);
+            // 
+            // btn_seleccion
+            // 
+            this.btn_seleccion.HeaderText = "*";
+            this.btn_seleccion.Name = "btn_seleccion";
+            this.btn_seleccion.ReadOnly = true;
+            this.btn_seleccion.Text = "Seleccionar";
+            this.btn_seleccion.UseColumnTextForButtonValue = true;
+            this.btn_seleccion.Width = 70;
             // 
             // caravana
             // 
@@ -319,7 +294,7 @@
             // rp_madre
             // 
             this.rp_madre.DataPropertyName = "rp_madre";
-            this.rp_madre.HeaderText = "RP Madre";
+            this.rp_madre.HeaderText = "Caravana Madre";
             this.rp_madre.Name = "rp_madre";
             this.rp_madre.ReadOnly = true;
             this.rp_madre.Width = 50;
@@ -327,7 +302,7 @@
             // rp_padre
             // 
             this.rp_padre.DataPropertyName = "rp_padre";
-            this.rp_padre.HeaderText = "RP Padre";
+            this.rp_padre.HeaderText = "Caravana Padre";
             this.rp_padre.Name = "rp_padre";
             this.rp_padre.ReadOnly = true;
             this.rp_padre.Width = 50;
@@ -338,6 +313,7 @@
             this.hba_madre.HeaderText = "HBA Madre";
             this.hba_madre.Name = "hba_madre";
             this.hba_madre.ReadOnly = true;
+            this.hba_madre.Visible = false;
             this.hba_madre.Width = 50;
             // 
             // hba_padre
@@ -346,6 +322,7 @@
             this.hba_padre.HeaderText = "HBA Padre";
             this.hba_padre.Name = "hba_padre";
             this.hba_padre.ReadOnly = true;
+            this.hba_padre.Visible = false;
             this.hba_padre.Width = 50;
             // 
             // rp
@@ -382,6 +359,14 @@
             this.id_tambo.Visible = false;
             this.id_tambo.Width = 40;
             // 
+            // id_categoria
+            // 
+            this.id_categoria.DataPropertyName = "id_categoria";
+            this.id_categoria.HeaderText = "ID categoria";
+            this.id_categoria.Name = "id_categoria";
+            this.id_categoria.ReadOnly = true;
+            this.id_categoria.Visible = false;
+            // 
             // nombre_tambo
             // 
             this.nombre_tambo.DataPropertyName = "nombre_tambo";
@@ -399,20 +384,15 @@
             this.id_raza.Visible = false;
             this.id_raza.Width = 40;
             // 
-            // ListadoAnimales
+            // ListaSeleccionAnimal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(884, 641);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.toolStripContainer1);
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "ListadoAnimales";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Animales";
+            this.Name = "ListaSeleccionAnimal";
+            this.Text = "ListaSeleccionAnimal";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ListaSeleccionAnimal_FormClosing);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();
@@ -435,14 +415,12 @@
         private System.Windows.Forms.ToolStrip toolStrip1;
         private System.Windows.Forms.ToolStripButton tsbRegresar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton tsbNuevo;
-        private System.Windows.Forms.ToolStripButton tsbImpresora;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel lblBuscar;
         private System.Windows.Forms.ToolStripTextBox tstxtBuscar;
-        private System.Windows.Forms.ToolStripButton tsbActualizar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripButton tsbSanidad;
+        private System.Windows.Forms.ToolStripButton tsbActualizar;
+        private System.Windows.Forms.DataGridViewButtonColumn btn_seleccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_nacimiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn edad;
@@ -459,6 +437,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn foto;
         private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_raza;
     }

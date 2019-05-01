@@ -19,26 +19,42 @@ namespace Escritorio
 
         public int id_usuario;
         public static Usuario Usuario { get; set; }
+        
+        Inseminador_Negocio inseminadornegocio = new Inseminador_Negocio();
+
+        public enum EstadoAnimales
+        {
+            Parto, Aborto, Celo, Vendido, Muerto, Enfermo, Medicado, Preñada, Vivo
+        }
+
+        public enum ModoForm
+        {
+            ALTA,BAJA,MODIFICACION,ELIMINACION,CRIA
+        }
 
         public Principal(int id_tambo)
         {
             InitializeComponent();
-            CargarTambo(id_tambo);
+
             //Bitmap img = new Bitmap(Application.StartupPath+ @"\fondos\fondo1.jpg");
             //this.BackgroundImage = img;
+            inseminadornegocio = new Inseminador_Negocio();
+           
             Tambo = new Tambo();
-            Tambo.Id_tambo = id_tambo;
-
+            //Tambo.Id_tambo = id_tambo;
+            CargarTambo(id_tambo);
             Usuario = new Usuario();
             Usuario.Id_usuario = id_usuario;
         }
 
         private void CargarTambo(int id_tambo)
         {
-            Tambo tambo = new Tambo();
+            //Tambo tambo = new Tambo();
             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            tambo = tamboNegocio.RecuperarUno(id_tambo);
-            this.txtTambo.Text = tambo.Nombre_tambo;
+            Tambo = tamboNegocio.RecuperarUno(id_tambo);
+            Tambo.Inseminadores = new List<Inseminador>();
+            Tambo.Inseminadores = inseminadornegocio.RecuperarPorTambo(Tambo.Id_tambo);
+            this.txtTambo.Text = Tambo.Nombre_tambo;
         }
 
         private void animalesToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -133,7 +149,7 @@ namespace Escritorio
 
         private void altaAnimalesToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AltaAnimales alta = new AltaAnimales(id_tambo);
+            AltaAnimales alta = new AltaAnimales();
             alta.ShowDialog();
         }
 
@@ -142,8 +158,9 @@ namespace Escritorio
             Animal_Negocio animalNegocio = new Animal_Negocio();
             if (animalNegocio.HayAnimales(Principal.Tambo.Id_tambo))
             {
-                AltaEventos alta = new AltaEventos(id_tambo);
-                alta.ShowDialog();
+                //AltaEventos alta = new AltaEventos(id_tambo);
+                AbmEvento form = new AbmEvento();
+                form.ShowDialog();
             }
             else
             {

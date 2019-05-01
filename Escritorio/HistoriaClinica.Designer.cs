@@ -33,12 +33,12 @@
             this.btnImprimir = new System.Windows.Forms.Button();
             this.dgvHistorialClinico = new System.Windows.Forms.DataGridView();
             this.fecha_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.verdetalle = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -90,12 +90,12 @@
             this.dgvHistorialClinico.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvHistorialClinico.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fecha_desc,
-            this.rp,
             this.Caravana,
             this.nombre_animal,
             this.nombre_evento,
             this.nombre_tambo,
             this.verdetalle,
+            this.rp,
             this.id_evento});
             this.dgvHistorialClinico.Location = new System.Drawing.Point(23, 34);
             this.dgvHistorialClinico.MultiSelect = false;
@@ -115,20 +115,11 @@
             this.fecha_desc.ReadOnly = true;
             this.fecha_desc.Width = 90;
             // 
-            // rp
-            // 
-            this.rp.DataPropertyName = "rp";
-            this.rp.Frozen = true;
-            this.rp.HeaderText = "RP";
-            this.rp.Name = "rp";
-            this.rp.ReadOnly = true;
-            this.rp.Width = 50;
-            // 
             // Caravana
             // 
             this.Caravana.DataPropertyName = "caravana";
             this.Caravana.Frozen = true;
-            this.Caravana.HeaderText = "caravana";
+            this.Caravana.HeaderText = "Caravana";
             this.Caravana.Name = "Caravana";
             this.Caravana.ReadOnly = true;
             // 
@@ -166,6 +157,16 @@
             this.verdetalle.Text = "Ver detalle";
             this.verdetalle.UseColumnTextForLinkValue = true;
             // 
+            // rp
+            // 
+            this.rp.DataPropertyName = "rp";
+            this.rp.Frozen = true;
+            this.rp.HeaderText = "RP";
+            this.rp.Name = "rp";
+            this.rp.ReadOnly = true;
+            this.rp.Visible = false;
+            this.rp.Width = 50;
+            // 
             // id_evento
             // 
             this.id_evento.DataPropertyName = "id_evento";
@@ -201,12 +202,12 @@
         public System.Windows.Forms.DataGridView dgvHistorialClinico;
         private System.Windows.Forms.Button btnImprimir;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_desc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
         private System.Windows.Forms.DataGridViewTextBoxColumn Caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_evento;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
         private System.Windows.Forms.DataGridViewLinkColumn verdetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_evento;
     }
 }

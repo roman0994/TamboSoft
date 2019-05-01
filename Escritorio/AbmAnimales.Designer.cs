@@ -1,6 +1,6 @@
 ﻿namespace Escritorio
 {
-    partial class AltaAnimales
+    partial class AbmAnimales
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbTituloFormulario = new System.Windows.Forms.Label();
             this.gbMadre = new System.Windows.Forms.GroupBox();
             this.txtHBAMadre = new System.Windows.Forms.TextBox();
             this.txtRPMadre = new System.Windows.Forms.TextBox();
@@ -77,7 +77,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 35F));
             this.tableLayoutPanel1.Controls.Add(this.btnGuardar, 1, 3);
             this.tableLayoutPanel1.Controls.Add(this.btnSalir, 3, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.lbTituloFormulario, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.gbMadre, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.gbPadre, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.gbAnimal, 0, 1);
@@ -90,12 +90,12 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 480);
-            this.tableLayoutPanel1.TabIndex = 10;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.TabIndex = 11;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(126, 450);
+            this.btnGuardar.Location = new System.Drawing.Point(126, 419);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 23);
             this.btnGuardar.TabIndex = 14;
@@ -106,7 +106,7 @@
             // btnSalir
             // 
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(523, 450);
+            this.btnSalir.Location = new System.Drawing.Point(523, 419);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 15;
@@ -114,20 +114,19 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // label1
+            // lbTituloFormulario
             // 
-            this.label1.AutoSize = true;
-            this.tableLayoutPanel1.SetColumnSpan(this.label1, 4);
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label1.Location = new System.Drawing.Point(3, 3);
-            this.label1.Margin = new System.Windows.Forms.Padding(0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(794, 43);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Ingrese los datos del nuevo animal:";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lbTituloFormulario.AutoSize = true;
+            this.tableLayoutPanel1.SetColumnSpan(this.lbTituloFormulario, 4);
+            this.lbTituloFormulario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lbTituloFormulario.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTituloFormulario.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lbTituloFormulario.Location = new System.Drawing.Point(3, 3);
+            this.lbTituloFormulario.Margin = new System.Windows.Forms.Padding(0);
+            this.lbTituloFormulario.Name = "lbTituloFormulario";
+            this.lbTituloFormulario.Size = new System.Drawing.Size(794, 40);
+            this.lbTituloFormulario.TabIndex = 0;
+            this.lbTituloFormulario.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // gbMadre
             // 
@@ -138,9 +137,9 @@
             this.gbMadre.Controls.Add(this.label2);
             this.gbMadre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbMadre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbMadre.Location = new System.Drawing.Point(6, 338);
+            this.gbMadre.Location = new System.Drawing.Point(6, 315);
             this.gbMadre.Name = "gbMadre";
-            this.gbMadre.Size = new System.Drawing.Size(388, 103);
+            this.gbMadre.Size = new System.Drawing.Size(388, 95);
             this.gbMadre.TabIndex = 28;
             this.gbMadre.TabStop = false;
             this.gbMadre.Text = "Datos Madre";
@@ -181,9 +180,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(21, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(25, 13);
+            this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "RP:";
+            this.label2.Text = "Caravana:";
             // 
             // gbPadre
             // 
@@ -194,9 +193,9 @@
             this.gbPadre.Controls.Add(this.txtRPPadre);
             this.gbPadre.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbPadre.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPadre.Location = new System.Drawing.Point(403, 338);
+            this.gbPadre.Location = new System.Drawing.Point(403, 315);
             this.gbPadre.Name = "gbPadre";
-            this.gbPadre.Size = new System.Drawing.Size(391, 103);
+            this.gbPadre.Size = new System.Drawing.Size(391, 95);
             this.gbPadre.TabIndex = 29;
             this.gbPadre.TabStop = false;
             this.gbPadre.Text = "Datos Padre";
@@ -217,9 +216,9 @@
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.Location = new System.Drawing.Point(19, 27);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(25, 13);
+            this.label10.Size = new System.Drawing.Size(56, 13);
             this.label10.TabIndex = 2;
-            this.label10.Text = "RP:";
+            this.label10.Text = "Caravana:";
             // 
             // txtHBAPadre
             // 
@@ -264,13 +263,12 @@
             this.gbAnimal.Controls.Add(this.label3);
             this.gbAnimal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbAnimal.Location = new System.Drawing.Point(6, 52);
+            this.gbAnimal.Location = new System.Drawing.Point(6, 49);
             this.gbAnimal.Name = "gbAnimal";
-            this.gbAnimal.Size = new System.Drawing.Size(788, 277);
+            this.gbAnimal.Size = new System.Drawing.Size(788, 257);
             this.gbAnimal.TabIndex = 30;
             this.gbAnimal.TabStop = false;
             this.gbAnimal.Text = "Datos Animal";
-            this.gbAnimal.Enter += new System.EventHandler(this.gbAnimal_Enter);
             // 
             // lbUltCaravana
             // 
@@ -331,7 +329,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(6, 252);
+            this.label16.Location = new System.Drawing.Point(6, 230);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(111, 13);
             this.label16.TabIndex = 21;
@@ -367,7 +365,7 @@
             // txtHBA
             // 
             this.txtHBA.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtHBA.Location = new System.Drawing.Point(134, 213);
+            this.txtHBA.Location = new System.Drawing.Point(134, 198);
             this.txtHBA.MaxLength = 7;
             this.txtHBA.Name = "txtHBA";
             this.txtHBA.Size = new System.Drawing.Size(200, 20);
@@ -418,7 +416,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(82, 220);
+            this.label6.Location = new System.Drawing.Point(82, 205);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(35, 13);
             this.label6.TabIndex = 3;
@@ -444,23 +442,14 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Fecha Nacimiento:";
             // 
-            // AltaAnimales
+            // AbmAnimales
             // 
-            this.AcceptButton = this.btnGuardar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(800, 480);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(816, 519);
-            this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(816, 519);
-            this.Name = "AltaAnimales";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Carga de Animales";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.AltaAnimales_FormClosing);
+            this.Name = "AbmAnimales";
+            this.Text = "Animales";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.gbMadre.ResumeLayout(false);
@@ -474,10 +463,11 @@
         }
 
         #endregion
+
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbTituloFormulario;
         private System.Windows.Forms.GroupBox gbMadre;
         private System.Windows.Forms.TextBox txtHBAMadre;
         private System.Windows.Forms.TextBox txtRPMadre;
@@ -489,6 +479,12 @@
         private System.Windows.Forms.TextBox txtHBAPadre;
         private System.Windows.Forms.TextBox txtRPPadre;
         private System.Windows.Forms.GroupBox gbAnimal;
+        private System.Windows.Forms.Label lbUltCaravana;
+        private System.Windows.Forms.TextBox txtCaravana;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox txtTambo;
+        private System.Windows.Forms.ComboBox cbEstado;
+        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cbRaza;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
@@ -501,11 +497,5 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbEstado;
-        private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.TextBox txtTambo;
-        private System.Windows.Forms.TextBox txtCaravana;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label lbUltCaravana;
     }
 }

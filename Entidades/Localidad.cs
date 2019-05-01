@@ -8,16 +8,20 @@ namespace Entidades
 {
     public class Localidad
     {
-        int _id_localidad;
-        string _nombre_localidad;
-        int _id_provincia;
-        string _nombre_provincia;
 
 
-        public int Id_localidad { get => _id_localidad; set => _id_localidad = value; }
-        public string Nombre_localidad { get => _nombre_localidad; set => _nombre_localidad = value; }
-        public int Id_provincia { get => _id_provincia; set => _id_provincia = value; }
-        public string Nombre_provincia { get => _nombre_provincia; set => _nombre_provincia = value; }
+        public int Id_localidad { get; set; }
+        public string Nombre_localidad { get; set; }
+        public int Id_provincia { get; set; }
+        public string Nombre_provincia { get; set; }
+
+        public Provincia Provincia { get; set; }
+
+        public List<Inseminador> Inseminadores { get; set; }
+
+        public List<Tambo> Tambos { get; set; }
+
+
 
         public Localidad()
         {

@@ -44,6 +44,7 @@
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.verdetalle = new System.Windows.Forms.DataGridViewLinkColumn();
             this.id_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tblEventos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEventos)).BeginInit();
             this.SuspendLayout();
@@ -133,7 +134,8 @@
             this.nombre_evento,
             this.nombre_tambo,
             this.verdetalle,
-            this.id_evento});
+            this.id_evento,
+            this.id_tambo});
             this.tblEventos.SetColumnSpan(this.dgvEventos, 3);
             this.dgvEventos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEventos.Location = new System.Drawing.Point(6, 72);
@@ -211,6 +213,7 @@
             this.nombre_tambo.HeaderText = "Tambo";
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.ReadOnly = true;
+            this.nombre_tambo.Visible = false;
             // 
             // verdetalle
             // 
@@ -227,6 +230,14 @@
             this.id_evento.Name = "id_evento";
             this.id_evento.ReadOnly = true;
             this.id_evento.Visible = false;
+            // 
+            // id_tambo
+            // 
+            this.id_tambo.DataPropertyName = "id_tambo";
+            this.id_tambo.HeaderText = "Id tambo";
+            this.id_tambo.Name = "id_tambo";
+            this.id_tambo.ReadOnly = true;
+            this.id_tambo.Visible = false;
             // 
             // GestionEventos
             // 
@@ -266,5 +277,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
         private System.Windows.Forms.DataGridViewLinkColumn verdetalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_evento;
+        private System.Windows.Forms.DataGridViewTextBoxColumn id_tambo;
     }
 }

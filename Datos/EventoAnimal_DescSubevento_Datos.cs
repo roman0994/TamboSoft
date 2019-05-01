@@ -583,7 +583,55 @@ namespace Datos
                 this.CerrarConexion();
             }
         }
-        
+
+
+
+        public void Insertar(EventoAnimal_DescSubevento ev_des, List<Desc_Subevento> listadodescripciones)
+        {
+            try
+            {
+                foreach (Desc_Subevento item in listadodescripciones)
+                {
+                    this.AbrirConexion();
+                    ev_des.Id_desc = item.Id_desc;
+
+                    SqlCommand cmdInsertar = new SqlCommand("insert into " +
+                        " EventoAnimal_DescSubevento(rp,id_evento,id_desc,fecha_desc,id_inseminador,id_tambo,estado_evento) " +
+                                           " values (@rp,@id_evento,@id_desc,@fecha_desc,@id_inseminador,@id_tambo,@estado_evento)", Conn);
+
+                    cmdInsertar.Parameters.Add("rp", SqlDbType.Int).Value = ev_des.Rp;
+                    cmdInsertar.Parameters.Add("id_evento", SqlDbType.Int).Value = ev_des.Id_evento;
+                    cmdInsertar.Parameters.Add("id_desc", SqlDbType.Int).Value = ev_des.Id_desc;
+                    cmdInsertar.Parameters.Add("fecha_desc", SqlDbType.DateTime).Value = ev_des.Fecha_desc;
+                    if (ev_des.Id_inseminador == 0)
+                    {
+                        cmdInsertar.Parameters.AddWithValue("id_inseminador", DBNull.Value);
+                    }
+                    else
+                    {
+                        cmdInsertar.Parameters.Add("id_inseminador", SqlDbType.Int).Value = ev_des.Id_inseminador;
+                    }
+                    cmdInsertar.Parameters.Add("id_tambo", SqlDbType.Int).Value = ev_des.Id_tambo;
+                    cmdInsertar.Parameters.Add("estado_evento", SqlDbType.Bit).Value = ev_des.Estado_evento;
+
+                    cmdInsertar.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al insertar evento", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
         public void Actualizar (EventoAnimal_DescSubevento evento)
         {
             try
@@ -637,7 +685,10 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdInsertar = new SqlCommand("update EventoAnimal_DescSubevento set estado_evento = @estado_evento where id_evento=@id_evento and rp=@rp and CONVERT(varchar,fecha_desc,21) = CONVERT(varchar,@fecha_desc,21)", Conn);
+                SqlCommand cmdInsertar = new SqlCommand("update EventoAnimal_DescSubevento " +
+                    "set estado_evento = @estado_evento " +
+                    " where id_evento=@id_evento and rp=@rp " +
+                    " and CONVERT(varchar,fecha_desc,21) = CONVERT(varchar,@fecha_desc,21)", Conn);
 
                 cmdInsertar.Parameters.Add("estado_evento", SqlDbType.Bit).Value = estado_evento;
                 cmdInsertar.Parameters.Add("id_evento", SqlDbType.VarChar, 50).Value = id_evento;

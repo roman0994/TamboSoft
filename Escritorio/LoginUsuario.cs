@@ -19,6 +19,7 @@ namespace Escritorio
         {
             InitializeComponent();
             Program.UsuarioSesion = null;
+            this.txtUser.Focus();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -68,19 +69,6 @@ namespace Escritorio
                 }
             }
 
-            //Si ingresó correctamente, seguir con esto
-            /*CargarTablas cargarTablas = new CargarTablas();
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            if (tamboNegocio.HayTambos())
-            {
-                cargarTablas.CargaTablasData();
-                Application.Run(new Login());
-            }
-            else
-            {
-                cargarTablas.CargaTablasData();
-                Application.Run(new LoginAltaTambos());
-            }*/
         }
 
         private void lnkOlvidePass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -94,6 +82,10 @@ namespace Escritorio
             AltaUsuarios altaUsuarios = new AltaUsuarios();
             altaUsuarios.Show();
             this.Hide();
+        }
+
+        private void LoginUsuario_Load(object sender, EventArgs e)
+        {
         }
     }
 }

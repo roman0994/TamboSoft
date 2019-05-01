@@ -15,6 +15,9 @@ namespace Escritorio
         public DetalleEventos()
         {
             InitializeComponent();
+            this.dgvDetalles.AutoGenerateColumns = false;
         }
+
+        
     }
 }

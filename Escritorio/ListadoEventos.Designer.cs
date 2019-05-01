@@ -43,13 +43,13 @@
             this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.verdetalle = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado_evento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -73,11 +73,11 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tableLayoutPanel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 425);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(638, 425);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(800, 450);
+            this.toolStripContainer1.Size = new System.Drawing.Size(638, 450);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -98,7 +98,7 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 425);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(638, 425);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // dgvEventos
@@ -108,13 +108,13 @@
             this.dgvEventos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEventos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.rp,
             this.caravana,
             this.fecha_desc,
             this.nombre_animal,
             this.nombre_evento,
             this.nombre_tambo,
             this.verdetalle,
+            this.rp,
             this.nombre_inseminador,
             this.estado_evento,
             this.descripcion,
@@ -131,14 +131,14 @@
             this.dgvEventos.Name = "dgvEventos";
             this.dgvEventos.ReadOnly = true;
             this.dgvEventos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvEventos.Size = new System.Drawing.Size(794, 390);
+            this.dgvEventos.Size = new System.Drawing.Size(632, 390);
             this.dgvEventos.TabIndex = 0;
             this.dgvEventos.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEventos_CellContentClick);
             // 
             // btnSalir
             // 
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(722, 399);
+            this.btnSalir.Location = new System.Drawing.Point(560, 399);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 1;
@@ -161,7 +161,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(400, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(369, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tbsRegresar
@@ -234,15 +234,6 @@
             this.toolStripButton1.Text = "Actualizar";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
-            // rp
-            // 
-            this.rp.DataPropertyName = "rp";
-            this.rp.Frozen = true;
-            this.rp.HeaderText = "RP Animal";
-            this.rp.Name = "rp";
-            this.rp.ReadOnly = true;
-            this.rp.Width = 80;
-            // 
             // caravana
             // 
             this.caravana.DataPropertyName = "caravana";
@@ -292,6 +283,16 @@
             this.verdetalle.ReadOnly = true;
             this.verdetalle.Text = "Ver detalle";
             this.verdetalle.UseColumnTextForLinkValue = true;
+            // 
+            // rp
+            // 
+            this.rp.DataPropertyName = "rp";
+            this.rp.Frozen = true;
+            this.rp.HeaderText = "RP Animal";
+            this.rp.Name = "rp";
+            this.rp.ReadOnly = true;
+            this.rp.Visible = false;
+            this.rp.Width = 80;
             // 
             // nombre_inseminador
             // 
@@ -380,7 +381,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(638, 450);
             this.Controls.Add(this.toolStripContainer1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -416,13 +417,13 @@
         private System.Windows.Forms.ToolStripTextBox tstxtBuscar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButton1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
         private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_desc;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_evento;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
         private System.Windows.Forms.DataGridViewLinkColumn verdetalle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rp;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_inseminador;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado_evento;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;

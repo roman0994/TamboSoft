@@ -81,7 +81,7 @@
             this.txtPass.Name = "txtPass";
             this.txtPass.PasswordChar = '*';
             this.txtPass.Size = new System.Drawing.Size(146, 20);
-            this.txtPass.TabIndex = 7;
+            this.txtPass.TabIndex = 1;
             this.txtPass.UseSystemPasswordChar = true;
             // 
             // txtUser
@@ -89,7 +89,7 @@
             this.txtUser.Location = new System.Drawing.Point(126, 37);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(146, 20);
-            this.txtUser.TabIndex = 6;
+            this.txtUser.TabIndex = 0;
             // 
             // lnkNuevoUsuario
             // 
@@ -97,7 +97,7 @@
             this.lnkNuevoUsuario.Location = new System.Drawing.Point(10, 144);
             this.lnkNuevoUsuario.Name = "lnkNuevoUsuario";
             this.lnkNuevoUsuario.Size = new System.Drawing.Size(86, 13);
-            this.lnkNuevoUsuario.TabIndex = 5;
+            this.lnkNuevoUsuario.TabIndex = 3;
             this.lnkNuevoUsuario.TabStop = true;
             this.lnkNuevoUsuario.Text = "Registrar usuario";
             this.lnkNuevoUsuario.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkNuevoUsuario_LinkClicked);
@@ -108,7 +108,7 @@
             this.lnkOlvidePass.Location = new System.Drawing.Point(10, 116);
             this.lnkOlvidePass.Name = "lnkOlvidePass";
             this.lnkOlvidePass.Size = new System.Drawing.Size(106, 13);
-            this.lnkOlvidePass.TabIndex = 4;
+            this.lnkOlvidePass.TabIndex = 2;
             this.lnkOlvidePass.TabStop = true;
             this.lnkOlvidePass.Text = "Olvidé mi contraseña";
             this.lnkOlvidePass.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkOlvidePass_LinkClicked);
@@ -118,7 +118,7 @@
             this.btnSalir.Location = new System.Drawing.Point(9, 171);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
-            this.btnSalir.TabIndex = 3;
+            this.btnSalir.TabIndex = 4;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -128,7 +128,7 @@
             this.btnIngresar.Location = new System.Drawing.Point(263, 171);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(75, 23);
-            this.btnIngresar.TabIndex = 2;
+            this.btnIngresar.TabIndex = 5;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
@@ -153,6 +153,7 @@
             // 
             // LoginUsuario
             // 
+            this.AcceptButton = this.btnIngresar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -163,6 +164,7 @@
             this.Name = "LoginUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login Usuario";
+            this.Load += new System.EventHandler(this.LoginUsuario_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

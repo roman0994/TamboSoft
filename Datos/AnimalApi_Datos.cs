@@ -18,7 +18,9 @@ namespace Datos
             {
                 List<AnimalApi> lista = new List<AnimalApi>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT rp,fecha_nacimiento,edad,foto,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana FROM Animal where habilitado='true'", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT rp,fecha_nacimiento,foto,nombre_animal,estado_animal,hba,categoria," +
+                                                    " rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana " +
+                                                    " FROM Animal", Conn);
 
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -29,20 +31,20 @@ namespace Datos
                     AnimalApi animal = new AnimalApi();
                     animal.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
                     animal.FechaNacimiento = dr.IsDBNull(1) ? Convert.ToDateTime(string.Empty) : (DateTime)dr["fecha_nacimiento"];
-                    animal.Edad = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (int)dr["edad"];
-                    animal.Foto = dr.IsDBNull(3) ? string.Empty : dr["foto"].ToString();
-                    animal.NombreAnimal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
-                    animal.EstadoAnimal = dr.IsDBNull(5) ? string.Empty : dr["estado_animal"].ToString();
-                    animal.Hba = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
-                    animal.Categoria = dr.IsDBNull(7) ? string.Empty : dr["categoria"].ToString();
-                    animal.RpMadre = dr.IsDBNull(8) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
-                    animal.RpPadre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
-                    animal.HbaMadre = dr.IsDBNull(10) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
-                    animal.HbaPadre = dr.IsDBNull(11) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_padre"]));
-                    animal.IdTambo = dr.IsDBNull(12) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
-                    animal.IdRaza = dr.IsDBNull(13) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_raza"]));
-                    animal.Habilitado = dr.IsDBNull(14) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
-                    animal.Caravana = dr.IsDBNull(15) ? string.Empty : dr["caravana"].ToString();
+                    //animal.Edad = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (int)dr["edad"];
+                    animal.Foto = dr.IsDBNull(2) ? "NN" : dr["foto"].ToString();
+                    animal.NombreAnimal = dr.IsDBNull(3) ? string.Empty : dr["nombre_animal"].ToString();
+                    animal.EstadoAnimal = dr.IsDBNull(4) ? string.Empty : dr["estado_animal"].ToString();
+                    animal.Hba = dr.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
+                    animal.Categoria = dr.IsDBNull(6) ? string.Empty : dr["categoria"].ToString();
+                    animal.RpMadre = dr.IsDBNull(7) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
+                    animal.RpPadre = dr.IsDBNull(8) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
+                    animal.HbaMadre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
+                    animal.HbaPadre = dr.IsDBNull(10) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_padre"]));
+                    animal.IdTambo = dr.IsDBNull(11) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    animal.IdRaza = dr.IsDBNull(12) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_raza"]));
+                    animal.Habilitado = dr.IsDBNull(13) ? true : (Convert.ToBoolean(dr["habilitado"]));
+                    animal.Caravana = dr.IsDBNull(14) ? string.Empty : dr["caravana"].ToString();
                     //animal.FechaNacimiento = DateTime.Now;
                     lista.Add(animal);
 
@@ -71,7 +73,7 @@ namespace Datos
             {
                 List<AnimalApi> lista = new List<AnimalApi>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT rp,fecha_nacimiento,edad,foto,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana FROM Animal where id_tambo=@id_tambo and habilitado='true' and estado_animal!='Vendido' and estado_animal!='Muerto' order by nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT rp,fecha_nacimiento,foto,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana FROM Animal where id_tambo=@id_tambo order by nombre_animal", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -82,20 +84,20 @@ namespace Datos
                     AnimalApi animal = new AnimalApi();
                     animal.Rp = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp"]));
                     animal.FechaNacimiento = dr.IsDBNull(1) ? Convert.ToDateTime(string.Empty) : (DateTime)dr["fecha_nacimiento"];
-                    animal.Edad = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (int)dr["edad"];
-                    animal.Foto = dr.IsDBNull(3) ? string.Empty : dr["foto"].ToString();
-                    animal.NombreAnimal = dr.IsDBNull(4) ? string.Empty : dr["nombre_animal"].ToString();
-                    animal.EstadoAnimal = dr.IsDBNull(5) ? string.Empty : dr["estado_animal"].ToString();
-                    animal.Hba = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
-                    animal.Categoria = dr.IsDBNull(7) ? string.Empty : dr["categoria"].ToString();
-                    animal.RpMadre = dr.IsDBNull(8) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
-                    animal.RpPadre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
-                    animal.HbaMadre = dr.IsDBNull(10) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
-                    animal.HbaPadre = dr.IsDBNull(11) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_padre"]));
-                    animal.IdTambo = dr.IsDBNull(12) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
-                    animal.IdRaza = dr.IsDBNull(13) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_raza"]));
-                    animal.Habilitado = dr.IsDBNull(14) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
-                    animal.Caravana = dr.IsDBNull(15) ? string.Empty : dr["caravana"].ToString();
+                    //animal.Edad = dr.IsDBNull(2) ? Convert.ToInt32(string.Empty) : (int)dr["edad"];
+                    animal.Foto = dr.IsDBNull(2) ? "NN" : dr["foto"].ToString();
+                    animal.NombreAnimal = dr.IsDBNull(3) ? string.Empty : dr["nombre_animal"].ToString();
+                    animal.EstadoAnimal = dr.IsDBNull(4) ? string.Empty : dr["estado_animal"].ToString();
+                    animal.Hba = dr.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
+                    animal.Categoria = dr.IsDBNull(6) ? string.Empty : dr["categoria"].ToString();
+                    animal.RpMadre = dr.IsDBNull(7) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
+                    animal.RpPadre = dr.IsDBNull(8) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
+                    animal.HbaMadre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
+                    animal.HbaPadre = dr.IsDBNull(10) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_padre"]));
+                    animal.IdTambo = dr.IsDBNull(11) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_tambo"]));
+                    animal.IdRaza = dr.IsDBNull(12) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_raza"]));
+                    animal.Habilitado = dr.IsDBNull(13) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(dr["habilitado"]));
+                    animal.Caravana = dr.IsDBNull(14) ? string.Empty : dr["caravana"].ToString();
                     //animal.FechaNacimiento = DateTime.Now;
 
                     lista.Add(animal);
@@ -124,9 +126,9 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdInsertar = new SqlCommand("insert into Animal(fecha_nacimiento,edad,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana) values (@fecha_nacimiento,@edad,@nombre_animal,@estado_animal,@hba,@categoria,@rp_madre,@rp_padre,@hba_madre,@hba_padre,@id_tambo,@id_raza,@habilitado,@caravana)", Conn);
+                SqlCommand cmdInsertar = new SqlCommand("insert into Animal(fecha_nacimiento,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana) values (@fecha_nacimiento,@nombre_animal,@estado_animal,@hba,@categoria,@rp_madre,@rp_padre,@hba_madre,@hba_padre,@id_tambo,@id_raza,@habilitado,@caravana)", Conn);
                 cmdInsertar.Parameters.Add("fecha_nacimiento", SqlDbType.DateTime).Value = animal.FechaNacimiento;
-                cmdInsertar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
+                //cmdInsertar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
                 cmdInsertar.Parameters.Add("nombre_animal", SqlDbType.VarChar, 50).Value = animal.NombreAnimal;
                 cmdInsertar.Parameters.Add("estado_animal", SqlDbType.VarChar, 50).Value = animal.EstadoAnimal;
                 cmdInsertar.Parameters.Add("hba", SqlDbType.Int).Value = animal.Hba;
@@ -162,10 +164,10 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdActualizar = new SqlCommand("update Animal set fecha_nacimiento=@fecha_nacimiento,edad=@edad,nombre_animal=@nombre_animal,estado_animal=@estado_animal,hba=@hba,categoria=@categoria,rp_madre=@rp_madre,rp_padre=@rp_padre,hba_madre=@hba_madre,hba_padre=@hba_padre,id_tambo=@id_tambo,id_raza=@id_raza,habilitado=@habilitado,caravana=@caravana where rp = @rp", Conn);
+                SqlCommand cmdActualizar = new SqlCommand("update Animal set fecha_nacimiento=@fecha_nacimiento,nombre_animal=@nombre_animal,estado_animal=@estado_animal,hba=@hba,categoria=@categoria,rp_madre=@rp_madre,rp_padre=@rp_padre,hba_madre=@hba_madre,hba_padre=@hba_padre,id_tambo=@id_tambo,id_raza=@id_raza,habilitado=@habilitado,caravana=@caravana where rp = @rp", Conn);
                 cmdActualizar.Parameters.Add("rp", SqlDbType.Int).Value = animal.Rp;
                 cmdActualizar.Parameters.Add("fecha_nacimiento", SqlDbType.DateTime).Value = animal.FechaNacimiento;
-                cmdActualizar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
+                //cmdActualizar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
                 cmdActualizar.Parameters.Add("nombre_animal", SqlDbType.VarChar, 50).Value = animal.NombreAnimal;
                 cmdActualizar.Parameters.Add("estado_animal", SqlDbType.VarChar, 50).Value = animal.EstadoAnimal;
                 cmdActualizar.Parameters.Add("hba", SqlDbType.Int).Value = animal.Hba;

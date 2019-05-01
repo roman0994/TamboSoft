@@ -11,9 +11,10 @@ namespace Negocio
     public class AnimalApi_Negocio
     {
         AnimalApi_Datos animalDatos = new AnimalApi_Datos();
+        Raza_Datos razadatos;
         public AnimalApi_Negocio()
         {
-
+            razadatos = new Raza_Datos();
         }
 
 
@@ -31,10 +32,14 @@ namespace Negocio
         {
             List<AnimalApi> listadoBase = animalDatos.RecuperarPorTambo(idtambo);
             List<AnimalApi> listadoInexistentes = new List<AnimalApi>();
+            
             foreach (var item in listado)
             {
-                if (!listadoBase.Exists(a=> a.Rp == item.Rp))
+                if (!listadoBase.Exists(a => a.Rp == item.Rp))
                 {
+                    
+                    var raza = razadatos.RecuperarUno(Convert.ToInt32( item.IdRaza));
+                    
                     listadoInexistentes.Add(item);
                 }
             }
@@ -52,12 +57,12 @@ namespace Negocio
             List<AnimalApi> listadoModificados = new List<AnimalApi>();
             foreach (var item in listado)
             {
-                if (listadoBase.Exists(a => a.Rp == item.Rp && a.Caravana == item.Caravana))
+                if (listadoBase.Exists(a => a.Rp == item.Rp && a.Caravana == item.Caravana && (a.FechaNacimiento != item.FechaNacimiento || a.NombreAnimal != item.NombreAnimal || a.EstadoAnimal != item.EstadoAnimal || a.Categoria != item.Categoria)))
                 {
-                    if (listadoBase.Exists(a => a.FechaNacimiento != item.FechaNacimiento || a.Edad != item.Edad || a.NombreAnimal != item.NombreAnimal || a.EstadoAnimal != item.EstadoAnimal || a.Hba != item.Hba || a.Categoria != item.Categoria || a.RpMadre != item.RpMadre || a.RpPadre != item.RpPadre || a.HbaMadre != item.HbaMadre || a.HbaPadre != item.HbaPadre || a.IdTambo != item.IdTambo || a.IdRaza != item.IdRaza || a.Habilitado != item.Habilitado))
-                    {
+                    //if (listadoBase.Exists(a => a.FechaNacimiento != item.FechaNacimiento ||  a.NombreAnimal != item.NombreAnimal || a.EstadoAnimal != item.EstadoAnimal  || a.Categoria != item.Categoria ))
+                    //{
                         listadoModificados.Add(item);
-                    }
+                    //}
                 }
             }
             return listadoModificados;

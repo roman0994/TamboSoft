@@ -22,8 +22,7 @@ namespace Datos
                                                        "VALUES (@rp,@id_evento,@fecha_desc)", Conn);
                 cmdInsertar.Parameters.Add("rp", SqlDbType.Int).Value = eventoAnimal.Rp;
                 cmdInsertar.Parameters.Add("id_evento", SqlDbType.Int).Value = eventoAnimal.Id_evento;
-                cmdInsertar.Parameters.Add("fecha_desc", SqlDbType.DateTime).Value = eventoAnimal.Fecha_desc;
-                
+                cmdInsertar.Parameters.Add("fecha_desc", SqlDbType.DateTime).Value = eventoAnimal.Fecha_desc;               
                 cmdInsertar.ExecuteNonQuery();
 
             }

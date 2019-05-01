@@ -60,7 +60,8 @@ namespace Datos
             {
                 Desc_Subevento descSubvento = new Desc_Subevento();
                 this.AbrirConexion();
-                SqlCommand cmdSubevento = new SqlCommand("select d.id_desc,d.descripcion,d.abreviacion,d.estado_desc,d.id_subevento,s.nombre_subevento from Desc_Subevento d inner join Subevento s on d.id_subevento=s.id_subevento where id_desc=@id_desc", Conn);
+                SqlCommand cmdSubevento = new SqlCommand("select d.id_desc,d.descripcion,d.abreviacion,d.estado_desc,d.id_subevento," +
+                    " s.nombre_subevento from Desc_Subevento d inner join Subevento s on d.id_subevento=s.id_subevento where id_desc=@id_desc", Conn);
                 cmdSubevento.Parameters.Add("id_desc", SqlDbType.Int).Value = id;
                 SqlDataReader drSubevento = cmdSubevento.ExecuteReader();
 
@@ -84,6 +85,99 @@ namespace Datos
             catch (Exception ex)
             {
                 Exception exepcionnueva = new Exception("Error al recuperar descripcion subevento", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+
+        public List<Desc_Subevento> RecuperarTodos()
+        {
+            try
+            {
+                List<Desc_Subevento> lista = new List<Desc_Subevento>();
+                this.AbrirConexion();
+                SqlCommand cmdDesc = new SqlCommand("select id_desc,descripcion,abreviacion,id_subevento " +
+                                                       "from Desc_Subevento ", Conn);
+
+                SqlDataReader dr = cmdDesc.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    Desc_Subevento descSubevento = new Desc_Subevento();
+                    descSubevento.Id_desc = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc"]));
+                    descSubevento.Descripcion = dr.IsDBNull(1) ? string.Empty : dr["descripcion"].ToString();
+                    descSubevento.Abreviacion = dr.IsDBNull(2) ? string.Empty : dr["abreviacion"].ToString();                   
+                    descSubevento.Id_subevento = dr.IsDBNull(3) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_subevento"]));
+                   
+                    lista.Add(descSubevento);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar las descripciones del subevento", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+
+
+
+           
+        }
+
+
+        public Desc_Subevento RecuperarPorNombre(string nombre)
+        {
+
+            try
+            {
+                Desc_Subevento descSubvento = new Desc_Subevento();
+                this.AbrirConexion();
+                SqlCommand cmdEvento = new SqlCommand("SELECT  id_desc,descripcion,abreviacion,estado_desc,id_subevento " +
+                                                      " FROM Desc_Subevento " +
+                                                      " where descripcion = @nombre", Conn);
+                cmdEvento.Parameters.Add("nombre", SqlDbType.VarChar, 50).Value = nombre;
+
+                SqlDataReader dr = cmdEvento.ExecuteReader();
+
+                if (dr.Read())
+                {
+
+
+                    descSubvento.Id_desc = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_desc"]));
+                    descSubvento.Descripcion = dr.IsDBNull(1) ? string.Empty : dr["descripcion"].ToString();
+                    descSubvento.Abreviacion = dr.IsDBNull(1) ? string.Empty : dr["abreviacion"].ToString();
+                    descSubvento.Estado_desc = dr.IsDBNull(1) ? true : (Convert.ToBoolean(dr["estado_desc"]));
+                    descSubvento.Id_subevento = dr.IsDBNull(1) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_subevento"]));
+
+
+
+
+                }
+                dr.Close();
+                return descSubvento;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar el listado de subeventos", ex);
                 throw exepcionnueva;
             }
             finally

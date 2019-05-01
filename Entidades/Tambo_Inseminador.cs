@@ -8,27 +8,18 @@ namespace Entidades
 {
     public class Tambo_Inseminador
     {
-        private int _id_tambo;
-        private int _id_inseminador;
-        private string _nombre_tambo;
-        private string _nombre_inseminador;
-        private bool _estado_inseminador;
-        private string _telefono;
-        private string _direccion;
-        private string _dni;
-        private int _id_localidad;
-        private string _nombre_localidad;
+       
 
-        public int Id_tambo { get => _id_tambo; set => _id_tambo = value; }
-        public int Id_inseminador { get => _id_inseminador; set => _id_inseminador = value; }
-        public string Nombre_tambo { get => _nombre_tambo; set => _nombre_tambo = value; }
-        public string Nombre_inseminador { get => _nombre_inseminador; set => _nombre_inseminador = value; }
-        public bool Estado_inseminador { get => _estado_inseminador; set => _estado_inseminador = value; }
-        public string Telefono { get => _telefono; set => _telefono = value; }
-        public string Direccion { get => _direccion; set => _direccion = value; }
-        public string Dni { get => _dni; set => _dni = value; }
-        public int Id_localidad { get => _id_localidad; set => _id_localidad = value; }
-        public string Nombre_localidad { get => _nombre_localidad; set => _nombre_localidad = value; }
+        public int Id_tambo { get; set;}
+        public int Id_inseminador { get; set; }
+        public string Nombre_tambo { get; set; }
+        public string Nombre_inseminador { get; set; }
+        public bool Estado_inseminador { get; set; }
+        public string Telefono { get; set; }
+        public string Direccion { get; set; }
+        public string Dni { get; set; }
+        public int Id_localidad { get; set; }
+        public string Nombre_localidad { get; set; }
 
         public Tambo_Inseminador()
         {

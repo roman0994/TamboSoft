@@ -8,15 +8,14 @@ namespace Entidades
 {
     public class Usuario
     {
-        private int _id_usuario;
-        private string _usu;
-        private string _password;
-        private string _email;
 
-        public int Id_usuario { get => _id_usuario; set => _id_usuario = value; }
-        public string Usu { get => _usu; set => _usu = value; }
-        public string Password { get => _password; set => _password = value; }
-        public string Email { get => _email; set => _email = value; }
+        public int Id_usuario { get; set; }
+        public string Usu { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+
+
+        public List<Tambo> Tambos { get; set; }
 
         public Usuario()
         {

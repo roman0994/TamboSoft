@@ -3,15 +3,25 @@ using Negocio;
 using System;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Data;
 
 namespace Escritorio
 {
     public partial class GestionAnimales : Form
     {
         public int idtambo;
+        public Animal Animal { get; set; }
+        Raza_Negocio razanegocio;
+        Tambo_Negocio tambonegocio;
+        Categoria_Negocio categorianegocio;
+
         public GestionAnimales(int id_tambo)
         {
             InitializeComponent();
+            Animal = new Animal();
+            razanegocio = new Raza_Negocio();
+            tambonegocio = new Tambo_Negocio();
+            categorianegocio = new Categoria_Negocio();
             CargarGrilla(id_tambo);
             CargarComboBusqueda();
             InicializarTextBox();
@@ -21,7 +31,8 @@ namespace Escritorio
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             this.dgvAnimales.AutoGenerateColumns = false;
-            this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
+            
+            this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTamboDT(id_tambo);
             if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
             {
                 this.btnEditar.Enabled = true;
@@ -51,43 +62,6 @@ namespace Escritorio
             }
         }
 
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            this.Dispose();
-        }
-
-        private void btnEditar_Click(object sender, EventArgs e)
-        {
-            Raza_Negocio razaNegocio = new Raza_Negocio();
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            Raza raza = razaNegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_raza"].Value));
-            Tambo tambo = tamboNegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value));
-            int id_tambo = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value);
-            EdicionAnimales edicion = new EdicionAnimales();
-
-            edicion.txtRP.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
-            edicion.dtpFechaNacimiento.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["fecha_nacimiento"].Value);
-            //edicion.txtEdad.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["edad"].Value);
-            edicion.txtNombre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["nombre_animal"].Value);
-            edicion.cbEstado.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["estado_animal"].Value);
-            edicion.txtHBA.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba"].Value);
-            edicion.cbCategoria.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["categoria"].Value);
-            //edicion.cbSexo.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["sexo"].Value);
-            //edicion.txtFoto.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["foto"].Value);
-            edicion.txtTambo.Text = tambo.Nombre_tambo;
-            edicion.cbRaza.Text = raza.Nombre_raza;
-            edicion.txtRPMadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp_madre"].Value);
-            edicion.txtHBAMadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba_madre"].Value);
-            edicion.txtRPPadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp_padre"].Value);
-            edicion.txtHBAPadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba_padre"].Value);
-            edicion.txtCaravana.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["caravana"].Value);
-
-            edicion.animalGlobal = MapearAAnimal();
-            edicion.Show();
-            CargarGrilla(id_tambo);
-
-        }
-
         public Animal MapearAAnimal()
         {
             Raza_Negocio razaNegocio = new Raza_Negocio();
@@ -95,13 +69,15 @@ namespace Escritorio
             Raza raza = razaNegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_raza"].Value));
             Tambo tambo = tamboNegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value));
             Animal animal = new Animal();
+            Categoria categoria = new Categoria();
             animal.Rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
             animal.Fecha_nacimiento = Convert.ToDateTime(this.dgvAnimales.CurrentRow.Cells["fecha_nacimiento"].Value);
             animal.Edad = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["edad"].Value);
             animal.Nombre_animal = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["nombre_animal"].Value);
             animal.Estado_animal = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["estado_animal"].Value);
             animal.Hba = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["hba"].Value);
-            animal.Categoria = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["categoria"].Value);
+            categoria.Descripcion = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["categoria"].Value);
+            //animal.Categoria.Descripcion = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["categoria"].Value);
             animal.Nombre_tambo = tambo.Nombre_tambo;
             animal.Nombre_raza = raza.Nombre_raza;
             animal.Id_raza = raza.Id_raza;
@@ -114,6 +90,81 @@ namespace Escritorio
 
             return animal;
         }
+
+        public void InicializarTextBox()
+        {
+            if (this.cbBuscar.SelectedIndex == -1)
+            {
+                this.txtBuscar.Enabled = false;
+            }
+        }
+
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            //Raza_Negocio razaNegocio = new Raza_Negocio();
+            //Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            //Raza raza = razaNegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_raza"].Value));
+            //Tambo tambo = tamboNegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value));
+            //int id_tambo = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value);
+            //EdicionAnimales edicion = new EdicionAnimales();
+
+            //edicion.txtRP.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
+            //edicion.dtpFechaNacimiento.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["fecha_nacimiento"].Value);
+            ////edicion.txtEdad.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["edad"].Value);
+            //edicion.txtNombre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["nombre_animal"].Value);
+            //edicion.cbEstado.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["estado_animal"].Value);
+            //edicion.txtHBA.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba"].Value);
+            //edicion.cbCategoria.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["categoria"].Value);
+            ////edicion.cbSexo.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["sexo"].Value);
+            ////edicion.txtFoto.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["foto"].Value);
+            //edicion.txtTambo.Text = tambo.Nombre_tambo;
+            //edicion.cbRaza.Text = raza.Nombre_raza;
+            //edicion.txtRPMadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp_madre"].Value);
+            //edicion.txtHBAMadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba_madre"].Value);
+            //edicion.txtRPPadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["rp_padre"].Value);
+            //edicion.txtHBAPadre.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["hba_padre"].Value);
+            //edicion.txtCaravana.Text = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["caravana"].Value);
+
+            //edicion.animalGlobal = MapearAAnimal();
+            //edicion.Show();
+            //CargarGrilla(id_tambo);
+
+            Animal.Raza = new Raza();
+            Animal.Raza = razanegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_raza"].Value));
+            Animal.Id_raza = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_raza"].Value);
+            Animal.Tambo = new Tambo();
+            Animal.Tambo = Principal.Tambo;
+            Animal.Id_tambo = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value);
+            Animal.Categoria = new Categoria();
+            Animal.Categoria = categorianegocio.RecuperarUno(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_categoria"].Value));
+            Animal.Id_Categoria = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_categoria"].Value);
+
+
+            Animal.Rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
+            Animal.Fecha_nacimiento = Convert.ToDateTime(this.dgvAnimales.CurrentRow.Cells["fecha_nacimiento"].Value);
+
+            Animal.Nombre_animal = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["nombre_animal"].Value);
+            Animal.Estado_animal = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["estado_animal"].Value);
+            Animal.Hba = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["hba"].Value);
+            Animal.Caravana = Convert.ToString(this.dgvAnimales.CurrentRow.Cells["caravana"].Value);
+
+
+            Animal.Rp_madre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp_madre"].Value);
+            Animal.Hba_madre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["hba_madre"].Value);
+            Animal.Rp_padre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp_padre"].Value);
+            Animal.Hba_padre = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["hba_padre"].Value);
+
+            AbmAnimales form = new AbmAnimales(Principal.ModoForm.MODIFICACION,Animal);
+            form.Show();
+        }
+
+
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -131,13 +182,7 @@ namespace Escritorio
             }
         }
 
-        public void InicializarTextBox()
-        {
-            if (this.cbBuscar.SelectedIndex == -1)
-            {
-                this.txtBuscar.Enabled = false;
-            }
-        }
+       
 
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
@@ -195,7 +240,7 @@ namespace Escritorio
 
         private void dgvAnimales_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 18)
+            if (e.ColumnIndex == 19)
             {
                 if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
                 {
@@ -209,7 +254,7 @@ namespace Escritorio
                     historiaClinica.Show();
                 }
             }
-            else if(e.ColumnIndex == 19)
+            else if(e.ColumnIndex == 20)
             {
                 if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
                 {

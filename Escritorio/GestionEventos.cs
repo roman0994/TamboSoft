@@ -19,18 +19,20 @@ namespace Escritorio
         public GestionEventos(int id_tambo)
         {
             InitializeComponent();
-            CargarGrilla(id_tambo);
+            this.dgvEventos.AutoGenerateColumns = false;
+
+            CargarGrilla();
             CargarComboBusqueda();
             InicializarTextBox();
         }
 
-        public void CargarGrilla(int id_tambo)
+        public void CargarGrilla()
         {
             EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-            //this.dgvEventos.DataSource = null;
-            this.dgvEventos.AutoGenerateColumns = false;
-            this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarSoloEventosPorTambo(id_tambo);
-            //gvEventos.Columns[0].HeaderText = "TextoAMostrarEnLaCabecera";
+
+           
+            this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarSoloEventosPorTambo(Principal.Tambo.Id_tambo);
+
             if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
             {
                 this.btnExportar.Enabled = true;
@@ -88,7 +90,7 @@ namespace Escritorio
             if (result == DialogResult.Yes)
             {
                 eventoNegocio.Eliminar(estado_evento, id_evento, rp, fecha_desc);
-                this.CargarGrilla(id_tambo);
+                this.CargarGrilla();
                 MessageBox.Show("El evento fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
             }
@@ -113,7 +115,7 @@ namespace Escritorio
 
         private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.CargarGrilla(Principal.Tambo.Id_tambo);
+            this.CargarGrilla();
             this.txtBuscar.Text = string.Empty;
 
             if (this.cbBuscar.SelectedIndex == -1)
