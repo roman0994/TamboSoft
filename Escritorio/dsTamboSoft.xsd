@@ -54,7 +54,7 @@
                 </xs:simpleType>
               </xs:element>
               <xs:element name="hba" msprop:Generator_ColumnVarNameInTable="columnhba" msprop:Generator_ColumnPropNameInRow="hba" msprop:Generator_ColumnPropNameInTable="hbaColumn" msprop:Generator_UserColumnName="hba" type="xs:string" minOccurs="0" />
-              <xs:element name="categoria" msprop:Generator_ColumnVarNameInTable="columncategoria" msprop:Generator_ColumnPropNameInRow="categoria" msprop:Generator_ColumnPropNameInTable="categoriaColumn" msprop:Generator_UserColumnName="categoria" minOccurs="0">
+              <xs:element name="descripcion" msprop:Generator_ColumnVarNameInTable="columndescripcion" msprop:Generator_ColumnPropNameInRow="descripcion" msprop:Generator_ColumnPropNameInTable="descripcionColumn" msprop:Generator_UserColumnName="descripcion" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="20" />
@@ -113,6 +113,7 @@
               <xs:element name="descripcion" msdata:Caption="Descripcion" msprop:Generator_ColumnVarNameInTable="columndescripcion" msprop:Generator_ColumnPropNameInRow="descripcion" msprop:Generator_ColumnPropNameInTable="descripcionColumn" msprop:Generator_UserColumnName="descripcion" type="xs:string" minOccurs="0" />
               <xs:element name="nombre_tambo" msdata:Caption="Tambo" msprop:Generator_ColumnVarNameInTable="columnnombre_tambo" msprop:Generator_ColumnPropNameInRow="nombre_tambo" msprop:Generator_ColumnPropNameInTable="nombre_tamboColumn" msprop:Generator_UserColumnName="nombre_tambo" type="xs:string" minOccurs="0" />
               <xs:element name="estado_evento" msdata:Caption="Estado" msprop:Generator_ColumnVarNameInTable="columnestado_evento" msprop:Generator_ColumnPropNameInRow="estado_evento" msprop:Generator_ColumnPropNameInTable="estado_eventoColumn" msprop:Generator_UserColumnName="estado_evento" type="xs:string" minOccurs="0" />
+              <xs:element name="caravana" msprop:Generator_ColumnVarNameInTable="columncaravana" msprop:Generator_ColumnPropNameInRow="caravana" msprop:Generator_ColumnPropNameInTable="caravanaColumn" msprop:Generator_UserColumnName="caravana" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -139,6 +140,7 @@
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="caravana" msprop:Generator_ColumnVarNameInTable="columncaravana" msprop:Generator_ColumnPropNameInRow="caravana" msprop:Generator_ColumnPropNameInTable="caravanaColumn" msprop:Generator_UserColumnName="caravana" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

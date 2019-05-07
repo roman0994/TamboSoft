@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using Util;
 using Negocio;
 using Entidades;
+using Datos;
 
 namespace Escritorio
 {
@@ -124,6 +125,16 @@ namespace Escritorio
         private void cbProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
             CargarComboLocalidad(Convert.ToInt32(this.cbProvincia.SelectedValue));
+        }
+
+        private void btnAtras_Click(object sender, EventArgs e)
+        {
+            CargarTablas cargarTablas = new CargarTablas();
+            cargarTablas.CargaTablasData();
+            Login login = new Login();
+            //login.id_usuario = Program.UsuarioSesion.Id_usuario;
+            login.Show();
+            this.Hide();
         }
     }
 }

@@ -18,6 +18,7 @@ namespace Escritorio
         public ReporteEventos(int id_tambo)
         {
             InitializeComponent();
+            this.dgvEventos.AutoGenerateColumns = false;
             CargarTextBoxTambo(id_tambo);
             CargarComboBoxFiltro();
             CargarGrilla(id_tambo);            
@@ -46,7 +47,7 @@ namespace Escritorio
             if (this.cbFiltro.SelectedIndex == -1)
             {
                 Animal_Negocio animalNegocio = new Animal_Negocio();
-                this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(id_tambo);
+                this.dgvEventos.DataSource = animalNegocio.RecuperarParaReportePorTambo(id_tambo);
                 if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
                 {
                     this.btnExportar.Enabled = true;

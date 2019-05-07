@@ -42,6 +42,7 @@
             this.Litros_leche = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Grasa_total = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
@@ -69,13 +70,13 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(614, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(561, 415);
+            this.btnSalir.Location = new System.Drawing.Point(422, 415);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 29);
             this.btnSalir.TabIndex = 1;
@@ -86,7 +87,7 @@
             // btnExportar
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnExportar.Location = new System.Drawing.Point(163, 415);
+            this.btnExportar.Location = new System.Drawing.Point(116, 415);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(75, 29);
             this.btnExportar.TabIndex = 0;
@@ -102,7 +103,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(788, 54);
+            this.groupBox1.Size = new System.Drawing.Size(602, 54);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tambo";
@@ -133,14 +134,14 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(6, 69);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(788, 54);
+            this.groupBox2.Size = new System.Drawing.Size(602, 54);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Animal";
             // 
             // btnLimpiar
             // 
-            this.btnLimpiar.Location = new System.Drawing.Point(525, 21);
+            this.btnLimpiar.Location = new System.Drawing.Point(504, 19);
             this.btnLimpiar.Name = "btnLimpiar";
             this.btnLimpiar.Size = new System.Drawing.Size(75, 23);
             this.btnLimpiar.TabIndex = 3;
@@ -174,13 +175,15 @@
             this.Litros_leche,
             this.Grasa_total,
             this.rp,
+            this.caravana,
             this.nombre_animal,
             this.nombre_tambo});
             this.tableLayoutPanel1.SetColumnSpan(this.dgvProduccionAnimal, 2);
             this.dgvProduccionAnimal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvProduccionAnimal.Location = new System.Drawing.Point(6, 132);
             this.dgvProduccionAnimal.Name = "dgvProduccionAnimal";
-            this.dgvProduccionAnimal.Size = new System.Drawing.Size(788, 274);
+            this.dgvProduccionAnimal.ReadOnly = true;
+            this.dgvProduccionAnimal.Size = new System.Drawing.Size(602, 274);
             this.dgvProduccionAnimal.TabIndex = 4;
             // 
             // Litros_leche
@@ -188,6 +191,7 @@
             this.Litros_leche.DataPropertyName = "Litros_leche";
             this.Litros_leche.HeaderText = "Litros totales ordeñe";
             this.Litros_leche.Name = "Litros_leche";
+            this.Litros_leche.ReadOnly = true;
             this.Litros_leche.Width = 140;
             // 
             // Grasa_total
@@ -195,6 +199,7 @@
             this.Grasa_total.DataPropertyName = "Grasa_total";
             this.Grasa_total.HeaderText = "Grasa total ";
             this.Grasa_total.Name = "Grasa_total";
+            this.Grasa_total.ReadOnly = true;
             this.Grasa_total.Width = 140;
             // 
             // rp
@@ -202,13 +207,23 @@
             this.rp.DataPropertyName = "rp";
             this.rp.HeaderText = "RP";
             this.rp.Name = "rp";
+            this.rp.ReadOnly = true;
+            this.rp.Visible = false;
             this.rp.Width = 120;
+            // 
+            // caravana
+            // 
+            this.caravana.DataPropertyName = "caravana";
+            this.caravana.HeaderText = "Caravana";
+            this.caravana.Name = "caravana";
+            this.caravana.ReadOnly = true;
             // 
             // nombre_animal
             // 
             this.nombre_animal.DataPropertyName = "nombre_animal";
             this.nombre_animal.HeaderText = "Animal";
             this.nombre_animal.Name = "nombre_animal";
+            this.nombre_animal.ReadOnly = true;
             this.nombre_animal.Width = 170;
             // 
             // nombre_tambo
@@ -216,6 +231,8 @@
             this.nombre_tambo.DataPropertyName = "nombre_tambo";
             this.nombre_tambo.HeaderText = "Tambo";
             this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.ReadOnly = true;
+            this.nombre_tambo.Visible = false;
             this.nombre_tambo.Width = 175;
             // 
             // ReporteProduccionPorAnimal
@@ -223,7 +240,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(614, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -252,11 +269,12 @@
         private System.Windows.Forms.ComboBox cbAnimal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvProduccionAnimal;
+        private System.Windows.Forms.Button btnLimpiar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Litros_leche;
         private System.Windows.Forms.DataGridViewTextBoxColumn Grasa_total;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;
+        private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
-        private System.Windows.Forms.Button btnLimpiar;
     }
 }

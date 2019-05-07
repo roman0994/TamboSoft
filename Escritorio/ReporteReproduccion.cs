@@ -95,12 +95,20 @@ namespace Escritorio
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            DateTime fechaDesde = this.dateTimePicker1.Value;
-            DateTime fechaHasta = this.dateTimePicker2.Value;
+            try
+            {
+                DateTime fechaDesde = this.dateTimePicker1.Value;
+                DateTime fechaHasta = this.dateTimePicker2.Value;
 
-            vpReporteReproduccion vp = new vpReporteReproduccion(fechaDesde, fechaHasta);
-            vp.Show();
+                vpReporteReproduccion vp = new vpReporteReproduccion(fechaDesde, fechaHasta);
+                vp.Show();
 
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Error al exportar", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             //vpReproduccion vistaPreviaReproduccion = new vpReproduccion();
             //vistaPreviaReproduccion.idtambo = idtambo;

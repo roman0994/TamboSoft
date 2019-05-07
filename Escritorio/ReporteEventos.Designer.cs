@@ -30,7 +30,6 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnExportar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,12 +38,14 @@
             this.cbFiltro = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.dgvEventos = new System.Windows.Forms.DataGridView();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.foto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +59,6 @@
             this.rp_madre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp_padre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.habilitado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -86,30 +86,19 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 15F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(706, 450);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnExportar
             // 
             this.btnExportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnExportar.Location = new System.Drawing.Point(66, 415);
+            this.btnExportar.Location = new System.Drawing.Point(45, 415);
             this.btnExportar.Name = "btnExportar";
             this.btnExportar.Size = new System.Drawing.Size(75, 29);
             this.btnExportar.TabIndex = 2;
             this.btnExportar.Text = "Exportar";
             this.btnExportar.UseVisualStyleBackColor = true;
             this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(514, 415);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 29);
-            this.btnSalir.TabIndex = 3;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // groupBox1
             // 
@@ -119,7 +108,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(788, 54);
+            this.groupBox1.Size = new System.Drawing.Size(694, 54);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Tambo";
@@ -150,7 +139,7 @@
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox2.Location = new System.Drawing.Point(6, 69);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(788, 54);
+            this.groupBox2.Size = new System.Drawing.Size(694, 54);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Filtro de búsqueda";
@@ -188,12 +177,12 @@
             this.dgvEventos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvEventos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEventos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.caravana,
             this.rp,
-            this.categoria,
             this.nombre_animal,
             this.fecha_nacimiento,
-            this.estado_animal,
             this.descripcion,
+            this.estado_animal,
             this.nombre_raza,
             this.nombre_tambo,
             this.foto,
@@ -211,145 +200,24 @@
             this.dgvEventos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEventos.Location = new System.Drawing.Point(6, 132);
             this.dgvEventos.Name = "dgvEventos";
-            this.dgvEventos.Size = new System.Drawing.Size(788, 274);
+            this.dgvEventos.ReadOnly = true;
+            this.dgvEventos.Size = new System.Drawing.Size(694, 274);
             this.dgvEventos.TabIndex = 7;
             // 
-            // rp
+            // btnSalir
             // 
-            this.rp.DataPropertyName = "rp";
-            this.rp.HeaderText = "RP";
-            this.rp.Name = "rp";
-            this.rp.Width = 50;
-            // 
-            // categoria
-            // 
-            this.categoria.DataPropertyName = "categoria";
-            this.categoria.HeaderText = "Categoria";
-            this.categoria.Name = "categoria";
-            this.categoria.Width = 80;
-            // 
-            // nombre_animal
-            // 
-            this.nombre_animal.DataPropertyName = "nombre_animal";
-            this.nombre_animal.HeaderText = "Animal";
-            this.nombre_animal.Name = "nombre_animal";
-            this.nombre_animal.Width = 130;
-            // 
-            // fecha_nacimiento
-            // 
-            this.fecha_nacimiento.DataPropertyName = "fecha_nacimiento";
-            this.fecha_nacimiento.HeaderText = "Fecha Nacimiento";
-            this.fecha_nacimiento.Name = "fecha_nacimiento";
-            this.fecha_nacimiento.Width = 120;
-            // 
-            // estado_animal
-            // 
-            this.estado_animal.DataPropertyName = "estado_animal";
-            this.estado_animal.HeaderText = "Estado";
-            this.estado_animal.Name = "estado_animal";
-            this.estado_animal.Width = 120;
-            // 
-            // descripcion
-            // 
-            this.descripcion.DataPropertyName = "descripcion";
-            this.descripcion.HeaderText = "Descripcion";
-            this.descripcion.Name = "descripcion";
-            this.descripcion.Visible = false;
-            this.descripcion.Width = 130;
-            // 
-            // nombre_raza
-            // 
-            this.nombre_raza.DataPropertyName = "nombre_raza";
-            this.nombre_raza.HeaderText = "Raza";
-            this.nombre_raza.Name = "nombre_raza";
-            // 
-            // nombre_tambo
-            // 
-            this.nombre_tambo.DataPropertyName = "nombre_tambo";
-            this.nombre_tambo.HeaderText = "Tambo";
-            this.nombre_tambo.Name = "nombre_tambo";
-            this.nombre_tambo.Width = 130;
-            // 
-            // foto
-            // 
-            this.foto.DataPropertyName = "foto";
-            this.foto.HeaderText = "Foto";
-            this.foto.Name = "foto";
-            this.foto.Visible = false;
-            // 
-            // hba
-            // 
-            this.hba.DataPropertyName = "hba";
-            this.hba.HeaderText = "Hba";
-            this.hba.Name = "hba";
-            this.hba.Visible = false;
-            // 
-            // sexo
-            // 
-            this.sexo.DataPropertyName = "sexo";
-            this.sexo.HeaderText = "Sexo";
-            this.sexo.Name = "sexo";
-            this.sexo.Visible = false;
-            // 
-            // id_tambo
-            // 
-            this.id_tambo.DataPropertyName = "id_tambo";
-            this.id_tambo.HeaderText = "ID Tambo";
-            this.id_tambo.Name = "id_tambo";
-            this.id_tambo.Visible = false;
-            // 
-            // edad
-            // 
-            this.edad.DataPropertyName = "edad";
-            this.edad.HeaderText = "Edad";
-            this.edad.Name = "edad";
-            this.edad.Visible = false;
-            // 
-            // id_raza
-            // 
-            this.id_raza.DataPropertyName = "id_raza";
-            this.id_raza.HeaderText = "ID Raza";
-            this.id_raza.Name = "id_raza";
-            this.id_raza.Visible = false;
-            // 
-            // hba_madre
-            // 
-            this.hba_madre.DataPropertyName = "hba_madre";
-            this.hba_madre.HeaderText = "Hba Madre";
-            this.hba_madre.Name = "hba_madre";
-            this.hba_madre.Visible = false;
-            // 
-            // hba_padre
-            // 
-            this.hba_padre.DataPropertyName = "hba_padre";
-            this.hba_padre.HeaderText = "Hba Padre";
-            this.hba_padre.Name = "hba_padre";
-            this.hba_padre.Visible = false;
-            // 
-            // rp_madre
-            // 
-            this.rp_madre.DataPropertyName = "rp_madre";
-            this.rp_madre.HeaderText = "RP Madre";
-            this.rp_madre.Name = "rp_madre";
-            this.rp_madre.Visible = false;
-            // 
-            // rp_padre
-            // 
-            this.rp_padre.DataPropertyName = "rp_padre";
-            this.rp_padre.HeaderText = "RP Padre";
-            this.rp_padre.Name = "rp_padre";
-            this.rp_padre.Visible = false;
-            // 
-            // habilitado
-            // 
-            this.habilitado.DataPropertyName = "habilitado";
-            this.habilitado.HeaderText = "Habilitado";
-            this.habilitado.Name = "habilitado";
-            this.habilitado.Visible = false;
+            this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.btnSalir.Location = new System.Drawing.Point(457, 415);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(75, 29);
+            this.btnSalir.TabIndex = 3;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(150, 415);
+            this.button1.Location = new System.Drawing.Point(129, 415);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(116, 29);
             this.button1.TabIndex = 8;
@@ -357,12 +225,163 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // caravana
+            // 
+            this.caravana.DataPropertyName = "caravana";
+            this.caravana.HeaderText = "Caravana";
+            this.caravana.Name = "caravana";
+            this.caravana.ReadOnly = true;
+            // 
+            // rp
+            // 
+            this.rp.DataPropertyName = "rp";
+            this.rp.HeaderText = "RP";
+            this.rp.Name = "rp";
+            this.rp.ReadOnly = true;
+            this.rp.Visible = false;
+            this.rp.Width = 50;
+            // 
+            // nombre_animal
+            // 
+            this.nombre_animal.DataPropertyName = "nombre_animal";
+            this.nombre_animal.HeaderText = "Animal";
+            this.nombre_animal.Name = "nombre_animal";
+            this.nombre_animal.ReadOnly = true;
+            this.nombre_animal.Width = 130;
+            // 
+            // fecha_nacimiento
+            // 
+            this.fecha_nacimiento.DataPropertyName = "fecha_nacimiento";
+            this.fecha_nacimiento.HeaderText = "Fecha Nacimiento";
+            this.fecha_nacimiento.Name = "fecha_nacimiento";
+            this.fecha_nacimiento.ReadOnly = true;
+            this.fecha_nacimiento.Width = 120;
+            // 
+            // descripcion
+            // 
+            this.descripcion.DataPropertyName = "descripcion";
+            this.descripcion.HeaderText = "Categoria";
+            this.descripcion.Name = "descripcion";
+            this.descripcion.ReadOnly = true;
+            // 
+            // estado_animal
+            // 
+            this.estado_animal.DataPropertyName = "estado_animal";
+            this.estado_animal.HeaderText = "Estado";
+            this.estado_animal.Name = "estado_animal";
+            this.estado_animal.ReadOnly = true;
+            this.estado_animal.Width = 120;
+            // 
+            // nombre_raza
+            // 
+            this.nombre_raza.DataPropertyName = "nombre_raza";
+            this.nombre_raza.HeaderText = "Raza";
+            this.nombre_raza.Name = "nombre_raza";
+            this.nombre_raza.ReadOnly = true;
+            // 
+            // nombre_tambo
+            // 
+            this.nombre_tambo.DataPropertyName = "nombre_tambo";
+            this.nombre_tambo.HeaderText = "Tambo";
+            this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.ReadOnly = true;
+            this.nombre_tambo.Visible = false;
+            this.nombre_tambo.Width = 130;
+            // 
+            // foto
+            // 
+            this.foto.DataPropertyName = "foto";
+            this.foto.HeaderText = "Foto";
+            this.foto.Name = "foto";
+            this.foto.ReadOnly = true;
+            this.foto.Visible = false;
+            // 
+            // hba
+            // 
+            this.hba.DataPropertyName = "hba";
+            this.hba.HeaderText = "Hba";
+            this.hba.Name = "hba";
+            this.hba.ReadOnly = true;
+            this.hba.Visible = false;
+            // 
+            // sexo
+            // 
+            this.sexo.DataPropertyName = "sexo";
+            this.sexo.HeaderText = "Sexo";
+            this.sexo.Name = "sexo";
+            this.sexo.ReadOnly = true;
+            this.sexo.Visible = false;
+            // 
+            // id_tambo
+            // 
+            this.id_tambo.DataPropertyName = "id_tambo";
+            this.id_tambo.HeaderText = "ID Tambo";
+            this.id_tambo.Name = "id_tambo";
+            this.id_tambo.ReadOnly = true;
+            this.id_tambo.Visible = false;
+            // 
+            // edad
+            // 
+            this.edad.DataPropertyName = "edad";
+            this.edad.HeaderText = "Edad";
+            this.edad.Name = "edad";
+            this.edad.ReadOnly = true;
+            this.edad.Visible = false;
+            // 
+            // id_raza
+            // 
+            this.id_raza.DataPropertyName = "id_raza";
+            this.id_raza.HeaderText = "ID Raza";
+            this.id_raza.Name = "id_raza";
+            this.id_raza.ReadOnly = true;
+            this.id_raza.Visible = false;
+            // 
+            // hba_madre
+            // 
+            this.hba_madre.DataPropertyName = "hba_madre";
+            this.hba_madre.HeaderText = "Hba Madre";
+            this.hba_madre.Name = "hba_madre";
+            this.hba_madre.ReadOnly = true;
+            this.hba_madre.Visible = false;
+            // 
+            // hba_padre
+            // 
+            this.hba_padre.DataPropertyName = "hba_padre";
+            this.hba_padre.HeaderText = "Hba Padre";
+            this.hba_padre.Name = "hba_padre";
+            this.hba_padre.ReadOnly = true;
+            this.hba_padre.Visible = false;
+            // 
+            // rp_madre
+            // 
+            this.rp_madre.DataPropertyName = "rp_madre";
+            this.rp_madre.HeaderText = "RP Madre";
+            this.rp_madre.Name = "rp_madre";
+            this.rp_madre.ReadOnly = true;
+            this.rp_madre.Visible = false;
+            // 
+            // rp_padre
+            // 
+            this.rp_padre.DataPropertyName = "rp_padre";
+            this.rp_padre.HeaderText = "RP Padre";
+            this.rp_padre.Name = "rp_padre";
+            this.rp_padre.ReadOnly = true;
+            this.rp_padre.Visible = false;
+            // 
+            // habilitado
+            // 
+            this.habilitado.DataPropertyName = "habilitado";
+            this.habilitado.HeaderText = "Habilitado";
+            this.habilitado.Name = "habilitado";
+            this.habilitado.ReadOnly = true;
+            this.habilitado.Visible = false;
+            // 
             // ReporteEventos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(706, 450);
             this.Controls.Add(this.tableLayoutPanel1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -391,12 +410,14 @@
         private System.Windows.Forms.ComboBox cbFiltro;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgvEventos;
+        private System.Windows.Forms.Button btnLimpiar;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp;
-        private System.Windows.Forms.DataGridViewTextBoxColumn categoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_nacimiento;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado_animal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_raza;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_tambo;
         private System.Windows.Forms.DataGridViewTextBoxColumn foto;
@@ -410,7 +431,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn rp_madre;
         private System.Windows.Forms.DataGridViewTextBoxColumn rp_padre;
         private System.Windows.Forms.DataGridViewTextBoxColumn habilitado;
-        private System.Windows.Forms.Button btnLimpiar;
-        private System.Windows.Forms.Button button1;
     }
 }

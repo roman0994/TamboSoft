@@ -85,6 +85,8 @@ namespace Escritorio
 
                         DialogResult result = MessageBox.Show("El personal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.Limpiar();
+
+                        Principal.Tambo.Inseminadores = inseminadorNegocio.RecuperarPorTambo(Principal.Tambo.Id_tambo);
                     }
                     else
                     {

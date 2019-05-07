@@ -34,6 +34,8 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvControles = new System.Windows.Forms.DataGridView();
+            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,8 +49,6 @@
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.kg_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.porcentaje_grasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.tlpControles.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvControles)).BeginInit();
             this.SuspendLayout();
@@ -77,7 +77,7 @@
             this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpControles.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tlpControles.Size = new System.Drawing.Size(800, 450);
+            this.tlpControles.Size = new System.Drawing.Size(744, 450);
             this.tlpControles.TabIndex = 0;
             // 
             // btnEliminar
@@ -85,7 +85,7 @@
             this.btnEliminar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(96, 415);
+            this.btnEliminar.Location = new System.Drawing.Point(87, 415);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(75, 29);
             this.btnEliminar.TabIndex = 3;
@@ -96,7 +96,7 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnEditar.Location = new System.Drawing.Point(361, 415);
+            this.btnEditar.Location = new System.Drawing.Point(333, 415);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(75, 29);
             this.btnEditar.TabIndex = 4;
@@ -107,7 +107,7 @@
             // btnSalir
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnSalir.Location = new System.Drawing.Point(627, 415);
+            this.btnSalir.Location = new System.Drawing.Point(581, 415);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 29);
             this.btnSalir.TabIndex = 5;
@@ -122,7 +122,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(6, 3);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(788, 32);
+            this.label1.Size = new System.Drawing.Size(732, 32);
             this.label1.TabIndex = 3;
             this.label1.Text = "A continuación, se presenta la posibilidad de buscar un control según el parámetr" +
     "o requerido por el usuario, además para editar o eliminar debe seleccionar un re" +
@@ -156,8 +156,28 @@
             this.dgvControles.Name = "dgvControles";
             this.dgvControles.ReadOnly = true;
             this.dgvControles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvControles.Size = new System.Drawing.Size(788, 334);
+            this.dgvControles.Size = new System.Drawing.Size(732, 334);
             this.dgvControles.TabIndex = 5;
+            // 
+            // txtBuscar
+            // 
+            this.txtBuscar.Location = new System.Drawing.Point(252, 41);
+            this.txtBuscar.Name = "txtBuscar";
+            this.txtBuscar.Size = new System.Drawing.Size(200, 20);
+            this.txtBuscar.TabIndex = 2;
+            this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
+            this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label2.Location = new System.Drawing.Point(6, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(237, 28);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Buscar por nombre de animal:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // fecha_control
             // 
@@ -220,7 +240,6 @@
             this.grasa_primercontrol.HeaderText = "Grasa Primer Control";
             this.grasa_primercontrol.Name = "grasa_primercontrol";
             this.grasa_primercontrol.ReadOnly = true;
-            this.grasa_primercontrol.Width = 80;
             // 
             // segundo_control
             // 
@@ -236,7 +255,7 @@
             this.grasa_segundocontrol.HeaderText = "Grasa Segundo Control";
             this.grasa_segundocontrol.Name = "grasa_segundocontrol";
             this.grasa_segundocontrol.ReadOnly = true;
-            this.grasa_segundocontrol.Width = 80;
+            this.grasa_segundocontrol.Width = 105;
             // 
             // nombre_tambo
             // 
@@ -244,6 +263,7 @@
             this.nombre_tambo.HeaderText = "Tambo";
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.ReadOnly = true;
+            this.nombre_tambo.Visible = false;
             // 
             // kg_grasa
             // 
@@ -261,32 +281,12 @@
             this.porcentaje_grasa.ReadOnly = true;
             this.porcentaje_grasa.Visible = false;
             // 
-            // txtBuscar
-            // 
-            this.txtBuscar.Location = new System.Drawing.Point(271, 41);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(200, 20);
-            this.txtBuscar.TabIndex = 2;
-            this.txtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBuscar_KeyPress);
-            this.txtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtBuscar_KeyUp);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(6, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(256, 28);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Buscar por nombre de animal:";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // GestionControles
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(744, 450);
             this.Controls.Add(this.tlpControles);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

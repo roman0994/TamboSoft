@@ -33,16 +33,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dgvInseminadores = new System.Windows.Forms.DataGridView();
-            this.id_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbRegresar = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -53,6 +43,16 @@
             this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.tsbActualizar = new System.Windows.Forms.ToolStripButton();
+            this.id_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado_inseminador = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dni = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -67,11 +67,11 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tableLayoutPanel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 425);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(683, 425);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(800, 450);
+            this.toolStripContainer1.Size = new System.Drawing.Size(683, 450);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -92,13 +92,13 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 425);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(683, 425);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnSalir
             // 
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(722, 399);
+            this.btnSalir.Location = new System.Drawing.Point(605, 399);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 3;
@@ -128,86 +128,8 @@
             this.dgvInseminadores.Name = "dgvInseminadores";
             this.dgvInseminadores.ReadOnly = true;
             this.dgvInseminadores.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvInseminadores.Size = new System.Drawing.Size(794, 390);
+            this.dgvInseminadores.Size = new System.Drawing.Size(677, 390);
             this.dgvInseminadores.TabIndex = 2;
-            // 
-            // id_inseminador
-            // 
-            this.id_inseminador.DataPropertyName = "id_inseminador";
-            this.id_inseminador.HeaderText = "ID Inseminador";
-            this.id_inseminador.Name = "id_inseminador";
-            this.id_inseminador.ReadOnly = true;
-            this.id_inseminador.Visible = false;
-            // 
-            // nombre_inseminador
-            // 
-            this.nombre_inseminador.DataPropertyName = "nombre_inseminador";
-            this.nombre_inseminador.HeaderText = "Inseminador";
-            this.nombre_inseminador.Name = "nombre_inseminador";
-            this.nombre_inseminador.ReadOnly = true;
-            this.nombre_inseminador.Width = 120;
-            // 
-            // estado_inseminador
-            // 
-            this.estado_inseminador.DataPropertyName = "estado_inseminador";
-            this.estado_inseminador.HeaderText = "Estado";
-            this.estado_inseminador.Name = "estado_inseminador";
-            this.estado_inseminador.ReadOnly = true;
-            this.estado_inseminador.Width = 80;
-            // 
-            // telefono
-            // 
-            this.telefono.DataPropertyName = "telefono";
-            this.telefono.HeaderText = "Teléfono";
-            this.telefono.Name = "telefono";
-            this.telefono.ReadOnly = true;
-            // 
-            // direccion
-            // 
-            this.direccion.DataPropertyName = "direccion";
-            this.direccion.HeaderText = "Dirección";
-            this.direccion.Name = "direccion";
-            this.direccion.ReadOnly = true;
-            this.direccion.Width = 110;
-            // 
-            // dni
-            // 
-            this.dni.DataPropertyName = "dni";
-            this.dni.HeaderText = "DNI";
-            this.dni.Name = "dni";
-            this.dni.ReadOnly = true;
-            // 
-            // id_localidad
-            // 
-            this.id_localidad.DataPropertyName = "id_localidad";
-            this.id_localidad.HeaderText = "ID Localidad";
-            this.id_localidad.Name = "id_localidad";
-            this.id_localidad.ReadOnly = true;
-            this.id_localidad.Visible = false;
-            // 
-            // nombre_localidad
-            // 
-            this.nombre_localidad.DataPropertyName = "nombre_localidad";
-            this.nombre_localidad.HeaderText = "Localidad";
-            this.nombre_localidad.Name = "nombre_localidad";
-            this.nombre_localidad.ReadOnly = true;
-            this.nombre_localidad.Width = 120;
-            // 
-            // id_tambo
-            // 
-            this.id_tambo.DataPropertyName = "id_tambo";
-            this.id_tambo.HeaderText = "ID Tambo";
-            this.id_tambo.Name = "id_tambo";
-            this.id_tambo.ReadOnly = true;
-            this.id_tambo.Visible = false;
-            // 
-            // nombre_tambo
-            // 
-            this.nombre_tambo.DataPropertyName = "nombre_tambo";
-            this.nombre_tambo.HeaderText = "Tambo";
-            this.nombre_tambo.Name = "nombre_tambo";
-            this.nombre_tambo.ReadOnly = true;
-            this.nombre_tambo.Width = 120;
             // 
             // toolStrip1
             // 
@@ -296,13 +218,92 @@
             this.tsbActualizar.Text = "Actualizar";
             this.tsbActualizar.Click += new System.EventHandler(this.tsbActualizar_Click);
             // 
+            // id_inseminador
+            // 
+            this.id_inseminador.DataPropertyName = "id_inseminador";
+            this.id_inseminador.HeaderText = "ID Inseminador";
+            this.id_inseminador.Name = "id_inseminador";
+            this.id_inseminador.ReadOnly = true;
+            this.id_inseminador.Visible = false;
+            // 
+            // nombre_inseminador
+            // 
+            this.nombre_inseminador.DataPropertyName = "nombre_inseminador";
+            this.nombre_inseminador.HeaderText = "Inseminador";
+            this.nombre_inseminador.Name = "nombre_inseminador";
+            this.nombre_inseminador.ReadOnly = true;
+            this.nombre_inseminador.Width = 120;
+            // 
+            // estado_inseminador
+            // 
+            this.estado_inseminador.DataPropertyName = "estado_inseminador";
+            this.estado_inseminador.HeaderText = "Estado";
+            this.estado_inseminador.Name = "estado_inseminador";
+            this.estado_inseminador.ReadOnly = true;
+            this.estado_inseminador.Width = 80;
+            // 
+            // telefono
+            // 
+            this.telefono.DataPropertyName = "telefono";
+            this.telefono.HeaderText = "Teléfono";
+            this.telefono.Name = "telefono";
+            this.telefono.ReadOnly = true;
+            // 
+            // direccion
+            // 
+            this.direccion.DataPropertyName = "direccion";
+            this.direccion.HeaderText = "Dirección";
+            this.direccion.Name = "direccion";
+            this.direccion.ReadOnly = true;
+            this.direccion.Width = 110;
+            // 
+            // dni
+            // 
+            this.dni.DataPropertyName = "dni";
+            this.dni.HeaderText = "DNI";
+            this.dni.Name = "dni";
+            this.dni.ReadOnly = true;
+            // 
+            // id_localidad
+            // 
+            this.id_localidad.DataPropertyName = "id_localidad";
+            this.id_localidad.HeaderText = "ID Localidad";
+            this.id_localidad.Name = "id_localidad";
+            this.id_localidad.ReadOnly = true;
+            this.id_localidad.Visible = false;
+            // 
+            // nombre_localidad
+            // 
+            this.nombre_localidad.DataPropertyName = "nombre_localidad";
+            this.nombre_localidad.HeaderText = "Localidad";
+            this.nombre_localidad.Name = "nombre_localidad";
+            this.nombre_localidad.ReadOnly = true;
+            this.nombre_localidad.Width = 120;
+            // 
+            // id_tambo
+            // 
+            this.id_tambo.DataPropertyName = "id_tambo";
+            this.id_tambo.HeaderText = "ID Tambo";
+            this.id_tambo.Name = "id_tambo";
+            this.id_tambo.ReadOnly = true;
+            this.id_tambo.Visible = false;
+            // 
+            // nombre_tambo
+            // 
+            this.nombre_tambo.DataPropertyName = "nombre_tambo";
+            this.nombre_tambo.HeaderText = "Tambo";
+            this.nombre_tambo.Name = "nombre_tambo";
+            this.nombre_tambo.ReadOnly = true;
+            this.nombre_tambo.Visible = false;
+            this.nombre_tambo.Width = 120;
+            // 
             // ListadoInseminadores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(683, 450);
             this.Controls.Add(this.toolStripContainer1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

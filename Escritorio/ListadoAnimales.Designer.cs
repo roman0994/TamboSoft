@@ -76,11 +76,11 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tlpAnimales);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(884, 615);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(942, 615);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(884, 641);
+            this.toolStripContainer1.Size = new System.Drawing.Size(942, 641);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -102,13 +102,13 @@
             this.tlpAnimales.RowCount = 2;
             this.tlpAnimales.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpAnimales.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpAnimales.Size = new System.Drawing.Size(884, 615);
+            this.tlpAnimales.Size = new System.Drawing.Size(942, 615);
             this.tlpAnimales.TabIndex = 0;
             // 
             // btnSalir
             // 
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(806, 589);
+            this.btnSalir.Location = new System.Drawing.Point(864, 589);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 0;
@@ -149,7 +149,7 @@
             this.dgvAnimales.Name = "dgvAnimales";
             this.dgvAnimales.ReadOnly = true;
             this.dgvAnimales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnimales.Size = new System.Drawing.Size(878, 580);
+            this.dgvAnimales.Size = new System.Drawing.Size(936, 580);
             this.dgvAnimales.TabIndex = 1;
             this.dgvAnimales.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAnimales_DataBindingComplete);
             // 
@@ -319,18 +319,18 @@
             // rp_madre
             // 
             this.rp_madre.DataPropertyName = "rp_madre";
-            this.rp_madre.HeaderText = "RP Madre";
+            this.rp_madre.HeaderText = "Caravana Madre";
             this.rp_madre.Name = "rp_madre";
             this.rp_madre.ReadOnly = true;
-            this.rp_madre.Width = 50;
+            this.rp_madre.Width = 90;
             // 
             // rp_padre
             // 
             this.rp_padre.DataPropertyName = "rp_padre";
-            this.rp_padre.HeaderText = "RP Padre";
+            this.rp_padre.HeaderText = "Caravana Padre";
             this.rp_padre.Name = "rp_padre";
             this.rp_padre.ReadOnly = true;
-            this.rp_padre.Width = 50;
+            this.rp_padre.Width = 90;
             // 
             // hba_madre
             // 
@@ -406,7 +406,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(884, 641);
+            this.ClientSize = new System.Drawing.Size(942, 641);
             this.Controls.Add(this.toolStripContainer1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

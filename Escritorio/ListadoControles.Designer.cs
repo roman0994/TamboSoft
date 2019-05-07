@@ -45,6 +45,7 @@
             this.tsbActualizar = new System.Windows.Forms.ToolStripButton();
             this.fecha_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.primer_control = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grasa_primercontrol = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,11 +70,11 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tableLayoutPanel1);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(800, 425);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(758, 425);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
-            this.toolStripContainer1.Size = new System.Drawing.Size(800, 450);
+            this.toolStripContainer1.Size = new System.Drawing.Size(758, 450);
             this.toolStripContainer1.TabIndex = 0;
             this.toolStripContainer1.Text = "toolStripContainer1";
             // 
@@ -94,13 +95,13 @@
             this.tableLayoutPanel1.RowCount = 2;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(800, 425);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(758, 425);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // btnSalir
             // 
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(722, 399);
+            this.btnSalir.Location = new System.Drawing.Point(680, 399);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 0;
@@ -117,6 +118,7 @@
             this.dgvControles.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.fecha_control,
             this.nombre_animal,
+            this.caravana,
             this.id_control,
             this.primer_control,
             this.grasa_primercontrol,
@@ -134,7 +136,7 @@
             this.dgvControles.Name = "dgvControles";
             this.dgvControles.ReadOnly = true;
             this.dgvControles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvControles.Size = new System.Drawing.Size(794, 390);
+            this.dgvControles.Size = new System.Drawing.Size(752, 390);
             this.dgvControles.TabIndex = 1;
             // 
             // toolStrip1
@@ -152,7 +154,7 @@
             this.tsbActualizar});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(400, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(369, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbRegresar
@@ -239,6 +241,13 @@
             this.nombre_animal.ReadOnly = true;
             this.nombre_animal.Width = 110;
             // 
+            // caravana
+            // 
+            this.caravana.DataPropertyName = "caravana";
+            this.caravana.HeaderText = "Caravana";
+            this.caravana.Name = "caravana";
+            this.caravana.ReadOnly = true;
+            // 
             // id_control
             // 
             this.id_control.DataPropertyName = "id_control";
@@ -261,7 +270,6 @@
             this.grasa_primercontrol.HeaderText = "Grasa primer control";
             this.grasa_primercontrol.Name = "grasa_primercontrol";
             this.grasa_primercontrol.ReadOnly = true;
-            this.grasa_primercontrol.Width = 80;
             // 
             // segundo_control
             // 
@@ -277,7 +285,7 @@
             this.grasa_segundocontrol.HeaderText = "Grasa segundo control";
             this.grasa_segundocontrol.Name = "grasa_segundocontrol";
             this.grasa_segundocontrol.ReadOnly = true;
-            this.grasa_segundocontrol.Width = 80;
+            this.grasa_segundocontrol.Width = 105;
             // 
             // id_tambo
             // 
@@ -309,6 +317,7 @@
             this.nombre_tambo.HeaderText = "Tambo";
             this.nombre_tambo.Name = "nombre_tambo";
             this.nombre_tambo.ReadOnly = true;
+            this.nombre_tambo.Visible = false;
             // 
             // rp
             // 
@@ -325,7 +334,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.CancelButton = this.btnSalir;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(758, 450);
             this.Controls.Add(this.toolStripContainer1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -363,6 +372,7 @@
         private System.Windows.Forms.ToolStripButton tsbActualizar;
         private System.Windows.Forms.DataGridViewTextBoxColumn fecha_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre_animal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn caravana;
         private System.Windows.Forms.DataGridViewTextBoxColumn id_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn primer_control;
         private System.Windows.Forms.DataGridViewTextBoxColumn grasa_primercontrol;

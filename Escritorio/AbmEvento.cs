@@ -47,12 +47,8 @@ namespace Escritorio
 
         private void Inicializacion()
         {
-            txtTambo.Text = Principal.Tambo.Nombre_tambo;
-           
-        }
-
-      
-
+            txtTambo.Text = Principal.Tambo.Nombre_tambo;        
+        }        
 
         private void CargarComboEventos()
         {
@@ -180,7 +176,8 @@ namespace Escritorio
                         Desc_Subevento des = dessubeventonegocio.RecuperarPorNombre("Inseminador");
 
                         listadoSubeventos.Add(des);
-                    }else
+                    }
+                    else
                     {
                         listadoSubeventos.Add((Desc_Subevento)combo.SelectedItem);
                     }
@@ -201,6 +198,17 @@ namespace Escritorio
                         button.Click += Button_Click;
                         button.Visible = true;
                         this.gbDescripciones.Controls.Add(button);
+                    }
+                    else if (Evento.Nombre_evento == "Parto" && ((Desc_Subevento)combo.SelectedItem).Descripcion == "Muerto")
+                    {
+                        foreach (System.Windows.Forms.Control item in this.gbDescripciones.Controls)
+                        {
+                            if (item.GetType().FullName == "System.Windows.Forms.Button")
+                            {
+                                this.gbDescripciones.Controls.Remove(item);
+                            }
+
+                        }
                     }
                 }
             }
@@ -285,11 +293,9 @@ namespace Escritorio
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             try
-            {
-               
+            {               
                 //dtpFecha.Value = dtpFecha.Value.AddMinutes(1);
-                
-                
+
                 if (ValidarCampos())
                 {
                     if (Evento.Nombre_evento == "Servicio")
@@ -304,13 +310,6 @@ namespace Escritorio
                     MessageBox.Show("Se ha guardado con exito el evento", "Alta evento", MessageBoxButtons.OK);
                     LimpiarControles();
                 }
-
-              
-
-            
-
-
-
             }
             catch (Exception ex)
             {
@@ -397,9 +396,7 @@ namespace Escritorio
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ocurrio un error al buscar el animal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                
-                
+                MessageBox.Show("Ocurrio un error al buscar el animal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);                          
             }
         }
 

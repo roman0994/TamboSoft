@@ -88,6 +88,11 @@ namespace Negocio
             return eventoAnimal_DescSubevento.FiltrarPorNombreEvento(texto, idtambo);
         }
 
+        public DataTable FiltrarPorCaravana(string texto, int idtambo)
+        {
+            return eventoAnimal_DescSubevento.FiltrarPorCaravana(texto, idtambo);
+        }
+
         public DataTable FiltrarPorNombreSubevento(string texto, int idtambo)
         {
             return eventoAnimal_DescSubevento.FiltrarPorNombreSubevento(texto, idtambo);

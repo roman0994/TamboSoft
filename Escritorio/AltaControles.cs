@@ -15,12 +15,14 @@ namespace Escritorio
 {
     public partial class AltaControles : Form
     {
+        public Animal Animal { get; set; }
+
         public AltaControles(int id_tambo)
         {
             InitializeComponent();
 
-                CargaComboAnimal(id_tambo);
-                CargarToolTips();
+            CargaComboAnimal(id_tambo);
+            CargarToolTips();
 
         }
 
@@ -104,7 +106,7 @@ namespace Escritorio
         public Control_Animal MapearAControlAnimal()
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            Animal animal = animalNegocio.RecuperarUno(Convert.ToInt32(cbAnimal.SelectedValue));
+            Animal animal = animalNegocio.RecuperarUnoPorCaravana((cbAnimal.SelectedValue).ToString());
             Control_Animal control = new Control_Animal();
 
             control.Fecha_control = dtpFechaControl.Value.Date;

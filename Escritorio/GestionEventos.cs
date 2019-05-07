@@ -49,6 +49,7 @@ namespace Escritorio
         {
             this.cbBuscar.Items.Add("Nombre animal");
             this.cbBuscar.Items.Add("Evento");
+            this.cbBuscar.Items.Add("Caravana");
             this.cbBuscar.SelectedIndex = -1;
         }
 
@@ -72,6 +73,10 @@ namespace Escritorio
             else if (this.cbBuscar.SelectedItem.ToString() == "Evento")
             {
                 this.dgvEventos.DataSource = eventoNegocio.FiltrarPorNombreEvento(this.txtBuscar.Text, idtambo);
+            }
+            else if (this.cbBuscar.SelectedItem.ToString() == "Caravana")
+            {
+                this.dgvEventos.DataSource = eventoNegocio.FiltrarPorCaravana(this.txtBuscar.Text, idtambo);
             }
         }
 
@@ -130,7 +135,7 @@ namespace Escritorio
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar) || char.IsNumber(e.KeyChar))
             {
                 e.Handled = false;
             }

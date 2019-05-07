@@ -307,7 +307,7 @@ namespace Datos
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-             SqlCommand cmdEvento = new SqlCommand("SELECT e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento, " +
+             SqlCommand cmdEvento = new SqlCommand("SELECT e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,a.caravana,ev.nombre_evento, " +
                                                     "s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento  " +
                                                     " FROM EventoAnimal_DescSubevento e " +
                                                     " left join Evento ev on e.id_evento=ev.id_evento " +
@@ -335,7 +335,7 @@ namespace Datos
         public DataTable RecuperarDTPorTamboYAnimal(int id_tambo, int rp)
         {
             this.AbrirConexion();
-            SqlCommand cmdEvento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.rp=@rp and e.estado_evento = 'true' and a.habilitado='true' order by e.fecha_desc", Conn);
+            SqlCommand cmdEvento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,a.caravana,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.rp=@rp and e.estado_evento = 'true' and a.habilitado='true' order by e.fecha_desc", Conn);
 
             cmdEvento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
             cmdEvento.Parameters.Add("rp", SqlDbType.Int).Value = rp;
@@ -776,6 +776,55 @@ namespace Datos
                                                                            " inner join Tambo t on ed.id_tambo = t.id_tambo " +
                                                                           "where ed.id_tambo = @id_tambo and " +
                                                                        "e.nombre_evento like('%" + texto + "%') " +
+                                                                      " and ed.estado_evento = 'true' and a.habilitado = 'true' " +
+                                                                           " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo,ed.id_tambo,ed.estado_evento " +
+                                                                           " order by ed.fecha_desc desc ";
+
+
+
+            //cmdFiltro.CommandText = "SELECT ed.rp,e.id_evento,ed.id_desc,ed.fecha_desc,a.nombre_animal,e.nombre_evento, " +
+            //                                                           "s.nombre_subevento, d.descripcion, t.id_tambo, t.nombre_tambo, ed.estado_evento, ed.id_inseminador, i.nombre_inseminador,a.caravana " +
+            //                                                           "FROM EventoAnimal_DescSubevento ed " +
+            //                                                           "inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+            //                                                           "inner join Animal a on ea.rp = a.rp " +
+            //                                                           "inner join Evento e on e.id_evento = ea.id_evento " +
+            //                                                           "inner join Tambo t on ed.id_tambo = t.id_tambo " +
+            //                                                           "inner join Desc_Subevento d on ed.id_desc = d.id_desc " +
+            //                                                           "inner join Subevento s on d.id_subevento = s.id_subevento " +
+            //                                                           "left join Inseminador i on ed.id_inseminador = i.id_inseminador " +
+            //                                                           "where ed.id_tambo = @id_tambo and " +
+            //                                                           "e.nombre_evento like('%" + texto + "%') " +
+            //                                                           " and ed.estado_evento = 'true' and a.habilitado = 'true'";
+
+
+            cmdFiltro.Parameters.Add("id_tambo", SqlDbType.Int).Value = idtambo;
+            cmdFiltro.ExecuteNonQuery();
+
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
+            da.Fill(dt);
+            this.CerrarConexion();
+            return dt;
+
+        }
+
+        public DataTable FiltrarPorCaravana(string texto, int idtambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdFiltro = Conn.CreateCommand();
+            cmdFiltro.CommandType = CommandType.Text;
+
+            //cmdFiltro.CommandText = "SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento inner join Animal a on e.rp=a.rp left join Desc_Subevento d on e.id_desc=d.id_desc left join Tambo t on e.id_tambo=t.id_tambo left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and ev.nombre_evento like ('%" + texto + "%') and e.estado_evento = 'true' and a.habilitado='true'";
+
+
+            cmdFiltro.CommandText = "select ed.rp,ed.id_evento,ed.fecha_desc,a.nombre_animal,e.nombre_evento,ed.id_tambo,t.nombre_tambo,ed.estado_evento,a.caravana " +
+                                                                           " from EventoAnimal_DescSubevento ed " +
+                                                                           " inner join Evento_Animal ea on ed.id_evento = ea.id_evento and ed.rp = ea.rp and ed.fecha_desc = ea.fecha_desc " +
+                                                                           " inner join Animal a on ea.rp = a.rp " +
+                                                                           " inner join Evento e on e.id_evento = ea.id_evento " +
+                                                                           " inner join Tambo t on ed.id_tambo = t.id_tambo " +
+                                                                          "where ed.id_tambo = @id_tambo and " +
+                                                                       "a.caravana like('%" + texto + "%') " +
                                                                       " and ed.estado_evento = 'true' and a.habilitado = 'true' " +
                                                                            " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo,ed.id_tambo,ed.estado_evento " +
                                                                            " order by ed.fecha_desc desc ";

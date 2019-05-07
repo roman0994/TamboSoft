@@ -188,12 +188,12 @@ namespace Escritorio
             if (string.IsNullOrWhiteSpace(txtCaravana.Text))
             {
 
-                MessageBox.Show("Debe seleccionar ingresar un numero de caravana ", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("Debe ingresar un número de caravana ", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 txtCaravana.Focus();
                 return false;
             }
 
-            if (ModoForm == ModoForm.ALTA)
+            if (ModoForm == ModoForm.ALTA || ModoForm == ModoForm.CRIA)
             {
 
                 if (animalnegocio.ExisteLaCaravana(Principal.Tambo.Id_tambo, txtCaravana.Text))
@@ -337,6 +337,12 @@ namespace Escritorio
                     {
                         animalnegocio.Insertar(Animal);
                         MessageBox.Show("El animal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                    }
+                    else if (ModoForm == ModoForm.CRIA)
+                    {
+                        animalnegocio.Insertar(Animal);
+                        MessageBox.Show("La cría fue dada de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
+                        this.Dispose();
                     }
                     this.Limpiar();
                 }
