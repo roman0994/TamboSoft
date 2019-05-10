@@ -47,13 +47,17 @@
             this.lbCategoriaAnimal = new System.Windows.Forms.Label();
             this.lbNombreAnimal = new System.Windows.Forms.Label();
             this.gbTambo = new System.Windows.Forms.GroupBox();
+            this.lbcria2 = new System.Windows.Forms.Label();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.gbDescripciones = new System.Windows.Forms.GroupBox();
+            this.lbcria1 = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tlpEventos.SuspendLayout();
             this.gbFecha.SuspendLayout();
             this.gbEvento.SuspendLayout();
             this.gbAnimal.SuspendLayout();
             this.gbTambo.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // tlpEventos
@@ -72,6 +76,7 @@
             this.tlpEventos.Controls.Add(this.gbAnimal, 2, 1);
             this.tlpEventos.Controls.Add(this.gbTambo, 0, 3);
             this.tlpEventos.Controls.Add(this.gbDescripciones, 1, 2);
+            this.tlpEventos.Controls.Add(this.groupBox1, 2, 3);
             this.tlpEventos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tlpEventos.Location = new System.Drawing.Point(0, 0);
             this.tlpEventos.Name = "tlpEventos";
@@ -271,16 +276,27 @@
             // 
             // gbTambo
             // 
-            this.tlpEventos.SetColumnSpan(this.gbTambo, 4);
+            this.tlpEventos.SetColumnSpan(this.gbTambo, 2);
             this.gbTambo.Controls.Add(this.txtTambo);
             this.gbTambo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbTambo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbTambo.Location = new System.Drawing.Point(6, 349);
             this.gbTambo.Name = "gbTambo";
-            this.gbTambo.Size = new System.Drawing.Size(788, 61);
+            this.gbTambo.Size = new System.Drawing.Size(387, 61);
             this.gbTambo.TabIndex = 12;
             this.gbTambo.TabStop = false;
             this.gbTambo.Text = "Tambo";
+            // 
+            // lbcria2
+            // 
+            this.lbcria2.AutoSize = true;
+            this.lbcria2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbcria2.Location = new System.Drawing.Point(286, 16);
+            this.lbcria2.Name = "lbcria2";
+            this.lbcria2.Size = new System.Drawing.Size(35, 13);
+            this.lbcria2.TabIndex = 1;
+            this.lbcria2.Text = "label2";
+            this.lbcria2.Visible = false;
             // 
             // txtTambo
             // 
@@ -302,14 +318,40 @@
             this.gbDescripciones.Text = "Descripciones";
             this.gbDescripciones.Visible = false;
             // 
+            // lbcria1
+            // 
+            this.lbcria1.AutoSize = true;
+            this.lbcria1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbcria1.Location = new System.Drawing.Point(10, 16);
+            this.lbcria1.Name = "lbcria1";
+            this.lbcria1.Size = new System.Drawing.Size(35, 13);
+            this.lbcria1.TabIndex = 0;
+            this.lbcria1.Text = "label1";
+            this.lbcria1.Visible = false;
+            // 
+            // groupBox1
+            // 
+            this.tlpEventos.SetColumnSpan(this.groupBox1, 2);
+            this.groupBox1.Controls.Add(this.lbcria2);
+            this.groupBox1.Controls.Add(this.lbcria1);
+            this.groupBox1.Location = new System.Drawing.Point(402, 349);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(392, 61);
+            this.groupBox1.TabIndex = 14;
+            this.groupBox1.TabStop = false;
+            // 
             // AbmEvento
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.tlpEventos);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "AbmEvento";
-            this.Text = "AbmEvento";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Evento";
             this.Load += new System.EventHandler(this.AbmEvento_Load);
             this.tlpEventos.ResumeLayout(false);
             this.tlpEventos.PerformLayout();
@@ -321,6 +363,8 @@
             this.gbAnimal.PerformLayout();
             this.gbTambo.ResumeLayout(false);
             this.gbTambo.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -335,18 +379,21 @@
         private System.Windows.Forms.GroupBox gbEvento;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label lbSeleccioneEvento;
+        private System.Windows.Forms.GroupBox gbTambo;
+        private System.Windows.Forms.TextBox txtTambo;
+        private System.Windows.Forms.ComboBox cbEventos;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.GroupBox gbAnimal;
-        private System.Windows.Forms.Label lbNombreAnimal;
-        private System.Windows.Forms.GroupBox gbTambo;
-        private System.Windows.Forms.TextBox txtTambo;
-        private System.Windows.Forms.GroupBox gbDescripciones;
-        private System.Windows.Forms.ComboBox cbEventos;
-        private System.Windows.Forms.Label lbCategoriaAnimal;
-        private System.Windows.Forms.Button btnBuscarAnimal;
-        private System.Windows.Forms.Label lbEstadoAnimal;
-        private System.Windows.Forms.Label lbError;
         private System.Windows.Forms.Label lbCaravana;
+        private System.Windows.Forms.Label lbError;
+        private System.Windows.Forms.Label lbEstadoAnimal;
+        private System.Windows.Forms.Button btnBuscarAnimal;
+        private System.Windows.Forms.Label lbCategoriaAnimal;
+        private System.Windows.Forms.Label lbNombreAnimal;
+        private System.Windows.Forms.GroupBox gbDescripciones;
+        private System.Windows.Forms.Label lbcria2;
+        private System.Windows.Forms.Label lbcria1;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

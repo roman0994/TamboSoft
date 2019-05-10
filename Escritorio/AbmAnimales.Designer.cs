@@ -473,8 +473,8 @@
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Label lbTituloFormulario;
         private System.Windows.Forms.GroupBox gbMadre;
-        private System.Windows.Forms.TextBox txtHBAMadre;
-        private System.Windows.Forms.TextBox txtRPMadre;
+        public System.Windows.Forms.TextBox txtHBAMadre;
+        public System.Windows.Forms.TextBox txtRPMadre;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox gbPadre;
@@ -492,7 +492,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.ComboBox cbRaza;
         private System.Windows.Forms.DateTimePicker dtpFechaNacimiento;
-        private System.Windows.Forms.ComboBox cbCategoria;
+        public System.Windows.Forms.ComboBox cbCategoria;
         private System.Windows.Forms.TextBox txtHBA;
         private System.Windows.Forms.TextBox txtNombre;
         private System.Windows.Forms.Label label13;

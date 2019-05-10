@@ -14,6 +14,8 @@ namespace Escritorio
         Raza_Negocio razanegocio;
         Tambo_Negocio tambonegocio;
         Categoria_Negocio categorianegocio;
+        Control_Animal_Negocio controlNegocio;
+        EventoAnimal_Negocio eventoNegocio;
 
         public GestionAnimales(int id_tambo)
         {
@@ -22,6 +24,8 @@ namespace Escritorio
             razanegocio = new Raza_Negocio();
             tambonegocio = new Tambo_Negocio();
             categorianegocio = new Categoria_Negocio();
+            controlNegocio = new Control_Animal_Negocio();
+            eventoNegocio = new EventoAnimal_Negocio();
             CargarGrilla(id_tambo);
             CargarComboBusqueda();
             InicializarTextBox();
@@ -244,27 +248,41 @@ namespace Escritorio
             {
                 if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
                 {
-                    int id_tambo = Principal.Tambo.Id_tambo;
-                    int rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
+                    if (eventoNegocio.TieneEventos(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value)))
+                    {
+                        int id_tambo = Principal.Tambo.Id_tambo;
+                        int rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
 
-                    HistoriaClinica historiaClinica = new HistoriaClinica();
-                    EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                        HistoriaClinica historiaClinica = new HistoriaClinica();
+                        EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
 
-                    historiaClinica.dgvHistorialClinico.DataSource = eventoAnimalDescNegocio.RecuperarPorTamboYAnimal(id_tambo, rp);
-                    historiaClinica.Show();
+                        historiaClinica.dgvHistorialClinico.DataSource = eventoAnimalDescNegocio.RecuperarPorTamboYAnimal(id_tambo, rp);
+                        historiaClinica.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El animal no posee historia clínica", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
             else if(e.ColumnIndex == 20)
             {
                 if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
                 {
-                    int id_tambo = Principal.Tambo.Id_tambo;
-                    int rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
+                    if (controlNegocio.TieneControles(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value)))
+                    {
+                        int id_tambo = Principal.Tambo.Id_tambo;
+                        int rp = Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["rp"].Value);
 
-                    HistorialProduccion historialProd = new HistorialProduccion();
-                    Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-                    historialProd.dgvHistorialProduccion.DataSource = controlAnimalNegocio.RecuperarPorTamboYAnimal(id_tambo, rp);
-                    historialProd.Show();
+                        HistorialProduccion historialProd = new HistorialProduccion();
+                        Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+                        historialProd.dgvHistorialProduccion.DataSource = controlAnimalNegocio.RecuperarPorTamboYAnimal(id_tambo, rp);
+                        historialProd.Show();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El animal no posee historial de producción", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
             }
 

@@ -584,8 +584,6 @@ namespace Datos
             }
         }
 
-
-
         public void Insertar(EventoAnimal_DescSubevento ev_des, List<Desc_Subevento> listadodescripciones)
         {
             try
@@ -937,6 +935,41 @@ namespace Datos
             {
                 return false;
             }
+        }
+
+        public bool HayPartos(DateTime fechaDesde, DateTime fechaHasta,int idtambo)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdEventos = new SqlCommand("exec spReporteReproduccionPorFechas @fechaDesde,@fechaHasta,@idtambo;", Conn);
+                cmdEventos.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
+                cmdEventos.Parameters.Add("fechaHasta", SqlDbType.DateTime).Value = fechaHasta;
+                cmdEventos.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+                SqlDataReader drEventos = cmdEventos.ExecuteReader();
+
+                if (drEventos.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }catch (SqlException sql)
+            {
+                throw sql;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+           
         }
 
     }

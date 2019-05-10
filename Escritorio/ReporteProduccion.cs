@@ -18,6 +18,7 @@ namespace Escritorio
         public int mes;
         public int año;
         public int bandera = 0;
+        Control_Animal_Negocio controlAnimalNegocio;
 
         public ReporteProduccion()
         {
@@ -25,7 +26,8 @@ namespace Escritorio
 
             CargarComboAño();
             CargarComboMes();
-            
+            this.btnExportar.Enabled = false;
+            controlAnimalNegocio = new Control_Animal_Negocio();
         }
 
         public void CargaComboAnimal()
@@ -111,6 +113,7 @@ namespace Escritorio
         private void cbMes_SelectedIndexChanged(object sender, EventArgs e)
         {
             //this.btnBuscar.Enabled = true;
+            this.btnExportar.Enabled = true;
         }
 
         private void cbAnimal_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,16 +166,26 @@ namespace Escritorio
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            año = Convert.ToInt32(this.cbAño.SelectedItem.ToString());
+            try
+            {
+                año = Convert.ToInt32(this.cbAño.SelectedItem.ToString());
 
-            mes = this.cbMes.SelectedIndex + 01;
+                mes = this.cbMes.SelectedIndex + 01;
+                if (controlAnimalNegocio.HayControlesMes(mes, año, Principal.Tambo.Id_tambo))
+                {
+                    vpProduccionPorFechaMes vp = new vpProduccionPorFechaMes(mes, año);
+                    vp.Show();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron controles en el intervalo de fechas ingresado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
-            vpProduccionPorFechaMes vp = new vpProduccionPorFechaMes(mes, año);
-            vp.Show();
-
-
-
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); 
+            }
 
             //Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
             ////int rp = Convert.ToInt32(this.cbAnimal.SelectedValue);

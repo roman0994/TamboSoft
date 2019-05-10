@@ -74,7 +74,7 @@ namespace Escritorio
         {
             if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
             {
-                this.CargarGrilla(Convert.ToInt32(this.dgvEventos.CurrentRow.Cells["id_tambo"].Value));
+                this.CargarGrilla(Principal.Tambo.Id_tambo);
             }
         }
 

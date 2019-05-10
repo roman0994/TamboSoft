@@ -41,12 +41,39 @@ namespace Datos
             }
         }
 
+        public bool TieneEventos(int rp)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdEventos = new SqlCommand("SELECT e.rp,e.id_evento,e.fecha_desc FROM Evento_Animal e inner join Animal a on a.rp=e.rp where e.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+                cmdEventos.Parameters.Add("rp", SqlDbType.Int).Value = rp;
+                SqlDataReader drEventos = cmdEventos.ExecuteReader();
 
-       
+                if (drEventos.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
 
-       
-
-
+        }
 
     }
 }

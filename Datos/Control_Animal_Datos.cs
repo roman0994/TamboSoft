@@ -62,7 +62,7 @@ namespace Datos
             {
                 List<Control_Animal> lista = new List<Control_Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo, " +
+                SqlCommand cmdControlAnimal = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.id_tambo, " +
                                                             " a.caravana,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol, " +
                                                             " c.grasa_segundocontrol" +
                                                             " from Control_Animal ca " +
@@ -554,7 +554,24 @@ namespace Datos
         public DataTable FiltrarPorNombre(string texto,int idtambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+            SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by ca.fecha_control desc", Conn);
+            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+
+            SqlDataReader dr = cmdFiltro.ExecuteReader();
+            DataTable dt = new DataTable();
+
+            dt.Load(dr);
+
+            dr.Close();
+            this.CerrarConexion();
+            return dt;
+
+        }
+
+        public DataTable FiltrarPorCaravana(string caravana, int idtambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.caravana like ('%" + caravana + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by ca.fecha_control desc", Conn);
             cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
             SqlDataReader dr = cmdFiltro.ExecuteReader();
@@ -605,6 +622,42 @@ namespace Datos
             this.AbrirConexion();
             SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
             cmdControles.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            SqlDataReader drControles = cmdControles.ExecuteReader();
+
+            if (drControles.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool HayControlesMes(int mes, int anio, int id_tambo)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdControles = new SqlCommand("exec RankingProduccionLecheraPorMes @mes,@anio,@id_tambo;", Conn);
+            cmdControles.Parameters.Add("mes", SqlDbType.Int).Value = mes;
+            cmdControles.Parameters.Add("anio", SqlDbType.Int).Value = anio;
+            cmdControles.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            SqlDataReader drControles = cmdControles.ExecuteReader();
+
+            if (drControles.Read())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool TieneControles(int rp)
+        {
+            this.AbrirConexion();
+            SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+            cmdControles.Parameters.Add("rp", SqlDbType.Int).Value = rp;
             SqlDataReader drControles = cmdControles.ExecuteReader();
 
             if (drControles.Read())

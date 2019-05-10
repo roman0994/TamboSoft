@@ -48,9 +48,9 @@ namespace Negocio
             return animalDatos.RecuperarUno(rp);
         }
 
-        public Animal RecuperarUnoPorCaravana(string caravana)
+        public Animal RecuperarUnoPorCaravana(string caravana,int idtambo)
         {
-            return animalDatos.RecuperarUnoPorCaravana(caravana);
+            return animalDatos.RecuperarUnoPorCaravana(caravana,idtambo);
         }
 
         public List<Animal> RecuperarVacasServidasPorTambo(int id_tambo)

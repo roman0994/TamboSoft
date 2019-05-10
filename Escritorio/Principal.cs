@@ -159,7 +159,7 @@ namespace Escritorio
             if (animalNegocio.HayAnimales(Principal.Tambo.Id_tambo))
             {
                 //AltaEventos alta = new AltaEventos(id_tambo);
-                AbmEvento form = new AbmEvento();
+                AltaEventos form = new AltaEventos(Tambo.Id_tambo);
                 form.ShowDialog();
             }
             else
@@ -262,11 +262,10 @@ namespace Escritorio
         private void reporteEventosToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
+            if (animalNegocio.HayAnimales(Principal.Tambo.Id_tambo))
             {
-                ReporteEventos reporteEventos = new ReporteEventos(id_tambo);
-                reporteEventos.idtambo = id_tambo;
-                reporteEventos.ShowDialog();
+                vpExistencia vp = new vpExistencia();
+                vp.Show();
             }
             else
             {

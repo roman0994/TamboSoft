@@ -81,7 +81,6 @@ namespace Escritorio
         {
             AltaUsuarios altaUsuarios = new AltaUsuarios();
             altaUsuarios.Show();
-            this.Hide();
         }
 
         private void LoginUsuario_Load(object sender, EventArgs e)

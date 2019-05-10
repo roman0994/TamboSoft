@@ -28,8 +28,12 @@ namespace Negocio
 
                 throw ex;
             }
-            
+           
+        }
 
+        public bool TieneEventos(int rp)
+        {
+            return evdatos.TieneEventos(rp);
         }
 
     }

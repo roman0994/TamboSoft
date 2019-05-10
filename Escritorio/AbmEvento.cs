@@ -21,10 +21,11 @@ namespace Escritorio
         public Evento Evento { get; set; }
         public Animal Animal { get; set; }
         public Animal Cria { get; set; }
+        public Animal Cria2 { get; set; }
         Inseminador inseminador;
         List<Desc_Subevento> listadoSubeventos;
-
-
+        int cantidadcombos = 0;
+        System.Threading.Thread t;
         public AbmEvento()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace Escritorio
             Evento              = new Evento();
             Animal              = new Animal();
             Cria                = new Animal();
+            Cria2               = new Animal();
             Inicializacion();
         }
 
@@ -92,17 +94,18 @@ namespace Escritorio
                 if (Evento.SubEventos.Count > 0)
                 {
                     Evento.SubEventos = dessubeventonegocio.RecuperarTodos(Evento.SubEventos);
-                
 
+                    
                     foreach (var item in Evento.SubEventos)
                     {
-                                    
+                                 
                         Label lb = new Label();
                         lb.Text = item.Nombre_subevento;
                         lb.Location = new Point(17, cant);
                         lb.Visible = true;
                         lb.AutoSize = true;
                         this.gbDescripciones.Controls.Add(lb);
+                        
 
 
                         ComboBox combo = new ComboBox();
@@ -111,6 +114,7 @@ namespace Escritorio
                             combo.Visible = true;
                             combo.Location = new Point(180, cant);
                             combo.DropDownStyle = ComboBoxStyle.DropDownList;
+                            
                             combo.SelectionChangeCommitted += Combo_SelectionChangeCommitted;
                             combo.DataSource = Principal.Tambo.Inseminadores;
                             combo.DisplayMember = "nombre_inseminador";
@@ -166,9 +170,11 @@ namespace Escritorio
             try
             {
                 var combo = (ComboBox)sender;
-
+                int cant = 10;
                 if (combo.SelectedIndex != -1)
                 {
+                    var descripcion = listadoSubeventos.Where(x => x.Id_subevento == ((Desc_Subevento)combo.SelectedItem).Id_subevento).FirstOrDefault();
+                    listadoSubeventos.Remove(descripcion);
                     if (Evento.Nombre_evento == "Servicio")
                     {
                         inseminador = new Inseminador();
@@ -182,33 +188,106 @@ namespace Escritorio
                         listadoSubeventos.Add((Desc_Subevento)combo.SelectedItem);
                     }
 
-                    if (Evento.Nombre_evento == "Parto" && ((Desc_Subevento)combo.SelectedItem).Descripcion == "Vivo" )
+                    if ( (  (Evento.Nombre_evento == "Parto") 
+                            &&  
+                            ( 
+                                ((Desc_Subevento)combo.SelectedItem).Descripcion == "Vivo"
+                                 &&
+                                (listadoSubeventos.Exists(x => x.Descripcion == "Mell. Hembra-Macho" ||
+                                x.Descripcion == "Mell. Hembra-Hembra" || x.Descripcion == "Mell. Macho-Macho"))
+                            )                         
+                            ||
+                            (
+                                (
+                                ((Desc_Subevento)combo.SelectedItem).Descripcion == "Mell. Hembra-Macho" ||
+                                ((Desc_Subevento)combo.SelectedItem).Descripcion == "Mell. Hembra-Hembra" ||
+                                ((Desc_Subevento)combo.SelectedItem).Descripcion == "Mell. Macho-Macho"
+                                )
+                                &&
+                                (listadoSubeventos.Exists(x => x.Descripcion == "Vivo"))
+                            )
+                        )
+                      )
+
                     {
-                        foreach (System.Windows.Forms.Control item in this.gbDescripciones.Controls)
+                        for (int i = 0; i < this.gbDescripciones.Controls.Count; i++)
                         {
-                            if (item.GetType().FullName == "System.Windows.Forms.Button")
+                            foreach (System.Windows.Forms.Control item in this.gbDescripciones.Controls)
                             {
-                                this.gbDescripciones.Controls.Remove(item);
+                                if (item.GetType().FullName == "System.Windows.Forms.Button")
+                                {
+                                    this.gbDescripciones.Controls.Remove(item);
+                                }
+
+                            }
+                        }
+                       
+
+                            
+                            for (int i = 1; i <= 2; i++)
+                            {
+                                Button button = new Button();
+                                button.Location = new Point(cant, 127);
+
+                                button.Text = "Agregar cria " + i;
+                                button.Click += Button_Click;
+                                button.Visible = true;
+                                cant = cant + 286;
+                                this.gbDescripciones.Controls.Add(button);
                             }
 
+
+                    }
+                    else if (   (Evento.Nombre_evento == "Parto") &&
+                                    (
+                                    ((Desc_Subevento)combo.SelectedItem).Descripcion == "Vivo" ||
+                                    listadoSubeventos.Exists(x => x.Descripcion == "Vivo")
+                                    )                          
+                           )
+                    {
+
+                        for (int i = 0; i < this.gbDescripciones.Controls.Count; i++)
+                        {
+                            foreach (System.Windows.Forms.Control item in this.gbDescripciones.Controls)
+                            {
+                                if (item.GetType().FullName == "System.Windows.Forms.Button")
+                                {
+                                    this.gbDescripciones.Controls.Remove(item);
+                                }
+
+                            }
                         }
                         Button button = new Button();
-                        button.Location = new Point(295, 144);
-                        button.Text = "Agregar cria";
-                        button.Click += Button_Click;
-                        button.Visible = true;
-                        this.gbDescripciones.Controls.Add(button);
-                    }
-                    else if (Evento.Nombre_evento == "Parto" && ((Desc_Subevento)combo.SelectedItem).Descripcion == "Muerto")
-                    {
-                        foreach (System.Windows.Forms.Control item in this.gbDescripciones.Controls)
-                        {
-                            if (item.GetType().FullName == "System.Windows.Forms.Button")
-                            {
-                                this.gbDescripciones.Controls.Remove(item);
-                            }
+                            button.Location = new Point(10, 127);
 
+                            button.Text = "Agregar cria ";
+                            button.Click += Button_Click;
+                            button.Visible = true;
+                            this.gbDescripciones.Controls.Add(button);
+                        
+                    }
+                    else if (Evento.Nombre_evento == "Parto" && 
+                                (
+                                    ((Desc_Subevento)combo.SelectedItem).Descripcion == "Muerto" ||
+                                    listadoSubeventos.Exists(x => x.Descripcion == "Muerto")
+                                )
+                            )
+
+                    {
+
+                        for (int i = 0; i < this.gbDescripciones.Controls.Count; i++)
+                        {
+                            foreach (System.Windows.Forms.Control item in this.gbDescripciones.Controls)
+                            {
+                                if (item.GetType().FullName == "System.Windows.Forms.Button")
+                                {
+                                    this.gbDescripciones.Controls.Remove(item);
+                                }
+
+                            }
                         }
+                            
+                        
                     }
                 }
             }
@@ -223,12 +302,33 @@ namespace Escritorio
         {
             try
             {
+                var boton = (Button)sender;
                 AbmAnimales altaAnimales = new AbmAnimales(Principal.ModoForm.CRIA,Animal);
+                altaAnimales.txtRPMadre.Text = Animal.Caravana.ToString();
                 altaAnimales.ShowDialog();
+
+                if (altaAnimales.Animal.Rp != 0)
+                {
+                    if (Cria.Rp == 0 && Cria2.Rp == 0)
+                    {
+                        Cria = altaAnimales.Animal;
+                        lbcria1.Text = "Caravana cría: " + Cria.Caravana;
+                        lbcria1.Visible = true;
+                    }
+                    else if (Cria.Rp != 0 && Cria2.Rp == 0)
+                    {
+                        Cria2 = altaAnimales.Animal;
+                        lbcria1.Text = "Caravana segunda cría: " + Cria2.Caravana;
+                        lbcria2.Visible = true;
+                    }
+
+                }
+               
                 //Cria = altaAnimales.Animal;
                 //MessageBox.Show("Se ha cargado correctamente la cria. \n " +
                 //                 "Caravana: "   + Cria.Caravana +
                 //                 "\n Nombre: "  + Cria.Nombre_animal,"Alta de la cria",MessageBoxButtons.OK);
+                boton.Enabled = false;
             }
             catch (Exception ex)
             {
@@ -245,7 +345,8 @@ namespace Escritorio
             lbNombreAnimal.Text = "";
             lbCaravana.Text = "";
             lbEstadoAnimal.Text = "";
-            
+            lbcria1.Text = "";
+
             gbEvento.Visible = false;
             gbDescripciones.Visible = false;
             dtpFecha.Value = DateTime.Now;
@@ -261,11 +362,34 @@ namespace Escritorio
 
         }
 
+        private void start()
+        {
+            longProcess(15);
+        }
+
+        private void longProcess(int seconds)
+        {
+            System.Threading.Thread.Sleep(seconds * 1000);
+            if (this.InvokeRequired) this.Invoke(new Action(finishProcess));
+        }
+
+        private void finishProcess()
+        {
+            //progressBar1.Style = ProgressBarStyle.Blocks;
+            //lbSincronizacion.Text = "Finalizado";
+            //btnSincronizar.Enabled = true;
+            //btnSubir.Enabled = true;
+        }
 
         private void cbEventos_SelectionChangeCommitted(object sender, EventArgs e)
         {
+
             try
             {
+                t = new System.Threading.Thread(start);
+                t.Start();
+
+
                 if (this.gbDescripciones.Visible == true)
                 {
                     this.gbDescripciones.Visible = false;
@@ -276,8 +400,11 @@ namespace Escritorio
                     listadoSubeventos = new List<Desc_Subevento>();
                     Evento = (Evento)cbEventos.SelectedItem;
                     Evento = eventonegocio.TraerSubEventosEvento(Evento);
+                    cantidadcombos = Evento.SubEventos.Count;
+
                     CargarSubEventos();
                 }
+                finishProcess();
             }
             catch (Exception ex)
             {

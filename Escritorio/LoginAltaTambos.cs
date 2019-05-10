@@ -11,6 +11,7 @@ using Util;
 using Negocio;
 using Entidades;
 using Datos;
+using static Escritorio.Principal;
 
 namespace Escritorio
 {
@@ -64,11 +65,11 @@ namespace Escritorio
                     Tambo_Negocio tamboNegocio = new Tambo_Negocio();
                     Tambo tambo = new Tambo();
                     int id_tambo;
-              
+
                     tambo = MapearATambo();
                     id_tambo = tamboNegocio.InsertarDevolviendoID(tambo);
                     DialogResult result = MessageBox.Show("El tambo fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
+
                     Principal principal = new Principal(id_tambo);
                     principal.id_tambo = id_tambo;
                     principal.id_usuario = Usuario.Id_usuario;
@@ -129,12 +130,23 @@ namespace Escritorio
 
         private void btnAtras_Click(object sender, EventArgs e)
         {
-            CargarTablas cargarTablas = new CargarTablas();
-            cargarTablas.CargaTablasData();
-            Login login = new Login();
-            //login.id_usuario = Program.UsuarioSesion.Id_usuario;
-            login.Show();
-            this.Hide();
+            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+            if (tamboNegocio.HayTambos(Program.UsuarioSesion.Id_usuario))
+            {
+                CargarTablas cargarTablas = new CargarTablas();
+                cargarTablas.CargaTablasData();
+                Login login = new Login();
+                //login.id_usuario = Program.UsuarioSesion.Id_usuario;
+                login.Show();
+                this.Hide();
+            }
+            else
+            {
+                Program.UsuarioSesion = null;
+                LoginUsuario login = new LoginUsuario();
+                login.Show();
+                this.Hide();
+            }
         }
     }
 }

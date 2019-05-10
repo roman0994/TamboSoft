@@ -58,7 +58,6 @@ namespace Escritorio
             else
             {
                 btnImprimir.Enabled = false;
-                MessageBox.Show("No posee registros","Historia clinica",MessageBoxButtons.OK);
             }
         }
     }

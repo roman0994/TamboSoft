@@ -105,7 +105,19 @@ namespace Escritorio
             Animal.Tambo = Principal.Tambo;
             Animal.Id_tambo = Principal.Tambo.Id_tambo;
 
-           
+            //Manejo de la categoria
+            if (cbCategoria.SelectedIndex != -1)
+            {
+                Animal.Categoria = new Categoria();
+                Animal.Categoria = (Categoria)cbCategoria.SelectedItem;
+                Animal.Id_Categoria = ((Categoria)cbCategoria.SelectedItem).Id_Categoria;
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar una categoria para el animal", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                cbCategoria.Focus();
+            }
+
             Animal.Caravana = txtCaravana.Text;
 
 
@@ -171,7 +183,7 @@ namespace Escritorio
                 return false;
             }
 
-            if (Animal.Categoria == null)
+            if (/*Animal.Categoria == null*/cbCategoria.SelectedIndex == -1)
             {
                 MessageBox.Show("Debe seleccionar una categoria para el animal", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 cbCategoria.Focus();
@@ -341,6 +353,7 @@ namespace Escritorio
                     else if (ModoForm == ModoForm.CRIA)
                     {
                         animalnegocio.Insertar(Animal);
+                        Animal = animalnegocio.RecuperarUnoPorCaravana(Animal.Caravana,Principal.Tambo.Id_tambo);
                         MessageBox.Show("La cría fue dada de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                         this.Dispose();
                     }

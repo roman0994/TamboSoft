@@ -98,6 +98,11 @@ namespace Negocio
             return controlAnimalDatos.FiltrarPorNombre(texto,idtambo);
         }
 
+        public DataTable FiltrarPorCaravana(string caravana, int idtambo)
+        {
+            return controlAnimalDatos.FiltrarPorCaravana(caravana, idtambo);
+        }
+
         public DataTable FiltrarPorRP(int rp)
         {
             return controlAnimalDatos.FiltrarPorRP(rp);
@@ -111,6 +116,25 @@ namespace Negocio
         public bool HayControles(int id_tambo)
         {
             return controlAnimalDatos.HayControles(id_tambo);
+        }
+
+        public bool HayControlesMes(int mes, int anio, int id_tambo)
+        {
+            try
+            {
+                return controlAnimalDatos.HayControlesMes(mes, anio, id_tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
+        }
+
+        public bool TieneControles(int rp)
+        {
+            return controlAnimalDatos.TieneControles(rp);
         }
     }
 }

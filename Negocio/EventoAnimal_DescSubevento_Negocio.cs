@@ -117,5 +117,10 @@ namespace Negocio
         {
             return eventoAnimal_DescSubevento.HayEventos(id_tambo);
         }
+
+        public bool HayPartos(DateTime fechaDesde, DateTime fechaHasta, int id_tambo)
+        {
+            return eventoAnimal_DescSubevento.HayPartos(fechaDesde,fechaHasta,id_tambo);
+        }
     }
 }

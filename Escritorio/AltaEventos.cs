@@ -20,6 +20,8 @@ namespace Escritorio
         Evento_Negocio eventonegocio;
         Animal Animal;
         Evento Evento;
+        public Animal Cria { get; set; }
+        public Animal Cria2 { get; set; }
 
         public AltaEventos(int id_tambo)
         {
@@ -30,9 +32,13 @@ namespace Escritorio
             eventonegocio = new Evento_Negocio();
             Animal = new Animal();
             Evento = new Evento();
+            Cria = new Animal();
+            Cria2 = new Animal();
             CargarTextBoxTambo(id_tambo);
-            CargarListaEventos();
             
+            btnCria.Visible = false;
+            btnCria2.Visible = false;
+
         }
 
         public void CargarTextBoxTambo(int id_tambo)
@@ -43,15 +49,27 @@ namespace Escritorio
             this.txtTambo.Text = tambo.Nombre_tambo;
         }
 
-        public void CargarListaEventos()
+        public void CargarListaEventos(Animal animal)
         {
             Evento_Negocio eventoNegocio = new Evento_Negocio();
-            //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
-            this.lbEventos.DisplayMember = "nombre_evento";
-            this.lbEventos.ValueMember = "id_evento";
-            this.lbEventos.DataSource = eventoNegocio.RecuperarTodos();
-            this.lbEventos.SelectedIndex = -1;
-            this.cbAnimal.Enabled = false;
+            if (animal.Categoria.Descripcion == "Vaca")
+            {                
+                //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
+                this.lbEventos.DisplayMember = "nombre_evento";
+                this.lbEventos.ValueMember = "id_evento";
+                this.lbEventos.DataSource = eventoNegocio.RecuperarTodos();
+                this.lbEventos.SelectedIndex = -1;
+                //this.cbAnimal.Enabled = false;
+            }
+            else if(animal.Categoria.Descripcion == "Toro")
+            {
+                //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
+                this.lbEventos.DisplayMember = "nombre_evento";
+                this.lbEventos.ValueMember = "id_evento";
+                this.lbEventos.DataSource = eventoNegocio.RecuperarEventosParaToros();
+                this.lbEventos.SelectedIndex = -1;
+                //this.cbAnimal.Enabled = false;
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -61,22 +79,29 @@ namespace Escritorio
 
         private void lbEventos_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnCria.Visible = false;
+            btnCria2.Visible = false;
+
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            if (this.lbEventos.SelectedIndex == -1)
+
+            if (Animal.Categoria.Descripcion == "Vaca")
             {
-                this.label1.Visible = false;
-                this.label2.Visible = false;
-                this.label3.Visible = false;
-                this.label4.Visible = false;
-                this.comboBox1.Visible = false;
-                this.comboBox2.Visible = false;
-                this.comboBox3.Visible = false;
-                this.comboBox4.Visible = false;
-                this.cbAnimal.Enabled = false;
-            }
-            else if (this.lbEventos.SelectedIndex == 0)
-            {
-                    CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
+                if (this.lbEventos.SelectedIndex == -1)
+                {
+                    this.label1.Visible = false;
+                    this.label2.Visible = false;
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = false;
+                    this.comboBox2.Visible = false;
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    //this.cbAnimal.Enabled = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 0)
+                {
+                    //CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
                     this.label1.Visible = true;
                     this.label1.Text = "Sexo cría:";
                     this.label2.Visible = true;
@@ -91,206 +116,314 @@ namespace Escritorio
                     this.comboBox3.Visible = true;
                     CargarCombo3Parto();
                     this.comboBox4.Visible = false;
-
-            }
-            else if (this.lbEventos.SelectedIndex == 1)
-            {
-                if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
-                {
-                    CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
-                    this.label1.Visible = true;
-                    this.label1.Text = "Causa aborto:";
-                    this.label2.Visible = false;
-                    this.label3.Visible = false;
-                    this.label4.Visible = false;
-                    this.comboBox1.Visible = true;
-                    CargarComboAborto();
-                    this.comboBox2.Visible = false;
-                    this.comboBox3.Visible = false;
-                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
                 }
-                else
+                else if (this.lbEventos.SelectedIndex == 1)
                 {
-                    MessageBox.Show("No se pueden registrar abortos debido a que no existen vacas registradas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.lbEventos.SelectedIndex = -1;
-                }
-            }
-            else if (this.lbEventos.SelectedIndex == 2)
-            {
-                if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
-                {
-                    CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
-                    this.label1.Visible = true;
-                    this.label1.Text = "Causa de no inseminar:";
-                    this.label2.Visible = true;
-                    this.label2.Text = "Medicación genital:";
-                    this.label3.Visible = true;
-                    this.label3.Text = "Vía de aplicación:";
-                    this.label4.Visible = false;
-                    this.comboBox1.Visible = true;
-                    CargarCombo1Celo();
-                    this.comboBox2.Visible = true;
-                    CargarCombo2Celo();
-                    this.comboBox3.Visible = true;
-                    CargarCombo3Celo();
-                    this.comboBox4.Visible = false;
-                }
-                else
-                {
-                    MessageBox.Show("No se pueden registrar eventos de celo debido a que no existen vacas registradas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.lbEventos.SelectedIndex = -1;
-                }
-            }
-            else if (this.lbEventos.SelectedIndex == 3)
-            {
-                CargaComboAnimal(Principal.Tambo.Id_tambo);
-                this.label1.Visible = true;
-                this.label1.Text = "Especificación:";
-                this.label2.Visible = false;
-                this.label3.Visible = false;
-                this.label4.Visible = false;
-                this.comboBox1.Visible = true;
-                CargarComboVenta();
-                this.comboBox2.Visible = false;
-                this.comboBox3.Visible = false;
-                this.comboBox4.Visible = false;
-            }
-            else if (this.lbEventos.SelectedIndex == 4)
-            {
-                CargaComboAnimal(Principal.Tambo.Id_tambo);
-                this.label1.Visible = true;
-                this.label1.Text = "Especificación:";
-                this.label2.Visible = false;
-                this.label3.Visible = false;
-                this.label4.Visible = false;
-                this.comboBox1.Visible = true;
-                CargarComboMuerte();
-                this.comboBox2.Visible = false;
-                this.comboBox3.Visible = false;
-                this.comboBox4.Visible = false;
-            }
-            else if (this.lbEventos.SelectedIndex == 5)
-            {
-                CargaComboAnimal(Principal.Tambo.Id_tambo);
-                this.label1.Visible = true;
-                this.label1.Text = "Tipo enfermedad:";
-                this.label2.Visible = true;
-                this.label2.Text = "Medicamento:";
-                this.label3.Visible = false;
-                this.label4.Visible = false;
-                this.comboBox1.Visible = true;
-                CargarCombo1Enfermedad();
-                this.comboBox2.Visible = true;
-                CargarCombo2Enfermedad();
-                this.comboBox3.Visible = false;
-                this.comboBox4.Visible = false;
-            }
-            else if (this.lbEventos.SelectedIndex == 6)
-            {
-                if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
-                {
-                    CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
-                    this.label1.Visible = true;
-                    this.label1.Text = "Diagnóstico útero:";
-                    this.label2.Visible = true;
-                    this.label2.Text = "Enfermedad útero:";
-                    this.label3.Visible = true;
-                    this.label3.Text = "Enfermedad ovario:";
-                    this.label4.Visible = true;
-                    this.label4.Text = "Medicación genital:";
-                    this.comboBox1.Visible = true;
-                    CargarCombo1TactoRectal();
-                    this.comboBox2.Visible = true;
-                    CargarCombo2TactoRectal();
-                    this.comboBox3.Visible = true;
-                    CargarCombo3TactoRectal();
-                    this.comboBox4.Visible = true;
-                    CargarCombo4TactoRectal();
-                }
-                else
-                {
-                    MessageBox.Show("No se puede dar de alta este evento debido a que no existen vacas registradas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.lbEventos.SelectedIndex = -1;
-                }
-            }
-            else if (this.lbEventos.SelectedIndex == 7)
-            {
-                CargaComboAnimal(Principal.Tambo.Id_tambo);
-                this.label1.Visible = true;
-                this.label1.Text = "Medicamento:";
-                this.label2.Visible = true;
-                this.label2.Text = "Vía de aplicación:";
-                this.label3.Visible = false;
-                this.label4.Visible = false;
-                this.comboBox1.Visible = true;
-                CargarCombo1Medicacion();
-                this.comboBox2.Visible = true;
-                CargarCombo2Medicacion();
-                this.comboBox3.Visible = false;
-                this.comboBox4.Visible = false;
-            }
-            else if (this.lbEventos.SelectedIndex == 8)
-            {
-                CargaComboAnimal(Principal.Tambo.Id_tambo);
-                this.label1.Visible = true;
-                this.label1.Text = "Causa rechazo:";
-                this.label2.Visible = false;
-                this.label3.Visible = false;
-                this.label4.Visible = false;
-                this.comboBox1.Visible = true;
-                CargarComboRechazo();
-                this.comboBox2.Visible = false;
-                this.comboBox3.Visible = false;
-                this.comboBox4.Visible = false;
-            }
-            else if (this.lbEventos.SelectedIndex == 9)
-            {
-                CargaComboAnimal(Principal.Tambo.Id_tambo);
-                this.label1.Visible = true;
-                this.label1.Text = "Tipo análisis:";
-                this.label2.Visible = false;
-                this.label3.Visible = false;
-                this.label4.Visible = false;
-                this.comboBox1.Visible = true;
-                CargarComboAnalisis();
-                this.comboBox2.Visible = false;
-                this.comboBox3.Visible = false;
-                this.comboBox4.Visible = false;
-            }
-            else if (this.lbEventos.SelectedIndex == 10)
-            {
-                if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
-                {
-                    Tambo_Inseminador_Negocio insNegocio = new Tambo_Inseminador_Negocio();
-                    if (insNegocio.HayInseminadores(Principal.Tambo.Id_tambo))
+                    if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
                     {
-                        CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
+                        //CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
                         this.label1.Visible = true;
-                        this.label1.Text = "Inseminador:";
+                        this.label1.Text = "Causa aborto:";
                         this.label2.Visible = false;
                         this.label3.Visible = false;
                         this.label4.Visible = false;
                         this.comboBox1.Visible = true;
-                        CargarComboInseminador();
+                        CargarComboAborto();
                         this.comboBox2.Visible = false;
                         this.comboBox3.Visible = false;
                         this.comboBox4.Visible = false;
+                        this.btnLimpiar.Visible = true;
                     }
                     else
                     {
-                        MessageBox.Show("Debe registrar inseminadores para dar de alta el servicio", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("No se pueden registrar abortos debido a que no existen vacas registradas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         this.lbEventos.SelectedIndex = -1;
                     }
                 }
-                else
+                else if (this.lbEventos.SelectedIndex == 2)
                 {
-                    MessageBox.Show("No se puede dar de alta este evento debido a que no existen vacas registradas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.lbEventos.SelectedIndex = -1;
+                    if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
+                    {
+                        //CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
+                        this.label1.Visible = true;
+                        this.label1.Text = "Causa de no inseminar:";
+                        this.label2.Visible = true;
+                        this.label2.Text = "Medicación genital:";
+                        this.label3.Visible = true;
+                        this.label3.Text = "Vía de aplicación:";
+                        this.label4.Visible = false;
+                        this.comboBox1.Visible = true;
+                        CargarCombo1Celo();
+                        this.comboBox2.Visible = true;
+                        CargarCombo2Celo();
+                        this.comboBox3.Visible = true;
+                        CargarCombo3Celo();
+                        this.comboBox4.Visible = false;
+                        this.btnLimpiar.Visible = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se pueden registrar eventos de celo debido a que no existen vacas registradas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.lbEventos.SelectedIndex = -1;
+                    }
+                }
+                else if (this.lbEventos.SelectedIndex == 3)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Especificación:";
+                    this.label2.Visible = false;
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarComboVenta();
+                    this.comboBox2.Visible = false;
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 4)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Especificación:";
+                    this.label2.Visible = false;
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarComboMuerte();
+                    this.comboBox2.Visible = false;
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 5)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Tipo enfermedad:";
+                    this.label2.Visible = true;
+                    this.label2.Text = "Medicamento:";
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarCombo1Enfermedad();
+                    this.comboBox2.Visible = true;
+                    CargarCombo2Enfermedad();
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 6)
+                {
+                    if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
+                    {
+                        //CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
+                        this.label1.Visible = true;
+                        this.label1.Text = "Diagnóstico útero:";
+                        this.label2.Visible = true;
+                        this.label2.Text = "Enfermedad útero:";
+                        this.label3.Visible = true;
+                        this.label3.Text = "Enfermedad ovario:";
+                        this.label4.Visible = true;
+                        this.label4.Text = "Medicación genital:";
+                        this.comboBox1.Visible = true;
+                        CargarCombo1TactoRectal();
+                        this.comboBox2.Visible = true;
+                        CargarCombo2TactoRectal();
+                        this.comboBox3.Visible = true;
+                        CargarCombo3TactoRectal();
+                        this.comboBox4.Visible = true;
+                        CargarCombo4TactoRectal();
+                        this.btnLimpiar.Visible = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se puede dar de alta este evento debido a que no existen vacas registradas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.lbEventos.SelectedIndex = -1;
+                    }
+                }
+                else if (this.lbEventos.SelectedIndex == 7)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Medicamento:";
+                    this.label2.Visible = true;
+                    this.label2.Text = "Vía de aplicación:";
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarCombo1Medicacion();
+                    this.comboBox2.Visible = true;
+                    CargarCombo2Medicacion();
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 8)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Causa rechazo:";
+                    this.label2.Visible = false;
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarComboRechazo();
+                    this.comboBox2.Visible = false;
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 9)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Tipo análisis:";
+                    this.label2.Visible = false;
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarComboAnalisis();
+                    this.comboBox2.Visible = false;
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 10)
+                {
+                    if (animalNegocio.HayVacas(Principal.Tambo.Id_tambo))
+                    {
+                        Tambo_Inseminador_Negocio insNegocio = new Tambo_Inseminador_Negocio();
+                        if (insNegocio.HayInseminadores(Principal.Tambo.Id_tambo))
+                        {
+                            //CargaComboAnimalSoloVacas(Principal.Tambo.Id_tambo);
+                            this.label1.Visible = true;
+                            this.label1.Text = "Inseminador:";
+                            this.label2.Visible = false;
+                            this.label3.Visible = false;
+                            this.label4.Visible = false;
+                            this.comboBox1.Visible = true;
+                            CargarComboInseminador();
+                            this.comboBox2.Visible = false;
+                            this.comboBox3.Visible = false;
+                            this.comboBox4.Visible = false;
+                            this.btnLimpiar.Visible = true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe registrar inseminadores para dar de alta el servicio", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.lbEventos.SelectedIndex = -1;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("No se puede dar de alta este evento debido a que no existen vacas registradas.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.lbEventos.SelectedIndex = -1;
+                    }
+                }
+            }
+
+
+            else if (Animal.Categoria.Descripcion == "Toro")
+            {
+                if (this.lbEventos.SelectedIndex == -1)
+                {
+                    this.label1.Visible = false;
+                    this.label2.Visible = false;
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = false;
+                    this.comboBox2.Visible = false;
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    //this.cbAnimal.Enabled = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 0)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Especificación:";
+                    this.label2.Visible = false;
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarComboVenta();
+                    this.comboBox2.Visible = false;
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 1)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Especificación:";
+                    this.label2.Visible = false;
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarComboMuerte();
+                    this.comboBox2.Visible = false;
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 2)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Tipo enfermedad:";
+                    this.label2.Visible = true;
+                    this.label2.Text = "Medicamento:";
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarCombo1Enfermedad();
+                    this.comboBox2.Visible = true;
+                    CargarCombo2Enfermedad();
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 3)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Medicamento:";
+                    this.label2.Visible = true;
+                    this.label2.Text = "Vía de aplicación:";
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarCombo1Medicacion();
+                    this.comboBox2.Visible = true;
+                    CargarCombo2Medicacion();
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
+                }
+                else if (this.lbEventos.SelectedIndex == 4)
+                {
+                    //CargaComboAnimal(Principal.Tambo.Id_tambo);
+                    this.label1.Visible = true;
+                    this.label1.Text = "Tipo análisis:";
+                    this.label2.Visible = false;
+                    this.label3.Visible = false;
+                    this.label4.Visible = false;
+                    this.comboBox1.Visible = true;
+                    CargarComboAnalisis();
+                    this.comboBox2.Visible = false;
+                    this.comboBox3.Visible = false;
+                    this.comboBox4.Visible = false;
+                    this.btnLimpiar.Visible = true;
                 }
             }
         }
 
-        public void CargaComboAnimal(int id_tambo)
+        /*public void CargaComboAnimal(int id_tambo)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error   
@@ -301,9 +434,9 @@ namespace Escritorio
             this.cbAnimal.Enabled = true;
             
             
-        }
+        }*/
 
-        public void CargaComboAnimalSoloVacas(int id_tambo)
+        /*public void CargaComboAnimalSoloVacas(int id_tambo)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
             //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error   
@@ -313,7 +446,7 @@ namespace Escritorio
             this.cbAnimal.SelectedIndex = -1;
             this.cbAnimal.Enabled = true;
             
-        }
+        }*/
 
         Desc_Subevento_Negocio descSubeventoNegocio = new Desc_Subevento_Negocio();
 
@@ -471,15 +604,15 @@ namespace Escritorio
             {
 
                 Evento_Animal evento_animal = new Evento_Animal();
-                evento_animal.Rp = animalnegocio.RecuperarUno(Convert.ToInt32(cbAnimal.SelectedValue)).Rp;
+                evento_animal.Rp = animalnegocio.RecuperarPorRP(Animal.Rp).Rp;
                 evento_animal.Id_evento = eventonegocio.RecuperarUno(Convert.ToInt32(lbEventos.SelectedValue)).Id_evento;
                 evento_animal.Fecha_desc = dtpFecha.Value;
                 eventoanimal_negocio.Insertar(evento_animal);
 
 
                 if (this.lbEventos.SelectedIndex == 1 || this.lbEventos.SelectedIndex == 3 || this.lbEventos.SelectedIndex == 4 || this.lbEventos.SelectedIndex == 8 || this.lbEventos.SelectedIndex == 9 || this.lbEventos.SelectedIndex == 10)
-            {
-                if (validaciones.ValidarCargaEventosTipo1(dtpFecha.Value.Date, cbAnimal.SelectedIndex, lbEventos.SelectedIndex, comboBox1.SelectedIndex))
+                {
+                if (validaciones.ValidarCargaEventosTipo1(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex))
                 {
                     //Creo el evento
                     EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
@@ -520,7 +653,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 5 || this.lbEventos.SelectedIndex == 7)
             {
-                if (validaciones.ValidarCargaEventosTipo2(dtpFecha.Value.Date, cbAnimal.SelectedIndex, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex))
+                if (validaciones.ValidarCargaEventosTipo2(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex))
                 {
                     //Creo los eventos
                     EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
@@ -552,7 +685,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 0 || this.lbEventos.SelectedIndex == 2)
             {
-                if (validaciones.ValidarCargaEventosTipo3(dtpFecha.Value.Date, cbAnimal.SelectedIndex, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex))
+                if (validaciones.ValidarCargaEventosTipo3(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex))
                 {
                     EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
                     EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
@@ -586,7 +719,7 @@ namespace Escritorio
             }
             else if (this.lbEventos.SelectedIndex == 6)
             {
-                if (validaciones.ValidarCargaEventosTipo4(dtpFecha.Value.Date, cbAnimal.SelectedIndex, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex, comboBox4.SelectedIndex))
+                if (validaciones.ValidarCargaEventosTipo4(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex, comboBox4.SelectedIndex))
                 {
                     EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
                     EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
@@ -641,7 +774,7 @@ namespace Escritorio
             Evento_Negocio eventoNegocio = new Evento_Negocio();
             Desc_Subevento_Negocio descSubeventoNegocio = new Desc_Subevento_Negocio();       
             Tambo tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
-            Animal animal = animalNegocio.RecuperarUno(Convert.ToInt32(cbAnimal.SelectedValue));
+            //Animal animal = animalNegocio.RecuperarPorRP(Animal.Rp);
             Evento evento = eventoNegocio.RecuperarUno(Convert.ToInt32(lbEventos.SelectedValue));
            
 
@@ -654,7 +787,7 @@ namespace Escritorio
             
 
 
-            eventoAnimal.Rp = animal.Rp;
+            eventoAnimal.Rp = Animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
             eventoAnimal.Id_tambo = tambo.Id_tambo;
             eventoAnimal.Estado_evento = true;
@@ -684,7 +817,8 @@ namespace Escritorio
             Desc_Subevento_Negocio descSubeventoNegocio = new Desc_Subevento_Negocio();
 
             Tambo tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
-            Animal animal = animalNegocio.RecuperarUno(Convert.ToInt32(cbAnimal.SelectedValue));
+            //Animal animal = animalNegocio.RecuperarUnoPorCaravana(Animal.Caravana, Principal.Tambo.Id_tambo);
+            //Animal animal = animalNegocio.RecuperarPorRP(Animal.Rp);
             Evento evento = eventoNegocio.RecuperarUno(Convert.ToInt32(lbEventos.SelectedValue));
             Desc_Subevento descSubevento = descSubeventoNegocio.RecuperarUno(Convert.ToInt32(comboBox2.SelectedValue));
 
@@ -696,7 +830,7 @@ namespace Escritorio
            
 
 
-            eventoAnimal.Rp = animal.Rp;
+            eventoAnimal.Rp = Animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
             eventoAnimal.Id_desc = descSubevento.Id_desc;
             eventoAnimal.Id_tambo = tambo.Id_tambo;
@@ -721,7 +855,8 @@ namespace Escritorio
             Desc_Subevento_Negocio descSubeventoNegocio = new Desc_Subevento_Negocio();
 
             Tambo tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
-            Animal animal = animalNegocio.RecuperarUno(Convert.ToInt32(cbAnimal.SelectedValue));
+            //Animal animal = animalNegocio.RecuperarUnoPorCaravana(Animal.Caravana, Principal.Tambo.Id_tambo);
+            //Animal animal = animalNegocio.RecuperarPorRP(Animal.Rp);
             Evento evento = eventoNegocio.RecuperarUno(Convert.ToInt32(lbEventos.SelectedValue));
             Desc_Subevento descSubevento = descSubeventoNegocio.RecuperarUno(Convert.ToInt32(comboBox3.SelectedValue));
 
@@ -735,7 +870,7 @@ namespace Escritorio
 
 
 
-            eventoAnimal.Rp = animal.Rp;
+            eventoAnimal.Rp = Animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
             eventoAnimal.Id_desc = descSubevento.Id_desc;
             eventoAnimal.Id_tambo = tambo.Id_tambo;
@@ -761,7 +896,8 @@ namespace Escritorio
             Desc_Subevento_Negocio descSubeventoNegocio = new Desc_Subevento_Negocio();
 
             Tambo tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
-            Animal animal = animalNegocio.RecuperarUno(Convert.ToInt32(cbAnimal.SelectedValue));
+            //Animal animal = animalNegocio.RecuperarUnoPorCaravana(Animal.Caravana, Principal.Tambo.Id_tambo);
+            //Animal animal = animalNegocio.RecuperarPorRP(Animal.Rp);
             Evento evento = eventoNegocio.RecuperarUno(Convert.ToInt32(lbEventos.SelectedValue));
             Desc_Subevento descSubevento = descSubeventoNegocio.RecuperarUno(Convert.ToInt32(comboBox4.SelectedValue));
 
@@ -776,7 +912,7 @@ namespace Escritorio
 
 
 
-            eventoAnimal.Rp = animal.Rp;
+            eventoAnimal.Rp = Animal.Rp;
             eventoAnimal.Id_evento = evento.Id_evento;
             eventoAnimal.Id_desc = descSubevento.Id_desc;
             eventoAnimal.Id_tambo = tambo.Id_tambo;
@@ -793,19 +929,53 @@ namespace Escritorio
         public void Limpiar()
         {
             this.dtpFecha.Text = string.Empty;
-            this.cbAnimal.SelectedIndex = -1;
-            this.lbEventos.SelectedIndex = -1;
+            //this.cbAnimal.SelectedIndex = -1;
+            lbEventos.DataSource = null;
+            lbEventos.Enabled = true;
+
+            lbError.Text = "";
+            lbCaravana.Text = "";
+            lbNombreAnimal.Text = "";
+            lbCategoriaAnimal.Text = "";
+            lbEstadoAnimal.Text = "";
+
+            btnCria.Visible = false;
+            btnCria2.Visible = false;
+
+            btnLimpiar.Visible = false;
+
+            Animal = null;
+            Cria = null;
+            Cria2 = null;
         }
 
         private void AltaEventos_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Dispose();
-            /*DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result != DialogResult.Yes)
+            if (HayCamposModificados())
             {
+                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                {
                     e.Cancel = true;
-            }*/
-            
+                }
+                else
+                {
+                    this.Dispose();
+                }
+            }
+
+        }
+
+        private bool HayCamposModificados()
+        {
+            if (lbEventos.SelectedIndex == -1 && comboBox1.SelectedIndex == -1 && comboBox2.SelectedIndex == -1 && comboBox3.SelectedIndex == -1 && comboBox4.SelectedIndex == -1)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -827,14 +997,286 @@ namespace Escritorio
 
         }
 
-        private void cbAnimal_SelectionChangeCommitted(object sender, EventArgs e)
+        private void btnBuscarAnimal_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnCria.Visible = false;
+                btnCria2.Visible = false;
+
+                ListaSeleccionAnimal form = new ListaSeleccionAnimal();
+                form.ShowDialog();
+
+                if (form.Animal.Rp != 0)
+                {
+                    Animal = form.Animal;
+                    lbError.Text = "";
+                    lbCaravana.Text = "Caravana: " + Animal.Caravana;
+                    lbNombreAnimal.Text = "Nombre: " + Animal.Nombre_animal;
+                    lbCategoriaAnimal.Text = "Tipo: " + Animal.Categoria.Descripcion;
+                    lbEstadoAnimal.Text = "Estado actual: " + Animal.Estado_animal;
+
+                    lbEventos.DataSource = null;
+                    lbEventos.Visible = true;
+                    CargarListaEventos(Animal);
+                }
+                else
+                {
+                    lbNombreAnimal.Text = "";
+                    lbCategoriaAnimal.Text = "";
+                    lbEstadoAnimal.Text = "";
+                    lbError.Text = "Vuelva a seleccionar un animal";
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ocurrio un error al buscar el animal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /*private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho")
+            {
+
+            }
+            else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho")
+            {
+
+            }
+        }*/
+
+        private void comboBox3_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            /*if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo" && ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho")
+            {
+                btnCria.Visible = true;
+                btnCria2.Visible = false;
+            }
+            else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo" && ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho")
+            {
+                btnCria.Visible = true;
+                btnCria2.Visible = true;
+            }
+            else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto" && ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho")
+            {
+                btnCria.Visible = false;
+                btnCria2.Visible = false;
+            }*/
+            if (comboBox1.SelectedIndex == -1)
+            {
+                btnCria.Visible = false;
+                btnCria2.Visible = false;
+            }
+            else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
+            {
+                btnCria.Visible = false;
+                btnCria2.Visible = false;
+            }
+            else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+            {
+                btnCria.Visible = true;
+                btnCria2.Visible = false;
+            }
+            else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+            {
+                btnCria.Visible = true;
+                btnCria2.Visible = true;
+            }
+        }
+
+        private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if(comboBox3.SelectedIndex == -1)
+            {
+                btnCria.Visible = false;
+                btnCria2.Visible = false;
+            }
+            else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
+            {
+                btnCria.Visible = false;
+                btnCria2.Visible = false;
+            }
+            else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+            {
+                btnCria.Visible = true;
+                btnCria2.Visible = false;
+            }
+            else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+            {
+                btnCria.Visible = true;
+                btnCria2.Visible = true;
+            }
+            /*else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
+            {
+                btnCria.Visible = false;
+                btnCria2.Visible = false;
+            }*/
+
+        }
+
+        private void btnCria_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                AbmAnimales altaAnimales = new AbmAnimales(Principal.ModoForm.CRIA, Animal);
+                altaAnimales.txtRPMadre.Text = Animal.Caravana.ToString();
+                if(Animal.Hba != 0)
+                {
+                    altaAnimales.txtHBAMadre.Text = Animal.Hba.ToString();
+                }
+                if (comboBox3.SelectedIndex != -1 && comboBox1.SelectedIndex != -1)
+                {
+                    Categoria_Negocio cn = new Categoria_Negocio();
+                    Categoria c = new Categoria();
+                    if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra")
+                    {
+                        altaAnimales.cbCategoria.SelectedIndex = 0;
+                        //c = cn.RecuperarUno(1);
+                        //altaAnimales.cbCategoria.SelectedItem = Animal.Categoria;
+                        //altaAnimales.cbCategoria.SelectedValue = Animal.Categoria.Id_Categoria;
+                    }
+                    else if(((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho")
+                    {
+                        altaAnimales.cbCategoria.SelectedIndex = 1;
+                        //c = cn.RecuperarUno(2);
+                        //altaAnimales.cbCategoria.SelectedItem = c;
+                        //altaAnimales.cbCategoria.SelectedValue = c.Id_Categoria;
+                    }
+                }
+
+
+                altaAnimales.ShowDialog();
+
+                if (altaAnimales.Animal.Rp != 0)
+                {
+                    if (Cria.Rp == 0)
+                    {
+                        Cria = altaAnimales.Animal;
+                        //lbcria1.Text = "Caravana cría: " + Cria.Caravana;
+                        //lbcria1.Visible = true;
+                        
+                    }
+
+                    DeshabilitarBtnCria1();
+
+                    //else if (Cria.Rp != 0)
+                    //{
+                        //Cria2 = altaAnimales.Animal;
+                        //lbcria1.Text = "Caravana segunda cría: " + Cria2.Caravana;
+                        //lbcria2.Visible = true;
+                    //}
+
+                }
+
+                //Cria = altaAnimales.Animal;
+                //MessageBox.Show("Se ha cargado correctamente la cria. \n " +
+                //                 "Caravana: "   + Cria.Caravana +
+                //                 "\n Nombre: "  + Cria.Nombre_animal,"Alta de la cria",MessageBoxButtons.OK);
+                
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+            }
+        }
+
+        private void btnCria2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                AbmAnimales altaAnimales = new AbmAnimales(Principal.ModoForm.CRIA, Animal);
+                altaAnimales.txtRPMadre.Text = Animal.Caravana.ToString();
+                //altaAnimales.cbCategoria.Text = Animal.Categoria.Descripcion;
+                altaAnimales.ShowDialog();
+
+                if (altaAnimales.Animal.Rp != 0)
+                {
+                    if (Cria2.Rp == 0)
+                    {
+                        Cria2 = altaAnimales.Animal;
+                        //lbcria1.Text = "Caravana cría: " + Cria.Caravana;
+                        //lbcria1.Visible = true;
+                        
+                    }
+
+                    DeshabilitarBtnCria2();
+
+                    //else if (Cria2.Rp != 0)
+                    //{
+                        //Cria2 = altaAnimales.Animal;
+                        //lbcria1.Text = "Caravana segunda cría: " + Cria2.Caravana;
+                        //lbcria2.Visible = true;
+                    //}
+
+                }
+
+                //Cria = altaAnimales.Animal;
+                //MessageBox.Show("Se ha cargado correctamente la cria. \n " +
+                //                 "Caravana: "   + Cria.Caravana +
+                //                 "\n Nombre: "  + Cria.Nombre_animal,"Alta de la cria",MessageBoxButtons.OK);
+                
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+            }
+        }
+
+        private void DeshabilitarBtnCria1()
+        {
+            if (Cria.Rp != 0)
+            {
+                btnCria.Enabled = false;
+                lbEventos.Enabled = false;
+            }
+        }
+
+        private void DeshabilitarBtnCria2()
+        {
+            if (Cria2.Rp != 0)
+            {
+                btnCria2.Enabled = false;
+                lbEventos.Enabled = false;
+            }
+        }
+
+        private void btnLimpiar_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("¿Desea continuar sin guardar los cambios?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.Yes)
+            {
+                if (Cria != null)
+                {
+                    if (Cria.Rp != 0)
+                    {
+                        animalnegocio.Eliminar(Cria.Rp);
+                    }
+                }
+                if(Cria2 != null)
+                { 
+                    if (Cria2.Rp != 0)
+                    {
+                        animalnegocio.Eliminar(Cria2.Rp);
+                    }
+                }
+
+                this.Limpiar();
+            }
+        }
+
+        /*private void cbAnimal_SelectionChangeCommitted(object sender, EventArgs e)
         {
             if (cbAnimal.SelectedIndex > -1)
             {
                 Animal = (Animal)cbAnimal.SelectedItem;
                 lbNombreAnimal.Text = "Nombre: " + Animal.Nombre_animal;
             }
-        }
+        }*/
 
 
     }   

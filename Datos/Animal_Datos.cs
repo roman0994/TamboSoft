@@ -228,7 +228,7 @@ namespace Datos
                 this.AbrirConexion();
                 SqlCommand cmdAnimal = new SqlCommand("select * " +
                                                      " from dbo.vw_ListadoAnimales " +
-                                                     " where id_tambo=@id_tambo " +
+                                                     " where id_tambo=@id_tambo and habilitado = 'true'" +
                                                      " order by Cast(caravana as int) asc", Conn);
 
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
@@ -354,7 +354,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
                                                        "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
                                                        "a.caravana,c.id_categoria " +
                                                     " FROM Animal a " +
@@ -428,7 +428,7 @@ namespace Datos
         public DataTable RecuperarDTVacasServidasPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+            SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
                                                       "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
                                                       "a.caravana,c.id_categoria " +
                                                    " FROM Animal a " +
@@ -460,7 +460,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
                                                       "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
                                                       "a.caravana,c.id_categoria " +
                                                    " FROM Animal a " +
@@ -533,7 +533,7 @@ namespace Datos
         public DataTable RecuperarDTVacasConPartoPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+            SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
                                                      "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
                                                      "a.caravana,c.id_categoria " +
                                                   " FROM Animal a " +
@@ -565,7 +565,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
                                                      "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
                                                      "a.caravana,c.id_categoria " +
                                                   " FROM Animal a " +
@@ -636,7 +636,7 @@ namespace Datos
         public DataTable RecuperarDTAnimalesEnfermosPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+            SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
                                                       "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
                                                       "a.caravana,c.id_categoria " +
                                                    " FROM Animal a " +
@@ -647,8 +647,6 @@ namespace Datos
                                                    " inner join Categoria c on c.id_categoria = a.id_categoria" +
                                                   " where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' " +
                                                      " order by a.nombre_animal", Conn);
-            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-
             cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
             SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -668,7 +666,7 @@ namespace Datos
             {
                 List<Animal> lista = new List<Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
                                                      "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
                                                      "a.caravana,c.id_categoria " +
                                                   " FROM Animal a " +
@@ -739,7 +737,7 @@ namespace Datos
         public DataTable RecuperarDTVacasEnCeloPorTambo(int id_tambo)
         {
             this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+            SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
                                                      "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
                                                      "a.caravana,c.id_categoria " +
                                                   " FROM Animal a " +
@@ -1082,25 +1080,20 @@ namespace Datos
             }
         }
 
-        public Animal RecuperarUnoPorCaravana(string caravana)
+        public Animal RecuperarUnoPorCaravana(string caravana,int idtambo)
         {
             try
             {
                 Animal animal = new Animal();
+                
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
-                                                    "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
-                                                    "a.caravana,c.id_categoria " +
-                                                 " FROM Animal a " +
-                                                 " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
-                                                 " inner join Evento e on ev.id_evento = e.id_evento " +
-                                                 " inner join Raza r on a.id_raza=r.id_raza " +
-                                                 " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                 " inner join Categoria c on c.id_categoria = a.id_categoria" +
-                                                " where a.caravana=@caravana and a.habilitado='true' " +
-                                                   " order by a.nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand(" select * from dbo.vw_ListadoAnimales " +
+                                                        "where caravana =@caravana and habilitado = 'true'" +
+                                                        " and id_tambo = @idtambo ", Conn);
+
 
                 cmdAnimal.Parameters.Add("caravana", SqlDbType.Int).Value = caravana;
+                cmdAnimal.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
 
                 if (dr.Read())
@@ -1328,17 +1321,8 @@ namespace Datos
             {
                 Animal animal = new Animal();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
-                                                    "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
-                                                    "a.caravana,c.id_categoria " +
-                                                 " FROM Animal a " +
-                                                 " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
-                                                 " inner join Evento e on ev.id_evento = e.id_evento " +
-                                                 " inner join Raza r on a.id_raza=r.id_raza " +
-                                                 " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                 " inner join Categoria c on c.id_categoria = a.id_categoria" +
-                                                " where a.rp=@rp and a.habilitado='true' " +
-                                                   " order by a.nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand(" select * from dbo.vw_ListadoAnimales " +
+                                                        "where rp =@rp and habilitado = 'true'", Conn);
 
                 cmdAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -1738,7 +1722,7 @@ namespace Datos
 
                 if (dr.Read())
                 {
-                    numcaravana = Convert.ToInt32(dr["caravana"]);
+                    numcaravana = dr.IsDBNull(0) ? 0 : Convert.ToInt32(dr["caravana"]);
                 }
                 dr.Close();
                 return numcaravana;

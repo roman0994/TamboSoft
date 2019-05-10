@@ -106,7 +106,9 @@ namespace Escritorio
         public Control_Animal MapearAControlAnimal()
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            Animal animal = animalNegocio.RecuperarUnoPorCaravana((cbAnimal.SelectedValue).ToString());
+
+            Animal animal = (Animal)cbAnimal.SelectedItem;
+            
             Control_Animal control = new Control_Animal();
 
             control.Fecha_control = dtpFechaControl.Value.Date;

@@ -25,11 +25,11 @@ namespace Escritorio
             InitializeComponent();
             Animal = new Animal();
 
-            CargaComboAnimal();
+            CargaDatosAnimal();
             CargarToolTips();
         }
 
-        public void CargaComboAnimal()
+        public void CargaDatosAnimal()
         {
             //Animal_Negocio animalNegocio = new Animal_Negocio();
             //this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(Principal.Tambo.Id_tambo);

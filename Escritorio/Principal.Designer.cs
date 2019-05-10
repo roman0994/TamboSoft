@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.toolStripContainer1 = new System.Windows.Forms.ToolStripContainer();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.btnVolver = new System.Windows.Forms.Button();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -61,7 +62,6 @@
             this.sincronizarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.acercaDeTamboSoftToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnCerrarSesion = new System.Windows.Forms.Button();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -90,6 +90,17 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.menuStrip1);
+            // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnCerrarSesion.Location = new System.Drawing.Point(51, 247);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(181, 28);
+            this.btnCerrarSesion.TabIndex = 4;
+            this.btnCerrarSesion.Text = "Cerrar Sesión";
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // btnVolver
             // 
@@ -313,21 +324,21 @@
             // reporteProduccionToolStripMenuItem
             // 
             this.reporteProduccionToolStripMenuItem.Name = "reporteProduccionToolStripMenuItem";
-            this.reporteProduccionToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.reporteProduccionToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.reporteProduccionToolStripMenuItem.Text = "Producción";
             this.reporteProduccionToolStripMenuItem.Click += new System.EventHandler(this.reporteProduccionToolStripMenuItem_Click);
             // 
             // reporteEventosToolStripMenuItem1
             // 
             this.reporteEventosToolStripMenuItem1.Name = "reporteEventosToolStripMenuItem1";
-            this.reporteEventosToolStripMenuItem1.Size = new System.Drawing.Size(175, 22);
-            this.reporteEventosToolStripMenuItem1.Text = "Estado de animales";
+            this.reporteEventosToolStripMenuItem1.Size = new System.Drawing.Size(148, 22);
+            this.reporteEventosToolStripMenuItem1.Text = "Existencia";
             this.reporteEventosToolStripMenuItem1.Click += new System.EventHandler(this.reporteEventosToolStripMenuItem1_Click);
             // 
             // reproducciónToolStripMenuItem
             // 
             this.reproducciónToolStripMenuItem.Name = "reproducciónToolStripMenuItem";
-            this.reproducciónToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
+            this.reproducciónToolStripMenuItem.Size = new System.Drawing.Size(148, 22);
             this.reproducciónToolStripMenuItem.Text = "Reproducción";
             this.reproducciónToolStripMenuItem.Click += new System.EventHandler(this.reproducciónToolStripMenuItem_Click);
             // 
@@ -360,17 +371,6 @@
             this.acercaDeTamboSoftToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
             this.acercaDeTamboSoftToolStripMenuItem.Text = "Acerca de TamboSoft";
             this.acercaDeTamboSoftToolStripMenuItem.Click += new System.EventHandler(this.acercaDeTamboSoftToolStripMenuItem_Click);
-            // 
-            // btnCerrarSesion
-            // 
-            this.btnCerrarSesion.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnCerrarSesion.Location = new System.Drawing.Point(51, 247);
-            this.btnCerrarSesion.Name = "btnCerrarSesion";
-            this.btnCerrarSesion.Size = new System.Drawing.Size(181, 28);
-            this.btnCerrarSesion.TabIndex = 4;
-            this.btnCerrarSesion.Text = "Cerrar Sesión";
-            this.btnCerrarSesion.UseVisualStyleBackColor = true;
-            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
             // 
             // Principal
             // 

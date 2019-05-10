@@ -9,9 +9,9 @@ namespace Util
 {
     public class Validaciones
     {
-        public bool ValidarCargaEventosTipo1(DateTime fecha, int indexAnimal, int indexEvento, int indexSubevento1)
+        public bool ValidarCargaEventosTipo1(DateTime fecha, int indexEvento, int indexSubevento1)
         {
-            if (fecha == null || indexAnimal == -1 || indexEvento == -1 || indexSubevento1 == -1)
+            if (fecha == null || indexEvento == -1 || indexSubevento1 == -1)
             {
                 return false;
             }
@@ -21,9 +21,9 @@ namespace Util
             }
         }
 
-        public bool ValidarCargaEventosTipo2(DateTime fecha, int indexAnimal, int indexEvento, int indexSubevento1, int indexSubevento2)
+        public bool ValidarCargaEventosTipo2(DateTime fecha, int indexEvento, int indexSubevento1, int indexSubevento2)
         {
-            if (fecha == null || indexAnimal == -1 || indexEvento == -1 || indexSubevento1 == -1 || indexSubevento2 == -1)
+            if (fecha == null || indexEvento == -1 || indexSubevento1 == -1 || indexSubevento2 == -1)
             {
                 return false;
             }
@@ -33,9 +33,9 @@ namespace Util
             }
         }
 
-        public bool ValidarCargaEventosTipo3(DateTime fecha, int indexAnimal, int indexEvento, int indexSubevento1, int indexSubevento2, int indexSubevento3)
+        public bool ValidarCargaEventosTipo3(DateTime fecha, int indexEvento, int indexSubevento1, int indexSubevento2, int indexSubevento3)
         {
-            if (fecha == null || indexAnimal == -1 || indexEvento == -1 || indexSubevento1 == -1 || indexSubevento2 == -1 || indexSubevento3 == -1)
+            if (fecha == null || indexEvento == -1 || indexSubevento1 == -1 || indexSubevento2 == -1 || indexSubevento3 == -1)
             {
                 return false;
             }
@@ -45,9 +45,9 @@ namespace Util
             }
         }
 
-        public bool ValidarCargaEventosTipo4(DateTime fecha, int indexAnimal, int indexEvento, int indexSubevento1, int indexSubevento2, int indexSubevento3, int indexSubevento4)
+        public bool ValidarCargaEventosTipo4(DateTime fecha, int indexEvento, int indexSubevento1, int indexSubevento2, int indexSubevento3, int indexSubevento4)
         {
-            if (fecha == null || indexAnimal == -1 || indexEvento == -1 || indexSubevento1 == -1 || indexSubevento2 == -1 || indexSubevento3 == -1 || indexSubevento4 == -1)
+            if (fecha == null || indexEvento == -1 || indexSubevento1 == -1 || indexSubevento2 == -1 || indexSubevento3 == -1 || indexSubevento4 == -1)
             {
                 return false;
             }

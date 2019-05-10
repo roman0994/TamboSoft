@@ -393,9 +393,9 @@
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.Location = new System.Drawing.Point(21, 26);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(25, 13);
+            this.label15.Size = new System.Drawing.Size(56, 13);
             this.label15.TabIndex = 0;
-            this.label15.Text = "RP:";
+            this.label15.Text = "Caravana:";
             // 
             // groupBox3
             // 
@@ -444,9 +444,9 @@
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.Location = new System.Drawing.Point(23, 26);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(25, 13);
+            this.label17.Size = new System.Drawing.Size(56, 13);
             this.label17.TabIndex = 0;
-            this.label17.Text = "RP:";
+            this.label17.Text = "Caravana:";
             // 
             // EdicionAnimales
             // 

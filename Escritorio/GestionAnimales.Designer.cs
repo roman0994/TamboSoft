@@ -64,9 +64,9 @@
             // btnEditar
             // 
             this.btnEditar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
-            this.btnEditar.Location = new System.Drawing.Point(531, 566);
+            this.btnEditar.Location = new System.Drawing.Point(531, 565);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(75, 39);
+            this.btnEditar.Size = new System.Drawing.Size(75, 40);
             this.btnEditar.TabIndex = 4;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -111,9 +111,9 @@
             // 
             this.btnSalir.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(911, 566);
+            this.btnSalir.Location = new System.Drawing.Point(911, 565);
             this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(75, 39);
+            this.btnSalir.Size = new System.Drawing.Size(75, 40);
             this.btnSalir.TabIndex = 5;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
@@ -149,9 +149,9 @@
             this.btnEliminar.BackColor = System.Drawing.Color.Red;
             this.btnEliminar.FlatAppearance.BorderColor = System.Drawing.Color.Red;
             this.btnEliminar.ForeColor = System.Drawing.Color.White;
-            this.btnEliminar.Location = new System.Drawing.Point(153, 566);
+            this.btnEliminar.Location = new System.Drawing.Point(153, 565);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 39);
+            this.btnEliminar.Size = new System.Drawing.Size(75, 40);
             this.btnEliminar.TabIndex = 3;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = false;
@@ -192,7 +192,7 @@
             this.dgvAnimales.Name = "dgvAnimales";
             this.dgvAnimales.ReadOnly = true;
             this.dgvAnimales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnimales.Size = new System.Drawing.Size(1128, 463);
+            this.dgvAnimales.Size = new System.Drawing.Size(1128, 462);
             this.dgvAnimales.TabIndex = 8;
             this.dgvAnimales.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAnimales_CellContentClick);
             // 
@@ -278,18 +278,18 @@
             // rp_madre
             // 
             this.rp_madre.DataPropertyName = "rp_madre";
-            this.rp_madre.HeaderText = "RP Madre";
+            this.rp_madre.HeaderText = "Caravana Madre";
             this.rp_madre.Name = "rp_madre";
             this.rp_madre.ReadOnly = true;
-            this.rp_madre.Width = 50;
+            this.rp_madre.Width = 60;
             // 
             // rp_padre
             // 
             this.rp_padre.DataPropertyName = "rp_padre";
-            this.rp_padre.HeaderText = "RP Padre";
+            this.rp_padre.HeaderText = "Caravana Padre";
             this.rp_padre.Name = "rp_padre";
             this.rp_padre.ReadOnly = true;
-            this.rp_padre.Width = 50;
+            this.rp_padre.Width = 60;
             // 
             // hba_madre
             // 

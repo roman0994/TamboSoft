@@ -52,6 +52,47 @@ namespace Datos
             }
         }
 
+        public List<Evento> RecuperarEventosParaToros()
+        {
+
+            try
+            {
+                List<Evento> lista = new List<Evento>();
+                this.AbrirConexion();
+                SqlCommand cmdEvento = new SqlCommand("SELECT id_evento,nombre_evento FROM Evento where nombre_evento='Analisis' or nombre_evento='Enfermedad' or nombre_evento='Medicacion' or nombre_evento='Muerte' or nombre_evento='Venta'", Conn);
+
+
+                SqlDataReader dr = cmdEvento.ExecuteReader();
+
+                while (dr.Read())
+                {
+
+                    Evento evento = new Evento();
+                    evento.Id_evento = dr.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["id_evento"]));
+                    evento.Nombre_evento = dr.IsDBNull(1) ? string.Empty : dr["nombre_evento"].ToString();
+
+
+                    lista.Add(evento);
+
+                }
+                dr.Close();
+                return lista;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del evento", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
         public List<Evento> RecuperarPorCategoria(int tipo_categoria)
         {
 

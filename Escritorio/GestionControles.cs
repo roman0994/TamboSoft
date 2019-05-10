@@ -20,6 +20,8 @@ namespace Escritorio
         {
             InitializeComponent();
             CargarGrilla(id_tambo);
+            CargarComboBusqueda();
+            InicializarTextBox();
         }
 
         public void CargarGrilla(int id_tambo)
@@ -39,6 +41,21 @@ namespace Escritorio
             }
         }
 
+        public void CargarComboBusqueda()
+        {
+            this.cbBuscar.Items.Add("Nombre animal");
+            this.cbBuscar.Items.Add("Caravana");
+            this.cbBuscar.SelectedIndex = -1;
+        }
+
+        public void InicializarTextBox()
+        {
+            if (this.cbBuscar.SelectedIndex == -1)
+            {
+                this.txtBuscar.Enabled = false;
+            }
+        }
+
         private void btnSalir_Click(object sender, EventArgs e)
         {
             this.Dispose();
@@ -47,7 +64,20 @@ namespace Escritorio
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
             Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
-            this.dgvControles.DataSource = controlNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo);
+
+            if (this.cbBuscar.SelectedIndex == -1)
+            {
+                this.txtBuscar.Enabled = false;
+                //MessageBox.Show("Debe seleccionar un parámetro a buscar en el combo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (this.cbBuscar.SelectedItem.ToString() == "Nombre animal")
+            {
+                this.dgvControles.DataSource = controlNegocio.FiltrarPorNombre(this.txtBuscar.Text, idtambo);
+            }
+            else if (this.cbBuscar.SelectedItem.ToString() == "Caravana")
+            {
+                this.dgvControles.DataSource = controlNegocio.FiltrarPorCaravana(this.txtBuscar.Text, idtambo);
+            }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -72,7 +102,7 @@ namespace Escritorio
         private void btnEditar_Click(object sender, EventArgs e)
         {
             Animal_Negocio animalNegocio = new Animal_Negocio();
-            Animal animal = animalNegocio.RecuperarUno(Convert.ToInt32(this.dgvControles.CurrentRow.Cells["rp"].Value));
+            Animal animal = animalNegocio.RecuperarPorRP(Convert.ToInt32(this.dgvControles.CurrentRow.Cells["rp"].Value));
             int id_tambo = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_tambo"].Value);
 
             EdicionControles edicion = new EdicionControles();
@@ -87,6 +117,7 @@ namespace Escritorio
             edicion.txtCaravana.Text = animal.Caravana;
             edicion.txtNombreAnimal.Text = animal.Nombre_animal;
             edicion.controlAnimalGlobal = MapearAControlAnimal();
+         
             edicion.Show();
             CargarGrilla(id_tambo);
 
@@ -116,13 +147,28 @@ namespace Escritorio
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar) || char.IsNumber(e.KeyChar))
             {
                 e.Handled = false;
             }
             else
             {
                 e.Handled = true;
+            }
+        }
+
+        private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            this.CargarGrilla(Principal.Tambo.Id_tambo);
+            this.txtBuscar.Text = string.Empty;
+
+            if (this.cbBuscar.SelectedIndex == -1)
+            {
+                this.txtBuscar.Enabled = false;
+            }
+            else
+            {
+                this.txtBuscar.Enabled = true;
             }
         }
     }

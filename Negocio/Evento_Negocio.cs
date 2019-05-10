@@ -38,6 +38,11 @@ namespace Negocio
             return eventoDatos.RecuperarTodos();
         }
 
+        public List<Evento> RecuperarEventosParaToros()
+        {
+            return eventoDatos.RecuperarEventosParaToros();
+        }
+
         public List<Evento> RecuperarPorCategoria(int categoria)
         {
             // categoria = 1 vaca

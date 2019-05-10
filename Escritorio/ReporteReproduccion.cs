@@ -15,10 +15,13 @@ namespace Escritorio
     public partial class ReporteReproduccion : Form
     {
         public int idtambo;
+        EventoAnimal_DescSubevento_Negocio eventoNegocio;
+
         public ReporteReproduccion(int id_tambo)
         {
             InitializeComponent();
             CargarTextBoxTambo(id_tambo);
+            eventoNegocio = new EventoAnimal_DescSubevento_Negocio();
             //CargarGrilla(id_tambo);
             //CargarCantidadCrias(id_tambo);
         }
@@ -99,15 +102,26 @@ namespace Escritorio
             {
                 DateTime fechaDesde = this.dateTimePicker1.Value;
                 DateTime fechaHasta = this.dateTimePicker2.Value;
-
-                vpReporteReproduccion vp = new vpReporteReproduccion(fechaDesde, fechaHasta);
-                vp.Show();
+  
+                if (fechaDesde > fechaHasta)
+                {
+                    MessageBox.Show("La primer fecha no puede ser superior a la segunda", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (eventoNegocio.HayPartos(fechaDesde,fechaHasta,Principal.Tambo.Id_tambo))
+                {
+                    vpReporteReproduccion vp = new vpReporteReproduccion(fechaDesde, fechaHasta);
+                    vp.Show();
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron partos en el intervalo de fechas ingresado", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
 
             }
             catch (Exception ex)
             {
 
-                MessageBox.Show("Error al exportar", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error al exportar", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             //vpReproduccion vistaPreviaReproduccion = new vpReproduccion();
