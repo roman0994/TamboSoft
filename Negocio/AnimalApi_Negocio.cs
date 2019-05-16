@@ -57,7 +57,7 @@ namespace Negocio
             List<AnimalApi> listadoModificados = new List<AnimalApi>();
             foreach (var item in listado)
             {
-                if (listadoBase.Exists(a => a.Rp == item.Rp && a.Caravana == item.Caravana && (a.FechaNacimiento != item.FechaNacimiento || a.NombreAnimal != item.NombreAnimal || a.EstadoAnimal != item.EstadoAnimal || a.Categoria != item.Categoria)))
+                if (listadoBase.Exists(a => a.Rp == item.Rp && a.Caravana == item.Caravana && (a.FechaNacimiento != item.FechaNacimiento || a.NombreAnimal != item.NombreAnimal || a.EstadoAnimal != item.EstadoAnimal)))
                 {
                     //if (listadoBase.Exists(a => a.FechaNacimiento != item.FechaNacimiento ||  a.NombreAnimal != item.NombreAnimal || a.EstadoAnimal != item.EstadoAnimal  || a.Categoria != item.Categoria ))
                     //{

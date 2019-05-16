@@ -15,7 +15,15 @@ namespace Negocio
 
         public bool HayEventos_Subeventos()
         {
-            return eventoSubeventoDatos.HayEventos_Subeventos();
+            try
+            {
+                return eventoSubeventoDatos.HayEventos_Subeventos();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

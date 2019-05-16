@@ -14,7 +14,15 @@ namespace Negocio
 
         public EventoAnimal_Negocio()
         {
-            evdatos = new EventoAnimal_Datos();
+            try
+            {
+                evdatos = new EventoAnimal_Datos();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Insertar(Evento_Animal eventoanimal)
@@ -33,7 +41,15 @@ namespace Negocio
 
         public bool TieneEventos(int rp)
         {
-            return evdatos.TieneEventos(rp);
+            try
+            {
+                return evdatos.TieneEventos(rp);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
     }

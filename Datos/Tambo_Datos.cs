@@ -13,62 +13,93 @@ namespace Datos
     {
         public List<Tambo> RecuperarTodos(int id_usuario)
         {
-            List<Tambo> lista = new List<Tambo>();
-            this.AbrirConexion();
-            SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,t.id_usuario,l.id_localidad," +
-                " l.nombre_localidad,p.nombre_provincia " +
-                " from Tambo t " +
-                " inner join Localidad l on t.id_localidad=l.id_localidad " +
-                " inner join Provincia p on l.id_provincia=p.id_provincia " +
-                " where t.estado_tambo = 'true' and t.id_usuario = @id_usuario ", Conn);
-            cmdTambos.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
-            SqlDataReader drTambo = cmdTambos.ExecuteReader();
-
-            while(drTambo.Read())
+            try
             {
-                Tambo tambo = new Tambo();
-                tambo.Id_tambo = drTambo.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_tambo"]));
-                tambo.Nombre_tambo = drTambo.IsDBNull(1) ? string.Empty : drTambo["nombre_tambo"].ToString();
-                tambo.Superficie = drTambo.IsDBNull (2) ? Convert.ToDecimal(string.Empty) : (Convert.ToDecimal(drTambo["superficie"]));
-                tambo.Estado_tambo = drTambo.IsDBNull(3) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(drTambo["estado_tambo"]));
-                tambo.Id_usuario = drTambo.IsDBNull(4) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_usuario"]));
-                tambo.Id_localidad = drTambo.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_localidad"]));
-                tambo.Nombre_localidad = drTambo.IsDBNull(6) ? string.Empty : drTambo["nombre_localidad"].ToString();
-                tambo.Nombre_provincia = drTambo.IsDBNull(7) ? string.Empty : drTambo["nombre_provincia"].ToString();
+                List<Tambo> lista = new List<Tambo>();
+                this.AbrirConexion();
+                SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,t.id_usuario,l.id_localidad," +
+                    " l.nombre_localidad,p.nombre_provincia " +
+                    " from Tambo t " +
+                    " inner join Localidad l on t.id_localidad=l.id_localidad " +
+                    " inner join Provincia p on l.id_provincia=p.id_provincia " +
+                    " where t.estado_tambo = 'true' and t.id_usuario = @id_usuario ", Conn);
+                cmdTambos.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
+                SqlDataReader drTambo = cmdTambos.ExecuteReader();
 
-                lista.Add(tambo);
+                while (drTambo.Read())
+                {
+                    Tambo tambo = new Tambo();
+                    tambo.Id_tambo = drTambo.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_tambo"]));
+                    tambo.Nombre_tambo = drTambo.IsDBNull(1) ? string.Empty : drTambo["nombre_tambo"].ToString();
+                    tambo.Superficie = drTambo.IsDBNull(2) ? Convert.ToDecimal(string.Empty) : (Convert.ToDecimal(drTambo["superficie"]));
+                    tambo.Estado_tambo = drTambo.IsDBNull(3) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(drTambo["estado_tambo"]));
+                    tambo.Id_usuario = drTambo.IsDBNull(4) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_usuario"]));
+                    tambo.Id_localidad = drTambo.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_localidad"]));
+                    tambo.Nombre_localidad = drTambo.IsDBNull(6) ? string.Empty : drTambo["nombre_localidad"].ToString();
+                    tambo.Nombre_provincia = drTambo.IsDBNull(7) ? string.Empty : drTambo["nombre_provincia"].ToString();
+
+                    lista.Add(tambo);
+                }
+                drTambo.Close();
+                return lista;
             }
-            drTambo.Close();
-            this.CerrarConexion();
-            return lista;
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del tambo", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public List<Tambo> RecuperarOtrosTambos(int id_tambo,int id_usuario)
         {
-            List<Tambo> lista = new List<Tambo>();
-            this.AbrirConexion();
-            SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,t.id_usuario,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @id_tambo and t.id_usuario=@id_usuario", Conn);
-            cmdTambos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            cmdTambos.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
-            SqlDataReader drTambo = cmdTambos.ExecuteReader();
-
-            while (drTambo.Read())
+            try
             {
-                Tambo tambo = new Tambo();
-                tambo.Id_tambo = drTambo.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_tambo"]));
-                tambo.Nombre_tambo = drTambo.IsDBNull(1) ? string.Empty : drTambo["nombre_tambo"].ToString();
-                tambo.Superficie = drTambo.IsDBNull(2) ? Convert.ToDecimal(string.Empty) : (Convert.ToDecimal(drTambo["superficie"]));
-                tambo.Estado_tambo = drTambo.IsDBNull(3) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(drTambo["estado_tambo"]));
-                tambo.Id_usuario = drTambo.IsDBNull(4) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_usuario"]));
-                tambo.Id_localidad = drTambo.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_localidad"]));
-                tambo.Nombre_localidad = drTambo.IsDBNull(6) ? string.Empty : drTambo["nombre_localidad"].ToString();
-                tambo.Nombre_provincia = drTambo.IsDBNull(7) ? string.Empty : drTambo["nombre_provincia"].ToString();
+                List<Tambo> lista = new List<Tambo>();
+                this.AbrirConexion();
+                SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,t.id_usuario,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @id_tambo and t.id_usuario=@id_usuario", Conn);
+                cmdTambos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdTambos.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
+                SqlDataReader drTambo = cmdTambos.ExecuteReader();
 
-                lista.Add(tambo);
+                while (drTambo.Read())
+                {
+                    Tambo tambo = new Tambo();
+                    tambo.Id_tambo = drTambo.IsDBNull(0) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_tambo"]));
+                    tambo.Nombre_tambo = drTambo.IsDBNull(1) ? string.Empty : drTambo["nombre_tambo"].ToString();
+                    tambo.Superficie = drTambo.IsDBNull(2) ? Convert.ToDecimal(string.Empty) : (Convert.ToDecimal(drTambo["superficie"]));
+                    tambo.Estado_tambo = drTambo.IsDBNull(3) ? Convert.ToBoolean(string.Empty) : (Convert.ToBoolean(drTambo["estado_tambo"]));
+                    tambo.Id_usuario = drTambo.IsDBNull(4) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_usuario"]));
+                    tambo.Id_localidad = drTambo.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(drTambo["id_localidad"]));
+                    tambo.Nombre_localidad = drTambo.IsDBNull(6) ? string.Empty : drTambo["nombre_localidad"].ToString();
+                    tambo.Nombre_provincia = drTambo.IsDBNull(7) ? string.Empty : drTambo["nombre_provincia"].ToString();
+
+                    lista.Add(tambo);
+                }
+                drTambo.Close();
+
+                return lista;
             }
-            drTambo.Close();
-            this.CerrarConexion();
-            return lista;
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del tambo", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public Tambo RecuperarUno(int id)
@@ -185,23 +216,37 @@ namespace Datos
             }
         }
 
-        
-
         public bool HayOtrosTambos(int id_tambo, int id_usuario)
         {
-            this.AbrirConexion();
-            SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @id_tambo and t.id_usuario=@id_usuario", Conn);
-            cmdTambos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            cmdTambos.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
-            SqlDataReader drTambo = cmdTambos.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdTambos = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @id_tambo and t.id_usuario=@id_usuario", Conn);
+                cmdTambos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdTambos.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
+                SqlDataReader drTambo = cmdTambos.ExecuteReader();
 
-            if (drTambo.Read())
-            {
-                return true;
+                if (drTambo.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del tambo", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 
@@ -323,20 +368,34 @@ namespace Datos
 
         public DataTable FiltrarPorNombre(string texto,int idtambo, int id_usuario)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,t.id_usuario,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @idtambo and t.id_usuario=@id_usuario and t.nombre_tambo like ('%" + texto + "%')", Conn);
-            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
-            cmdFiltro.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = new SqlCommand("select t.id_tambo,t.nombre_tambo,t.superficie,t.estado_tambo,t.id_usuario,l.id_localidad,l.nombre_localidad,p.nombre_provincia from Tambo t inner join Localidad l on t.id_localidad=l.id_localidad inner join Provincia p on l.id_provincia=p.id_provincia where t.estado_tambo = 'true' and t.id_tambo != @idtambo and t.id_usuario=@id_usuario and t.nombre_tambo like ('%" + texto + "%')", Conn);
+                cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+                cmdFiltro.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
 
-            SqlDataReader dr = cmdFiltro.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdFiltro.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
-
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos del tambo", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
     }
 }

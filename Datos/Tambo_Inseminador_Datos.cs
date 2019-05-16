@@ -153,20 +153,35 @@ namespace Datos
 
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdInseminador = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@id_tambo and i.estado_inseminador='true'", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdInseminador = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@id_tambo and i.estado_inseminador='true'", Conn);
 
-            cmdInseminador.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdInseminador.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            SqlDataReader dr = cmdInseminador.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdInseminador.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
 
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los inseminadores", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public void Eliminar(int id_inseminador)
@@ -198,35 +213,65 @@ namespace Datos
 
         public DataTable FiltrarPorNombre(string texto, int idtambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@idtambo and i.estado_inseminador='true' and i.nombre_inseminador like ('%" + texto + "%')", Conn);
-            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@idtambo and i.estado_inseminador='true' and i.nombre_inseminador like ('%" + texto + "%')", Conn);
+                cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
-            SqlDataReader dr = cmdFiltro.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdFiltro.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
-
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los inseminadores", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public bool HayInseminadores(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdIns = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@id_tambo and i.estado_inseminador='true'", Conn);
-            cmdIns.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            SqlDataReader drIns = cmdIns.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdIns = new SqlCommand("SELECT ti.id_tambo,ti.id_inseminador,t.nombre_tambo,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Tambo_Inseminador ti inner join Tambo t on ti.id_tambo=t.id_tambo inner join Inseminador i on i.id_inseminador=ti.id_inseminador inner join Localidad l on i.id_localidad=l.id_localidad where ti.id_tambo=@id_tambo and i.estado_inseminador='true'", Conn);
+                cmdIns.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                SqlDataReader drIns = cmdIns.ExecuteReader();
 
-            if (drIns.Read())
-            {
-                return true;
+                if (drIns.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los inseminadores", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 

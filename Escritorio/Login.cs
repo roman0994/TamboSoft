@@ -15,7 +15,7 @@ namespace Escritorio
     public partial class Login : Form
     {
         public static Tambo Tambo { get; set; }
-        //public int id_usuario;
+        public int id_usuario;
         public static Usuario Usuario { get; set; }
 
         public Login()
@@ -55,7 +55,7 @@ namespace Escritorio
             Tambo.Id_tambo = id_tambo;
             Principal principal = new Principal(id_tambo);
             principal.id_tambo = id_tambo;
-            principal.id_usuario = Usuario.Id_usuario;
+            principal.id_usuario =id_usuario;
             principal.Show();
             this.Hide();
         }

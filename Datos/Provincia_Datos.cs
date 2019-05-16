@@ -115,17 +115,33 @@ namespace Datos
 
         public bool HayProvincias()
         {
-            this.AbrirConexion();
-            SqlCommand cmdProvincia = new SqlCommand("SELECT id_provincia,nombre_provincia from Provincia", Conn);
-            SqlDataReader drTambo = cmdProvincia.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdProvincia = new SqlCommand("SELECT id_provincia,nombre_provincia from Provincia", Conn);
+                SqlDataReader drTambo = cmdProvincia.ExecuteReader();
 
-            if (drTambo.Read())
-            {
-                return true;
+                if (drTambo.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar datos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
     }

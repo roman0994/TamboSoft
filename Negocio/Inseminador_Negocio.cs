@@ -15,32 +15,80 @@ namespace Negocio
 
         public List<Inseminador> RecuperarTodos()
         {
-            return inseminadorDatos.RecuperarTodos();
+            try
+            {
+                return inseminadorDatos.RecuperarTodos();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Inseminador> RecuperarPorTambo(int idtambo)
         {
-            return inseminadorDatos.RecuperarPorTambo(idtambo);
+            try
+            {
+                return inseminadorDatos.RecuperarPorTambo(idtambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Inseminador RecuperarUno(int id)
         {
-            return inseminadorDatos.RecuperarUno(id);
+            try
+            {
+                return inseminadorDatos.RecuperarUno(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Actualizar(Inseminador inseminador)
         {
-            inseminadorDatos.Actualizar(inseminador);
+            try
+            {
+                inseminadorDatos.Actualizar(inseminador);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Insertar(Inseminador inseminador, Tambo_Inseminador tamboInseminador)
         {
-            inseminadorDatos.Insertar(inseminador, tamboInseminador);
+            try
+            {
+                inseminadorDatos.Insertar(inseminador, tamboInseminador);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable FiltrarPorNombre(string texto,int idtambo)
         {
-            return inseminadorDatos.FiltrarPorNombre(texto,idtambo);
+            try
+            {
+                return inseminadorDatos.FiltrarPorNombre(texto,idtambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

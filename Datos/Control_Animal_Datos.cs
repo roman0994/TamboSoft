@@ -176,52 +176,81 @@ namespace Datos
 
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControl = new SqlCommand(" SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal, a.caravana" +
-                                                    " a.id_tambo, t.nombre_tambo, c.primer_control, c.segundo_control, c.grasa_primercontrol, " +
-                                                    " c.grasa_segundocontrol, Sum(c.primer_control + c.segundo_control)Total_Litros, " +
-                                                    " Sum(c.grasa_primercontrol + c.grasa_segundocontrol)Total_Grasa " +
-                                                    " from Control_Animal ca " +
-                                                    " innerjoin Animal a on ca.rp = a.rp " +
-                                                    " inner join Control c on ca.id_control = c.id_control " +
-                                                    " inner join Tambo t on a.id_tambo = t.id_tambo " +
-                                                    " where a.id_tambo = 1 and a.habilitado = 'true' " +
-                                                    "and a.estado_animal != 'Vendido' and a.estado_animal != 'Muerto' " +
-                                                    " group by ca.fecha_control, ca.id_control, ca.rp, a.nombre_animal, a.nombre_animal, " +
-                                                    " a.id_tambo, t.nombre_tambo, c.primer_control, c.segundo_control, c.grasa_primercontrol, " +
-                                                    " c.grasa_segundocontrol " +
-                                                    " order by ca.fecha_control desc", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControl = new SqlCommand(" SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal, a.caravana" +
+                                                        " a.id_tambo, t.nombre_tambo, c.primer_control, c.segundo_control, c.grasa_primercontrol, " +
+                                                        " c.grasa_segundocontrol, Sum(c.primer_control + c.segundo_control)Total_Litros, " +
+                                                        " Sum(c.grasa_primercontrol + c.grasa_segundocontrol)Total_Grasa " +
+                                                        " from Control_Animal ca " +
+                                                        " innerjoin Animal a on ca.rp = a.rp " +
+                                                        " inner join Control c on ca.id_control = c.id_control " +
+                                                        " inner join Tambo t on a.id_tambo = t.id_tambo " +
+                                                        " where a.id_tambo = 1 and a.habilitado = 'true' " +
+                                                        "and a.estado_animal != 'Vendido' and a.estado_animal != 'Muerto' " +
+                                                        " group by ca.fecha_control, ca.id_control, ca.rp, a.nombre_animal, a.nombre_animal, " +
+                                                        " a.id_tambo, t.nombre_tambo, c.primer_control, c.segundo_control, c.grasa_primercontrol, " +
+                                                        " c.grasa_segundocontrol " +
+                                                        " order by ca.fecha_control desc", Conn);
 
-            cmdControl.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControl.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            SqlDataReader dr = cmdControl.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdControl.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
-
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable RecuperarDTPorTamboYAnimal(int id_tambo, int rp)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControl = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol,a.caravana from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControl = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol,a.caravana from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
 
-            cmdControl.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            cmdControl.Parameters.Add("rp", SqlDbType.Int).Value = rp;
+                cmdControl.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControl.Parameters.Add("rp", SqlDbType.Int).Value = rp;
 
-            SqlDataReader dr = cmdControl.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdControl.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
 
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public List<Control_Animal> RecuperarPorTamboPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
@@ -425,248 +454,467 @@ namespace Datos
 
         public DataTable ProduccionPorFecha(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by ca.fecha_control,t.nombre_tambo", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by ca.fecha_control,t.nombre_tambo", Conn);
 
-            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
-            
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dt.Load(dr);
+
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable ProduccionPorFiltroDia(int id_tambo, DateTime fecha)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and CONVERT(VARCHAR(10), ca.fecha_control, 103) = CONVERT(VARCHAR(10), @fecha, 103) and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by ca.fecha_control,t.nombre_tambo", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and CONVERT(VARCHAR(10), ca.fecha_control, 103) = CONVERT(VARCHAR(10), @fecha, 103) and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by ca.fecha_control,t.nombre_tambo", Conn);
 
-            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            cmdControlAnimal.Parameters.Add("fecha", SqlDbType.DateTime).Value = fecha;
+                cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControlAnimal.Parameters.Add("fecha", SqlDbType.DateTime).Value = fecha;
 
-            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
-            
-            dt.Load(dr);
-            
-            dr.Close();
-            this.CerrarConexion();
-            return dt;                      
+                SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
+
+                dt.Load(dr);
+
+                dr.Close();
+                
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable ProduccionPorFiltroDiaYAnimal(int id_tambo, DateTime fecha, int rp)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControlAnimal = new SqlCommand("select a.rp,a.nombre_animal,(SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and CONVERT(VARCHAR(10), ca.fecha_control, 103) = CONVERT(VARCHAR(10), @fecha, 103) and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp,a.nombre_animal,ca.fecha_control,t.nombre_tambo", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControlAnimal = new SqlCommand("select a.rp,a.nombre_animal,(SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and CONVERT(VARCHAR(10), ca.fecha_control, 103) = CONVERT(VARCHAR(10), @fecha, 103) and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp,a.nombre_animal,ca.fecha_control,t.nombre_tambo", Conn);
 
-            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            cmdControlAnimal.Parameters.Add("fecha", SqlDbType.DateTime).Value = fecha;
-            cmdControlAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
+                cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControlAnimal.Parameters.Add("fecha", SqlDbType.DateTime).Value = fecha;
+                cmdControlAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
 
-            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
+
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable ProduccionPorFiltroMes(int id_tambo, int mes, int año)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,MONTH(ca.fecha_control) Mes, YEAR(ca.fecha_control) Año,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo = @id_tambo and MONTH(ca.fecha_control) = @mes and YEAR(ca.fecha_control) = @anio and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by MONTH(ca.fecha_control), YEAR(ca.fecha_control), t.nombre_tambo", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,MONTH(ca.fecha_control) Mes, YEAR(ca.fecha_control) Año,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo = @id_tambo and MONTH(ca.fecha_control) = @mes and YEAR(ca.fecha_control) = @anio and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by MONTH(ca.fecha_control), YEAR(ca.fecha_control), t.nombre_tambo", Conn);
 
-            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            cmdControlAnimal.Parameters.Add("mes", SqlDbType.Int).Value = mes;
-            cmdControlAnimal.Parameters.Add("anio", SqlDbType.Int).Value = año;
+                cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControlAnimal.Parameters.Add("mes", SqlDbType.Int).Value = mes;
+                cmdControlAnimal.Parameters.Add("anio", SqlDbType.Int).Value = año;
 
-            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
+
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable ProduccionPorFiltroMesYAnimal(int id_tambo, int mes, int año, int rp)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControlAnimal = new SqlCommand("select a.rp,a.nombre_animal,(SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,MONTH(ca.fecha_control) Mes, YEAR(ca.fecha_control) Año,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo = @id_tambo and MONTH(ca.fecha_control) = @mes and YEAR(ca.fecha_control) = @anio and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp,a.nombre_animal, MONTH(ca.fecha_control), YEAR(ca.fecha_control), t.nombre_tambo", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControlAnimal = new SqlCommand("select a.rp,a.nombre_animal,(SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,MONTH(ca.fecha_control) Mes, YEAR(ca.fecha_control) Año,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo = @id_tambo and MONTH(ca.fecha_control) = @mes and YEAR(ca.fecha_control) = @anio and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp,a.nombre_animal, MONTH(ca.fecha_control), YEAR(ca.fecha_control), t.nombre_tambo", Conn);
 
-            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            cmdControlAnimal.Parameters.Add("mes", SqlDbType.Int).Value = mes;
-            cmdControlAnimal.Parameters.Add("anio", SqlDbType.Int).Value = año;
-            cmdControlAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
+                cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControlAnimal.Parameters.Add("mes", SqlDbType.Int).Value = mes;
+                cmdControlAnimal.Parameters.Add("anio", SqlDbType.Int).Value = año;
+                cmdControlAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
 
-            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
+
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable ProduccionPorAnimal(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
 
-            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
-          
-            dt.Load(dr);
-            
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
+
+                dt.Load(dr);
+
+                dr.Close();
+
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable ProduccionPorFiltroAnimal(int id_tambo, int rp)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
 
-            cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            cmdControlAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
+                cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                cmdControlAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
 
-            SqlDataReader dr = cmdControlAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
-           
-            dt.Load(dr);
-            
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                SqlDataReader dr = cmdControlAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
+
+                dt.Load(dr);
+
+                dr.Close();
+
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable FiltrarPorNombre(string texto,int idtambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by ca.fecha_control desc", Conn);
-            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by ca.fecha_control desc", Conn);
+                cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
-            SqlDataReader dr = cmdFiltro.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdFiltro.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
-
+                dr.Close();
+                
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable FiltrarPorCaravana(string caravana, int idtambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.caravana like ('%" + caravana + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by ca.fecha_control desc", Conn);
-            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.caravana like ('%" + caravana + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by ca.fecha_control desc", Conn);
+                cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
-            SqlDataReader dr = cmdFiltro.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdFiltro.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
 
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable FiltrarPorRP(int rp)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = Conn.CreateCommand();
-            cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where ca.rp like ('" + rp + "%')";
-            cmdFiltro.ExecuteNonQuery();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = Conn.CreateCommand();
+                cmdFiltro.CommandType = CommandType.Text;
+                cmdFiltro.CommandText = "SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where ca.rp like ('" + rp + "%')";
+                cmdFiltro.ExecuteNonQuery();
 
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
-            da.Fill(dt);
-            this.CerrarConexion();
-            return dt;
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
+                da.Fill(dt);
 
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable FiltrarPorFechaControl(DateTime fechaControl)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = Conn.CreateCommand();
-            cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where ca.fecha_control like ('" + fechaControl + "%')";
-            cmdFiltro.ExecuteNonQuery();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = Conn.CreateCommand();
+                cmdFiltro.CommandType = CommandType.Text;
+                cmdFiltro.CommandText = "SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where ca.fecha_control like ('" + fechaControl + "%')";
+                cmdFiltro.ExecuteNonQuery();
 
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
-            da.Fill(dt);
-            this.CerrarConexion();
-            return dt;
-
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
+                da.Fill(dt);
+                
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public bool HayControles(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
-            cmdControles.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            SqlDataReader drControles = cmdControles.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+                cmdControles.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                SqlDataReader drControles = cmdControles.ExecuteReader();
 
-            if (drControles.Read())
-            {
-                return true;
+                if (drControles.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 
         public bool HayControlesMes(int mes, int anio, int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControles = new SqlCommand("exec RankingProduccionLecheraPorMes @mes,@anio,@id_tambo;", Conn);
-            cmdControles.Parameters.Add("mes", SqlDbType.Int).Value = mes;
-            cmdControles.Parameters.Add("anio", SqlDbType.Int).Value = anio;
-            cmdControles.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            SqlDataReader drControles = cmdControles.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControles = new SqlCommand("exec RankingProduccionLecheraPorMes @mes,@anio,@id_tambo;", Conn);
+                cmdControles.Parameters.Add("mes", SqlDbType.Int).Value = mes;
+                cmdControles.Parameters.Add("anio", SqlDbType.Int).Value = anio;
+                cmdControles.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                SqlDataReader drControles = cmdControles.ExecuteReader();
 
-            if (drControles.Read())
-            {
-                return true;
+                if (drControles.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 
         public bool TieneControles(int rp)
         {
-            this.AbrirConexion();
-            SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
-            cmdControles.Parameters.Add("rp", SqlDbType.Int).Value = rp;
-            SqlDataReader drControles = cmdControles.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+                cmdControles.Parameters.Add("rp", SqlDbType.Int).Value = rp;
+                SqlDataReader drControles = cmdControles.ExecuteReader();
 
-            if (drControles.Read())
-            {
-                return true;
+                if (drControles.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los controles", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
     }

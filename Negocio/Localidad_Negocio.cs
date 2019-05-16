@@ -14,17 +14,41 @@ namespace Negocio
 
         public List<Localidad> RecuperarPorProvincia(int id_provincia)
         {
-            return localidadDatos.RecuperarPorProvincia(id_provincia);
+            try
+            {
+                return localidadDatos.RecuperarPorProvincia(id_provincia);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Localidad RecuperarUno(int id)
         {
-            return localidadDatos.RecuperarUno(id);
+            try
+            {
+                return localidadDatos.RecuperarUno(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool HayLocalidades()
         {
-            return localidadDatos.HayLocalidades();
+            try
+            {
+                return localidadDatos.HayLocalidades();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

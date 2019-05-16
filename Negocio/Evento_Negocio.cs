@@ -35,37 +35,77 @@ namespace Negocio
 
         public List<Evento> RecuperarTodos()
         {
-            return eventoDatos.RecuperarTodos();
+            try
+            {
+                return eventoDatos.RecuperarTodos();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Evento> RecuperarEventosParaToros()
         {
-            return eventoDatos.RecuperarEventosParaToros();
+            try
+            {
+                return eventoDatos.RecuperarEventosParaToros();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Evento> RecuperarPorCategoria(int categoria)
         {
-            // categoria = 1 vaca
-            //          = 2 toro
-
-            if (categoria == 2)
+            try
             {
-                categoria = 0;
+                // categoria = 1 vaca
+                //          = 2 toro
+
+                if (categoria == 2)
+                {
+                    categoria = 0;
                 
-            }
+                }
             
 
-            return eventoDatos.RecuperarPorCategoria(categoria);
+                return eventoDatos.RecuperarPorCategoria(categoria);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Evento RecuperarUno(int id)
         {
-            return eventoDatos.RecuperarUno(id);
+            try
+            {
+                return eventoDatos.RecuperarUno(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool HayEventos()
         {
-            return eventoDatos.HayEventos();
+            try
+            {
+                return eventoDatos.HayEventos();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
 

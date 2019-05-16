@@ -118,18 +118,34 @@ namespace Datos
 
         public bool HayLocalidades()
         {
-            Localidad localidad = new Localidad();
-            this.AbrirConexion();
-            SqlCommand cmdLocalidad = new SqlCommand("SELECT l.id_localidad,l.nombre_localidad,l.id_provincia,p.nombre_provincia FROM Localidad l inner join Provincia p on l.id_provincia=p.id_provincia", Conn);
-            SqlDataReader drTambo = cmdLocalidad.ExecuteReader();
+            try
+            {
+                Localidad localidad = new Localidad();
+                this.AbrirConexion();
+                SqlCommand cmdLocalidad = new SqlCommand("SELECT l.id_localidad,l.nombre_localidad,l.id_provincia,p.nombre_provincia FROM Localidad l inner join Provincia p on l.id_provincia=p.id_provincia", Conn);
+                SqlDataReader drTambo = cmdLocalidad.ExecuteReader();
 
-            if (drTambo.Read())
-            {
-                return true;
+                if (drTambo.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar datos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
     }

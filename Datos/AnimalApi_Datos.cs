@@ -18,7 +18,7 @@ namespace Datos
             {
                 List<AnimalApi> lista = new List<AnimalApi>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT rp,fecha_nacimiento,foto,nombre_animal,estado_animal,hba,categoria," +
+                SqlCommand cmdAnimal = new SqlCommand("SELECT rp,fecha_nacimiento,foto,nombre_animal,estado_animal,hba,id_categoria," +
                                                     " rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana " +
                                                     " FROM Animal", Conn);
 
@@ -36,7 +36,7 @@ namespace Datos
                     animal.NombreAnimal = dr.IsDBNull(3) ? string.Empty : dr["nombre_animal"].ToString();
                     animal.EstadoAnimal = dr.IsDBNull(4) ? string.Empty : dr["estado_animal"].ToString();
                     animal.Hba = dr.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
-                    animal.Categoria = dr.IsDBNull(6) ? string.Empty : dr["categoria"].ToString();
+                    animal.IdCategoria = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (int)dr["id_categoria"];
                     animal.RpMadre = dr.IsDBNull(7) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
                     animal.RpPadre = dr.IsDBNull(8) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
                     animal.HbaMadre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
@@ -73,7 +73,12 @@ namespace Datos
             {
                 List<AnimalApi> lista = new List<AnimalApi>();
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT rp,fecha_nacimiento,foto,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana FROM Animal where id_tambo=@id_tambo order by nombre_animal", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT rp,fecha_nacimiento,foto,nombre_animal,estado_animal,hba, " +
+                                                    " id_categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza, " +
+                                                    " habilitado,caravana " +
+                                                    " FROM Animal " +
+                                                    " where id_tambo=@id_tambo " +
+                                                    " order by nombre_animal", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -89,7 +94,7 @@ namespace Datos
                     animal.NombreAnimal = dr.IsDBNull(3) ? string.Empty : dr["nombre_animal"].ToString();
                     animal.EstadoAnimal = dr.IsDBNull(4) ? string.Empty : dr["estado_animal"].ToString();
                     animal.Hba = dr.IsDBNull(5) ? Convert.ToInt32(string.Empty) : (int)dr["hba"];
-                    animal.Categoria = dr.IsDBNull(6) ? string.Empty : dr["categoria"].ToString();
+                    animal.IdCategoria = dr.IsDBNull(6) ? Convert.ToInt32(string.Empty) : (int)dr["id_categoria"];
                     animal.RpMadre = dr.IsDBNull(7) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_madre"]));
                     animal.RpPadre = dr.IsDBNull(8) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["rp_padre"]));
                     animal.HbaMadre = dr.IsDBNull(9) ? Convert.ToInt32(string.Empty) : (Convert.ToInt32(dr["hba_madre"]));
@@ -126,13 +131,18 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdInsertar = new SqlCommand("insert into Animal(fecha_nacimiento,nombre_animal,estado_animal,hba,categoria,rp_madre,rp_padre,hba_madre,hba_padre,id_tambo,id_raza,habilitado,caravana) values (@fecha_nacimiento,@nombre_animal,@estado_animal,@hba,@categoria,@rp_madre,@rp_padre,@hba_madre,@hba_padre,@id_tambo,@id_raza,@habilitado,@caravana)", Conn);
+                SqlCommand cmdInsertar = new SqlCommand("" +
+                    " insert into " +
+                    " Animal(fecha_nacimiento,nombre_animal,estado_animal, hba, id_categoria,rp_madre,rp_padre,hba_madre, " +
+                    " hba_padre,id_tambo,id_raza,habilitado,caravana) " +
+                    " values (@fecha_nacimiento,@nombre_animal,@estado_animal,@hba,@id_categoria,@rp_madre,@rp_padre,@hba_madre," +
+                    " @hba_padre,@id_tambo,@id_raza,@habilitado,@caravana)", Conn);
                 cmdInsertar.Parameters.Add("fecha_nacimiento", SqlDbType.DateTime).Value = animal.FechaNacimiento;
                 //cmdInsertar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
                 cmdInsertar.Parameters.Add("nombre_animal", SqlDbType.VarChar, 50).Value = animal.NombreAnimal;
                 cmdInsertar.Parameters.Add("estado_animal", SqlDbType.VarChar, 50).Value = animal.EstadoAnimal;
                 cmdInsertar.Parameters.Add("hba", SqlDbType.Int).Value = animal.Hba;
-                cmdInsertar.Parameters.Add("categoria", SqlDbType.VarChar, 20).Value = animal.Categoria;
+                cmdInsertar.Parameters.Add("id_categoria", SqlDbType.Int).Value = animal.IdCategoria;
                 cmdInsertar.Parameters.Add("rp_madre", SqlDbType.Int).Value = animal.RpMadre;
                 cmdInsertar.Parameters.Add("rp_padre", SqlDbType.Int).Value = animal.RpPadre;
                 cmdInsertar.Parameters.Add("hba_madre", SqlDbType.Int).Value = animal.HbaMadre;
@@ -164,14 +174,18 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdActualizar = new SqlCommand("update Animal set fecha_nacimiento=@fecha_nacimiento,nombre_animal=@nombre_animal,estado_animal=@estado_animal,hba=@hba,categoria=@categoria,rp_madre=@rp_madre,rp_padre=@rp_padre,hba_madre=@hba_madre,hba_padre=@hba_padre,id_tambo=@id_tambo,id_raza=@id_raza,habilitado=@habilitado,caravana=@caravana where rp = @rp", Conn);
+                SqlCommand cmdActualizar = new SqlCommand("update Animal set fecha_nacimiento=@fecha_nacimiento," +
+                    " nombre_animal=@nombre_animal,estado_animal=@estado_animal,hba=@hba," +
+                    " id_categoria=@id_categoria,rp_madre=@rp_madre,rp_padre=@rp_padre,hba_madre=@hba_madre," +
+                    " hba_padre=@hba_padre,id_tambo=@id_tambo,id_raza=@id_raza," +
+                    " habilitado=@habilitado,caravana=@caravana where rp = @rp", Conn);
                 cmdActualizar.Parameters.Add("rp", SqlDbType.Int).Value = animal.Rp;
                 cmdActualizar.Parameters.Add("fecha_nacimiento", SqlDbType.DateTime).Value = animal.FechaNacimiento;
                 //cmdActualizar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;
                 cmdActualizar.Parameters.Add("nombre_animal", SqlDbType.VarChar, 50).Value = animal.NombreAnimal;
                 cmdActualizar.Parameters.Add("estado_animal", SqlDbType.VarChar, 50).Value = animal.EstadoAnimal;
                 cmdActualizar.Parameters.Add("hba", SqlDbType.Int).Value = animal.Hba;
-                cmdActualizar.Parameters.Add("categoria", SqlDbType.VarChar, 20).Value = animal.Categoria;
+                cmdActualizar.Parameters.Add("id_categoria", SqlDbType.Int).Value = animal.IdCategoria;
                 cmdActualizar.Parameters.Add("rp_madre", SqlDbType.Int).Value = animal.RpMadre;
                 cmdActualizar.Parameters.Add("rp_padre", SqlDbType.Int).Value = animal.RpPadre;
                 cmdActualizar.Parameters.Add("hba_madre", SqlDbType.Int).Value = animal.HbaMadre;

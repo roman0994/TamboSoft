@@ -117,18 +117,34 @@ namespace Datos
 
         public bool HayRazas()
         {
-            this.AbrirConexion();
-            SqlCommand cmdRaza = new SqlCommand("SELECT r.id_raza,r.nombre_raza,r.estado_raza from Raza r", Conn);
-
-            SqlDataReader drRaza = cmdRaza.ExecuteReader();
-
-            if (drRaza.Read())
+            try
             {
-                return true;
+                this.AbrirConexion();
+                SqlCommand cmdRaza = new SqlCommand("SELECT r.id_raza,r.nombre_raza,r.estado_raza from Raza r", Conn);
+
+                SqlDataReader drRaza = cmdRaza.ExecuteReader();
+
+                if (drRaza.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de las razas", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
         

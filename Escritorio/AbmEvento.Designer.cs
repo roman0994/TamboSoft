@@ -47,11 +47,11 @@
             this.lbCategoriaAnimal = new System.Windows.Forms.Label();
             this.lbNombreAnimal = new System.Windows.Forms.Label();
             this.gbTambo = new System.Windows.Forms.GroupBox();
-            this.lbcria2 = new System.Windows.Forms.Label();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.gbDescripciones = new System.Windows.Forms.GroupBox();
-            this.lbcria1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lbcria2 = new System.Windows.Forms.Label();
+            this.lbcria1 = new System.Windows.Forms.Label();
             this.tlpEventos.SuspendLayout();
             this.gbFecha.SuspendLayout();
             this.gbEvento.SuspendLayout();
@@ -248,7 +248,7 @@
             // btnBuscarAnimal
             // 
             this.btnBuscarAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarAnimal.Location = new System.Drawing.Point(10, 19);
+            this.btnBuscarAnimal.Location = new System.Drawing.Point(11, 21);
             this.btnBuscarAnimal.Name = "btnBuscarAnimal";
             this.btnBuscarAnimal.Size = new System.Drawing.Size(110, 23);
             this.btnBuscarAnimal.TabIndex = 6;
@@ -287,17 +287,6 @@
             this.gbTambo.TabStop = false;
             this.gbTambo.Text = "Tambo";
             // 
-            // lbcria2
-            // 
-            this.lbcria2.AutoSize = true;
-            this.lbcria2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbcria2.Location = new System.Drawing.Point(286, 16);
-            this.lbcria2.Name = "lbcria2";
-            this.lbcria2.Size = new System.Drawing.Size(35, 13);
-            this.lbcria2.TabIndex = 1;
-            this.lbcria2.Text = "label2";
-            this.lbcria2.Visible = false;
-            // 
             // txtTambo
             // 
             this.txtTambo.Location = new System.Drawing.Point(21, 19);
@@ -318,17 +307,6 @@
             this.gbDescripciones.Text = "Descripciones";
             this.gbDescripciones.Visible = false;
             // 
-            // lbcria1
-            // 
-            this.lbcria1.AutoSize = true;
-            this.lbcria1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbcria1.Location = new System.Drawing.Point(10, 16);
-            this.lbcria1.Name = "lbcria1";
-            this.lbcria1.Size = new System.Drawing.Size(35, 13);
-            this.lbcria1.TabIndex = 0;
-            this.lbcria1.Text = "label1";
-            this.lbcria1.Visible = false;
-            // 
             // groupBox1
             // 
             this.tlpEventos.SetColumnSpan(this.groupBox1, 2);
@@ -339,6 +317,28 @@
             this.groupBox1.Size = new System.Drawing.Size(392, 61);
             this.groupBox1.TabIndex = 14;
             this.groupBox1.TabStop = false;
+            // 
+            // lbcria2
+            // 
+            this.lbcria2.AutoSize = true;
+            this.lbcria2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbcria2.Location = new System.Drawing.Point(286, 16);
+            this.lbcria2.Name = "lbcria2";
+            this.lbcria2.Size = new System.Drawing.Size(35, 13);
+            this.lbcria2.TabIndex = 1;
+            this.lbcria2.Text = "label2";
+            this.lbcria2.Visible = false;
+            // 
+            // lbcria1
+            // 
+            this.lbcria1.AutoSize = true;
+            this.lbcria1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbcria1.Location = new System.Drawing.Point(10, 16);
+            this.lbcria1.Name = "lbcria1";
+            this.lbcria1.Size = new System.Drawing.Size(35, 13);
+            this.lbcria1.TabIndex = 0;
+            this.lbcria1.Text = "label1";
+            this.lbcria1.Visible = false;
             // 
             // AbmEvento
             // 

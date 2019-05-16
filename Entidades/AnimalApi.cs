@@ -15,7 +15,7 @@ namespace Entidades
         public string NombreAnimal { get; set; }
         public string EstadoAnimal { get; set; }
         public int? Hba { get; set; }
-        public string Categoria { get; set; }
+        //public string Categoria { get; set; }
         public int? RpMadre { get; set; }
         public int? RpPadre { get; set; }
         public int? HbaMadre { get; set; }
@@ -24,5 +24,6 @@ namespace Entidades
         public int? IdRaza { get; set; }
         public bool? Habilitado { get; set; }
         public string Caravana { get; set; }
+        public int IdCategoria { get; set; }
     }
 }

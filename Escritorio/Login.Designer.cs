@@ -102,7 +102,7 @@
             // lnkRegresarLogin
             // 
             this.lnkRegresarLogin.AutoSize = true;
-            this.lnkRegresarLogin.Location = new System.Drawing.Point(56, 307);
+            this.lnkRegresarLogin.Location = new System.Drawing.Point(56, 303);
             this.lnkRegresarLogin.Name = "lnkRegresarLogin";
             this.lnkRegresarLogin.Size = new System.Drawing.Size(86, 13);
             this.lnkRegresarLogin.TabIndex = 6;
@@ -129,7 +129,7 @@
             this.MinimizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ingreso";
+            this.Text = "Seleccionar Tambo";
             this.ResumeLayout(false);
             this.PerformLayout();
 

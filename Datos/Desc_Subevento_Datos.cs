@@ -93,7 +93,6 @@ namespace Datos
             }
         }
 
-
         public List<Desc_Subevento> RecuperarTodos()
         {
             try
@@ -138,7 +137,6 @@ namespace Datos
 
            
         }
-
 
         public Desc_Subevento RecuperarPorNombre(string nombre)
         {
@@ -217,17 +215,33 @@ namespace Datos
 
         public bool HayDescripciones()
         {
-            this.AbrirConexion();
-            SqlCommand cmdDesc = new SqlCommand("select d.id_desc,d.descripcion,d.abreviacion,d.estado_desc,d.id_subevento from Desc_Subevento d", Conn);
-            SqlDataReader drDescripcion = cmdDesc.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdDesc = new SqlCommand("select d.id_desc,d.descripcion,d.abreviacion,d.estado_desc,d.id_subevento from Desc_Subevento d", Conn);
+                SqlDataReader drDescripcion = cmdDesc.ExecuteReader();
 
-            if (drDescripcion.Read())
-            {
-                return true;
+                if (drDescripcion.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar las descripciones del subevento", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
     }

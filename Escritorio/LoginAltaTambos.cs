@@ -72,7 +72,7 @@ namespace Escritorio
 
                     Principal principal = new Principal(id_tambo);
                     principal.id_tambo = id_tambo;
-                    principal.id_usuario = Usuario.Id_usuario;
+                    principal.id_usuario = id_usuario;
                     principal.Show();
                     this.Hide();
                 }

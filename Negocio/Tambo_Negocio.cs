@@ -15,57 +15,145 @@ namespace Negocio
 
         public List<Tambo> RecuperarTodos(int id_usuario)
         {
-            return tamboDatos.RecuperarTodos(id_usuario);
+            try
+            {
+                return tamboDatos.RecuperarTodos(id_usuario);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Tambo> RecuperarOtrosTambos(int id_tambo, int id_usuario)
         {
-            return tamboDatos.RecuperarOtrosTambos(id_tambo,id_usuario);
+            try
+            {
+                return tamboDatos.RecuperarOtrosTambos(id_tambo,id_usuario);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Tambo RecuperarUno(int id)
         {
-            return tamboDatos.RecuperarUno(id);
+            try
+            {
+                return tamboDatos.RecuperarUno(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Tambo RecuperarPorNombre(string nombre_tambo)
         {
-            return tamboDatos.RecuperarPorNombre(nombre_tambo);
+            try
+            {
+                return tamboDatos.RecuperarPorNombre(nombre_tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool HayTambos(int id_usuario)
         {
-            return tamboDatos.HayTambos(id_usuario);
+            try
+            {
+                return tamboDatos.HayTambos(id_usuario);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool HayOtrosTambos(int id_tambo, int id_usuario)
         {
-            return tamboDatos.HayOtrosTambos(id_tambo, id_usuario);
+            try
+            {
+                return tamboDatos.HayOtrosTambos(id_tambo, id_usuario);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Actualizar(Tambo tambo)
         {
-            tamboDatos.Actualizar(tambo);
+            try
+            {
+                tamboDatos.Actualizar(tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Insertar(Tambo tambo)
         {
-            tamboDatos.Insertar(tambo);
+            try
+            {
+                tamboDatos.Insertar(tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public int InsertarDevolviendoID(Tambo tambo)
         {
-            return tamboDatos.InsertarDevolviendoID(tambo);
+            try
+            {
+                return tamboDatos.InsertarDevolviendoID(tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Eliminar(int id)
         {
-            tamboDatos.Eliminar(id);
+            try
+            {
+                tamboDatos.Eliminar(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable FiltrarPorNombre(string texto, int idtambo, int id_usuario)
         {
-            return tamboDatos.FiltrarPorNombre(texto, idtambo, id_usuario);
+            try
+            {
+                return tamboDatos.FiltrarPorNombre(texto, idtambo, id_usuario);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

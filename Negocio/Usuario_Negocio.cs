@@ -14,37 +14,93 @@ namespace Negocio
 
         public bool ExisteUsuario(string user, string pass)
         {
-            return usuarioDatos.ExisteUsuario(user,pass);
+            try
+            {
+                return usuarioDatos.ExisteUsuario(user,pass);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool HayUsuarios()
         {
-            return usuarioDatos.HayUsuarios();
+            try
+            {
+                return usuarioDatos.HayUsuarios();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public void Insertar(Usuario usuario)
         {
-            usuarioDatos.Insertar(usuario);
-        }
+            try
+            {
+                usuarioDatos.Insertar(usuario);
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+            }
 
         public string RecuperarContraseña(string email)
         {
-            return usuarioDatos.RecuperarContraseña(email);
+            try
+            {
+                return usuarioDatos.RecuperarContraseña(email);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool YaExisteElUsuario(string usu)
         {
-            return usuarioDatos.YaExisteElUsuario(usu);
+            try
+            {
+                return usuarioDatos.YaExisteElUsuario(usu);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool YaExisteElEmail(string email)
         {
-            return usuarioDatos.YaExisteElEmail(email);
+            try
+            {
+                return usuarioDatos.YaExisteElEmail(email);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Usuario RecuperarUno(string usu, string pass)
         {
-            return usuarioDatos.RecuperarUno(usu,pass);
+            try
+            {
+                return usuarioDatos.RecuperarUno(usu,pass);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

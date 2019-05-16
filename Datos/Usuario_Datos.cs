@@ -11,7 +11,6 @@ namespace Datos
 {
     public class Usuario_Datos : Conexion
     {
-
         public Usuario RecuperarUno(string usu,string pass)
         {
             try
@@ -52,35 +51,67 @@ namespace Datos
 
         public bool ExisteUsuario(string user, string password)
         {
-            this.AbrirConexion();
-            SqlCommand cmdUsuario = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario where usu=@user and password=@password", Conn);
-            cmdUsuario.Parameters.Add("user", SqlDbType.VarChar, 50).Value = user;
-            cmdUsuario.Parameters.Add("password", SqlDbType.VarChar, 50).Value = password;
-            SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdUsuario = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario where usu=@user and password=@password", Conn);
+                cmdUsuario.Parameters.Add("user", SqlDbType.VarChar, 50).Value = user;
+                cmdUsuario.Parameters.Add("password", SqlDbType.VarChar, 50).Value = password;
+                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
 
-            if (drUsuario.Read())
-            {
-                return true;
+                if (drUsuario.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los usuarios", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 
         public bool HayUsuarios()
         {
-            this.AbrirConexion();
-            SqlCommand cmdUsuarios = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario", Conn);
-            SqlDataReader drUsuario = cmdUsuarios.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdUsuarios = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario", Conn);
+                SqlDataReader drUsuario = cmdUsuarios.ExecuteReader();
 
-            if (drUsuario.Read())
-            {
-                return true;
+                if (drUsuario.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los usuarios", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 
@@ -114,58 +145,106 @@ namespace Datos
 
         public string RecuperarContraseña(string email)
         {
-            this.AbrirConexion();
-            string contraseña;
-            SqlCommand cmdUsuario = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario where email=@email", Conn);
-            cmdUsuario.Parameters.Add("email", SqlDbType.VarChar, 100).Value = email;
-            SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
-
-            if (drUsuario.Read())
+            try
             {
-                Usuario usuario = new Usuario();
-                usuario.Usu = drUsuario.IsDBNull(0) ? string.Empty : drUsuario["usu"].ToString();
-                usuario.Password = drUsuario.IsDBNull(1) ? string.Empty : drUsuario["password"].ToString();
-                usuario.Email = drUsuario.IsDBNull(2) ? string.Empty : drUsuario["email"].ToString();
+                this.AbrirConexion();
+                string contraseña;
+                SqlCommand cmdUsuario = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario where email=@email", Conn);
+                cmdUsuario.Parameters.Add("email", SqlDbType.VarChar, 100).Value = email;
+                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
 
-                return contraseña = usuario.Password;
+                if (drUsuario.Read())
+                {
+                    Usuario usuario = new Usuario();
+                    usuario.Usu = drUsuario.IsDBNull(0) ? string.Empty : drUsuario["usu"].ToString();
+                    usuario.Password = drUsuario.IsDBNull(1) ? string.Empty : drUsuario["password"].ToString();
+                    usuario.Email = drUsuario.IsDBNull(2) ? string.Empty : drUsuario["email"].ToString();
+
+                    return contraseña = usuario.Password;
+                }
+                else
+                {
+                    return contraseña = null;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return contraseña = null;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los usuarios", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 
         public bool YaExisteElEmail(string email)
         {
-            this.AbrirConexion();
-            SqlCommand cmdUsuario = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario where email=@email", Conn);
-            cmdUsuario.Parameters.Add("email", SqlDbType.VarChar, 100).Value = email;
-            SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdUsuario = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario where email=@email", Conn);
+                cmdUsuario.Parameters.Add("email", SqlDbType.VarChar, 100).Value = email;
+                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
 
-            if (drUsuario.Read())
-            {
-                return true;
+                if (drUsuario.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los usuarios", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 
         public bool YaExisteElUsuario(string usu)
         {
-            this.AbrirConexion();
-            SqlCommand cmdUsuario = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario where usu=@usu", Conn);
-            cmdUsuario.Parameters.Add("usu", SqlDbType.VarChar, 50).Value = usu;
-            SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdUsuario = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario where usu=@usu", Conn);
+                cmdUsuario.Parameters.Add("usu", SqlDbType.VarChar, 50).Value = usu;
+                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
 
-            if (drUsuario.Read())
-            {
-                return true;
+                if (drUsuario.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar los datos de los usuarios", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
     }

@@ -222,19 +222,34 @@ namespace Datos
 
         public DataTable FiltrarPorNombre(string texto,int idtambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT i.id_inseminador,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Inseminador i inner join Localidad l on i.id_localidad=l.id_localidad where i.nombre_inseminador like ('" + texto + "%') and a.id_tambo=@idtambo order by i.nombre_inseminador", Conn);
-            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = new SqlCommand("SELECT i.id_inseminador,i.nombre_inseminador,i.estado_inseminador,i.telefono,i.direccion,i.dni,i.id_localidad,l.nombre_localidad FROM Inseminador i inner join Localidad l on i.id_localidad=l.id_localidad where i.nombre_inseminador like ('" + texto + "%') and a.id_tambo=@idtambo order by i.nombre_inseminador", Conn);
+                cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
-            SqlDataReader dr = cmdFiltro.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdFiltro.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
 
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar inseminadores", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
     }
 }

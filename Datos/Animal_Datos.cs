@@ -328,24 +328,38 @@ namespace Datos
 
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("select * " +
-                                                    " from dbo.vw_ListadoAnimales " +
-                                                    " where id_tambo=@id_tambo " +
-                                                    " order by Cast(caravana as int) asc", Conn);
-           
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("select * " +
+                                                        " from dbo.vw_ListadoAnimales " +
+                                                        " where id_tambo=@id_tambo " +
+                                                        " order by Cast(caravana as int) asc", Conn);
 
-            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            SqlDataReader dr = cmdAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            dt.Load(dr);
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dt.Load(dr);
 
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public List<Animal> RecuperarVacasServidasPorTambo(int id_tambo)
@@ -427,30 +441,45 @@ namespace Datos
 
         public DataTable RecuperarDTVacasServidasPorTambo(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
-                                                      "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
-                                                      "a.caravana,c.id_categoria " +
-                                                   " FROM Animal a " +
-                                                   " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
-                                                   " inner join Evento e on ev.id_evento = e.id_evento " +
-                                                   " inner join Raza r on a.id_raza=r.id_raza " +
-                                                   " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                   " inner join Categoria c on c.id_categoria = a.id_categoria" +
-                                                   " where a.id_tambo=@id_tambo and a.habilitado='true' " +
-                                                   " and e.nombre_evento = 'Servicio' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) " +
-                                                   " and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' " +
-                                                   " order by a.rp", Conn);
-            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                                                          "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
+                                                          "a.caravana,c.id_categoria " +
+                                                       " FROM Animal a " +
+                                                       " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
+                                                       " inner join Evento e on ev.id_evento = e.id_evento " +
+                                                       " inner join Raza r on a.id_raza=r.id_raza " +
+                                                       " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                                       " inner join Categoria c on c.id_categoria = a.id_categoria" +
+                                                       " where a.id_tambo=@id_tambo and a.habilitado='true' " +
+                                                       " and e.nombre_evento = 'Servicio' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) " +
+                                                       " and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' " +
+                                                       " order by a.rp", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            SqlDataReader dr = cmdAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
 
         }
 
@@ -532,30 +561,45 @@ namespace Datos
 
         public DataTable RecuperarDTVacasConPartoPorTambo(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
-                                                     "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
-                                                     "a.caravana,c.id_categoria " +
-                                                  " FROM Animal a " +
-                                                  " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
-                                                  " inner join Evento e on ev.id_evento = e.id_evento " +
-                                                  " inner join Raza r on a.id_raza=r.id_raza " +
-                                                  " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                  " inner join Categoria c on c.id_categoria = a.id_categoria" +
-                                                  " where a.id_tambo=@id_tambo and a.habilitado='true' " +
-                                                  " and e.nombre_evento = 'Parto' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) " +
-                                                  " and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' " +
-                                                  " order by a.rp", Conn);
-            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                                                         "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
+                                                         "a.caravana,c.id_categoria " +
+                                                      " FROM Animal a " +
+                                                      " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
+                                                      " inner join Evento e on ev.id_evento = e.id_evento " +
+                                                      " inner join Raza r on a.id_raza=r.id_raza " +
+                                                      " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                                      " inner join Categoria c on c.id_categoria = a.id_categoria" +
+                                                      " where a.id_tambo=@id_tambo and a.habilitado='true' " +
+                                                      " and e.nombre_evento = 'Parto' and ev.fecha_desc > DATEADD(dd,-21,GETDATE()) " +
+                                                      " and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' " +
+                                                      " order by a.rp", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            SqlDataReader dr = cmdAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
 
         }
 
@@ -635,28 +679,45 @@ namespace Datos
 
         public DataTable RecuperarDTAnimalesEnfermosPorTambo(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
-                                                      "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
-                                                      "a.caravana,c.id_categoria " +
-                                                   " FROM Animal a " +
-                                                   " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
-                                                   " inner join Evento e on ev.id_evento = e.id_evento " +
-                                                   " inner join Raza r on a.id_raza=r.id_raza " +
-                                                   " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                   " inner join Categoria c on c.id_categoria = a.id_categoria" +
-                                                  " where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' " +
-                                                     " order by a.nombre_animal", Conn);
-            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            try
+            {
 
-            SqlDataReader dr = cmdAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                                                          "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
+                                                          "a.caravana,c.id_categoria " +
+                                                       " FROM Animal a " +
+                                                       " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
+                                                       " inner join Evento e on ev.id_evento = e.id_evento " +
+                                                       " inner join Raza r on a.id_raza=r.id_raza " +
+                                                       " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                                       " inner join Categoria c on c.id_categoria = a.id_categoria" +
+                                                      " where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' " +
+                                                         " order by a.nombre_animal", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            dt.Load(dr);
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dt.Load(dr);
+
+                dr.Close();
+                return dt;
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
 
         }
 
@@ -736,29 +797,43 @@ namespace Datos
 
         public DataTable RecuperarDTVacasEnCeloPorTambo(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
-                                                     "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
-                                                     "a.caravana,c.id_categoria " +
-                                                  " FROM Animal a " +
-                                                  " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
-                                                  " inner join Evento e on ev.id_evento = e.id_evento " +
-                                                  " inner join Raza r on a.id_raza=r.id_raza " +
-                                                  " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                  " inner join Categoria c on c.id_categoria = a.id_categoria" +
-                                                 " where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Celo' " +
-                                                    " order by a.nombre_animal", Conn);
-            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("SELECT distinct a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                                                         "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
+                                                         "a.caravana,c.id_categoria " +
+                                                      " FROM Animal a " +
+                                                      " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
+                                                      " inner join Evento e on ev.id_evento = e.id_evento " +
+                                                      " inner join Raza r on a.id_raza=r.id_raza " +
+                                                      " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                                      " inner join Categoria c on c.id_categoria = a.id_categoria" +
+                                                     " where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Celo' " +
+                                                        " order by a.nombre_animal", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            SqlDataReader dr = cmdAnimal.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
-
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public int CantidadCriasMacho(int id_tambo)
@@ -1453,180 +1528,281 @@ namespace Datos
 
         public DataTable FiltrarPorNombre(string texto, int idtambo)
         {
-            this.AbrirConexion();
-            Animal animal = new Animal();
-            this.AbrirConexion();
+            try
+            {
+                this.AbrirConexion();
+                Animal animal = new Animal();
+                this.AbrirConexion();
 
-            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
-                                                 "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
-                                                 "a.caravana,c.id_categoria " +
-                                              " FROM Animal a " +
-                                              " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
-                                              " inner join Evento e on ev.id_evento = e.id_evento " +
-                                              " inner join Raza r on a.id_raza=r.id_raza " +
-                                              " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                              " inner join Categoria c on c.id_categoria = a.id_categoria" +
-                                                 " where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo " +
-                                                " and a.habilitado='true'  and a.estado_animal!='Vendido'" +
-                                                "  order by cast(a.caravana as int)asc ", Conn);
+                SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                                                     "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
+                                                     "a.caravana,c.id_categoria " +
+                                                  " FROM Animal a " +
+                                                  " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
+                                                  " inner join Evento e on ev.id_evento = e.id_evento " +
+                                                  " inner join Raza r on a.id_raza=r.id_raza " +
+                                                  " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                                  " inner join Categoria c on c.id_categoria = a.id_categoria" +
+                                                     " where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo " +
+                                                    " and a.habilitado='true'  and a.estado_animal!='Vendido'" +
+                                                    "  order by cast(a.caravana as int)asc ", Conn);
 
-            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+                cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
-            SqlDataReader dr = cmdFiltro.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdFiltro.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
 
         }
 
         public DataTable FiltrarPorRP(int rp)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = Conn.CreateCommand();
-            cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.id_categoria,a.rp_madre, " +
-                                    "a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana " +
-                                    " FROM Animal a " +
-                                    " inner join Raza r on a.id_raza=r.id_raza " +
-                                    " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                    " where rp like ('" + rp + "%')";
-            cmdFiltro.ExecuteNonQuery();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = Conn.CreateCommand();
+                cmdFiltro.CommandType = CommandType.Text;
+                cmdFiltro.CommandText = "SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.id_categoria,a.rp_madre, " +
+                                        "a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana " +
+                                        " FROM Animal a " +
+                                        " inner join Raza r on a.id_raza=r.id_raza " +
+                                        " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                        " where rp like ('" + rp + "%')";
+                cmdFiltro.ExecuteNonQuery();
 
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
-            da.Fill(dt);
-            this.CerrarConexion();
-            return dt;
-
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
+                da.Fill(dt);
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable FiltrarPorEstado(string texto, int idtambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.id_categoria," +
-                                                 "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado" +
-                                                 " ,a.caravana " +
-                                                 " FROM Animal a " +
-                                                 " inner join Raza r on a.id_raza=r.id_raza " +
-                                                 " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                 " where estado_animal like ('%" + texto + "%') " +
-                                                 " and a.id_tambo=@idtambo and a.habilitado='true' " +
-                                                 " and a.estado_animal!='Vendido' " +
-                                                 " order by cast(a.caravana as int) asc", Conn);
-            cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.id_categoria," +
+                                                     "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado" +
+                                                     " ,a.caravana " +
+                                                     " FROM Animal a " +
+                                                     " inner join Raza r on a.id_raza=r.id_raza " +
+                                                     " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                                     " where estado_animal like ('%" + texto + "%') " +
+                                                     " and a.id_tambo=@idtambo and a.habilitado='true' " +
+                                                     " and a.estado_animal!='Vendido' " +
+                                                     " order by cast(a.caravana as int) asc", Conn);
+                cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
-            SqlDataReader dr = cmdFiltro.ExecuteReader();
-            DataTable dt = new DataTable();
+                SqlDataReader dr = cmdFiltro.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                dt.Load(dr);
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
-
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable FiltrarPorCaravana(string texto, int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = new SqlCommand("select * " +
-                                                    " from dbo.vw_ListadoAnimales " +
-                                                    " where id_tambo=@id_tambo and " +
-                                                    " caravana like '%"+texto+"%'" +
-                                                    " order by Cast(caravana as int) asc", Conn);
-            //SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
-            //                                        "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
-            //                                        "a.caravana,c.id_categoria " +
-            //                                     " FROM Animal a " +
-            //                                     " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
-            //                                     " inner join Evento e on ev.id_evento = e.id_evento " +
-            //                                     " inner join Raza r on a.id_raza=r.id_raza " +
-            //                                     " inner join Tambo t on a.id_tambo=t.id_tambo " +
-            //                                     " inner join Categoria c on c.id_categoria = a.id_categoria" +
-            //                                    " where a.caravana like ('%" + texto + "%') and a.id_tambo=@idtambo" +
-            //                                    " and a.habilitado='true' and a.estado_animal!='Vendido' " +
-            //                                    " order by Cast(a.caravana as int) asc", Conn);
-            cmdFiltro.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = new SqlCommand("select * " +
+                                                        " from dbo.vw_ListadoAnimales " +
+                                                        " where id_tambo=@id_tambo and " +
+                                                        " caravana like '%" + texto + "%'" +
+                                                        " order by Cast(caravana as int) asc", Conn);
+                //SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
+                //                                        "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
+                //                                        "a.caravana,c.id_categoria " +
+                //                                     " FROM Animal a " +
+                //                                     " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
+                //                                     " inner join Evento e on ev.id_evento = e.id_evento " +
+                //                                     " inner join Raza r on a.id_raza=r.id_raza " +
+                //                                     " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                //                                     " inner join Categoria c on c.id_categoria = a.id_categoria" +
+                //                                    " where a.caravana like ('%" + texto + "%') and a.id_tambo=@idtambo" +
+                //                                    " and a.habilitado='true' and a.estado_animal!='Vendido' " +
+                //                                    " order by Cast(a.caravana as int) asc", Conn);
+                cmdFiltro.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
-            SqlDataReader dr = cmdFiltro.ExecuteReader();
-            DataTable dt = new DataTable();
 
-            dt.Load(dr);
+                SqlDataReader dr = cmdFiltro.ExecuteReader();
+                DataTable dt = new DataTable();
 
-            dr.Close();
-            this.CerrarConexion();
-            return dt;
+                dt.Load(dr);
 
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable FiltrarPorAnimalesEnCeloPorTambo(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = Conn.CreateCommand();
-            cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT a.rp,a.nombre_animal,a.id_categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,r.nombre_raza,a.caravana " +
-                                  " FROM Animal a " +
-                                  " inner join Raza r on a.id_raza=r.id_raza " +
-                                  " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                  " where a.habilitado='true' and a.estado_animal = 'Celo' " +
-                                  " and a.id_tambo = ('" + id_tambo + "')" +
-                                  "  order by a.nombre_animal";
-            cmdFiltro.ExecuteNonQuery();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = Conn.CreateCommand();
+                cmdFiltro.CommandType = CommandType.Text;
+                cmdFiltro.CommandText = "SELECT a.rp,a.nombre_animal,a.id_categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,r.nombre_raza,a.caravana " +
+                                      " FROM Animal a " +
+                                      " inner join Raza r on a.id_raza=r.id_raza " +
+                                      " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                      " where a.habilitado='true' and a.estado_animal = 'Celo' " +
+                                      " and a.id_tambo = ('" + id_tambo + "')" +
+                                      "  order by a.nombre_animal";
+                cmdFiltro.ExecuteNonQuery();
 
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
-            da.Fill(dt);
-            this.CerrarConexion();
-            return dt;
-
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
+                da.Fill(dt);
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public DataTable FiltrarPorAnimalesEnfermosPorTambo(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdFiltro = Conn.CreateCommand();
-            cmdFiltro.CommandType = CommandType.Text;
-            cmdFiltro.CommandText = "SELECT a.rp,a.nombre_animal,a.id_categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,r.nombre_raza,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' order by a.nombre_animal";
-            cmdFiltro.ExecuteNonQuery();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdFiltro = Conn.CreateCommand();
+                cmdFiltro.CommandType = CommandType.Text;
+                cmdFiltro.CommandText = "SELECT a.rp,a.nombre_animal,a.id_categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,r.nombre_raza,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal = 'Enfermo' order by a.nombre_animal";
+                cmdFiltro.ExecuteNonQuery();
 
-            DataTable dt = new DataTable();
-            SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
-            da.Fill(dt);
-            this.CerrarConexion();
-            return dt;
-
+                DataTable dt = new DataTable();
+                SqlDataAdapter da = new SqlDataAdapter(cmdFiltro);
+                da.Fill(dt);
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
         }
 
         public bool HayVacas(int id_tambo)
         {
-            this.AbrirConexion();
-            SqlCommand cmdAnimal = new SqlCommand("select * " +
-                                        " from dbo.vw_ListadoAnimales " +
-                                        " where id_tambo=@id_tambo and " +
-                                         "descripcion = 'Vaca' and habilitado='true' " +
-                                        " order by Cast(caravana as int) asc", Conn);
-            //SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba," +
-            //                "   a.id_categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana " +
-            //                " FROM Animal a " +
-            //                " inner join Raza r on a.id_raza=r.id_raza " +
-            //                " inner join Tambo t on a.id_tambo=t.id_tambo " +
-            //                " where a.id_tambo=@id_tambo and a.habilitado='true'" +
-            //                "  and a.categoria = 'Vaca'", Conn);
-            cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
-            SqlDataReader drAnimal = cmdAnimal.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("select * " +
+                                            " from dbo.vw_ListadoAnimales " +
+                                            " where id_tambo=@id_tambo and " +
+                                             "descripcion = 'Vaca' and habilitado='true' " +
+                                            " order by Cast(caravana as int) asc", Conn);
+                //SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba," +
+                //                "   a.id_categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana " +
+                //                " FROM Animal a " +
+                //                " inner join Raza r on a.id_raza=r.id_raza " +
+                //                " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                //                " where a.id_tambo=@id_tambo and a.habilitado='true'" +
+                //                "  and a.categoria = 'Vaca'", Conn);
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+                SqlDataReader drAnimal = cmdAnimal.ExecuteReader();
 
-            if (drAnimal.Read())
-            {
-                return true;
+                if (drAnimal.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 

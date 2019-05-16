@@ -15,107 +15,275 @@ namespace Negocio
 
         public List<Control_Animal> RecuperarTodos()
         {
-            return controlAnimalDatos.RecuperarTodos();
+            try
+            {
+                return controlAnimalDatos.RecuperarTodos();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Control_Animal> RecuperarPorTambo(int id_tambo)
         {
-            return controlAnimalDatos.RecuperarPorTambo(id_tambo);
+            try
+            {
+                return controlAnimalDatos.RecuperarPorTambo(id_tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Control_Animal> RecuperarPorTamboYAnimal(int id_tambo, int rp)
         {
-            return controlAnimalDatos.RecuperarPorTamboYAnimal(id_tambo,rp);
+            try
+            {
+                return controlAnimalDatos.RecuperarPorTamboYAnimal(id_tambo, rp);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable RecuperarDTPorTambo(int id_tambo)
         {
-            return controlAnimalDatos.RecuperarDTPorTambo(id_tambo);
+            try
+            {
+                return controlAnimalDatos.RecuperarDTPorTambo(id_tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable RecuperarDTPorTamboYAnimal(int id_tambo, int rp)
         {
-            return controlAnimalDatos.RecuperarDTPorTamboYAnimal(id_tambo, rp);
+            try
+            {
+                return controlAnimalDatos.RecuperarDTPorTamboYAnimal(id_tambo, rp);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public List<Control_Animal> RecuperarPorTamboPorFecha(int id_tambo, DateTime fechaDesde, DateTime fechaHasta)
         {
-            return controlAnimalDatos.RecuperarPorTamboPorFecha(id_tambo,fechaDesde,fechaHasta);
+            try
+            {
+                return controlAnimalDatos.RecuperarPorTamboPorFecha(id_tambo, fechaDesde, fechaHasta);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        public void Insertar (Control_Animal control)
+        public void Insertar(Control_Animal control)
         {
-            controlAnimalDatos.Insertar(control);
+            try
+            {
+                controlAnimalDatos.Insertar(control);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        public void Actualizar (Control_Animal controlAnimal)
+        public void Actualizar(Control_Animal controlAnimal)
         {
-            controlAnimalDatos.Actualizar(controlAnimal);
+            try
+            {
+                controlAnimalDatos.Actualizar(controlAnimal);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        public void Eliminar (DateTime fecha_control,int id_control,int rp)
+        public void Eliminar(DateTime fecha_control, int id_control, int rp)
         {
-            controlAnimalDatos.Eliminar(fecha_control,id_control,rp);
+            try
+            {
+                controlAnimalDatos.Eliminar(fecha_control, id_control, rp);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable ProduccionPorFecha(int id_tambo)
         {
-            return controlAnimalDatos.ProduccionPorFecha(id_tambo);
+            try
+            {
+                return controlAnimalDatos.ProduccionPorFecha(id_tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable ProduccionPorFiltroDia(int id_tambo, DateTime fecha)
         {
-            return controlAnimalDatos.ProduccionPorFiltroDia(id_tambo,fecha);
+            try
+            {
+                return controlAnimalDatos.ProduccionPorFiltroDia(id_tambo, fecha);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
-        public DataTable ProduccionPorFiltroDiaYAnimal(int id_tambo, DateTime fecha,int rp)
+        public DataTable ProduccionPorFiltroDiaYAnimal(int id_tambo, DateTime fecha, int rp)
         {
-            return controlAnimalDatos.ProduccionPorFiltroDiaYAnimal(id_tambo, fecha,rp);
-        }
+            try
+            {
+                return controlAnimalDatos.ProduccionPorFiltroDiaYAnimal(id_tambo, fecha, rp);
+            }
+            catch (Exception ex)
+            {
 
+                throw ex;
+            }
+        }
+    
         public DataTable ProduccionPorFiltroMes(int id_tambo, int mes, int año)
         {
-            return controlAnimalDatos.ProduccionPorFiltroMes(id_tambo, mes, año);
+            try
+            {
+                return controlAnimalDatos.ProduccionPorFiltroMes(id_tambo, mes, año);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable ProduccionPorFiltroMesYAnimal(int id_tambo, int mes, int año, int rp)
         {
-            return controlAnimalDatos.ProduccionPorFiltroMesYAnimal(id_tambo, mes, año, rp);
+            try
+            {
+                return controlAnimalDatos.ProduccionPorFiltroMesYAnimal(id_tambo, mes, año, rp);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable ProduccionPorAnimal(int id_tambo)
         {
-            return controlAnimalDatos.ProduccionPorAnimal(id_tambo);
+            try
+            {
+                return controlAnimalDatos.ProduccionPorAnimal(id_tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable ProduccionPorFiltroAnimal(int id_tambo, int rp)
         {
-            return controlAnimalDatos.ProduccionPorFiltroAnimal(id_tambo, rp);
+            try
+            {
+                return controlAnimalDatos.ProduccionPorFiltroAnimal(id_tambo, rp);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable FiltrarPorNombre(string texto,int idtambo)
         {
-            return controlAnimalDatos.FiltrarPorNombre(texto,idtambo);
+            try
+            {
+                return controlAnimalDatos.FiltrarPorNombre(texto,idtambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable FiltrarPorCaravana(string caravana, int idtambo)
         {
-            return controlAnimalDatos.FiltrarPorCaravana(caravana, idtambo);
+            try
+            {
+                return controlAnimalDatos.FiltrarPorCaravana(caravana, idtambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable FiltrarPorRP(int rp)
         {
-            return controlAnimalDatos.FiltrarPorRP(rp);
+            try
+            {
+                return controlAnimalDatos.FiltrarPorRP(rp);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public DataTable FiltrarPorFechaControl (DateTime fechaControl)
         {
-            return FiltrarPorFechaControl(fechaControl);
+            try
+            {
+                return FiltrarPorFechaControl(fechaControl);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool HayControles(int id_tambo)
         {
-            return controlAnimalDatos.HayControles(id_tambo);
+            try
+            {
+                return controlAnimalDatos.HayControles(id_tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool HayControlesMes(int mes, int anio, int id_tambo)
@@ -134,7 +302,15 @@ namespace Negocio
 
         public bool TieneControles(int rp)
         {
-            return controlAnimalDatos.TieneControles(rp);
+            try
+            {
+                return controlAnimalDatos.TieneControles(rp);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

@@ -13,17 +13,33 @@ namespace Datos
     {
         public bool HayEventos_Subeventos()
         {
-            this.AbrirConexion();
-            SqlCommand cmdEventoSubevento = new SqlCommand("select id_evento,id_subevento from Evento_Subevento", Conn);
-            SqlDataReader drEventoSubevento = cmdEventoSubevento.ExecuteReader();
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdEventoSubevento = new SqlCommand("select id_evento,id_subevento from Evento_Subevento", Conn);
+                SqlDataReader drEventoSubevento = cmdEventoSubevento.ExecuteReader();
 
-            if (drEventoSubevento.Read())
-            {
-                return true;
+                if (drEventoSubevento.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar datos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
 

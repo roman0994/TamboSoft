@@ -152,9 +152,6 @@ namespace Datos
             }
         }
 
-
-
-
         public Evento RecuperarUno(int id)
         {
             try
@@ -218,25 +215,36 @@ namespace Datos
 
         public bool HayEventos()
         {
-            this.AbrirConexion();
-            SqlCommand cmdEvento = new SqlCommand("SELECT id_evento,nombre_evento FROM Evento", Conn);
-
-            SqlDataReader drEvento = cmdEvento.ExecuteReader();
-
-            if (drEvento.Read())
+            try
             {
-                return true;
+                this.AbrirConexion();
+                SqlCommand cmdEvento = new SqlCommand("SELECT id_evento,nombre_evento FROM Evento", Conn);
+
+                SqlDataReader drEvento = cmdEvento.ExecuteReader();
+
+                if (drEvento.Read())
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-            else
+            catch (SqlException sqe)
             {
-                return false;
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar datos de los eventos", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
             }
         }
-
-
-       
-
-
 
         public Evento TraerSubeventos(Evento evento)
         {

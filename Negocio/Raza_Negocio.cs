@@ -14,17 +14,41 @@ namespace Negocio
         
         public List<Raza> RecuperarTodos()
         {
-            return razaDatos.RecuperarTodos();
+            try
+            {
+                return razaDatos.RecuperarTodos();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public Raza RecuperarUno(int id)
         {
-            return razaDatos.RecuperarUno(id);
+            try
+            {
+                return razaDatos.RecuperarUno(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
 
         public bool HayRazas()
         {
-            return razaDatos.HayRazas();
+            try
+            {
+                return razaDatos.HayRazas();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

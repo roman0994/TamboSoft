@@ -50,7 +50,7 @@ namespace Escritorio
                     {
                         cargarTablas.CargaTablasData();
                         Login login = new Login();
-                        //login.id_usuario = Program.UsuarioSesion.Id_usuario;
+                        login.id_usuario = Program.UsuarioSesion.Id_usuario;
                         login.Show();
                         this.Hide();
                     }

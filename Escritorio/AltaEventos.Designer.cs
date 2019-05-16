@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.tlpEventos = new System.Windows.Forms.TableLayoutPanel();
+            this.btnLimpiar = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.gbFecha = new System.Windows.Forms.GroupBox();
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
@@ -59,7 +60,6 @@
             this.gbTambo = new System.Windows.Forms.GroupBox();
             this.txtTambo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.btnLimpiar = new System.Windows.Forms.Button();
             this.tlpEventos.SuspendLayout();
             this.gbFecha.SuspendLayout();
             this.gbEvento.SuspendLayout();
@@ -94,6 +94,19 @@
             this.tlpEventos.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tlpEventos.Size = new System.Drawing.Size(800, 450);
             this.tlpEventos.TabIndex = 0;
+            // 
+            // btnLimpiar
+            // 
+            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLimpiar.ForeColor = System.Drawing.Color.Crimson;
+            this.btnLimpiar.Location = new System.Drawing.Point(403, 419);
+            this.btnLimpiar.Name = "btnLimpiar";
+            this.btnLimpiar.Size = new System.Drawing.Size(111, 23);
+            this.btnLimpiar.TabIndex = 2;
+            this.btnLimpiar.Text = "Limpiar sin guardar";
+            this.btnLimpiar.UseVisualStyleBackColor = true;
+            this.btnLimpiar.Visible = false;
+            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
             // 
             // label7
             // 
@@ -163,6 +176,7 @@
             this.gbEvento.TabIndex = 3;
             this.gbEvento.TabStop = false;
             this.gbEvento.Text = "Evento";
+            this.gbEvento.Visible = false;
             // 
             // btnCria2
             // 
@@ -412,7 +426,7 @@
             // 
             // txtTambo
             // 
-            this.txtTambo.Location = new System.Drawing.Point(120, 19);
+            this.txtTambo.Location = new System.Drawing.Point(93, 23);
             this.txtTambo.Name = "txtTambo";
             this.txtTambo.ReadOnly = true;
             this.txtTambo.Size = new System.Drawing.Size(200, 20);
@@ -422,24 +436,11 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(0, 26);
+            this.label9.Location = new System.Drawing.Point(18, 26);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(106, 13);
+            this.label9.Size = new System.Drawing.Size(43, 13);
             this.label9.TabIndex = 0;
-            this.label9.Text = "Seleccione el tambo:";
-            // 
-            // btnLimpiar
-            // 
-            this.btnLimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLimpiar.ForeColor = System.Drawing.Color.Crimson;
-            this.btnLimpiar.Location = new System.Drawing.Point(403, 419);
-            this.btnLimpiar.Name = "btnLimpiar";
-            this.btnLimpiar.Size = new System.Drawing.Size(111, 23);
-            this.btnLimpiar.TabIndex = 2;
-            this.btnLimpiar.Text = "Limpiar sin guardar";
-            this.btnLimpiar.UseVisualStyleBackColor = true;
-            this.btnLimpiar.Visible = false;
-            this.btnLimpiar.Click += new System.EventHandler(this.btnLimpiar_Click);
+            this.label9.Text = "Tambo:";
             // 
             // AltaEventos
             // 
