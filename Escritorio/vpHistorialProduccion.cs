@@ -21,12 +21,20 @@ namespace Escritorio
 
         private void vpHistorialProduccion_Load(object sender, EventArgs e)
         {
-            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-            rptHistorialProduccion reporte = new rptHistorialProduccion();
+            try
+            {
+                Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+                rptHistorialProduccion reporte = new rptHistorialProduccion();
 
-            reporte.SetDataSource(controlAnimalNegocio.RecuperarDTPorTamboYAnimal(Principal.Tambo.Id_tambo,rp));
-            crvHistorialProduccion.ReportSource = reporte;
-            crvHistorialProduccion.Refresh();
+                reporte.SetDataSource(controlAnimalNegocio.RecuperarDTPorTamboYAnimal(Principal.Tambo.Id_tambo, rp));
+                crvHistorialProduccion.ReportSource = reporte;
+                crvHistorialProduccion.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

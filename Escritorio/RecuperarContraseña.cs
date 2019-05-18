@@ -22,26 +22,34 @@ namespace Escritorio
 
         private void btnRecuperar_Click(object sender, EventArgs e)
         {
-            Validaciones validaciones = new Validaciones();
-            bool validaremail = validaciones.ValidarEmail(txtEmail.Text);
+            try
+            {
+                Validaciones validaciones = new Validaciones();
+                bool validaremail = validaciones.ValidarEmail(txtEmail.Text);
 
-            if(validaremail == true)
-            { 
-                Usuario_Negocio usuarioNegocio = new Usuario_Negocio();
-                string pass = usuarioNegocio.RecuperarContraseña(txtEmail.Text);
-                if (pass != null)
+                if (validaremail == true)
                 {
-                    EnviarEmail(txtEmail.Text, pass);
-                    this.Dispose();
+                    Usuario_Negocio usuarioNegocio = new Usuario_Negocio();
+                    string pass = usuarioNegocio.RecuperarContraseña(txtEmail.Text);
+                    if (pass != null)
+                    {
+                        EnviarEmail(txtEmail.Text, pass);
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El Mail indicado no está registrado. Intente con otro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("El Mail indicado no está registrado. Intente con otro", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El campo Email no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("El campo Email no es válido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 

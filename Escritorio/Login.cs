@@ -31,33 +31,65 @@ namespace Escritorio
 
         public void CargaComboTambo()
         {
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            this.cbTambo.DataSource = tamboNegocio.RecuperarTodos(Usuario.Id_usuario);
-            this.cbTambo.DisplayMember = "nombre_tambo";
-            this.cbTambo.ValueMember = "id_tambo";
-            this.cbTambo.SelectedIndex = -1;
+            try
+            {
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                this.cbTambo.DataSource = tamboNegocio.RecuperarTodos(Usuario.Id_usuario);
+                this.cbTambo.DisplayMember = "nombre_tambo";
+                this.cbTambo.ValueMember = "id_tambo";
+                this.cbTambo.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void InicializarbtnIngresar()
         {
-            this.btnIngresar.Enabled = false;
+            try
+            {
+                this.btnIngresar.Enabled = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void cbTambo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.btnIngresar.Enabled = true;
+            try
+            {
+                this.btnIngresar.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            
-            int id_tambo = Convert.ToInt32(this.cbTambo.SelectedValue);
-            Tambo.Id_tambo = id_tambo;
-            Principal principal = new Principal(id_tambo);
-            principal.id_tambo = id_tambo;
-            principal.id_usuario =id_usuario;
-            principal.Show();
-            this.Hide();
+            try
+            {
+                int id_tambo = Convert.ToInt32(this.cbTambo.SelectedValue);
+                Tambo.Id_tambo = id_tambo;
+                Principal principal = new Principal(id_tambo);
+                principal.id_tambo = id_tambo;
+                principal.id_usuario = id_usuario;
+                principal.Show();
+                this.Hide();
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -67,17 +99,33 @@ namespace Escritorio
 
         private void btnNuevoTambo_Click(object sender, EventArgs e)
         {
-            LoginAltaTambos loginAlta = new LoginAltaTambos();
-            loginAlta.Show();
-            this.Hide();
+            try
+            {
+                LoginAltaTambos loginAlta = new LoginAltaTambos();
+                loginAlta.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void lnkRegresarLogin_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Program.UsuarioSesion = null;
-            LoginUsuario login = new LoginUsuario();
-            login.Show();
-            this.Hide();
+            try
+            {
+                Program.UsuarioSesion = null;
+                LoginUsuario login = new LoginUsuario();
+                login.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

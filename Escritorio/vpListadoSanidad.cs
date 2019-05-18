@@ -20,13 +20,21 @@ namespace Escritorio
 
         private void vpListadoSanidad_Load(object sender, EventArgs e)
         {
-            Animal_Negocio animal_Negocio = new Animal_Negocio();
-            rptListadoSanidad reporte = new rptListadoSanidad();
+            try
+            {
+                Animal_Negocio animal_Negocio = new Animal_Negocio();
+                rptListadoSanidad reporte = new rptListadoSanidad();
 
-            reporte.SetDataSource(animal_Negocio.RecuperarDTPorTambo(Principal.Tambo.Id_tambo));
-            reporte.SetDatabaseLogon("abcd", "123456");
-            crv.ReportSource = reporte;
-            crv.Refresh();
+                reporte.SetDataSource(animal_Negocio.RecuperarDTPorTambo(Principal.Tambo.Id_tambo));
+                reporte.SetDatabaseLogon("abcd", "123456");
+                crv.ReportSource = reporte;
+                crv.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

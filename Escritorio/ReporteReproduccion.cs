@@ -28,11 +28,19 @@ namespace Escritorio
 
         public void CargarTextBoxTambo(int id_tambo)
         {
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            Tambo tambo = new Tambo();
+            try
+            {
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                Tambo tambo = new Tambo();
 
-            tambo = tamboNegocio.RecuperarUno(id_tambo);
-            this.txtTambo.Text = tambo.Nombre_tambo;
+                tambo = tamboNegocio.RecuperarUno(id_tambo);
+                this.txtTambo.Text = tambo.Nombre_tambo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarGrilla(int id_tambo)

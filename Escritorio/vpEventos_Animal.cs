@@ -31,24 +31,31 @@ namespace Escritorio
 
         private void vpEventos_Animal_Load(object sender, EventArgs e)
         {
-            if (Animal == null)
+            try
             {
-                EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-                rptEvento_Animal reporte = new rptEvento_Animal();
-                reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
-                reporte.SetDatabaseLogon("abcd", "123456");
-                crvEvento_Animal.ReportSource = reporte;
+                if (Animal == null)
+                {
+                    EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                    rptEvento_Animal reporte = new rptEvento_Animal();
+                    reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
+                    reporte.SetDatabaseLogon("abcd", "123456");
+                    crvEvento_Animal.ReportSource = reporte;
+                }
+                else
+                {
+                    EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                    rptEventoXAnimal reporte = new rptEventoXAnimal();
+                    reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
+                    reporte.SetParameterValue("@rp", Animal.Rp);
+                    reporte.SetDatabaseLogon("abcd", "123456");
+                    crvEvento_Animal.ReportSource = reporte;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-                rptEventoXAnimal reporte = new rptEventoXAnimal();
-                reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
-                reporte.SetParameterValue("@rp", Animal.Rp);
-                reporte.SetDatabaseLogon("abcd", "123456");
-                crvEvento_Animal.ReportSource = reporte;
-            }
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
 
+            }
 
         }
     }

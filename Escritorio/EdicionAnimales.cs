@@ -26,88 +26,120 @@ namespace Escritorio
         }
         public void CargarComboEstado()
         {
-            cbEstado.Items.Add("Analisis");
-            cbEstado.Items.Add("Celo");
-            cbEstado.Items.Add("Enfermo");
-            cbEstado.Items.Add("Medicado");
-            cbEstado.Items.Add("Muerto");
-            cbEstado.Items.Add("Parto");
-            cbEstado.Items.Add("Preñada");
-            cbEstado.Items.Add("Preñada dudosa");
-            
-            cbEstado.Items.Add("Vendido");
-            cbEstado.Items.Add("Vivo");
+            try
+            {
+                cbEstado.Items.Add("Analisis");
+                cbEstado.Items.Add("Celo");
+                cbEstado.Items.Add("Enfermo");
+                cbEstado.Items.Add("Medicado");
+                cbEstado.Items.Add("Muerto");
+                cbEstado.Items.Add("Parto");
+                cbEstado.Items.Add("Preñada");
+                cbEstado.Items.Add("Preñada dudosa");
+
+                cbEstado.Items.Add("Vendido");
+                cbEstado.Items.Add("Vivo");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarComboCategoria()
         {
-            cbCategoria.Items.Add("Vaca");
-            cbCategoria.Items.Add("Toro");
+            try
+            {
+                cbCategoria.Items.Add("Vaca");
+                cbCategoria.Items.Add("Toro");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarComboRaza()
         {
-            Raza_Negocio razaNegocio = new Raza_Negocio();
-            this.cbRaza.DataSource = razaNegocio.RecuperarTodos();
-            this.cbRaza.DisplayMember = "nombre_raza";
-            this.cbRaza.ValueMember = "id_raza";
-            this.cbRaza.SelectedIndex = -1;
+            try
+            {
+                Raza_Negocio razaNegocio = new Raza_Negocio();
+                this.cbRaza.DataSource = razaNegocio.RecuperarTodos();
+                this.cbRaza.DisplayMember = "nombre_raza";
+                this.cbRaza.ValueMember = "id_raza";
+                this.cbRaza.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Animal_Negocio an = new Animal_Negocio();
-            Validaciones validaciones = new Validaciones();
-            string validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex,  txtNombre.Text, txtHBA.Text, txtCaravana.Text);
-
-            if (validar == "true")
+            try
             {
+                Animal_Negocio an = new Animal_Negocio();
+                Validaciones validaciones = new Validaciones();
+                string validar = validaciones.ValidarEdicionAnimales(cbCategoria.SelectedIndex, cbRaza.SelectedIndex, txtNombre.Text, txtHBA.Text, txtCaravana.Text);
 
-                if (txtRPMadre.Text.Length <= 6 || txtRPMadre.Text == string.Empty)
+                if (validar == "true")
                 {
-                    if (txtRPPadre.Text.Length <= 6 || txtRPPadre.Text == string.Empty)
+
+                    if (txtRPMadre.Text.Length <= 6 || txtRPMadre.Text == string.Empty)
                     {
-                        if (txtHBAMadre.Text.Length <= 6 || txtHBAMadre.Text == string.Empty)
+                        if (txtRPPadre.Text.Length <= 6 || txtRPPadre.Text == string.Empty)
                         {
-                            if (txtHBAPadre.Text.Length <= 6 || txtHBAPadre.Text == string.Empty)
+                            if (txtHBAMadre.Text.Length <= 6 || txtHBAMadre.Text == string.Empty)
                             {
-                                if (txtCaravana.Text.Length<=5)
+                                if (txtHBAPadre.Text.Length <= 6 || txtHBAPadre.Text == string.Empty)
                                 {
-                                    Animal_Negocio animalNegocio = new Animal_Negocio();
-                                    Animal animal = new Animal();
-                                    animal = MapearAAnimal();
-                                    animalNegocio.Actualizar(animal);
-                                    DialogResult result = MessageBox.Show("El animal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    this.Dispose();
-                                    
+                                    if (txtCaravana.Text.Length <= 5)
+                                    {
+                                        Animal_Negocio animalNegocio = new Animal_Negocio();
+                                        Animal animal = new Animal();
+                                        animal = MapearAAnimal();
+                                        animalNegocio.Actualizar(animal);
+                                        DialogResult result = MessageBox.Show("El animal fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        this.Dispose();
+
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("El campo Caravana no puede ser mayor a 5 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("El campo Caravana no puede ser mayor a 5 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("El campo HBA Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
-                                 MessageBox.Show("El campo HBA Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("El campo HBA Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("El campo HBA Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("El campo RP Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("El campo RP Padre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El campo RP Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("El campo RP Madre no puede ser mayor a 6 (seis) dígitos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(validar, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(validar, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -142,86 +174,143 @@ namespace Escritorio
 
         private void txtEdad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) && (e.KeyChar == (char)Keys.Back) && char.IsSeparator(e.KeyChar) && char.IsWhiteSpace(e.KeyChar))
+            try
             {
-                e.Handled = true;
-                return;
+                if (char.IsLetter(e.KeyChar) && (e.KeyChar == (char)Keys.Back) && char.IsSeparator(e.KeyChar) && char.IsWhiteSpace(e.KeyChar))
+                {
+                    e.Handled = true;
+                    return;
+                }
+                else
+                {
+                    e.Handled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = false;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtHBA_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtRPMadre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtHBAMadre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtRPPadre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
+
         private void txtHBAPadre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -232,17 +321,25 @@ namespace Escritorio
 
         private void EdicionAnimales_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (HayCamposModificados())
+            try
             {
-                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result != DialogResult.Yes)
+                if (HayCamposModificados())
                 {
-                    e.Cancel = true;
+                    DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        this.Dispose();
+                    }
                 }
-                else
-                {
-                    this.Dispose();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 

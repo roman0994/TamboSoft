@@ -43,32 +43,48 @@ namespace Escritorio
 
         public void CargarTextBoxTambo(int id_tambo)
         {
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            Tambo tambo = new Tambo();
-            tambo = tamboNegocio.RecuperarUno(id_tambo);
-            this.txtTambo.Text = tambo.Nombre_tambo;
+            try
+            {
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                Tambo tambo = new Tambo();
+                tambo = tamboNegocio.RecuperarUno(id_tambo);
+                this.txtTambo.Text = tambo.Nombre_tambo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarListaEventos(Animal animal)
         {
-            Evento_Negocio eventoNegocio = new Evento_Negocio();
-            if (animal.Categoria.Descripcion == "Vaca")
-            {                
-                //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
-                this.lbEventos.DisplayMember = "nombre_evento";
-                this.lbEventos.ValueMember = "id_evento";
-                this.lbEventos.DataSource = eventoNegocio.RecuperarTodos();
-                this.lbEventos.SelectedIndex = -1;
-                //this.cbAnimal.Enabled = false;
-            }
-            else if(animal.Categoria.Descripcion == "Toro")
+            try
             {
-                //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
-                this.lbEventos.DisplayMember = "nombre_evento";
-                this.lbEventos.ValueMember = "id_evento";
-                this.lbEventos.DataSource = eventoNegocio.RecuperarEventosParaToros();
-                this.lbEventos.SelectedIndex = -1;
-                //this.cbAnimal.Enabled = false;
+                Evento_Negocio eventoNegocio = new Evento_Negocio();
+                if (animal.Categoria.Descripcion == "Vaca")
+                {
+                    //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
+                    this.lbEventos.DisplayMember = "nombre_evento";
+                    this.lbEventos.ValueMember = "id_evento";
+                    this.lbEventos.DataSource = eventoNegocio.RecuperarTodos();
+                    this.lbEventos.SelectedIndex = -1;
+                    //this.cbAnimal.Enabled = false;
+                }
+                else if (animal.Categoria.Descripcion == "Toro")
+                {
+                    //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
+                    this.lbEventos.DisplayMember = "nombre_evento";
+                    this.lbEventos.ValueMember = "id_evento";
+                    this.lbEventos.DataSource = eventoNegocio.RecuperarEventosParaToros();
+                    this.lbEventos.SelectedIndex = -1;
+                    //this.cbAnimal.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -452,146 +468,305 @@ namespace Escritorio
 
         public void CargarCombo1Parto()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(1);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(1);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo2Parto()
         {
-            this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(2);
-            this.comboBox2.DisplayMember = "descripcion";
-            this.comboBox2.ValueMember = "id_desc";
-            this.comboBox2.SelectedIndex = -1;
+            try
+            {
+                this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(2);
+                this.comboBox2.DisplayMember = "descripcion";
+                this.comboBox2.ValueMember = "id_desc";
+                this.comboBox2.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo3Parto()
         {
-            this.comboBox3.DataSource = descSubeventoNegocio.RecuperarPorSubevento(3);
-            this.comboBox3.DisplayMember = "descripcion";
-            this.comboBox3.ValueMember = "id_desc";
-            this.comboBox3.SelectedIndex = -1;
+            try
+            {
+                this.comboBox3.DataSource = descSubeventoNegocio.RecuperarPorSubevento(3);
+                this.comboBox3.DisplayMember = "descripcion";
+                this.comboBox3.ValueMember = "id_desc";
+                this.comboBox3.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarComboAborto()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(4);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(4);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo1Celo()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(5);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(5);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo2Celo()
         {
-            this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(6);
-            this.comboBox2.DisplayMember = "descripcion";
-            this.comboBox2.ValueMember = "id_desc";
-            this.comboBox2.SelectedIndex = -1;
+            try
+            {
+                this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(6);
+                this.comboBox2.DisplayMember = "descripcion";
+                this.comboBox2.ValueMember = "id_desc";
+                this.comboBox2.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo3Celo()
         {
-            this.comboBox3.DataSource = descSubeventoNegocio.RecuperarPorSubevento(7);
-            this.comboBox3.DisplayMember = "descripcion";
-            this.comboBox3.ValueMember = "id_desc";
-            this.comboBox3.SelectedIndex = -1;
+            try
+            {
+                this.comboBox3.DataSource = descSubeventoNegocio.RecuperarPorSubevento(7);
+                this.comboBox3.DisplayMember = "descripcion";
+                this.comboBox3.ValueMember = "id_desc";
+                this.comboBox3.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarComboVenta()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(8);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(8);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarComboMuerte()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(16);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(16);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo1Enfermedad()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(9);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(9);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo2Enfermedad()
         {
-            this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(10);
-            this.comboBox2.DisplayMember = "descripcion";
-            this.comboBox2.ValueMember = "id_desc";
-            this.comboBox2.SelectedIndex = -1;
+            try
+            {
+                this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(10);
+                this.comboBox2.DisplayMember = "descripcion";
+                this.comboBox2.ValueMember = "id_desc";
+                this.comboBox2.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo1TactoRectal()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(11);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(11);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo2TactoRectal()
         {
-            this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(12);
-            this.comboBox2.DisplayMember = "descripcion";
-            this.comboBox2.ValueMember = "id_desc";
-            this.comboBox2.SelectedIndex = -1;
+            try
+            {
+                this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(12);
+                this.comboBox2.DisplayMember = "descripcion";
+                this.comboBox2.ValueMember = "id_desc";
+                this.comboBox2.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
 
+            }
         }
         public void CargarCombo3TactoRectal()
         {
-            this.comboBox3.DataSource = descSubeventoNegocio.RecuperarPorSubevento(13);
-            this.comboBox3.DisplayMember = "descripcion";
-            this.comboBox3.ValueMember = "id_desc";
-            this.comboBox3.SelectedIndex = -1;
+            try
+            {
+                this.comboBox3.DataSource = descSubeventoNegocio.RecuperarPorSubevento(13);
+                this.comboBox3.DisplayMember = "descripcion";
+                this.comboBox3.ValueMember = "id_desc";
+                this.comboBox3.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo4TactoRectal()
         {
-            this.comboBox4.DataSource = descSubeventoNegocio.RecuperarPorSubevento(6);
-            this.comboBox4.DisplayMember = "descripcion";
-            this.comboBox4.ValueMember = "id_desc";
-            this.comboBox4.SelectedIndex = -1;
+            try
+            {
+                this.comboBox4.DataSource = descSubeventoNegocio.RecuperarPorSubevento(6);
+                this.comboBox4.DisplayMember = "descripcion";
+                this.comboBox4.ValueMember = "id_desc";
+                this.comboBox4.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo1Medicacion()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(10);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(10);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarCombo2Medicacion()
         {
-            this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(7);
-            this.comboBox2.DisplayMember = "descripcion";
-            this.comboBox2.ValueMember = "id_desc";
-            this.comboBox2.SelectedIndex = -1;
+            try
+            {
+                this.comboBox2.DataSource = descSubeventoNegocio.RecuperarPorSubevento(7);
+                this.comboBox2.DisplayMember = "descripcion";
+                this.comboBox2.ValueMember = "id_desc";
+                this.comboBox2.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarComboRechazo()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(14);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(14);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarComboAnalisis()
         {
-            this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(15);
-            this.comboBox1.DisplayMember = "descripcion";
-            this.comboBox1.ValueMember = "id_desc";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                this.comboBox1.DataSource = descSubeventoNegocio.RecuperarPorSubevento(15);
+                this.comboBox1.DisplayMember = "descripcion";
+                this.comboBox1.ValueMember = "id_desc";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         public void CargarComboInseminador()
         {
-            Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
-            //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
-            this.comboBox1.DataSource = inseminadorNegocio.RecuperarPorTambo(Principal.Tambo.Id_tambo);
-            this.comboBox1.DisplayMember = "nombre_inseminador";
-            this.comboBox1.ValueMember = "id_inseminador";
-            this.comboBox1.SelectedIndex = -1;
+            try
+            {
+                Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
+                //Asigno primero el displaymember y el valuemember, despues el data source, sino tira error
+                this.comboBox1.DataSource = inseminadorNegocio.RecuperarPorTambo(Principal.Tambo.Id_tambo);
+                this.comboBox1.DisplayMember = "nombre_inseminador";
+                this.comboBox1.ValueMember = "id_inseminador";
+                this.comboBox1.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
@@ -1041,51 +1216,67 @@ namespace Escritorio
 
         public void Limpiar()
         {
-            this.dtpFecha.Text = string.Empty;
-            //this.cbAnimal.SelectedIndex = -1;
-            lbEventos.DataSource = null;
-            lbEventos.Enabled = true;
-            btnSalir.Enabled = true;
-            //btnLimpiar.Enabled = true;
-            btnBuscarAnimal.Enabled = true;
+            try
+            {
+                this.dtpFecha.Text = string.Empty;
+                //this.cbAnimal.SelectedIndex = -1;
+                lbEventos.DataSource = null;
+                lbEventos.Enabled = true;
+                btnSalir.Enabled = true;
+                //btnLimpiar.Enabled = true;
+                btnBuscarAnimal.Enabled = true;
 
-            lbError.Text = "";
-            lbCaravana.Text = "";
-            lbNombreAnimal.Text = "";
-            lbCategoriaAnimal.Text = "";
-            lbEstadoAnimal.Text = "";
+                lbError.Text = "";
+                lbCaravana.Text = "";
+                lbNombreAnimal.Text = "";
+                lbCategoriaAnimal.Text = "";
+                lbEstadoAnimal.Text = "";
 
-            btnCria.Visible = false;
-            btnCria2.Visible = false;
+                btnCria.Visible = false;
+                btnCria2.Visible = false;
 
-            btnLimpiar.Visible = false;
+                btnLimpiar.Visible = false;
 
-            Animal = new Animal();
-            Cria = new Animal();
-            Cria2 = new Animal();
+                Animal = new Animal();
+                Cria = new Animal();
+                Cria2 = new Animal();
 
-            gbEvento.Visible = false;
+                gbEvento.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void AltaEventos_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (HayCamposModificados())
+            try
             {
-                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result != DialogResult.Yes)
+                if (HayCamposModificados())
                 {
-                    e.Cancel = true;
-                }
-                else
-                {
-                    this.Dispose();
+                    DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        this.Dispose();
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
 
+            }
         }
 
         private bool HayCamposModificados()
         {
+
             if (lbCaravana.Text == "" && gbEvento.Visible == false)
             {
                 return false;
@@ -1184,56 +1375,71 @@ namespace Escritorio
                 btnCria.Visible = false;
                 btnCria2.Visible = false;
             }*/
-            if (comboBox1.SelectedIndex == -1)
+            try
             {
-                btnCria.Visible = false;
-                btnCria2.Visible = false;
+                if (comboBox1.SelectedIndex == -1)
+                {
+                    btnCria.Visible = false;
+                    btnCria2.Visible = false;
+                }
+                else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
+                {
+                    btnCria.Visible = false;
+                    btnCria2.Visible = false;
+                }
+                else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+                {
+                    btnCria.Visible = true;
+                    btnCria2.Visible = false;
+                }
+                else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+                {
+                    btnCria.Visible = true;
+                    btnCria2.Visible = true;
+                }
             }
-            else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
+            catch (Exception ex)
             {
-                btnCria.Visible = false;
-                btnCria2.Visible = false;
-            }
-            else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
-            {
-                btnCria.Visible = true;
-                btnCria2.Visible = false;
-            }
-            else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
-            {
-                btnCria.Visible = true;
-                btnCria2.Visible = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void comboBox1_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if(comboBox3.SelectedIndex == -1)
+            try
             {
-                btnCria.Visible = false;
-                btnCria2.Visible = false;
+                if (comboBox3.SelectedIndex == -1)
+                {
+                    btnCria.Visible = false;
+                    btnCria2.Visible = false;
+                }
+                else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
+                {
+                    btnCria.Visible = false;
+                    btnCria2.Visible = false;
+                }
+                else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+                {
+                    btnCria.Visible = true;
+                    btnCria2.Visible = false;
+                }
+                else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+                {
+                    btnCria.Visible = true;
+                    btnCria2.Visible = true;
+                }
+                /*else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
+                {
+                    btnCria.Visible = false;
+                    btnCria2.Visible = false;
+                }*/
             }
-            else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
+            catch (Exception ex)
             {
-                btnCria.Visible = false;
-                btnCria2.Visible = false;
-            }
-            else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
-            {
-                btnCria.Visible = true;
-                btnCria2.Visible = false;
-            }
-            else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
-            {
-                btnCria.Visible = true;
-                btnCria2.Visible = true;
-            }
-            /*else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
-            {
-                btnCria.Visible = false;
-                btnCria2.Visible = false;
-            }*/
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
 
+            }
         }
 
         private void btnCria_Click(object sender, EventArgs e)
@@ -1355,53 +1561,77 @@ namespace Escritorio
 
         private void DeshabilitarBtnCria1()
         {
-            if (Cria.Rp != 0)
+            try
             {
-                btnCria.Enabled = false;
-                lbEventos.Enabled = false;
-                //btnLimpiar.Enabled = false;
-                btnSalir.Enabled = false;
-                btnBuscarAnimal.Enabled = false;
+                if (Cria.Rp != 0)
+                {
+                    btnCria.Enabled = false;
+                    lbEventos.Enabled = false;
+                    //btnLimpiar.Enabled = false;
+                    btnSalir.Enabled = false;
+                    btnBuscarAnimal.Enabled = false;
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void DeshabilitarBtnCria2()
         {
-            if (Cria2.Rp != 0)
+            try
             {
-                btnCria2.Enabled = false;
-                lbEventos.Enabled = false;
-                //btnLimpiar.Enabled = false;
-                btnSalir.Enabled = false;
-                btnBuscarAnimal.Enabled = false;
+                if (Cria2.Rp != 0)
+                {
+                    btnCria2.Enabled = false;
+                    lbEventos.Enabled = false;
+                    //btnLimpiar.Enabled = false;
+                    btnSalir.Enabled = false;
+                    btnBuscarAnimal.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            if (Cria.Rp != 0 || Cria2.Rp != 0)
+            try
             {
-                DialogResult result = MessageBox.Show("Está a punto de eliminar la(s) cría(s) creada(s). ¿Desea continuar de todas formas?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result == DialogResult.Yes)
+                if (Cria.Rp != 0 || Cria2.Rp != 0)
                 {
-                    if (Cria.Rp != 0)
+                    DialogResult result = MessageBox.Show("Está a punto de eliminar la(s) cría(s) creada(s). ¿Desea continuar de todas formas?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result == DialogResult.Yes)
                     {
+                        if (Cria.Rp != 0)
+                        {
 
-                        animalnegocio.Eliminar(Cria.Rp);
-                    }    
-                
-                    if (Cria2.Rp != 0)
-                    {
-                        animalnegocio.Eliminar(Cria2.Rp);
+                            animalnegocio.Eliminar(Cria.Rp);
+                        }
+
+                        if (Cria2.Rp != 0)
+                        {
+                            animalnegocio.Eliminar(Cria2.Rp);
+                        }
+                        this.Limpiar();
                     }
+                }
+                else
+                {
                     this.Limpiar();
                 }
             }
-            else
+            catch (Exception ex)
             {
-                this.Limpiar();
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
-            
         }
 
         /*private void cbAnimal_SelectionChangeCommitted(object sender, EventArgs e)
@@ -1415,11 +1645,19 @@ namespace Escritorio
 
         private void DarDeAltaEvento()
         {
-            Evento_Animal evento_animal = new Evento_Animal();
-            evento_animal.Rp = animalnegocio.RecuperarPorRP(Animal.Rp).Rp;
-            evento_animal.Id_evento = eventonegocio.RecuperarUno(Convert.ToInt32(lbEventos.SelectedValue)).Id_evento;
-            evento_animal.Fecha_desc = dtpFecha.Value;
-            eventoanimal_negocio.Insertar(evento_animal);
+            try
+            {
+                Evento_Animal evento_animal = new Evento_Animal();
+                evento_animal.Rp = animalnegocio.RecuperarPorRP(Animal.Rp).Rp;
+                evento_animal.Id_evento = eventonegocio.RecuperarUno(Convert.ToInt32(lbEventos.SelectedValue)).Id_evento;
+                evento_animal.Fecha_desc = dtpFecha.Value;
+                eventoanimal_negocio.Insertar(evento_animal);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }   
 }

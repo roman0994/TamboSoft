@@ -26,105 +26,137 @@ namespace Escritorio
 
         public void CargarTextBoxTambo(int id_tambo)
         {
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            Tambo tambo = new Tambo();
+            try
+            {
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                Tambo tambo = new Tambo();
 
-            tambo = tamboNegocio.RecuperarUno(id_tambo);
-            this.txtTambo.Text = tambo.Nombre_tambo;
+                tambo = tamboNegocio.RecuperarUno(id_tambo);
+                this.txtTambo.Text = tambo.Nombre_tambo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarComboBoxFiltro()
         {
-            this.cbFiltro.Items.Add("Vacas en celo");
-            this.cbFiltro.Items.Add("Animales enfermos");
-            this.cbFiltro.Items.Add("Vacas con parto en los últimos 21 días");
-            this.cbFiltro.Items.Add("Vacas servidas en los últimos 21 días");
-            this.cbFiltro.SelectedIndex = -1;
+            try
+            {
+                this.cbFiltro.Items.Add("Vacas en celo");
+                this.cbFiltro.Items.Add("Animales enfermos");
+                this.cbFiltro.Items.Add("Vacas con parto en los últimos 21 días");
+                this.cbFiltro.Items.Add("Vacas servidas en los últimos 21 días");
+                this.cbFiltro.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarGrilla(int id_tambo)
         {
-            if (this.cbFiltro.SelectedIndex == -1)
+            try
             {
-                Animal_Negocio animalNegocio = new Animal_Negocio();
-                this.dgvEventos.DataSource = animalNegocio.RecuperarParaReportePorTambo(id_tambo);
-                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                if (this.cbFiltro.SelectedIndex == -1)
                 {
-                    this.btnExportar.Enabled = true;
+                    Animal_Negocio animalNegocio = new Animal_Negocio();
+                    this.dgvEventos.DataSource = animalNegocio.RecuperarParaReportePorTambo(id_tambo);
+                    if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                    {
+                        this.btnExportar.Enabled = true;
+                    }
+                    else
+                    {
+                        this.btnExportar.Enabled = false;
+                    }
                 }
-                else
-                {
-                    this.btnExportar.Enabled = false;
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void cbFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Animal_Negocio animalNegocio = new Animal_Negocio();
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            Tambo tambo = new Tambo();
+            try
+            {
+                Animal_Negocio animalNegocio = new Animal_Negocio();
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                Tambo tambo = new Tambo();
 
-            tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
-            if (this.cbFiltro.SelectedIndex == -1)
-            {
-                this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(Principal.Tambo.Id_tambo);
-                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
+                if (this.cbFiltro.SelectedIndex == -1)
                 {
-                    this.btnExportar.Enabled = true;
+                    this.dgvEventos.DataSource = animalNegocio.RecuperarPorTambo(Principal.Tambo.Id_tambo);
+                    if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                    {
+                        this.btnExportar.Enabled = true;
+                    }
+                    else
+                    {
+                        this.btnExportar.Enabled = false;
+                    }
                 }
-                else
+                else if (this.cbFiltro.SelectedItem.ToString() == "Vacas en celo")
                 {
-                    this.btnExportar.Enabled = false;
+                    this.dgvEventos.DataSource = animalNegocio.RecuperarVacasEnCeloPorTambo(tambo.Id_tambo);
+                    if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                    {
+                        this.btnExportar.Enabled = true;
+                    }
+                    else
+                    {
+                        this.btnExportar.Enabled = false;
+                    }
+                }
+                else if (this.cbFiltro.SelectedItem.ToString() == "Animales enfermos")
+                {
+                    this.dgvEventos.DataSource = animalNegocio.RecuperarAnimalesEnfermosPorTambo(tambo.Id_tambo);
+                    if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                    {
+                        this.btnExportar.Enabled = true;
+                    }
+                    else
+                    {
+                        this.btnExportar.Enabled = false;
+                    }
+                }
+                else if (this.cbFiltro.SelectedItem.ToString() == "Vacas con parto en los últimos 21 días")
+                {
+                    this.dgvEventos.DataSource = animalNegocio.RecuperarVacasConPartoPorTambo(tambo.Id_tambo);
+                    if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                    {
+                        this.btnExportar.Enabled = true;
+                    }
+                    else
+                    {
+                        this.btnExportar.Enabled = false;
+                    }
+                }
+                else if (this.cbFiltro.SelectedItem.ToString() == "Vacas servidas en los últimos 21 días")
+                {
+                    this.dgvEventos.DataSource = animalNegocio.RecuperarVacasServidasPorTambo(tambo.Id_tambo);
+                    if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                    {
+                        this.btnExportar.Enabled = true;
+                    }
+                    else
+                    {
+                        this.btnExportar.Enabled = false;
+                    }
                 }
             }
-            else if (this.cbFiltro.SelectedItem.ToString() == "Vacas en celo")
+            catch (Exception ex)
             {
-                this.dgvEventos.DataSource = animalNegocio.RecuperarVacasEnCeloPorTambo(tambo.Id_tambo);
-                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
-                {
-                    this.btnExportar.Enabled = true;
-                }
-                else
-                {
-                    this.btnExportar.Enabled = false;
-                }
-            }
-            else if (this.cbFiltro.SelectedItem.ToString() == "Animales enfermos")
-            {
-                this.dgvEventos.DataSource = animalNegocio.RecuperarAnimalesEnfermosPorTambo(tambo.Id_tambo);
-                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
-                {
-                    this.btnExportar.Enabled = true;
-                }
-                else
-                {
-                    this.btnExportar.Enabled = false;
-                }
-            }
-            else if (this.cbFiltro.SelectedItem.ToString() == "Vacas con parto en los últimos 21 días")
-            {
-                this.dgvEventos.DataSource = animalNegocio.RecuperarVacasConPartoPorTambo(tambo.Id_tambo);
-                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
-                {
-                    this.btnExportar.Enabled = true;
-                }
-                else
-                {
-                    this.btnExportar.Enabled = false;
-                }
-            }
-            else if (this.cbFiltro.SelectedItem.ToString() == "Vacas servidas en los últimos 21 días")
-            {
-                this.dgvEventos.DataSource = animalNegocio.RecuperarVacasServidasPorTambo(tambo.Id_tambo);
-                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
-                {
-                    this.btnExportar.Enabled = true;
-                }
-                else
-                {
-                    this.btnExportar.Enabled = false;
-                }
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -135,37 +167,61 @@ namespace Escritorio
 
         private void btnExportar_Click(object sender, EventArgs e)
         {
-            vpEventos vistaPreviaEventos = new vpEventos();
-            vistaPreviaEventos.idtambo = idtambo;
-            if (this.cbFiltro.SelectedIndex != -1)
+            try
             {
-                vistaPreviaEventos.opcioncombo = this.cbFiltro.SelectedItem.ToString();
+                vpEventos vistaPreviaEventos = new vpEventos();
+                vistaPreviaEventos.idtambo = idtambo;
+                if (this.cbFiltro.SelectedIndex != -1)
+                {
+                    vistaPreviaEventos.opcioncombo = this.cbFiltro.SelectedItem.ToString();
+                }
+                else
+                {
+                    vistaPreviaEventos.opcioncombo = "vacio";
+                }
+                vistaPreviaEventos.Show();
             }
-            else
+            catch (Exception ex)
             {
-                vistaPreviaEventos.opcioncombo = "vacio";
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
-            vistaPreviaEventos.Show();
         }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
-            this.cbFiltro.SelectedIndex = -1;
-            this.CargarGrilla(Principal.Tambo.Id_tambo);
-            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            try
             {
-                this.btnExportar.Enabled = true;
+                this.cbFiltro.SelectedIndex = -1;
+                this.CargarGrilla(Principal.Tambo.Id_tambo);
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    this.btnExportar.Enabled = true;
+                }
+                else
+                {
+                    this.btnExportar.Enabled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.btnExportar.Enabled = false;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            vpExistencia vp = new vpExistencia();
-            vp.Show();
+            try
+            {
+                vpExistencia vp = new vpExistencia();
+                vp.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
 

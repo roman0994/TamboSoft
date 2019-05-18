@@ -22,12 +22,20 @@ namespace Escritorio
 
         private void vpListadoAnimales_Load(object sender, EventArgs e)
         {
-            Animal_Negocio animal_Negocio = new Animal_Negocio();
-            rptListadoAnimales reporte = new rptListadoAnimales();
+            try
+            {
+                Animal_Negocio animal_Negocio = new Animal_Negocio();
+                rptListadoAnimales reporte = new rptListadoAnimales();
 
-            reporte.SetDataSource(animal_Negocio.RecuperarDTPorTambo(idtambo));
-            crvAnimales.ReportSource = reporte;
-            crvAnimales.Refresh();
+                reporte.SetDataSource(animal_Negocio.RecuperarDTPorTambo(idtambo));
+                crvAnimales.ReportSource = reporte;
+                crvAnimales.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

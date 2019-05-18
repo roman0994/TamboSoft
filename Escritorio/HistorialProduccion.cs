@@ -22,23 +22,39 @@ namespace Escritorio
 
         private void btnImprimir_Click(object sender, EventArgs e)
         {
-            Animal animal = new Animal();
-           
-            //vpHistorialProduccion vistaPreviaHistorialProd = new vpHistorialProduccion();
-            animal.Rp = Convert.ToInt32(this.dgvHistorialProduccion.CurrentRow.Cells["rp"].Value);
-            vpListadoControlesPorFecha vp = new vpListadoControlesPorFecha(animal);
-            vp.Show();
+            try
+            {
+                Animal animal = new Animal();
+
+                //vpHistorialProduccion vistaPreviaHistorialProd = new vpHistorialProduccion();
+                animal.Rp = Convert.ToInt32(this.dgvHistorialProduccion.CurrentRow.Cells["rp"].Value);
+                vpListadoControlesPorFecha vp = new vpListadoControlesPorFecha(animal);
+                vp.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void HistorialProduccion_Load(object sender, EventArgs e)
         {
-            if (this.dgvHistorialProduccion.Rows.Count != 0 && this.dgvHistorialProduccion.Rows != null)
+            try
             {
-                btnImprimir.Enabled = true;
+                if (this.dgvHistorialProduccion.Rows.Count != 0 && this.dgvHistorialProduccion.Rows != null)
+                {
+                    btnImprimir.Enabled = true;
+                }
+                else
+                {
+                    btnImprimir.Enabled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                btnImprimir.Enabled = false;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
     }

@@ -25,11 +25,18 @@ namespace Escritorio
 
         public void CargarGrilla(int idtambo)
         {
-            Animal_Negocio animalNegocio = new Animal_Negocio();
-            this.dgvAnimales.AutoGenerateColumns = false;
-            this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTamboDT(idtambo);
+            try
+            {
+                Animal_Negocio animalNegocio = new Animal_Negocio();
+                this.dgvAnimales.AutoGenerateColumns = false;
+                this.dgvAnimales.DataSource = animalNegocio.RecuperarPorTamboDT(idtambo);
 
-           
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -44,38 +51,70 @@ namespace Escritorio
 
         private void tbsNuevo_Click(object sender, EventArgs e)
         {
-            AbmAnimales altaAnimales = new AbmAnimales(Principal.ModoForm.ALTA,null);
-            altaAnimales.ShowDialog();
-            this.CargarGrilla(idtambo);
+            try
+            {
+                AbmAnimales altaAnimales = new AbmAnimales(Principal.ModoForm.ALTA, null);
+                altaAnimales.ShowDialog();
+                this.CargarGrilla(idtambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void toolStripTextBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            Animal_Negocio animalNegocio = new Animal_Negocio();    
-            this.dgvAnimales.DataSource = animalNegocio.FiltrarPorCaravana(this.tstxtBuscar.Text, idtambo);   
+            try
+            {
+                Animal_Negocio animalNegocio = new Animal_Negocio();
+                this.dgvAnimales.DataSource = animalNegocio.FiltrarPorCaravana(this.tstxtBuscar.Text, idtambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void tbsActualizar_Click(object sender, EventArgs e)
         {
-            if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+            try
             {
-                this.CargarGrilla(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value));
+                if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+                {
+                    this.CargarGrilla(Convert.ToInt32(this.dgvAnimales.CurrentRow.Cells["id_tambo"].Value));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void tbsExportarAExcel_Click(object sender, EventArgs e)
         {
-            if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+            try
             {
-                ExportarAExcel exportarAExcel = new ExportarAExcel();
-                exportarAExcel.Exportar(this.dgvAnimales, ListadoAnimales.ActiveForm.Text);
+                if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+                {
+                    ExportarAExcel exportarAExcel = new ExportarAExcel();
+                    exportarAExcel.Exportar(this.dgvAnimales, ListadoAnimales.ActiveForm.Text);
+                }
+                else
+                {
+                    Tambo tambo = new Tambo();
+                    Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                    tambo = tambo_Negocio.RecuperarUno(idtambo);
+                    MessageBox.Show("No se encontraron animales en el tambo " + tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Tambo tambo = new Tambo();
-                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
-                tambo = tambo_Negocio.RecuperarUno(idtambo);
-                MessageBox.Show("No se encontraron animales en el tambo "+ tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -87,51 +126,83 @@ namespace Escritorio
             vistaPreviaListadoAnimales.crvAnimales.ReportSource = reporteListadoAnimales;
             vistaPreviaListadoAnimales.crvAnimales.Refresh();
             vistaPreviaListadoAnimales.ShowDialog();*/
-            if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+            try
             {
-                vpListadoAnimales vistaPreviaListadoAnimales = new vpListadoAnimales();
-                vistaPreviaListadoAnimales.idtambo = idtambo;
-                vistaPreviaListadoAnimales.Show();
+                if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+                {
+                    vpListadoAnimales vistaPreviaListadoAnimales = new vpListadoAnimales();
+                    vistaPreviaListadoAnimales.idtambo = idtambo;
+                    vistaPreviaListadoAnimales.Show();
+                }
+                else
+                {
+                    Tambo tambo = new Tambo();
+                    Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                    tambo = tambo_Negocio.RecuperarUno(idtambo);
+                    MessageBox.Show("No se encontraron animales en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Tambo tambo = new Tambo();
-                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
-                tambo = tambo_Negocio.RecuperarUno(idtambo);
-                MessageBox.Show("No se encontraron animales en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void tsbSanidad_Click(object sender, EventArgs e)
         {
-            vpListadoSanidad vistaPreviaListadoAnimales = new vpListadoSanidad();
-           
-            vistaPreviaListadoAnimales.Show();
+            try
+            {
+                vpListadoSanidad vistaPreviaListadoAnimales = new vpListadoSanidad();
+
+                vistaPreviaListadoAnimales.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void tstxtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) || char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            try
             {
-                e.Handled = false;
+                if (char.IsLetter(e.KeyChar) || char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void dgvAnimales_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            foreach (DataGridViewRow row in dgvAnimales.Rows)
+            try
             {
-                if (row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Muerto.ToString() || row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Vendido.ToString())
+                foreach (DataGridViewRow row in dgvAnimales.Rows)
                 {
+                    if (row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Muerto.ToString() || row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Vendido.ToString())
+                    {
 
-                    row.DefaultCellStyle.BackColor = Color.LightGray;
-                    
+                        row.DefaultCellStyle.BackColor = Color.LightGray;
+
+                    }
+
+
                 }
-               
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
 
             }
         }

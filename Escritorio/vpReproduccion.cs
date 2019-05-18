@@ -21,13 +21,21 @@ namespace Escritorio
 
         private void vpReproduccion_Load(object sender, EventArgs e)
         {
-            EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-            rptReproduccion reporte = new rptReproduccion();
-            dsTamboSoft ds = new dsTamboSoft();
-            
-            reporte.SetDataSource(eventoAnimalDescNegocio.ReporteReproduccion(idtambo));
-            crvReproduccion.ReportSource = reporte;
-            crvReproduccion.Refresh();
+            try
+            {
+                EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                rptReproduccion reporte = new rptReproduccion();
+                dsTamboSoft ds = new dsTamboSoft();
+
+                reporte.SetDataSource(eventoAnimalDescNegocio.ReporteReproduccion(idtambo));
+                crvReproduccion.ReportSource = reporte;
+                crvReproduccion.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

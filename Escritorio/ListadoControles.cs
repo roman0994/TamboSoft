@@ -24,9 +24,17 @@ namespace Escritorio
 
         public void CargarGrilla(int id_tambo)
         {
-            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-            this.dgvControles.AutoGenerateColumns = false;
-            this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTambo(id_tambo);
+            try
+            {
+                Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+                this.dgvControles.AutoGenerateColumns = false;
+                this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTambo(id_tambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -41,57 +49,97 @@ namespace Escritorio
 
         private void tbsNuevo_Click(object sender, EventArgs e)
         {
-            AltaControles altaControles = new AltaControles(idtambo);
-            altaControles.ShowDialog();
-            this.CargarGrilla(idtambo);
+            try
+            {
+                AltaControles altaControles = new AltaControles(idtambo);
+                altaControles.ShowDialog();
+                this.CargarGrilla(idtambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void tbsExportar_Click(object sender, EventArgs e)
         {
-            if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+            try
             {
-                ExportarAExcel exportarAExcel = new ExportarAExcel();
-                exportarAExcel.Exportar(this.dgvControles, ListadoControles.ActiveForm.Text);
+                if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+                {
+                    ExportarAExcel exportarAExcel = new ExportarAExcel();
+                    exportarAExcel.Exportar(this.dgvControles, ListadoControles.ActiveForm.Text);
+                }
+                else
+                {
+                    Tambo tambo = new Tambo();
+                    Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                    tambo = tambo_Negocio.RecuperarUno(idtambo);
+                    MessageBox.Show("No se encontraron controles en el tambo " + tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Tambo tambo = new Tambo();
-                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
-                tambo = tambo_Negocio.RecuperarUno(idtambo);
-                MessageBox.Show("No se encontraron controles en el tambo " + tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void tstxtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
-            this.dgvControles.DataSource = controlNegocio.FiltrarPorNombre(this.tstxtBuscar.Text,idtambo);
+            try
+            {
+                Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
+                this.dgvControles.DataSource = controlNegocio.FiltrarPorNombre(this.tstxtBuscar.Text, idtambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
-            if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+            try
             {
-                this.CargarGrilla(Convert.ToInt32(idtambo));
+                if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+                {
+                    this.CargarGrilla(Convert.ToInt32(idtambo));
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void tsbImprimir_Click(object sender, EventArgs e)
         {
-            if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+            try
             {
-                //vpListadoControles vistaPreviaListadoControles = new vpListadoControles();
-                //vistaPreviaListadoControles.idtambo = idtambo;
-                //vistaPreviaListadoControles.Show();
-                vpListadoControlesPorFecha vp = new vpListadoControlesPorFecha();
-                vp.Show();
+                if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+                {
+                    //vpListadoControles vistaPreviaListadoControles = new vpListadoControles();
+                    //vistaPreviaListadoControles.idtambo = idtambo;
+                    //vistaPreviaListadoControles.Show();
+                    vpListadoControlesPorFecha vp = new vpListadoControlesPorFecha();
+                    vp.Show();
+                }
+                else
+                {
+                    Tambo tambo = new Tambo();
+                    Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                    tambo = tambo_Negocio.RecuperarUno(idtambo);
+                    MessageBox.Show("No se encontraron controles en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Tambo tambo = new Tambo();
-                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
-                tambo = tambo_Negocio.RecuperarUno(idtambo);
-                MessageBox.Show("No se encontraron controles en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
     }

@@ -29,37 +29,53 @@ namespace Escritorio
 
         public void CargarGrilla(int id_tambo)
         {
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            this.dgvTambos.AutoGenerateColumns = false;
-            this.dgvTambos.DataSource = tamboNegocio.RecuperarOtrosTambos(id_tambo, Principal.Usuario.Id_usuario);
-            if (this.dgvTambos.Rows.Count != 0 && this.dgvTambos.Rows != null)
+            try
             {
-                this.btnEditar.Enabled = true;
-                this.btnEliminar.Enabled = true;
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                this.dgvTambos.AutoGenerateColumns = false;
+                this.dgvTambos.DataSource = tamboNegocio.RecuperarOtrosTambos(id_tambo, Principal.Usuario.Id_usuario);
+                if (this.dgvTambos.Rows.Count != 0 && this.dgvTambos.Rows != null)
+                {
+                    this.btnEditar.Enabled = true;
+                    this.btnEliminar.Enabled = true;
+                }
+                else
+                {
+                    this.btnEditar.Enabled = false;
+                    this.btnEliminar.Enabled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.btnEditar.Enabled = false;
-                this.btnEliminar.Enabled = false;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            Tambo tambo = new Tambo();
-            tambo = tamboNegocio.RecuperarUno(Convert.ToInt32(this.dgvTambos.CurrentRow.Cells["id_tambo"].Value));
+            try
+            {
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                Tambo tambo = new Tambo();
+                tambo = tamboNegocio.RecuperarUno(Convert.ToInt32(this.dgvTambos.CurrentRow.Cells["id_tambo"].Value));
 
-            EdicionOtrosTambos edicionTambo = new EdicionOtrosTambos();
-            edicionTambo.txtIdTambo.Text = Convert.ToString(tambo.Id_tambo);
-            edicionTambo.txtNombre.Text = tambo.Nombre_tambo;
-            edicionTambo.txtSuperficie.Text = Convert.ToString(tambo.Superficie);
-            edicionTambo.cbProvincia.Text = tambo.Nombre_provincia;
-            edicionTambo.cbLocalidad.Text = tambo.Nombre_localidad;
+                EdicionOtrosTambos edicionTambo = new EdicionOtrosTambos();
+                edicionTambo.txtIdTambo.Text = Convert.ToString(tambo.Id_tambo);
+                edicionTambo.txtNombre.Text = tambo.Nombre_tambo;
+                edicionTambo.txtSuperficie.Text = Convert.ToString(tambo.Superficie);
+                edicionTambo.cbProvincia.Text = tambo.Nombre_provincia;
+                edicionTambo.cbLocalidad.Text = tambo.Nombre_localidad;
 
-            edicionTambo.tamboGlobal = MapearATambo();
-            edicionTambo.Show();
-            CargarGrilla(idtambo);
+                edicionTambo.tamboGlobal = MapearATambo();
+                edicionTambo.Show();
+                CargarGrilla(idtambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public Tambo MapearATambo()
@@ -79,23 +95,39 @@ namespace Escritorio
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            int id = Convert.ToInt32(this.dgvTambos.CurrentRow.Cells["id_tambo"].Value);
-            Tambo tambo = tamboNegocio.RecuperarUno(id);
-            DialogResult result = MessageBox.Show("ATENCIÓN!! Al eliminar el tambo " + tambo.Nombre_tambo + ", también eliminará todo su personal, animales, controles y eventos asociados. ¿Desea continuar?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
+            try
             {
-                tamboNegocio.Eliminar(id);
-                this.CargarGrilla(idtambo);
-                MessageBox.Show("El tambo " + tambo.Nombre_tambo + " fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                int id = Convert.ToInt32(this.dgvTambos.CurrentRow.Cells["id_tambo"].Value);
+                Tambo tambo = tamboNegocio.RecuperarUno(id);
+                DialogResult result = MessageBox.Show("ATENCIÓN!! Al eliminar el tambo " + tambo.Nombre_tambo + ", también eliminará todo su personal, animales, controles y eventos asociados. ¿Desea continuar?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    tamboNegocio.Eliminar(id);
+                    this.CargarGrilla(idtambo);
+                    MessageBox.Show("El tambo " + tambo.Nombre_tambo + " fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            this.dgvTambos.DataSource = tamboNegocio.FiltrarPorNombre(this.txtBuscar.Text,idtambo,Principal.Usuario.Id_usuario);
+            try
+            {
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                this.dgvTambos.DataSource = tamboNegocio.FiltrarPorNombre(this.txtBuscar.Text, idtambo, Principal.Usuario.Id_usuario);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void GestionTambos_Activated(object sender, EventArgs e)
@@ -105,13 +137,21 @@ namespace Escritorio
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            try
             {
-                e.Handled = false;
+                if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
     }

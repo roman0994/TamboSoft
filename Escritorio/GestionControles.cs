@@ -26,33 +26,57 @@ namespace Escritorio
 
         public void CargarGrilla(int id_tambo)
         {
-            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-            this.dgvControles.AutoGenerateColumns = false;
-            this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTambo(id_tambo);
-            if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+            try
             {
-                this.btnEditar.Enabled = true;
-                this.btnEliminar.Enabled = true;
+                Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+                this.dgvControles.AutoGenerateColumns = false;
+                this.dgvControles.DataSource = controlAnimalNegocio.RecuperarPorTambo(id_tambo);
+                if (this.dgvControles.Rows.Count != 0 && this.dgvControles.Rows != null)
+                {
+                    this.btnEditar.Enabled = true;
+                    this.btnEliminar.Enabled = true;
+                }
+                else
+                {
+                    this.btnEditar.Enabled = false;
+                    this.btnEliminar.Enabled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.btnEditar.Enabled = false;
-                this.btnEliminar.Enabled = false;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         public void CargarComboBusqueda()
         {
-            this.cbBuscar.Items.Add("Nombre animal");
-            this.cbBuscar.Items.Add("Caravana");
-            this.cbBuscar.SelectedIndex = -1;
+            try
+            {
+                this.cbBuscar.Items.Add("Nombre animal");
+                this.cbBuscar.Items.Add("Caravana");
+                this.cbBuscar.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void InicializarTextBox()
         {
-            if (this.cbBuscar.SelectedIndex == -1)
+            try
             {
-                this.txtBuscar.Enabled = false;
+                if (this.cbBuscar.SelectedIndex == -1)
+                {
+                    this.txtBuscar.Enabled = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -63,64 +87,87 @@ namespace Escritorio
 
         private void txtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
+            try
+            {
+                Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
 
-            if (this.cbBuscar.SelectedIndex == -1)
-            {
-                this.txtBuscar.Enabled = false;
-                //MessageBox.Show("Debe seleccionar un parámetro a buscar en el combo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (this.cbBuscar.SelectedIndex == -1)
+                {
+                    this.txtBuscar.Enabled = false;
+                    //MessageBox.Show("Debe seleccionar un parámetro a buscar en el combo", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else if (this.cbBuscar.SelectedItem.ToString() == "Nombre animal")
+                {
+                    this.dgvControles.DataSource = controlNegocio.FiltrarPorNombre(this.txtBuscar.Text, idtambo);
+                }
+                else if (this.cbBuscar.SelectedItem.ToString() == "Caravana")
+                {
+                    this.dgvControles.DataSource = controlNegocio.FiltrarPorCaravana(this.txtBuscar.Text, idtambo);
+                }
             }
-            else if (this.cbBuscar.SelectedItem.ToString() == "Nombre animal")
+            catch (Exception ex)
             {
-                this.dgvControles.DataSource = controlNegocio.FiltrarPorNombre(this.txtBuscar.Text, idtambo);
-            }
-            else if (this.cbBuscar.SelectedItem.ToString() == "Caravana")
-            {
-                this.dgvControles.DataSource = controlNegocio.FiltrarPorCaravana(this.txtBuscar.Text, idtambo);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-
-            DateTime fecha_control = Convert.ToDateTime(this.dgvControles.CurrentRow.Cells["fecha_control"].Value);
-            int id_control = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_control"].Value);
-            int rp = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["rp"].Value);
-            
-            int id_tambo = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_tambo"].Value);
-            DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el control del animal?","Verificación",MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
-            if (result == DialogResult.Yes)
+            try
             {
-                controlAnimalNegocio.Eliminar(fecha_control,id_control,rp);
-                this.CargarGrilla(id_tambo);
-                MessageBox.Show("El control fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
+                Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+
+                DateTime fecha_control = Convert.ToDateTime(this.dgvControles.CurrentRow.Cells["fecha_control"].Value);
+                int id_control = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_control"].Value);
+                int rp = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["rp"].Value);
+
+                int id_tambo = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_tambo"].Value);
+                DialogResult result = MessageBox.Show("¿Está seguro que desea eliminar el control del animal?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    controlAnimalNegocio.Eliminar(fecha_control, id_control, rp);
+                    this.CargarGrilla(id_tambo);
+                    MessageBox.Show("El control fue eliminado", "Eliminación", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void btnEditar_Click(object sender, EventArgs e)
         {
-            Animal_Negocio animalNegocio = new Animal_Negocio();
-            Animal animal = animalNegocio.RecuperarPorRP(Convert.ToInt32(this.dgvControles.CurrentRow.Cells["rp"].Value));
-            int id_tambo = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_tambo"].Value);
+            try
+            {
+                Animal_Negocio animalNegocio = new Animal_Negocio();
+                Animal animal = animalNegocio.RecuperarPorRP(Convert.ToInt32(this.dgvControles.CurrentRow.Cells["rp"].Value));
+                int id_tambo = Convert.ToInt32(this.dgvControles.CurrentRow.Cells["id_tambo"].Value);
 
-            EdicionControles edicion = new EdicionControles();
-            edicion.Animal = animal;
-            edicion.txtIdControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["id_control"].Value);
-            edicion.dtpFechaControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["fecha_control"].Value);
-            edicion.txtPrimerControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["primer_control"].Value);
-            edicion.txtSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["segundo_control"].Value);
-            edicion.txtGrasaPrimerControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["grasa_primercontrol"].Value);
-            edicion.txtGrasaSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["grasa_segundocontrol"].Value);
-            //edicion.cbAnimal.Text = animal.Nombre_animal;
-            edicion.txtCaravana.Text = animal.Caravana;
-            edicion.txtNombreAnimal.Text = animal.Nombre_animal;
-            edicion.controlAnimalGlobal = MapearAControlAnimal();
-         
-            edicion.Show();
-            CargarGrilla(id_tambo);
+                EdicionControles edicion = new EdicionControles();
+                edicion.Animal = animal;
+                edicion.txtIdControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["id_control"].Value);
+                edicion.dtpFechaControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["fecha_control"].Value);
+                edicion.txtPrimerControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["primer_control"].Value);
+                edicion.txtSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["segundo_control"].Value);
+                edicion.txtGrasaPrimerControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["grasa_primercontrol"].Value);
+                edicion.txtGrasaSegundoControl.Text = Convert.ToString(this.dgvControles.CurrentRow.Cells["grasa_segundocontrol"].Value);
+                //edicion.cbAnimal.Text = animal.Nombre_animal;
+                edicion.txtCaravana.Text = animal.Caravana;
+                edicion.txtNombreAnimal.Text = animal.Nombre_animal;
+                edicion.controlAnimalGlobal = MapearAControlAnimal();
 
+                edicion.Show();
+                CargarGrilla(id_tambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public Control_Animal MapearAControlAnimal()
@@ -147,28 +194,44 @@ namespace Escritorio
 
         private void txtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar) || char.IsNumber(e.KeyChar))
+            try
             {
-                e.Handled = false;
+                if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar) || char.IsNumber(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void cbBuscar_SelectedIndexChanged(object sender, EventArgs e)
         {
-            this.CargarGrilla(Principal.Tambo.Id_tambo);
-            this.txtBuscar.Text = string.Empty;
+            try
+            {
+                this.CargarGrilla(Principal.Tambo.Id_tambo);
+                this.txtBuscar.Text = string.Empty;
 
-            if (this.cbBuscar.SelectedIndex == -1)
-            {
-                this.txtBuscar.Enabled = false;
+                if (this.cbBuscar.SelectedIndex == -1)
+                {
+                    this.txtBuscar.Enabled = false;
+                }
+                else
+                {
+                    this.txtBuscar.Enabled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                this.txtBuscar.Enabled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
     }

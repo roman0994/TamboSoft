@@ -38,35 +38,42 @@ namespace Escritorio
 
         public void MapearAAnimal()
         {
-
-
-            if (dtpFechaNacimiento.Value.Date == DateTime.Now.Date)
+            try
             {
-                dtpFechaNacimiento.Value.AddMilliseconds(1);
-            }
 
-            if (cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Vivo.ToString())
+                if (dtpFechaNacimiento.Value.Date == DateTime.Now.Date)
+                {
+                    dtpFechaNacimiento.Value.AddMilliseconds(1);
+                }
+
+                if (cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Vivo.ToString())
+                {
+                    Animal.Estado_animal = Principal.EstadoAnimales.Vivo.ToString();
+                }
+
+
+                Animal.Fecha_nacimiento = dtpFechaNacimiento.Value;
+
+                Animal.Nombre_animal = txtNombre.Text;
+                Animal.Hba = string.IsNullOrEmpty(txtHBA.Text) ? 0 : Convert.ToInt32(txtHBA.Text);
+
+
+                Animal.Rp_madre = string.IsNullOrEmpty(txtRPMadre.Text) ? 0 : Convert.ToInt32(txtRPMadre.Text);
+                Animal.Rp_padre = string.IsNullOrEmpty(txtRPPadre.Text) ? 0 : Convert.ToInt32(txtRPPadre.Text);
+                Animal.Hba_madre = string.IsNullOrEmpty(txtHBAMadre.Text) ? 0 : Convert.ToInt32(txtHBAMadre.Text);
+                Animal.Hba_padre = string.IsNullOrEmpty(txtHBAPadre.Text) ? 0 : Convert.ToInt32(txtHBAPadre.Text);
+                Animal.Tambo = Principal.Tambo;
+                Animal.Id_tambo = Principal.Tambo.Id_tambo;
+
+                Animal.Habilitado = true;
+                Animal.Caravana = txtCaravana.Text;
+
+            }
+            catch (Exception ex)
             {
-                Animal.Estado_animal = Principal.EstadoAnimales.Vivo.ToString();
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
-          
-
-            Animal.Fecha_nacimiento = dtpFechaNacimiento.Value;
-
-            Animal.Nombre_animal = txtNombre.Text;
-            Animal.Hba = string.IsNullOrEmpty(txtHBA.Text) ? 0 : Convert.ToInt32(txtHBA.Text);
-
-
-            Animal.Rp_madre = string.IsNullOrEmpty(txtRPMadre.Text) ? 0 : Convert.ToInt32(txtRPMadre.Text);
-            Animal.Rp_padre = string.IsNullOrEmpty(txtRPPadre.Text) ? 0 : Convert.ToInt32(txtRPPadre.Text);
-            Animal.Hba_madre = string.IsNullOrEmpty(txtHBAMadre.Text) ? 0 : Convert.ToInt32(txtHBAMadre.Text);
-            Animal.Hba_padre = string.IsNullOrEmpty(txtHBAPadre.Text) ? 0 : Convert.ToInt32(txtHBAPadre.Text);
-            Animal.Tambo = Principal.Tambo;
-            Animal.Id_tambo = Principal.Tambo.Id_tambo;
-
-            Animal.Habilitado = true;
-            Animal.Caravana = txtCaravana.Text;
-
 
         }
 
@@ -85,8 +92,6 @@ namespace Escritorio
             this.cbEstado.SelectedItem = Principal.EstadoAnimales.Vivo;
             CargaUltimaCaravana();
         }
-
-
 
         private bool ValidarCargaAnimal(Animal animal)
         {
@@ -149,20 +154,33 @@ namespace Escritorio
             }
         }
 
-
         private void CargaUltimaCaravana()
         {
-            ultimacaravana = animalnegocio.ObtenerUltimaCaravana(Principal.Tambo.Id_tambo);
-            txtCaravana.Text = (ultimacaravana + 1).ToString();
-            lbUltCaravana.Text = "La ultima caravana utilizada en el tambo es: " + ultimacaravana;
+            try
+            {
+                ultimacaravana = animalnegocio.ObtenerUltimaCaravana(Principal.Tambo.Id_tambo);
+                txtCaravana.Text = (ultimacaravana + 1).ToString();
+                lbUltCaravana.Text = "La ultima caravana utilizada en el tambo es: " + ultimacaravana;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarComboEstado()
         {
+            try
+            {
+                this.cbEstado.DataSource = Enum.GetValues(typeof(Principal.EstadoAnimales));
+                this.cbEstado.SelectedItem = Principal.EstadoAnimales.Vivo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
 
-            this.cbEstado.DataSource = Enum.GetValues(typeof(Principal.EstadoAnimales));
-            this.cbEstado.SelectedItem = Principal.EstadoAnimales.Vivo;
-            
+            }
         }
 
         public void CargaComboCategoria()
@@ -184,16 +202,32 @@ namespace Escritorio
 
         public void CargarTextBoxTambo()
         {
-            this.txtTambo.Text = Principal.Tambo.Nombre_tambo;
+            try
+            {
+                this.txtTambo.Text = Principal.Tambo.Nombre_tambo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargaComboRaza()
         {
-            Raza_Negocio razaNegocio = new Raza_Negocio();
-            this.cbRaza.DataSource = razaNegocio.RecuperarTodos();
-            this.cbRaza.DisplayMember = "nombre_raza";
-            this.cbRaza.ValueMember = "id_raza";
-            this.cbRaza.SelectedIndex = -1;
+            try
+            {
+                Raza_Negocio razaNegocio = new Raza_Negocio();
+                this.cbRaza.DataSource = razaNegocio.RecuperarTodos();
+                this.cbRaza.DisplayMember = "nombre_raza";
+                this.cbRaza.ValueMember = "id_raza";
+                this.cbRaza.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         #endregion
 
@@ -203,17 +237,25 @@ namespace Escritorio
 
         private void AltaAnimales_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (HayCamposModificados())
+            try
             {
-                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result != DialogResult.Yes)
+                if (HayCamposModificados())
                 {
-                    e.Cancel = true;
+                    DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        this.Dispose();
+                    }
                 }
-                else
-                {
-                    this.Dispose();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 

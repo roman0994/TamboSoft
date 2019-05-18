@@ -26,12 +26,20 @@ namespace Escritorio
 
         public void CargarComboProvincia()
         {
-            Provincia_Negocio provinciaNegocio = new Provincia_Negocio();
+            try
+            {
+                Provincia_Negocio provinciaNegocio = new Provincia_Negocio();
 
-            this.cbProvincia.DisplayMember = "nombre_provincia";
-            this.cbProvincia.ValueMember = "id_provincia";
-            this.cbProvincia.DataSource = provinciaNegocio.RecuperarTodos();
-            this.cbProvincia.SelectedIndex = -1;
+                this.cbProvincia.DisplayMember = "nombre_provincia";
+                this.cbProvincia.ValueMember = "id_provincia";
+                this.cbProvincia.DataSource = provinciaNegocio.RecuperarTodos();
+                this.cbProvincia.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -41,66 +49,98 @@ namespace Escritorio
 
         private void cbProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarComboLocalidad(Convert.ToInt32(this.cbProvincia.SelectedValue));
+            try
+            {
+                CargarComboLocalidad(Convert.ToInt32(this.cbProvincia.SelectedValue));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarComboLocalidad(int id_provincia)
         {
-            Localidad_Negocio localidadNegocio = new Localidad_Negocio();
-            this.cbLocalidad.DataSource = localidadNegocio.RecuperarPorProvincia(id_provincia);
-            this.cbLocalidad.DisplayMember = "nombre_localidad";
-            this.cbLocalidad.ValueMember = "id_localidad";
-            this.cbLocalidad.SelectedIndex = -1;
+            try
+            {
+                Localidad_Negocio localidadNegocio = new Localidad_Negocio();
+                this.cbLocalidad.DataSource = localidadNegocio.RecuperarPorProvincia(id_provincia);
+                this.cbLocalidad.DisplayMember = "nombre_localidad";
+                this.cbLocalidad.ValueMember = "id_localidad";
+                this.cbLocalidad.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarTextBoxTambo(int id_tambo)
         {
-            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-            Tambo tambo = new Tambo();
-            tambo = tamboNegocio.RecuperarUno(id_tambo);
-            this.txtTambo.Text = tambo.Nombre_tambo;
+            try
+            {
+                Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                Tambo tambo = new Tambo();
+                tambo = tamboNegocio.RecuperarUno(id_tambo);
+                this.txtTambo.Text = tambo.Nombre_tambo;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarCargaPersonal(cbLocalidad.SelectedIndex, cbProvincia.SelectedIndex, txtNombre.Text, txtDireccion.Text, txtDni.Text);
-
-            if (validar == true)
+            try
             {
-                if (txtDni.Text.Length == 7 || txtDni.Text.Length == 8)
+                Validaciones validaciones = new Validaciones();
+                bool validar = validaciones.ValidarCargaPersonal(cbLocalidad.SelectedIndex, cbProvincia.SelectedIndex, txtNombre.Text, txtDireccion.Text, txtDni.Text);
+
+                if (validar == true)
                 {
-                    if ((txtTelefono.Text.Length >= 8 && txtTelefono.Text.Length <= 12) || txtTelefono.Text == string.Empty)
+                    if (txtDni.Text.Length == 7 || txtDni.Text.Length == 8)
                     {
-                        //Agrego el nuevo inseminador y en el método de insertar, agrego la relacion del tambo inseminador
-                        Tambo tambo = new Tambo();
-                        Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-                        tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
-                        Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
-                        Inseminador inseminador = new Inseminador();
-                        inseminador = MapearAInseminador();
-                        Tambo_Inseminador tamboInseminador = new Tambo_Inseminador();
-                        tamboInseminador.Id_tambo = tambo.Id_tambo;
-                        inseminadorNegocio.Insertar(inseminador, tamboInseminador);
+                        if ((txtTelefono.Text.Length >= 8 && txtTelefono.Text.Length <= 12) || txtTelefono.Text == string.Empty)
+                        {
+                            //Agrego el nuevo inseminador y en el método de insertar, agrego la relacion del tambo inseminador
+                            Tambo tambo = new Tambo();
+                            Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                            tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
+                            Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
+                            Inseminador inseminador = new Inseminador();
+                            inseminador = MapearAInseminador();
+                            Tambo_Inseminador tamboInseminador = new Tambo_Inseminador();
+                            tamboInseminador.Id_tambo = tambo.Id_tambo;
+                            inseminadorNegocio.Insertar(inseminador, tamboInseminador);
 
-                        DialogResult result = MessageBox.Show("El personal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Limpiar();
+                            DialogResult result = MessageBox.Show("El personal fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Limpiar();
 
-                        Principal.Tambo.Inseminadores = inseminadorNegocio.RecuperarPorTambo(Principal.Tambo.Id_tambo);
+                            Principal.Tambo.Inseminadores = inseminadorNegocio.RecuperarPorTambo(Principal.Tambo.Id_tambo);
+                        }
+                        else
+                        {
+                            MessageBox.Show("El campo Teléfono no es válido. Debe ingresar código de área + nro de teléfono (sin el 0 ni el 15)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("El campo Teléfono no es válido. Debe ingresar código de área + nro de teléfono (sin el 0 ni el 15)", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("El campo DNI debe tener entre 7 y 8 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("El campo DNI debe tener entre 7 y 8 caracteres", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -123,63 +163,103 @@ namespace Escritorio
 
         public void Limpiar()
         {
-            this.txtNombre.Text = string.Empty;
-            this.txtTelefono.Text = string.Empty;
-            this.txtDireccion.Text = string.Empty;
-            this.txtDni.Text = string.Empty;
-            this.cbProvincia.SelectedIndex = -1;
-            this.cbLocalidad.SelectedIndex = -1;
+            try
+            {
+                this.txtNombre.Text = string.Empty;
+                this.txtTelefono.Text = string.Empty;
+                this.txtDireccion.Text = string.Empty;
+                this.txtDni.Text = string.Empty;
+                this.cbProvincia.SelectedIndex = -1;
+                this.cbLocalidad.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
+            try
             {
-                e.Handled = false;
+                if (char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back || e.KeyChar == (char)Keys.Space)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtTelefono_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtDni_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void AltaPersonal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (HayCamposModificados())
+            try
             {
-                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result != DialogResult.Yes)
+                if (HayCamposModificados())
                 {
-                    e.Cancel = true;
+                    DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        this.Dispose();
+                    }
                 }
-                else
-                {
-                    this.Dispose();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 

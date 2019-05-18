@@ -71,56 +71,62 @@ namespace Escritorio
         public void MapearAAnimal()
         {
 
-
-            if (dtpFechaNacimiento.Value.Date == DateTime.Now.Date)
+            try
             {
-                dtpFechaNacimiento.Value.AddMilliseconds(1);
-            }
+                if (dtpFechaNacimiento.Value.Date == DateTime.Now.Date)
+                {
+                    dtpFechaNacimiento.Value.AddMilliseconds(1);
+                }
 
-            if (cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Vivo.ToString())
+                if (cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Vivo.ToString())
+                {
+                    Animal.Estado_animal = Principal.EstadoAnimales.Vivo.ToString();
+                }
+
+                if (cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Muerto.ToString() || cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Vendido.ToString())
+                {
+                    Animal.Habilitado = false;
+                }
+                else
+                {
+                    Animal.Habilitado = true;
+                }
+
+
+                Animal.Fecha_nacimiento = dtpFechaNacimiento.Value;
+
+                Animal.Nombre_animal = txtNombre.Text;
+                Animal.Hba = string.IsNullOrEmpty(txtHBA.Text) ? 0 : Convert.ToInt32(txtHBA.Text);
+
+
+                Animal.Rp_madre = string.IsNullOrEmpty(txtRPMadre.Text) ? 0 : Convert.ToInt32(txtRPMadre.Text);
+                Animal.Rp_padre = string.IsNullOrEmpty(txtRPPadre.Text) ? 0 : Convert.ToInt32(txtRPPadre.Text);
+                Animal.Hba_madre = string.IsNullOrEmpty(txtHBAMadre.Text) ? 0 : Convert.ToInt32(txtHBAMadre.Text);
+                Animal.Hba_padre = string.IsNullOrEmpty(txtHBAPadre.Text) ? 0 : Convert.ToInt32(txtHBAPadre.Text);
+                Animal.Tambo = Principal.Tambo;
+                Animal.Id_tambo = Principal.Tambo.Id_tambo;
+
+                //Manejo de la categoria
+                if (cbCategoria.SelectedIndex != -1)
+                {
+                    Animal.Categoria = new Categoria();
+                    Animal.Categoria = (Categoria)cbCategoria.SelectedItem;
+                    Animal.Id_Categoria = ((Categoria)cbCategoria.SelectedItem).Id_Categoria;
+                }
+                else
+                {
+                    MessageBox.Show("Debe seleccionar una categoria para el animal", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    cbCategoria.Focus();
+                }
+
+                Animal.Caravana = txtCaravana.Text;
+
+            }
+            catch (Exception ex)
             {
-                Animal.Estado_animal = Principal.EstadoAnimales.Vivo.ToString();
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
-
-            if (cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Muerto.ToString() || cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Vendido.ToString())
-            {
-                Animal.Habilitado = false;
-            }
-            else
-            {
-                Animal.Habilitado = true;
-            }
-
-
-            Animal.Fecha_nacimiento = dtpFechaNacimiento.Value;
-
-            Animal.Nombre_animal = txtNombre.Text;
-            Animal.Hba = string.IsNullOrEmpty(txtHBA.Text) ? 0 : Convert.ToInt32(txtHBA.Text);
-
-
-            Animal.Rp_madre = string.IsNullOrEmpty(txtRPMadre.Text) ? 0 : Convert.ToInt32(txtRPMadre.Text);
-            Animal.Rp_padre = string.IsNullOrEmpty(txtRPPadre.Text) ? 0 : Convert.ToInt32(txtRPPadre.Text);
-            Animal.Hba_madre = string.IsNullOrEmpty(txtHBAMadre.Text) ? 0 : Convert.ToInt32(txtHBAMadre.Text);
-            Animal.Hba_padre = string.IsNullOrEmpty(txtHBAPadre.Text) ? 0 : Convert.ToInt32(txtHBAPadre.Text);
-            Animal.Tambo = Principal.Tambo;
-            Animal.Id_tambo = Principal.Tambo.Id_tambo;
-
-            //Manejo de la categoria
-            if (cbCategoria.SelectedIndex != -1)
-            {
-                Animal.Categoria = new Categoria();
-                Animal.Categoria = (Categoria)cbCategoria.SelectedItem;
-                Animal.Id_Categoria = ((Categoria)cbCategoria.SelectedItem).Id_Categoria;
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar una categoria para el animal", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                cbCategoria.Focus();
-            }
-
-            Animal.Caravana = txtCaravana.Text;
-
-
         }
 
 
@@ -155,27 +161,35 @@ namespace Escritorio
 
         }
 
-
         public void Limpiar()
         {
-            this.dtpFechaNacimiento.Text = string.Empty;
+            try
+            {
+                this.dtpFechaNacimiento.Text = string.Empty;
 
-            this.txtNombre.Text = string.Empty;
-            this.txtHBA.Text = string.Empty;
-            this.txtHBAMadre.Text = string.Empty;
-            this.txtHBAPadre.Text = string.Empty;
-            this.txtRPMadre.Text = string.Empty;
-            this.txtRPPadre.Text = string.Empty;
-            this.cbCategoria.SelectedIndex = -1;
-            this.cbRaza.SelectedIndex = -1;
-            this.cbEstado.SelectedItem = Principal.EstadoAnimales.Vivo;
-            CargaUltimaCaravana();
+                this.txtNombre.Text = string.Empty;
+                this.txtHBA.Text = string.Empty;
+                this.txtHBAMadre.Text = string.Empty;
+                this.txtHBAPadre.Text = string.Empty;
+                this.txtRPMadre.Text = string.Empty;
+                this.txtRPPadre.Text = string.Empty;
+                this.cbCategoria.SelectedIndex = -1;
+                this.cbRaza.SelectedIndex = -1;
+                this.cbEstado.SelectedItem = Principal.EstadoAnimales.Vivo;
+                CargaUltimaCaravana();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
 
 
         private bool ValidarCargaAnimal(Animal animal)
         {
+
             if (string.IsNullOrWhiteSpace(txtNombre.Text))
             {
                 MessageBox.Show("Debe ingresar un nombre para el animal ", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -235,6 +249,7 @@ namespace Escritorio
 
         public bool HayCamposModificados()
         {
+
             if (txtNombre.Text == string.Empty && txtHBA.Text == string.Empty && txtRPMadre.Text == string.Empty && txtRPPadre.Text == string.Empty && txtHBAMadre.Text == string.Empty && txtHBAPadre.Text == string.Empty && cbCategoria.SelectedIndex == -1 && cbRaza.SelectedIndex == -1)
             {
                 return false;
@@ -248,15 +263,22 @@ namespace Escritorio
 
         private void CargaUltimaCaravana()
         {
-            ultimacaravana = animalnegocio.ObtenerUltimaCaravana(Principal.Tambo.Id_tambo);
-            
-            lbUltCaravana.Text = "La ultima caravana utilizada en el tambo es: " + ultimacaravana;
-            if (ModoForm == ModoForm.ALTA)
+            try
             {
-                txtCaravana.Text = (ultimacaravana + 1).ToString();
+                ultimacaravana = animalnegocio.ObtenerUltimaCaravana(Principal.Tambo.Id_tambo);
+
+                lbUltCaravana.Text = "La ultima caravana utilizada en el tambo es: " + ultimacaravana;
+                if (ModoForm == ModoForm.ALTA)
+                {
+                    txtCaravana.Text = (ultimacaravana + 1).ToString();
+                }
             }
-           
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
+
         }
 
         public void CargarComboEstado()
@@ -291,11 +313,19 @@ namespace Escritorio
 
         public void CargaComboRaza()
         {
-            Raza_Negocio razaNegocio = new Raza_Negocio();
-            this.cbRaza.DataSource = razaNegocio.RecuperarTodos();
-            this.cbRaza.DisplayMember = "nombre_raza";
-            this.cbRaza.ValueMember = "id_raza";
-            this.cbRaza.SelectedIndex = -1;
+            try
+            {
+                Raza_Negocio razaNegocio = new Raza_Negocio();
+                this.cbRaza.DataSource = razaNegocio.RecuperarTodos();
+                this.cbRaza.DisplayMember = "nombre_raza";
+                this.cbRaza.ValueMember = "id_raza";
+                this.cbRaza.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
         #endregion
 
@@ -305,17 +335,25 @@ namespace Escritorio
 
         private void AltaAnimales_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (HayCamposModificados())
+            try
             {
-                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result != DialogResult.Yes)
+                if (HayCamposModificados())
                 {
-                    e.Cancel = true;
+                    DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        this.Dispose();
+                    }
                 }
-                else
-                {
-                    this.Dispose();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -434,86 +472,142 @@ namespace Escritorio
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) && (e.KeyChar == (char)Keys.Back) && char.IsSeparator(e.KeyChar) && char.IsWhiteSpace(e.KeyChar))
+            try
             {
-                e.Handled = true;
-                return;
+                if (char.IsLetter(e.KeyChar) && (e.KeyChar == (char)Keys.Back) && char.IsSeparator(e.KeyChar) && char.IsWhiteSpace(e.KeyChar))
+                {
+                    e.Handled = true;
+                    return;
+                }
+                else
+                {
+                    e.Handled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = false;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtEdad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtHBA_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtRPMadre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtHBAMadre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtRPPadre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtHBAPadre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 

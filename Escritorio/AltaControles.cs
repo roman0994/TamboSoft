@@ -28,19 +28,35 @@ namespace Escritorio
 
         public void CargaComboAnimal(int id_tambo)
         {
-            Animal_Negocio animalNegocio = new Animal_Negocio();
-            this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(id_tambo);
-            this.cbAnimal.DisplayMember = "caravana";
-            this.cbAnimal.ValueMember = "rp";
-            this.cbAnimal.SelectedIndex = -1;
+            try
+            {
+                Animal_Negocio animalNegocio = new Animal_Negocio();
+                this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(id_tambo);
+                this.cbAnimal.DisplayMember = "caravana";
+                this.cbAnimal.ValueMember = "rp";
+                this.cbAnimal.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarToolTips()
         {
-            tooltipControles.SetToolTip(this.txtPrimerControl, "Formato de ingreso : XX,XX");
-            tooltipControles.SetToolTip(this.txtSegundoControl, "Formato de ingreso : XX,XX");
-            tooltipControles.SetToolTip(this.txtGrasaPrimerControl, "Formato de ingreso : XX,XX");
-            tooltipControles.SetToolTip(this.txtGrasaSegundoControl, "Formato de ingreso : XX,XX");
+            try
+            {
+                tooltipControles.SetToolTip(this.txtPrimerControl, "Formato de ingreso : XX,XX");
+                tooltipControles.SetToolTip(this.txtSegundoControl, "Formato de ingreso : XX,XX");
+                tooltipControles.SetToolTip(this.txtGrasaPrimerControl, "Formato de ingreso : XX,XX");
+                tooltipControles.SetToolTip(this.txtGrasaSegundoControl, "Formato de ingreso : XX,XX");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -50,61 +66,70 @@ namespace Escritorio
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarCargaControles(this.cbAnimal.SelectedIndex, this.dtpFechaControl.Value.Date);
-
-            if (validar == true)
+            try
             {
-                if (validaciones.ValidarFecha(this.dtpFechaControl.Value.Date))
+                Validaciones validaciones = new Validaciones();
+                bool validar = validaciones.ValidarCargaControles(this.cbAnimal.SelectedIndex, this.dtpFechaControl.Value.Date);
+
+                if (validar == true)
                 {
-                    if (validaciones.ValidarDecimalControles(txtPrimerControl.Text)==true || txtPrimerControl.Text == string.Empty)
+                    if (validaciones.ValidarFecha(this.dtpFechaControl.Value.Date))
                     {
-                        if (validaciones.ValidarDecimalControles(txtGrasaPrimerControl.Text) == true || txtGrasaPrimerControl.Text == string.Empty)
+                        if (validaciones.ValidarDecimalControles(txtPrimerControl.Text) == true || txtPrimerControl.Text == string.Empty)
                         {
-                            if (validaciones.ValidarDecimalControles(txtSegundoControl.Text) == true || txtSegundoControl.Text == string.Empty)
+                            if (validaciones.ValidarDecimalControles(txtGrasaPrimerControl.Text) == true || txtGrasaPrimerControl.Text == string.Empty)
                             {
-                                if (validaciones.ValidarDecimalControles(txtGrasaSegundoControl.Text) == true || txtGrasaSegundoControl.Text == string.Empty)
+                                if (validaciones.ValidarDecimalControles(txtSegundoControl.Text) == true || txtSegundoControl.Text == string.Empty)
                                 {
-                                    Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
-                                    Control_Animal control = new Control_Animal();
-                                    control = MapearAControlAnimal();
-                                    controlNegocio.Insertar(control);
-                                    MessageBox.Show("El control fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    this.Limpiar();
+                                    if (validaciones.ValidarDecimalControles(txtGrasaSegundoControl.Text) == true || txtGrasaSegundoControl.Text == string.Empty)
+                                    {
+                                        Control_Animal_Negocio controlNegocio = new Control_Animal_Negocio();
+                                        Control_Animal control = new Control_Animal();
+                                        control = MapearAControlAnimal();
+                                        controlNegocio.Insertar(control);
+                                        MessageBox.Show("El control fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        this.Limpiar();
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("El valor de Grasa Segundo Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
                                 }
                                 else
                                 {
-                                    MessageBox.Show("El valor de Grasa Segundo Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("El valor de Segundo Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
-                                MessageBox.Show("El valor de Segundo Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("El valor de Grasa Primer Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
                         {
-                            MessageBox.Show("El valor de Grasa Primer Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("El valor de Primer Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        MessageBox.Show("El valor de Primer Control no es válido. Puede tener hasta 2 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("La fecha no puede ser mayor a hoy", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    MessageBox.Show("La fecha no puede ser mayor a hoy", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         public Control_Animal MapearAControlAnimal()
         {
+
             Animal_Negocio animalNegocio = new Animal_Negocio();
 
             Animal animal = (Animal)cbAnimal.SelectedItem;
@@ -124,81 +149,129 @@ namespace Escritorio
 
         public void Limpiar()
         {
-            this.cbAnimal.SelectedIndex = -1;
-            this.txtPrimerControl.Text = string.Empty;
-            this.txtSegundoControl.Text = string.Empty;
-            this.txtGrasaPrimerControl.Text = string.Empty;
-            this.txtGrasaSegundoControl.Text = string.Empty;
-            this.dtpFechaControl.Text = string.Empty;
+            try
+            {
+                this.cbAnimal.SelectedIndex = -1;
+                this.txtPrimerControl.Text = string.Empty;
+                this.txtSegundoControl.Text = string.Empty;
+                this.txtGrasaPrimerControl.Text = string.Empty;
+                this.txtGrasaSegundoControl.Text = string.Empty;
+                this.dtpFechaControl.Text = string.Empty;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
 
+            }
         }
 
         private void txtPrimerControl_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtSegundoControl_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtPorcentajeGrasa_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtKgGrasa_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void AltaControles_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (HayCamposModificados())
+            try
             {
-                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result != DialogResult.Yes)
+                if (HayCamposModificados())
                 {
-                    e.Cancel = true;
+                    DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        this.Dispose();
+                    }
                 }
-                else
-                {
-                    this.Dispose();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         public bool HayCamposModificados()
         {
+
             if (txtPrimerControl.Text == string.Empty && txtSegundoControl.Text == string.Empty && txtGrasaPrimerControl.Text == string.Empty && txtGrasaSegundoControl.Text == string.Empty && cbAnimal.SelectedIndex == -1)
             {
                 return false;
@@ -211,10 +284,18 @@ namespace Escritorio
 
         private void cbAnimal_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cbAnimal.SelectedIndex > -1)
+            try
             {
-                Animal animal = (Animal)cbAnimal.SelectedItem;
-                lbNombreAnimal.Text = "Nombre: " + animal.Nombre_animal;
+                if (cbAnimal.SelectedIndex > -1)
+                {
+                    Animal animal = (Animal)cbAnimal.SelectedItem;
+                    lbNombreAnimal.Text = "Nombre: " + animal.Nombre_animal;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
     }

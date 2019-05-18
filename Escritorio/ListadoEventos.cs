@@ -23,12 +23,20 @@ namespace Escritorio
         }
         public void CargarGrilla(int id_tambo)
         {
-            //EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-            //this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarPorTambo(id_tambo);
-            EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-            this.dgvEventos.AutoGenerateColumns = false;
-            this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarSoloEventosPorTambo(id_tambo);
-            //gvEventos.Columns[0].HeaderText = "TextoAMostrarEnLaCabecera";
+            try
+            {
+                //EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                //this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarPorTambo(id_tambo);
+                EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                this.dgvEventos.AutoGenerateColumns = false;
+                this.dgvEventos.DataSource = eventoAnimalDescNegocio.RecuperarSoloEventosPorTambo(id_tambo);
+                //gvEventos.Columns[0].HeaderText = "TextoAMostrarEnLaCabecera";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -43,63 +51,104 @@ namespace Escritorio
 
         private void tbsNuevo_Click(object sender, EventArgs e)
         {
-            AltaEventos altaEventos = new AltaEventos(idtambo);
-            altaEventos.ShowDialog();
-            this.CargarGrilla(idtambo);
+            try
+            {
+                AltaEventos altaEventos = new AltaEventos(idtambo);
+                altaEventos.ShowDialog();
+                this.CargarGrilla(idtambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void tbsExportar_Click(object sender, EventArgs e)
         {
-            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            try
             {
-                ExportarAExcel exportarAExcel = new ExportarAExcel();
-                exportarAExcel.Exportar(this.dgvEventos, ListadoEventos.ActiveForm.Text);
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    ExportarAExcel exportarAExcel = new ExportarAExcel();
+                    exportarAExcel.Exportar(this.dgvEventos, ListadoEventos.ActiveForm.Text);
+                }
+                else
+                {
+                    Tambo tambo = new Tambo();
+                    Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                    tambo = tambo_Negocio.RecuperarUno(idtambo);
+                    MessageBox.Show("No se encontraron eventos en el tambo " + tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Tambo tambo = new Tambo();
-                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
-                tambo = tambo_Negocio.RecuperarUno(idtambo);
-                MessageBox.Show("No se encontraron eventos en el tambo " + tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void tstxtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            EventoAnimal_DescSubevento_Negocio eventoNegocio = new EventoAnimal_DescSubevento_Negocio();
-            this.dgvEventos.DataSource = eventoNegocio.FiltrarPorNombreEvento(this.tstxtBuscar.Text, idtambo);
+            try
+            {
+                EventoAnimal_DescSubevento_Negocio eventoNegocio = new EventoAnimal_DescSubevento_Negocio();
+                this.dgvEventos.DataSource = eventoNegocio.FiltrarPorNombreEvento(this.tstxtBuscar.Text, idtambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
-            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            try
             {
-                this.CargarGrilla(Principal.Tambo.Id_tambo);
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    this.CargarGrilla(Principal.Tambo.Id_tambo);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void tbsImprimir_Click(object sender, EventArgs e)
         {
-            if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+            try
             {
-                //vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
-                //vistaPreviaListadoEventos.idtambo = idtambo;
-                //vistaPreviaListadoEventos.Show();
-                vpEventos_Animal vp = new vpEventos_Animal();
-                vp.Show();
+                if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
+                {
+                    //vpListadoEventos vistaPreviaListadoEventos = new vpListadoEventos();
+                    //vistaPreviaListadoEventos.idtambo = idtambo;
+                    //vistaPreviaListadoEventos.Show();
+                    vpEventos_Animal vp = new vpEventos_Animal();
+                    vp.Show();
+                }
+                else
+                {
+                    Tambo tambo = new Tambo();
+                    Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                    tambo = tambo_Negocio.RecuperarUno(idtambo);
+                    MessageBox.Show("No se encontraron eventos en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Tambo tambo = new Tambo();
-                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
-                tambo = tambo_Negocio.RecuperarUno(idtambo);
-                MessageBox.Show("No se encontraron eventos en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void dgvEventos_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+            try
+            {
                 if (this.dgvEventos.Rows.Count != 0 && this.dgvEventos.Rows != null)
                 {
                     int id_tambo = Principal.Tambo.Id_tambo;
@@ -113,20 +162,32 @@ namespace Escritorio
                     detalle.Show();
 
                 }
-            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void tstxtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            try
             {
-                e.Handled = false;
+                if (char.IsLetter(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
-            
         }
     }
 }

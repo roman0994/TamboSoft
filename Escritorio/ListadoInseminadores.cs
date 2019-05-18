@@ -25,8 +25,17 @@ namespace Escritorio
 
         public void CargarGrilla(int id_tambo)
         {
-            Tambo_Inseminador_Negocio tamboInseminadorNegocio = new Tambo_Inseminador_Negocio();
-            this.dgvInseminadores.DataSource = tamboInseminadorNegocio.RecuperarPorTambo(id_tambo);
+            try
+            {
+                Tambo_Inseminador_Negocio tamboInseminadorNegocio = new Tambo_Inseminador_Negocio();
+                this.dgvInseminadores.DataSource = tamboInseminadorNegocio.RecuperarPorTambo(id_tambo);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -41,55 +50,97 @@ namespace Escritorio
 
         private void tsbNuevo_Click(object sender, EventArgs e)
         {
-            AltaPersonal altaPersonal = new AltaPersonal(idtambo);
-            altaPersonal.ShowDialog();
-            this.CargarGrilla(idtambo);
+            try
+            {
+                AltaPersonal altaPersonal = new AltaPersonal(idtambo);
+                altaPersonal.ShowDialog();
+                this.CargarGrilla(idtambo);
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void tsbExportar_Click(object sender, EventArgs e)
         {
-            if (this.dgvInseminadores.Rows.Count != 0 && this.dgvInseminadores.Rows != null)
+            try
             {
-                ExportarAExcel exportarAExcel = new ExportarAExcel();
-                exportarAExcel.Exportar(this.dgvInseminadores, ListadoInseminadores.ActiveForm.Text);
+                if (this.dgvInseminadores.Rows.Count != 0 && this.dgvInseminadores.Rows != null)
+                {
+                    ExportarAExcel exportarAExcel = new ExportarAExcel();
+                    exportarAExcel.Exportar(this.dgvInseminadores, ListadoInseminadores.ActiveForm.Text);
+                }
+                else
+                {
+                    Tambo tambo = new Tambo();
+                    Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                    tambo = tambo_Negocio.RecuperarUno(idtambo);
+                    MessageBox.Show("No se encontraron inseminadores en el tambo " + tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Tambo tambo = new Tambo();
-                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
-                tambo = tambo_Negocio.RecuperarUno(idtambo);
-                MessageBox.Show("No se encontraron inseminadores en el tambo " + tambo.Nombre_tambo, "Error al exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void tstxtBuscar_KeyUp(object sender, KeyEventArgs e)
         {
-            Tambo_Inseminador_Negocio tamboInseminadorNegocio = new Tambo_Inseminador_Negocio();
-            this.dgvInseminadores.DataSource = tamboInseminadorNegocio.FiltrarPorNombre(this.tstxtBuscar.Text,idtambo);
+            try
+            {
+                Tambo_Inseminador_Negocio tamboInseminadorNegocio = new Tambo_Inseminador_Negocio();
+                this.dgvInseminadores.DataSource = tamboInseminadorNegocio.FiltrarPorNombre(this.tstxtBuscar.Text, idtambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void tsbActualizar_Click(object sender, EventArgs e)
         {
-            if (this.dgvInseminadores.Rows.Count != 0 && this.dgvInseminadores.Rows != null)
+            try
             {
-                this.CargarGrilla(Convert.ToInt32(this.dgvInseminadores.CurrentRow.Cells["id_tambo"].Value));
+                if (this.dgvInseminadores.Rows.Count != 0 && this.dgvInseminadores.Rows != null)
+                {
+                    this.CargarGrilla(Convert.ToInt32(this.dgvInseminadores.CurrentRow.Cells["id_tambo"].Value));
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void tsbImprimir_Click(object sender, EventArgs e)
         {
-            if (this.dgvInseminadores.Rows.Count != 0 && this.dgvInseminadores.Rows != null)
+            try
             {
-                vpListadoInseminadores vistaPreviaListadoIns = new vpListadoInseminadores();
-                vistaPreviaListadoIns.idtambo = idtambo;
-                vistaPreviaListadoIns.Show();
+                if (this.dgvInseminadores.Rows.Count != 0 && this.dgvInseminadores.Rows != null)
+                {
+                    vpListadoInseminadores vistaPreviaListadoIns = new vpListadoInseminadores();
+                    vistaPreviaListadoIns.idtambo = idtambo;
+                    vistaPreviaListadoIns.Show();
+                }
+                else
+                {
+                    Tambo tambo = new Tambo();
+                    Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
+                    tambo = tambo_Negocio.RecuperarUno(idtambo);
+                    MessageBox.Show("No se encontraron inseminadores en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Tambo tambo = new Tambo();
-                Tambo_Negocio tambo_Negocio = new Tambo_Negocio();
-                tambo = tambo_Negocio.RecuperarUno(idtambo);
-                MessageBox.Show("No se encontraron inseminadores en el tambo " + tambo.Nombre_tambo, "Error al imprimir", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
     }

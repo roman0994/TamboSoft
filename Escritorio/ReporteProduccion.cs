@@ -81,9 +81,17 @@ namespace Escritorio
 
         public void CargarComboAño()
         {
-            for (int i = 2018; i <= 2050; i++)
+            try
             {
-                this.cbAño.Items.Add(i);
+                for (int i = 2018; i <= 2050; i++)
+                {
+                    this.cbAño.Items.Add(i);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -94,26 +102,42 @@ namespace Escritorio
 
         public void CargarComboMes()
         {
-            this.cbMes.Text = "Mes:";
-            this.cbMes.Visible = true;
-            this.cbMes.Items.Add("Enero");
-            this.cbMes.Items.Add("Febrero");
-            this.cbMes.Items.Add("Marzo");
-            this.cbMes.Items.Add("Abril");
-            this.cbMes.Items.Add("Mayo");
-            this.cbMes.Items.Add("Junio");
-            this.cbMes.Items.Add("Julio");
-            this.cbMes.Items.Add("Agosto");
-            this.cbMes.Items.Add("Septiembre");
-            this.cbMes.Items.Add("Octubre");
-            this.cbMes.Items.Add("Noviembre");
-            this.cbMes.Items.Add("Diciembre");
+            try
+            {
+                this.cbMes.Text = "Mes:";
+                this.cbMes.Visible = true;
+                this.cbMes.Items.Add("Enero");
+                this.cbMes.Items.Add("Febrero");
+                this.cbMes.Items.Add("Marzo");
+                this.cbMes.Items.Add("Abril");
+                this.cbMes.Items.Add("Mayo");
+                this.cbMes.Items.Add("Junio");
+                this.cbMes.Items.Add("Julio");
+                this.cbMes.Items.Add("Agosto");
+                this.cbMes.Items.Add("Septiembre");
+                this.cbMes.Items.Add("Octubre");
+                this.cbMes.Items.Add("Noviembre");
+                this.cbMes.Items.Add("Diciembre");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void cbMes_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this.btnBuscar.Enabled = true;
-            this.btnExportar.Enabled = true;
+            try
+            {
+                //this.btnBuscar.Enabled = true;
+                this.btnExportar.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void cbAnimal_SelectedIndexChanged(object sender, EventArgs e)

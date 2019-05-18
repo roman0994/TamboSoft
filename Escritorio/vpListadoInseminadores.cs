@@ -21,12 +21,20 @@ namespace Escritorio
 
         private void crvInseminadores_Load(object sender, EventArgs e)
         {
-            Tambo_Inseminador_Negocio inseminadorNegocio = new Tambo_Inseminador_Negocio();
-            rptListadoInseminadores reporte = new rptListadoInseminadores();
+            try
+            {
+                Tambo_Inseminador_Negocio inseminadorNegocio = new Tambo_Inseminador_Negocio();
+                rptListadoInseminadores reporte = new rptListadoInseminadores();
 
-            reporte.SetDataSource(inseminadorNegocio.RecuperarDTPorTambo(idtambo));
-            crvInseminadores.ReportSource = reporte;
-            crvInseminadores.Refresh();
+                reporte.SetDataSource(inseminadorNegocio.RecuperarDTPorTambo(idtambo));
+                crvInseminadores.ReportSource = reporte;
+                crvInseminadores.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

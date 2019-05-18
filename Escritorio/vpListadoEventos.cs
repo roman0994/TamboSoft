@@ -21,12 +21,20 @@ namespace Escritorio
 
         private void vpListadoEventos_Load(object sender, EventArgs e)
         {
-            EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
-            rptListadoEventos reporte = new rptListadoEventos();
-            //GrupoPrueba reporte = new GrupoPrueba();
-            reporte.SetDataSource(eventoAnimalDescNegocio.RecuperarDTPorTambo(idtambo));
-            crvEventos.ReportSource = reporte;
-            crvEventos.Refresh();
+            try
+            {
+                EventoAnimal_DescSubevento_Negocio eventoAnimalDescNegocio = new EventoAnimal_DescSubevento_Negocio();
+                rptListadoEventos reporte = new rptListadoEventos();
+                //GrupoPrueba reporte = new GrupoPrueba();
+                reporte.SetDataSource(eventoAnimalDescNegocio.RecuperarDTPorTambo(idtambo));
+                crvEventos.ReportSource = reporte;
+                crvEventos.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

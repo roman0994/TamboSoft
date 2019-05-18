@@ -21,12 +21,20 @@ namespace Escritorio
 
         private void vpListadoControles_Load(object sender, EventArgs e)
         {
-            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-            rptListadoControles reporte = new rptListadoControles();
+            try
+            {
+                Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+                rptListadoControles reporte = new rptListadoControles();
 
-            reporte.SetDataSource(controlAnimalNegocio.RecuperarDTPorTambo(idtambo));
-            crvControles.ReportSource = reporte;
-            crvControles.Refresh();
+                reporte.SetDataSource(controlAnimalNegocio.RecuperarDTPorTambo(idtambo));
+                crvControles.ReportSource = reporte;
+                crvControles.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

@@ -26,57 +26,97 @@ namespace Escritorio
 
         public void CargarComboProvincia()
         {
-            Provincia_Negocio provinciaNegocio = new Provincia_Negocio();
+            try
+            {
+                Provincia_Negocio provinciaNegocio = new Provincia_Negocio();
 
-            this.cbProvincia.DisplayMember = "nombre_provincia";
-            this.cbProvincia.ValueMember = "id_provincia";
-            this.cbProvincia.DataSource = provinciaNegocio.RecuperarTodos();
-            this.cbProvincia.SelectedIndex = -1;
+                this.cbProvincia.DisplayMember = "nombre_provincia";
+                this.cbProvincia.ValueMember = "id_provincia";
+                this.cbProvincia.DataSource = provinciaNegocio.RecuperarTodos();
+                this.cbProvincia.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarTolTip()
         {
-            toolTipTambo.SetToolTip(this.txtSuperficie, "Formato de ingreso : XX,XX");
+            try
+            {
+                toolTipTambo.SetToolTip(this.txtSuperficie, "Formato de ingreso : XX,XX");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void cbProvincia_SelectedIndexChanged(object sender, EventArgs e)
         {
-            CargarComboLocalidad(Convert.ToInt32(this.cbProvincia.SelectedValue));
+            try
+            {
+                CargarComboLocalidad(Convert.ToInt32(this.cbProvincia.SelectedValue));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         public void CargarComboLocalidad(int id_provincia)
         {
-            Localidad_Negocio localidadNegocio = new Localidad_Negocio();
-            this.cbLocalidad.DataSource = localidadNegocio.RecuperarPorProvincia(id_provincia);
-            this.cbLocalidad.DisplayMember = "nombre_localidad";
-            this.cbLocalidad.ValueMember = "id_localidad";
-            this.cbLocalidad.SelectedIndex = -1;
+            try
+            {
+                Localidad_Negocio localidadNegocio = new Localidad_Negocio();
+                this.cbLocalidad.DataSource = localidadNegocio.RecuperarPorProvincia(id_provincia);
+                this.cbLocalidad.DisplayMember = "nombre_localidad";
+                this.cbLocalidad.ValueMember = "id_localidad";
+                this.cbLocalidad.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Validaciones validaciones = new Validaciones();
-            bool validar = validaciones.ValidarEdicionTambos(cbProvincia.SelectedIndex, cbLocalidad.SelectedIndex, txtNombre.Text, txtSuperficie.Text);
-
-            if (validar == true)
+            try
             {
-                if (validaciones.ValidarDecimalSuperficieTambo(txtSuperficie.Text) == true)
+                Validaciones validaciones = new Validaciones();
+                bool validar = validaciones.ValidarEdicionTambos(cbProvincia.SelectedIndex, cbLocalidad.SelectedIndex, txtNombre.Text, txtSuperficie.Text);
+
+                if (validar == true)
                 {
-                    Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-                    Tambo tambo = new Tambo();
-                    tambo = MapearATambo();
-                    tamboNegocio.Actualizar(tambo);
-                    DialogResult result = MessageBox.Show("El tambo fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Dispose();
+                    if (validaciones.ValidarDecimalSuperficieTambo(txtSuperficie.Text) == true)
+                    {
+                        Tambo_Negocio tamboNegocio = new Tambo_Negocio();
+                        Tambo tambo = new Tambo();
+                        tambo = MapearATambo();
+                        tamboNegocio.Actualizar(tambo);
+                        DialogResult result = MessageBox.Show("El tambo fue actualizado exitosamente", "Edición", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Dispose();
+                    }
+                    else
+                    {
+                        MessageBox.Show("El valor de Superficie no es válido. Puede tener hasta 6 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("El valor de Superficie no es válido. Puede tener hasta 6 dígitos enteros y 2 decimales.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Debe completar los campos vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Debe completar los campos vacíos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -102,26 +142,42 @@ namespace Escritorio
 
         private void txtNombre_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) && (e.KeyChar == (char)Keys.Back) && char.IsSeparator(e.KeyChar) && char.IsWhiteSpace(e.KeyChar))
+            try
             {
-                e.Handled = true;
-                return;
+                if (char.IsLetter(e.KeyChar) && (e.KeyChar == (char)Keys.Back) && char.IsSeparator(e.KeyChar) && char.IsWhiteSpace(e.KeyChar))
+                {
+                    e.Handled = true;
+                    return;
+                }
+                else
+                {
+                    e.Handled = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = false;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void txtSuperficie_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+            try
             {
-                e.Handled = false;
+                if (char.IsNumber(e.KeyChar) || e.KeyChar.ToString() == "," || e.KeyChar == (char)Keys.Back)
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -132,17 +188,25 @@ namespace Escritorio
 
         private void EdicionOtrosTambos_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (HayCamposModificados())
+            try
             {
-                DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result != DialogResult.Yes)
+                if (HayCamposModificados())
                 {
-                    e.Cancel = true;
+                    DialogResult result = MessageBox.Show("¿Desea salir sin guardar los cambios?", "Verificación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (result != DialogResult.Yes)
+                    {
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        this.Dispose();
+                    }
                 }
-                else
-                {
-                    this.Dispose();
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 

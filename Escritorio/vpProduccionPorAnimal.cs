@@ -24,21 +24,29 @@ namespace Escritorio
 
         private void vpProduccionPorAnimal_Load(object sender, EventArgs e)
         {
-            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-            rptProduccionPorAnimal reporte = new rptProduccionPorAnimal();
+            try
+            {
+                Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+                rptProduccionPorAnimal reporte = new rptProduccionPorAnimal();
 
-            if (this.opcioncombo == -1)
-            {
-                reporte.SetDataSource(controlAnimalNegocio.ProduccionPorAnimal(idtambo));
-                crvProduccion.ReportSource = reporte;
-                crvProduccion.Refresh();
+                if (this.opcioncombo == -1)
+                {
+                    reporte.SetDataSource(controlAnimalNegocio.ProduccionPorAnimal(idtambo));
+                    crvProduccion.ReportSource = reporte;
+                    crvProduccion.Refresh();
+                }
+                else
+                {
+                    //Asigno el reporte según el animal recuperado
+                    reporte.SetDataSource(controlAnimalNegocio.ProduccionPorFiltroAnimal(idtambo, opcioncombo));
+                    crvProduccion.ReportSource = reporte;
+                    crvProduccion.Refresh();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                //Asigno el reporte según el animal recuperado
-                reporte.SetDataSource(controlAnimalNegocio.ProduccionPorFiltroAnimal(idtambo,opcioncombo));
-                crvProduccion.ReportSource = reporte;
-                crvProduccion.Refresh();
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
     }

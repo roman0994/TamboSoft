@@ -30,10 +30,16 @@ namespace Escritorio
 
         public void CargarGrilla()
         {
-            
-            this.dgvAnimales.AutoGenerateColumns = false;
-            this.dgvAnimales.DataSource = animalnegocio.RecuperarPorTamboDT(Principal.Tambo.Id_tambo);
+            try
+            {
+                this.dgvAnimales.AutoGenerateColumns = false;
+                this.dgvAnimales.DataSource = animalnegocio.RecuperarPorTamboDT(Principal.Tambo.Id_tambo);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
 
+            }
 
         }
 
@@ -91,9 +97,17 @@ namespace Escritorio
 
         private void tbsActualizar_Click(object sender, EventArgs e)
         {
-            if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+            try
             {
-                this.CargarGrilla();
+                if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
+                {
+                    this.CargarGrilla();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
@@ -103,27 +117,43 @@ namespace Escritorio
 
         private void tstxtBuscar_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (char.IsLetter(e.KeyChar) || char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+            try
             {
-                e.Handled = false;
+                if (char.IsLetter(e.KeyChar) || char.IsDigit(e.KeyChar) || (e.KeyChar == (char)Keys.Back) || char.IsSeparator(e.KeyChar) || char.IsWhiteSpace(e.KeyChar))
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    e.Handled = true;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                e.Handled = true;
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
             }
         }
 
         private void dgvAnimales_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
-            foreach (DataGridViewRow row in dgvAnimales.Rows)
+            try
             {
-                if (row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Muerto.ToString() || row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Vendido.ToString())
+                foreach (DataGridViewRow row in dgvAnimales.Rows)
                 {
+                    if (row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Muerto.ToString() || row.Cells["estado_animal"].Value.ToString() == Principal.EstadoAnimales.Vendido.ToString())
+                    {
 
-                    row.DefaultCellStyle.BackColor = Color.LightGray;
+                        row.DefaultCellStyle.BackColor = Color.LightGray;
+
+                    }
+
 
                 }
-
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
 
             }
         }

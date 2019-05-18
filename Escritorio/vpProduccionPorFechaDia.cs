@@ -25,12 +25,20 @@ namespace Escritorio
 
         private void vpProduccionPorFecha_Load(object sender, EventArgs e)
         {
-            Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
-            rptProduccionPorFechaDia reporte = new rptProduccionPorFechaDia();
+            try
+            {
+                Control_Animal_Negocio controlAnimalNegocio = new Control_Animal_Negocio();
+                rptProduccionPorFechaDia reporte = new rptProduccionPorFechaDia();
 
-            reporte.SetDataSource(controlAnimalNegocio.ProduccionPorFiltroDiaYAnimal(idtambo, fecha, rp));
-            crvProduccionPorDia.ReportSource = reporte;
-            crvProduccionPorDia.Refresh();           
+                reporte.SetDataSource(controlAnimalNegocio.ProduccionPorFiltroDiaYAnimal(idtambo, fecha, rp));
+                crvProduccionPorDia.ReportSource = reporte;
+                crvProduccionPorDia.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

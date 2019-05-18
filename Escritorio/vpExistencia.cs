@@ -19,12 +19,19 @@ namespace Escritorio
 
         private void vpExistencia_Load(object sender, EventArgs e)
         {
-            rptExistencia reporte = new rptExistencia();
-            reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
-            reporte.SetDatabaseLogon("abcd", "123456");
-            
-            crv.ReportSource = reporte;
-            
+            try
+            {
+                rptExistencia reporte = new rptExistencia();
+                reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
+                reporte.SetDatabaseLogon("abcd", "123456");
+
+                crv.ReportSource = reporte;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

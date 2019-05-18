@@ -29,13 +29,21 @@ namespace Escritorio
 
         private void vpReporteReproduccion_Load(object sender, EventArgs e)
         {
-            rptReporteReproduccionPorFechas reporte = new rptReporteReproduccionPorFechas();
-            
-            reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
-            reporte.SetParameterValue("@FechaDesde", Fecha_Desde);
-            reporte.SetParameterValue("@FechaHasta", Fecha_Hasta);
-            reporte.SetDatabaseLogon("abcd", "123456");
-            crv.ReportSource = reporte;
+            try
+            {
+                rptReporteReproduccionPorFechas reporte = new rptReporteReproduccionPorFechas();
+
+                reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
+                reporte.SetParameterValue("@FechaDesde", Fecha_Desde);
+                reporte.SetParameterValue("@FechaHasta", Fecha_Hasta);
+                reporte.SetDatabaseLogon("abcd", "123456");
+                crv.ReportSource = reporte;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }

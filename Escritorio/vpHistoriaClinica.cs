@@ -21,12 +21,20 @@ namespace Escritorio
 
         private void vpHistoriaClinica_Load(object sender, EventArgs e)
         {
-            EventoAnimal_DescSubevento_Negocio eventoNegocio = new EventoAnimal_DescSubevento_Negocio();
-            rptHistoriaClinica reporte = new rptHistoriaClinica();
+            try
+            {
+                EventoAnimal_DescSubevento_Negocio eventoNegocio = new EventoAnimal_DescSubevento_Negocio();
+                rptHistoriaClinica reporte = new rptHistoriaClinica();
 
-            reporte.SetDataSource(eventoNegocio.RecuperarDTPorTamboYAnimal(Principal.Tambo.Id_tambo,rp));
-            crvHistoriaClinica.ReportSource = reporte;
-            crvHistoriaClinica.Refresh();
+                reporte.SetDataSource(eventoNegocio.RecuperarDTPorTamboYAnimal(Principal.Tambo.Id_tambo, rp));
+                crvHistoriaClinica.ReportSource = reporte;
+                crvHistoriaClinica.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
+
+            }
         }
     }
 }
