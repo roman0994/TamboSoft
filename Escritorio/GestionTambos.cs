@@ -15,6 +15,7 @@ namespace Escritorio
 {
     public partial class GestionTambos : Form
     {
+        public int id_usuario;
         public int idtambo;
         public GestionTambos(int id_tambo)
         {
@@ -33,7 +34,7 @@ namespace Escritorio
             {
                 Tambo_Negocio tamboNegocio = new Tambo_Negocio();
                 this.dgvTambos.AutoGenerateColumns = false;
-                this.dgvTambos.DataSource = tamboNegocio.RecuperarOtrosTambos(id_tambo, Principal.Usuario.Id_usuario);
+                this.dgvTambos.DataSource = tamboNegocio.RecuperarOtrosTambos(id_tambo, id_usuario);
                 if (this.dgvTambos.Rows.Count != 0 && this.dgvTambos.Rows != null)
                 {
                     this.btnEditar.Enabled = true;

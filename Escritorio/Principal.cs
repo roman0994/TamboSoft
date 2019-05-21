@@ -39,7 +39,7 @@ namespace Escritorio
             //Bitmap img = new Bitmap(Application.StartupPath+ @"\fondos\fondo1.jpg");
             //this.BackgroundImage = img;
             inseminadornegocio = new Inseminador_Negocio();
-           
+            Usuario_Negocio usuario_Negocio = new Usuario_Negocio();
             Tambo = new Tambo();
             //Tambo.Id_tambo = id_tambo;
             CargarTambo(id_tambo);
@@ -296,6 +296,7 @@ namespace Escritorio
             {
                 DatosTambo datosTambo = new DatosTambo(id_tambo);
                 datosTambo.idtambo = id_tambo;
+                datosTambo.id_usuario = id_usuario;
                 datosTambo.ShowDialog();
             }
             catch (Exception ex)
@@ -349,10 +350,11 @@ namespace Escritorio
             try
             {
                 Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-                if (tamboNegocio.HayOtrosTambos(Principal.Tambo.Id_tambo, Principal.Usuario.Id_usuario))
+                if (tamboNegocio.HayOtrosTambos(Principal.Tambo.Id_tambo, id_usuario))
                 {
                     GestionTambos gestionTambos = new GestionTambos(id_tambo);
                     gestionTambos.idtambo = id_tambo;
+                    gestionTambos.id_usuario = id_usuario;
                     gestionTambos.ShowDialog();
                 }
                 else
@@ -372,6 +374,7 @@ namespace Escritorio
             try
             {
                 AltaTambos altaTambos = new AltaTambos();
+                altaTambos.id_usuario = id_usuario;
                 altaTambos.ShowDialog();
             }
             catch (Exception ex)

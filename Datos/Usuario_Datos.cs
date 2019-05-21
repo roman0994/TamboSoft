@@ -49,6 +49,43 @@ namespace Datos
             }
         }
 
+        public Usuario RecuperarPorID(int id_usuario)
+        {
+            try
+            {
+                Usuario usuario = new Usuario();
+                this.AbrirConexion();
+                SqlCommand cmdUsuario = new SqlCommand("SELECT id_usuario,usu,password,email from Usuario where id_usuario=@id_usuario", Conn);
+                cmdUsuario.Parameters.Add("id_usuario", SqlDbType.Int).Value = id_usuario;
+                SqlDataReader drUsuario = cmdUsuario.ExecuteReader();
+
+                while (drUsuario.Read())
+                {
+                    usuario.Id_usuario = drUsuario.IsDBNull(0) ? Convert.ToInt32(string.Empty) : Convert.ToInt32(drUsuario["id_usuario"]);
+                    usuario.Usu = drUsuario.IsDBNull(1) ? string.Empty : drUsuario["usu"].ToString();
+                    usuario.Password = drUsuario.IsDBNull(2) ? string.Empty : drUsuario["password"].ToString();
+                    usuario.Email = drUsuario.IsDBNull(3) ? string.Empty : drUsuario["email"].ToString();
+
+                }
+                drUsuario.Close();
+                return usuario;
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar usuario", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
         public bool ExisteUsuario(string user, string password)
         {
             try

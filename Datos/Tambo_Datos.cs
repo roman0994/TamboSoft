@@ -285,12 +285,12 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdInsertar = new SqlCommand("insert into Tambo(nombre_tambo,superficie,estado_tambo,id_usuario,id_localidad) values (@nombre_tambo,@superficie,@estado_tambo,@id_usuario,@id_localidad)", Conn);
+                SqlCommand cmdInsertar = new SqlCommand("insert into Tambo(nombre_tambo,superficie,estado_tambo,id_localidad,id_usuario) values (@nombre_tambo,@superficie,@estado_tambo,@id_localidad,@id_usuario)", Conn);
                 cmdInsertar.Parameters.Add("nombre_tambo", SqlDbType.VarChar, 50).Value = tambo.Nombre_tambo;
                 cmdInsertar.Parameters.Add("superficie", SqlDbType.Decimal).Value = tambo.Superficie;
-                cmdInsertar.Parameters.Add("estado_tambo", SqlDbType.Bit).Value = tambo.Estado_tambo;
-                cmdInsertar.Parameters.Add("id_usuario", SqlDbType.Int).Value = tambo.Id_usuario;
+                cmdInsertar.Parameters.Add("estado_tambo", SqlDbType.Bit).Value = tambo.Estado_tambo;       
                 cmdInsertar.Parameters.Add("id_localidad", SqlDbType.Int).Value = tambo.Id_localidad;
+                cmdInsertar.Parameters.Add("id_usuario", SqlDbType.Int).Value = tambo.Id_usuario;
                 cmdInsertar.ExecuteNonQuery();
 
             }

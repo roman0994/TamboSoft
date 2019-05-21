@@ -15,6 +15,7 @@ namespace Escritorio
 {
     public partial class DatosTambo : Form
     {
+        public int id_usuario;
         public int idtambo;
         public DatosTambo(int id_tambo)
         {
@@ -129,6 +130,7 @@ namespace Escritorio
             try
             {
                 AltaTambos altaTambos = new AltaTambos();
+                altaTambos.id_usuario = id_usuario;
                 altaTambos.ShowDialog();
             }
             catch (Exception ex)

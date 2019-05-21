@@ -15,6 +15,7 @@ namespace Escritorio
 {
     public partial class AltaTambos : Form
     {
+        public int id_usuario;
         public AltaTambos()
         {
             InitializeComponent();
@@ -136,7 +137,7 @@ namespace Escritorio
             tambo.Nombre_tambo = txtNombre.Text;
             tambo.Superficie = Convert.ToDecimal(txtSuperficie.Text);
             tambo.Estado_tambo = true;
-            tambo.Id_usuario = Principal.Usuario.Id_usuario;
+            tambo.Id_usuario = id_usuario;
             tambo.Id_localidad = localidad.Id_localidad;
             tambo.Nombre_localidad = localidad.Nombre_localidad;
             tambo.Nombre_provincia = provincia.Nombre_provincia;

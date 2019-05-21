@@ -102,5 +102,18 @@ namespace Negocio
                 throw ex;
             }
         }
+
+        public Usuario RecuperarPorID(int id)
+        {
+            try
+            {
+                return usuarioDatos.RecuperarPorID(id);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
     }
 }
