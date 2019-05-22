@@ -71,6 +71,7 @@ namespace Escritorio
                     //DialogResult dialogResult2 = MessageBox.Show(this, "¿Desea actualizar los registros modificados?", "Guardar", MessageBoxButtons.YesNo);
                     dataGridView1.DataSource = listaModificados;
                     MessageBox.Show("Se obtuvieron registros existentes que sufrieron modificaciones", "Actualizacion de registros", MessageBoxButtons.OK);
+
                     btnGuardar.Text = "Guardar Modificados";
                     btnGuardar.Visible = true;
                     //foreach (var item in listaModificados)

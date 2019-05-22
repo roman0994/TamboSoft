@@ -175,7 +175,7 @@
             // 
             // txtTambo
             // 
-            this.txtTambo.Location = new System.Drawing.Point(463, 77);
+            this.txtTambo.Location = new System.Drawing.Point(133, 29);
             this.txtTambo.Name = "txtTambo";
             this.txtTambo.ReadOnly = true;
             this.txtTambo.Size = new System.Drawing.Size(200, 20);
@@ -185,7 +185,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(383, 77);
+            this.label13.Location = new System.Drawing.Point(23, 29);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(43, 13);
             this.label13.TabIndex = 20;
@@ -249,14 +249,16 @@
             this.txtIdTambo.ReadOnly = true;
             this.txtIdTambo.Size = new System.Drawing.Size(200, 20);
             this.txtIdTambo.TabIndex = 2;
+            this.txtIdTambo.Visible = false;
             // 
             // txtIdPersonal
             // 
-            this.txtIdPersonal.Location = new System.Drawing.Point(132, 29);
+            this.txtIdPersonal.Location = new System.Drawing.Point(463, 71);
             this.txtIdPersonal.Name = "txtIdPersonal";
             this.txtIdPersonal.ReadOnly = true;
             this.txtIdPersonal.Size = new System.Drawing.Size(200, 20);
             this.txtIdPersonal.TabIndex = 1;
+            this.txtIdPersonal.Visible = false;
             // 
             // cbLocalidad
             // 
@@ -346,16 +348,18 @@
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 1;
             this.label3.Text = "Cod. Tambo:";
+            this.label3.Visible = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(22, 32);
+            this.label2.Location = new System.Drawing.Point(383, 78);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "ID Personal:";
+            this.label2.Visible = false;
             // 
             // label1
             // 

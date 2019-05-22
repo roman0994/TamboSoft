@@ -33,7 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.gbAnimal = new System.Windows.Forms.GroupBox();
             this.lbNombreAnimal = new System.Windows.Forms.Label();
-            this.cbAnimal = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.gbControl = new System.Windows.Forms.GroupBox();
             this.label12 = new System.Windows.Forms.Label();
@@ -55,6 +54,10 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.tooltipControles = new System.Windows.Forms.ToolTip(this.components);
+            this.btnBuscarAnimal = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lbCaravana = new System.Windows.Forms.Label();
+            this.lbError = new System.Windows.Forms.Label();
             this.tlpControles.SuspendLayout();
             this.gbAnimal.SuspendLayout();
             this.gbControl.SuspendLayout();
@@ -105,8 +108,11 @@
             // gbAnimal
             // 
             this.tlpControles.SetColumnSpan(this.gbAnimal, 4);
+            this.gbAnimal.Controls.Add(this.lbError);
+            this.gbAnimal.Controls.Add(this.lbCaravana);
+            this.gbAnimal.Controls.Add(this.label13);
+            this.gbAnimal.Controls.Add(this.btnBuscarAnimal);
             this.gbAnimal.Controls.Add(this.lbNombreAnimal);
-            this.gbAnimal.Controls.Add(this.cbAnimal);
             this.gbAnimal.Controls.Add(this.label2);
             this.gbAnimal.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gbAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -120,21 +126,11 @@
             // lbNombreAnimal
             // 
             this.lbNombreAnimal.AutoSize = true;
-            this.lbNombreAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNombreAnimal.Location = new System.Drawing.Point(25, 54);
+            this.lbNombreAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNombreAnimal.Location = new System.Drawing.Point(373, 31);
             this.lbNombreAnimal.Name = "lbNombreAnimal";
             this.lbNombreAnimal.Size = new System.Drawing.Size(0, 13);
             this.lbNombreAnimal.TabIndex = 2;
-            // 
-            // cbAnimal
-            // 
-            this.cbAnimal.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAnimal.FormattingEnabled = true;
-            this.cbAnimal.Location = new System.Drawing.Point(305, 28);
-            this.cbAnimal.Name = "cbAnimal";
-            this.cbAnimal.Size = new System.Drawing.Size(201, 21);
-            this.cbAnimal.TabIndex = 1;
-            this.cbAnimal.SelectionChangeCommitted += new System.EventHandler(this.cbAnimal_SelectionChangeCommitted);
             // 
             // label2
             // 
@@ -142,9 +138,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(25, 31);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(274, 13);
+            this.label2.Size = new System.Drawing.Size(209, 13);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Seleccione la caravana del animal a registrar el control: *";
+            this.label2.Text = "Seleccione el animal a registrar el control: *";
             // 
             // gbControl
             // 
@@ -349,6 +345,41 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // btnBuscarAnimal
+            // 
+            this.btnBuscarAnimal.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBuscarAnimal.Location = new System.Drawing.Point(254, 26);
+            this.btnBuscarAnimal.Name = "btnBuscarAnimal";
+            this.btnBuscarAnimal.Size = new System.Drawing.Size(101, 23);
+            this.btnBuscarAnimal.TabIndex = 3;
+            this.btnBuscarAnimal.Text = "Buscar animal";
+            this.btnBuscarAnimal.UseVisualStyleBackColor = true;
+            this.btnBuscarAnimal.Click += new System.EventHandler(this.btnBuscarAnimal_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(373, 26);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(0, 13);
+            this.label13.TabIndex = 5;
+            // 
+            // lbCaravana
+            // 
+            this.lbCaravana.AutoSize = true;
+            this.lbCaravana.Location = new System.Drawing.Point(373, 55);
+            this.lbCaravana.Name = "lbCaravana";
+            this.lbCaravana.Size = new System.Drawing.Size(0, 13);
+            this.lbCaravana.TabIndex = 6;
+            // 
+            // lbError
+            // 
+            this.lbError.AutoSize = true;
+            this.lbError.Location = new System.Drawing.Point(25, 55);
+            this.lbError.Name = "lbError";
+            this.lbError.Size = new System.Drawing.Size(0, 13);
+            this.lbError.TabIndex = 7;
+            // 
             // AltaControles
             // 
             this.AcceptButton = this.btnGuardar;
@@ -385,7 +416,6 @@
         private System.Windows.Forms.GroupBox gbFecha;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.ComboBox cbAnimal;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dtpFechaControl;
         private System.Windows.Forms.Label label3;
@@ -404,5 +434,9 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lbNombreAnimal;
+        private System.Windows.Forms.Button btnBuscarAnimal;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lbCaravana;
+        private System.Windows.Forms.Label lbError;
     }
 }

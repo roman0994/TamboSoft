@@ -35,7 +35,6 @@
             this.dtpFecha = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
             this.gbEvento = new System.Windows.Forms.GroupBox();
-            this.btnCria2 = new System.Windows.Forms.Button();
             this.btnCria = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -156,7 +155,6 @@
             // gbEvento
             // 
             this.tlpEventos.SetColumnSpan(this.gbEvento, 4);
-            this.gbEvento.Controls.Add(this.btnCria2);
             this.gbEvento.Controls.Add(this.btnCria);
             this.gbEvento.Controls.Add(this.label4);
             this.gbEvento.Controls.Add(this.label3);
@@ -177,17 +175,6 @@
             this.gbEvento.TabStop = false;
             this.gbEvento.Text = "Evento";
             this.gbEvento.Visible = false;
-            // 
-            // btnCria2
-            // 
-            this.btnCria2.Location = new System.Drawing.Point(654, 164);
-            this.btnCria2.Name = "btnCria2";
-            this.btnCria2.Size = new System.Drawing.Size(115, 23);
-            this.btnCria2.TabIndex = 11;
-            this.btnCria2.Text = "Agregar cría 2";
-            this.btnCria2.UseVisualStyleBackColor = true;
-            this.btnCria2.Visible = false;
-            this.btnCria2.Click += new System.EventHandler(this.btnCria2_Click);
             // 
             // btnCria
             // 
@@ -502,7 +489,6 @@
         private System.Windows.Forms.Label lbCaravana;
         private System.Windows.Forms.Label lbCategoriaAnimal;
         private System.Windows.Forms.Label lbError;
-        private System.Windows.Forms.Button btnCria2;
         private System.Windows.Forms.Button btnCria;
         private System.Windows.Forms.Button btnLimpiar;
     }

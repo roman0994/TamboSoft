@@ -109,7 +109,7 @@ namespace Escritorio
                             //Agrego el nuevo inseminador y en el método de insertar, agrego la relacion del tambo inseminador
                             Tambo tambo = new Tambo();
                             Tambo_Negocio tamboNegocio = new Tambo_Negocio();
-                            tambo = tamboNegocio.RecuperarPorNombre(this.txtTambo.Text);
+                            tambo = Principal.Tambo;
                             Inseminador_Negocio inseminadorNegocio = new Inseminador_Negocio();
                             Inseminador inseminador = new Inseminador();
                             inseminador = MapearAInseminador();

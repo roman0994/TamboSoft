@@ -21,7 +21,7 @@ namespace Escritorio
         Animal Animal;
         Evento Evento;
         public Animal Cria { get; set; }
-        public Animal Cria2 { get; set; }
+        
 
         public AltaEventos(int id_tambo)
         {
@@ -33,11 +33,9 @@ namespace Escritorio
             Animal = new Animal();
             Evento = new Evento();
             Cria = new Animal();
-            Cria2 = new Animal();
             CargarTextBoxTambo(id_tambo);
             
             btnCria.Visible = false;
-            btnCria2.Visible = false;
 
         }
 
@@ -96,7 +94,6 @@ namespace Escritorio
         private void lbEventos_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnCria.Visible = false;
-            btnCria2.Visible = false;
 
             Animal_Negocio animalNegocio = new Animal_Negocio();
 
@@ -785,192 +782,94 @@ namespace Escritorio
                 //eventoanimal_negocio.Insertar(evento_animal);
 
 
-                if (this.lbEventos.SelectedIndex == 1 || this.lbEventos.SelectedIndex == 3 || this.lbEventos.SelectedIndex == 4 || this.lbEventos.SelectedIndex == 8 || this.lbEventos.SelectedIndex == 9 || this.lbEventos.SelectedIndex == 10)
-                {
                 if (validaciones.ValidarCargaEventosTipo1(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex))
                 {
-                    //Doy de alta el evento animal
-                    DarDeAltaEvento();
-                    //Creo el evento desc subevento
-                    EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
-                    eventoAnimal1 = MapearAEventoAnimal1();
-                    listaEventoAnimal.Add(eventoAnimal1);
-                    eventoNegocio.Insertar(listaEventoAnimal);
-                    MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    //Actualizo el estado del animal
-                    Animal_Negocio animalNegocio = new Animal_Negocio();
-                    if (this.lbEventos.SelectedIndex == 1)  //sería el evento de aborto
+                    if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Aborto" || ((Evento)lbEventos.SelectedItem).Nombre_evento == "Venta" || ((Evento)lbEventos.SelectedItem).Nombre_evento == "Muerte" || ((Evento)lbEventos.SelectedItem).Nombre_evento == "Rechazo" || ((Evento)lbEventos.SelectedItem).Nombre_evento == "Analisis" || ((Evento)lbEventos.SelectedItem).Nombre_evento == "Servicio")
                     {
-                        animalNegocio.ActualizarEstado("Aborto", eventoAnimal1.Rp);
-                    }
-                    else if (this.lbEventos.SelectedIndex == 3)  //sería el evento de venta
-                    {
-                        animalNegocio.ActualizarEstado("Vendido",eventoAnimal1.Rp);
-                    }
-                    else if(this.lbEventos.SelectedIndex == 4)    //sería el evento de muerte
-                    {
-                        animalNegocio.ActualizarEstadoMuerto("Muerto",eventoAnimal1.Rp);
-                    }
-                    else if (this.lbEventos.SelectedIndex == 8)    //sería el evento de rechazo
-                    {
-                        animalNegocio.ActualizarEstadoMuerto("Rechazo", eventoAnimal1.Rp);
-                    }
-                    else if (this.lbEventos.SelectedIndex == 9)    //sería el evento de análisis
-                    {
-                        animalNegocio.ActualizarEstadoMuerto("Analisis", eventoAnimal1.Rp);
-                    }
+                        //Doy de alta el evento animal
+                        DarDeAltaEvento();
+                        //Creo el evento desc subevento
+                        EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
+                        eventoAnimal1 = MapearAEventoAnimal1();
+                        listaEventoAnimal.Add(eventoAnimal1);
+                        eventoNegocio.Insertar(listaEventoAnimal);
+                        MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else if (this.lbEventos.SelectedIndex == 5 || this.lbEventos.SelectedIndex == 7)
-            {
-                if (validaciones.ValidarCargaEventosTipo2(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex))
-                {
-                    //Doy de alta el evento animal
-                    DarDeAltaEvento();
-                    //Creo los eventos
-                    EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
-                    EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
-                    eventoAnimal1 = MapearAEventoAnimal1();
-                    eventoAnimal2 = MapearAEventoAnimal2();
-                    listaEventoAnimal.Add(eventoAnimal1);
-                    listaEventoAnimal.Add(eventoAnimal2);
-                    eventoNegocio.Insertar(listaEventoAnimal);
-                    MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    //Actualizo el estado del animal
-                    Animal_Negocio animalNegocio = new Animal_Negocio();
-                    if (this.lbEventos.SelectedIndex == 5)  //sería el evento de enfermedad
-                    {
-                        animalNegocio.ActualizarEstado("Enfermo", eventoAnimal1.Rp);
-                    }
-                    else if (this.lbEventos.SelectedIndex == 7)  //sería el evento de medicación
-                    {
-                        animalNegocio.ActualizarEstado("Medicado", eventoAnimal1.Rp);
-                    }
-
-                    this.Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else if (this.lbEventos.SelectedIndex == 2)
-            {
-                if (validaciones.ValidarCargaEventosTipo3(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex))
-                {
-                    //Doy de alta el evento animal
-                    DarDeAltaEvento();
-
-                    EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
-                    EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
-                    EventoAnimal_DescSubevento eventoAnimal3 = new EventoAnimal_DescSubevento();
-                    eventoAnimal1 = MapearAEventoAnimal1();
-                    eventoAnimal2 = MapearAEventoAnimal2();
-                    eventoAnimal3 = MapearAEventoAnimal3();
-                    listaEventoAnimal.Add(eventoAnimal1);
-                    listaEventoAnimal.Add(eventoAnimal2);
-                    listaEventoAnimal.Add(eventoAnimal3);
-                    eventoNegocio.Insertar(listaEventoAnimal);
-                    MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    //Actualizo el estado del animal
-                    Animal_Negocio animalNegocio = new Animal_Negocio();
-                    if (this.lbEventos.SelectedIndex == 2)  //sería el evento de celo
-                    {
-                        animalNegocio.ActualizarEstado("Celo", eventoAnimal1.Rp);
-                    }
-
-                    this.Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else if (this.lbEventos.SelectedIndex == 0)
-            {
-                if (validaciones.ValidarCargaEventosTipo3(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex))
-                {                       
-
-                        if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+                        //Actualizo el estado del animal
+                        Animal_Negocio animalNegocio = new Animal_Negocio();
+                        if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Aborto")  //sería el evento de aborto 1
                         {
-                            if(btnCria.Enabled == false/*Cria.Rp != 0*/)
-                            {
-                                EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
-                                EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
-                                EventoAnimal_DescSubevento eventoAnimal3 = new EventoAnimal_DescSubevento();
-                                eventoAnimal1 = MapearAEventoAnimal1();
-                                eventoAnimal2 = MapearAEventoAnimal2();
-                                eventoAnimal3 = MapearAEventoAnimal3();
-                                listaEventoAnimal.Add(eventoAnimal1);
-                                listaEventoAnimal.Add(eventoAnimal2);
-                                listaEventoAnimal.Add(eventoAnimal3);
-                                eventoNegocio.Insertar(listaEventoAnimal);
-                                MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                //Actualizo el estado del animal
-                                Animal_Negocio animalNegocio = new Animal_Negocio();
-                                if (this.lbEventos.SelectedIndex == 0)  //sería el evento de parto
-                                {
-                                    animalNegocio.ActualizarEstado("Parto", eventoAnimal1.Rp);
-                                }
-
-                                //Doy de alta el evento animal
-                                DarDeAltaEvento();
-
-                                this.Limpiar();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Debe dar de alta la cría haciendo click en el botón 'Agregar cría'", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
+                            animalNegocio.ActualizarEstado("Aborto", eventoAnimal1.Rp);
                         }
-                        else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+                        else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Venta")  //sería el evento de venta 3
                         {
-                            if(btnCria.Enabled == false && btnCria2.Enabled == false/*Cria.Rp != 0 && Cria2.Rp != 0*/)
-                            {
-                                EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
-                                EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
-                                EventoAnimal_DescSubevento eventoAnimal3 = new EventoAnimal_DescSubevento();
-                                eventoAnimal1 = MapearAEventoAnimal1();
-                                eventoAnimal2 = MapearAEventoAnimal2();
-                                eventoAnimal3 = MapearAEventoAnimal3();
-                                listaEventoAnimal.Add(eventoAnimal1);
-                                listaEventoAnimal.Add(eventoAnimal2);
-                                listaEventoAnimal.Add(eventoAnimal3);
-                                eventoNegocio.Insertar(listaEventoAnimal);
-                                MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                //Actualizo el estado del animal
-                                Animal_Negocio animalNegocio = new Animal_Negocio();
-                                if (this.lbEventos.SelectedIndex == 0)  //sería el evento de parto
-                                {
-                                    animalNegocio.ActualizarEstado("Parto", eventoAnimal1.Rp);
-                                }
-
-                                //Doy de alta el evento animal
-                                DarDeAltaEvento();
-
-                                this.Limpiar();
-                            }
-                            else
-                            {
-                                MessageBox.Show("Debe dar de alta las crías antes de guardar el evento Parto", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
+                            animalNegocio.ActualizarEstadoVendido("Vendido", eventoAnimal1.Rp);
+                        }
+                        else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Muerte")    //sería el evento de muerte 4
+                        {
+                            animalNegocio.ActualizarEstadoMuerto("Muerto", eventoAnimal1.Rp);
+                        }
+                        else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Rechazo")    //sería el evento de rechazo 8
+                        {
+                            animalNegocio.ActualizarEstado("Rechazo", eventoAnimal1.Rp);
+                        }
+                        else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Analisis")    //sería el evento de análisis 9
+                        {
+                            animalNegocio.ActualizarEstado("Analisis", eventoAnimal1.Rp);
+                        }
+                        else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Servicio")
+                        {
+                            animalNegocio.ActualizarEstado("Servicio", eventoAnimal1.Rp);
                         }
 
-
-
-                        /*if ()
+                        this.Limpiar();
+                    }
+                    //else
+                    //{
+                    //  MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //}
+                    //}
+                    else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Enfermedad" || ((Evento)lbEventos.SelectedItem).Nombre_evento == "Medicacion")
+                    {
+                        if (validaciones.ValidarCargaEventosTipo2(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex))
                         {
+                            //Doy de alta el evento animal
+                            DarDeAltaEvento();
+                            //Creo los eventos
+                            EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
+                            EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
+                            eventoAnimal1 = MapearAEventoAnimal1();
+                            eventoAnimal2 = MapearAEventoAnimal2();
+                            listaEventoAnimal.Add(eventoAnimal1);
+                            listaEventoAnimal.Add(eventoAnimal2);
+                            eventoNegocio.Insertar(listaEventoAnimal);
+                            MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            //Actualizo el estado del animal
+                            Animal_Negocio animalNegocio = new Animal_Negocio();
+                            if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Enfermedad")  //sería el evento de enfermedad 5 
+                            {
+                                animalNegocio.ActualizarEstado("Enfermo", eventoAnimal1.Rp);
+                            }
+                            else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Medicacion")  //sería el evento de medicación 7
+                            {
+                                animalNegocio.ActualizarEstado("Medicado", eventoAnimal1.Rp);
+                            }
+
+                            this.Limpiar();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Celo")
+                    {
+                        if (validaciones.ValidarCargaEventosTipo3(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex))
+                        {
+                            //Doy de alta el evento animal
+                            DarDeAltaEvento();
+
                             EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
                             EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
                             EventoAnimal_DescSubevento eventoAnimal3 = new EventoAnimal_DescSubevento();
@@ -985,67 +884,174 @@ namespace Escritorio
 
                             //Actualizo el estado del animal
                             Animal_Negocio animalNegocio = new Animal_Negocio();
-                            if (this.lbEventos.SelectedIndex == 0)  //sería el evento de parto
+                            if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Celo")  //sería el evento de celo 2
                             {
-                                animalNegocio.ActualizarEstado("Parto", eventoAnimal1.Rp);
+                                animalNegocio.ActualizarEstado("Celo", eventoAnimal1.Rp);
                             }
 
                             this.Limpiar();
                         }
                         else
                         {
+                            MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Parto")
+                    {
+                        if (validaciones.ValidarCargaEventosTipo3(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex))
+                        {
 
-                        }*/
+                            if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+                            {
+                                if (btnCria.Enabled == false/*Cria.Rp != 0*/)
+                                {
+                                    EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
+                                    EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
+                                    EventoAnimal_DescSubevento eventoAnimal3 = new EventoAnimal_DescSubevento();
+                                    eventoAnimal1 = MapearAEventoAnimal1();
+                                    eventoAnimal2 = MapearAEventoAnimal2();
+                                    eventoAnimal3 = MapearAEventoAnimal3();
+                                    listaEventoAnimal.Add(eventoAnimal1);
+                                    listaEventoAnimal.Add(eventoAnimal2);
+                                    listaEventoAnimal.Add(eventoAnimal3);
+                                    eventoNegocio.Insertar(listaEventoAnimal);
+                                    MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    //Actualizo el estado del animal
+                                    Animal_Negocio animalNegocio = new Animal_Negocio();
+                                    if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Parto")  //sería el evento de parto 0
+                                    {
+                                        animalNegocio.ActualizarEstado("Parto", eventoAnimal1.Rp);
+                                    }
+
+                                    //Doy de alta el evento animal
+                                    DarDeAltaEvento();
+
+                                    this.Limpiar();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Debe dar de alta la cría haciendo click en el botón 'Agregar cría'", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }
+                            /*else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
+                            {
+                                if(btnCria.Enabled == false)
+                                {
+                                    EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
+                                    EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
+                                    EventoAnimal_DescSubevento eventoAnimal3 = new EventoAnimal_DescSubevento();
+                                    eventoAnimal1 = MapearAEventoAnimal1();
+                                    eventoAnimal2 = MapearAEventoAnimal2();
+                                    eventoAnimal3 = MapearAEventoAnimal3();
+                                    listaEventoAnimal.Add(eventoAnimal1);
+                                    listaEventoAnimal.Add(eventoAnimal2);
+                                    listaEventoAnimal.Add(eventoAnimal3);
+                                    eventoNegocio.Insertar(listaEventoAnimal);
+                                    MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    //Actualizo el estado del animal
+                                    Animal_Negocio animalNegocio = new Animal_Negocio();
+                                    if (this.lbEventos.SelectedIndex == 0)  //sería el evento de parto
+                                    {
+                                        animalNegocio.ActualizarEstado("Parto", eventoAnimal1.Rp);
+                                    }
+
+                                    //Doy de alta el evento animal
+                                    DarDeAltaEvento();
+
+                                    this.Limpiar();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Debe dar de alta las crías antes de guardar el evento Parto", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                            }*/
+
+
+
+                            /*if ()
+                            {
+                                EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
+                                EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
+                                EventoAnimal_DescSubevento eventoAnimal3 = new EventoAnimal_DescSubevento();
+                                eventoAnimal1 = MapearAEventoAnimal1();
+                                eventoAnimal2 = MapearAEventoAnimal2();
+                                eventoAnimal3 = MapearAEventoAnimal3();
+                                listaEventoAnimal.Add(eventoAnimal1);
+                                listaEventoAnimal.Add(eventoAnimal2);
+                                listaEventoAnimal.Add(eventoAnimal3);
+                                eventoNegocio.Insertar(listaEventoAnimal);
+                                MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                //Actualizo el estado del animal
+                                Animal_Negocio animalNegocio = new Animal_Negocio();
+                                if (this.lbEventos.SelectedIndex == 0)  //sería el evento de parto
+                                {
+                                    animalNegocio.ActualizarEstado("Parto", eventoAnimal1.Rp);
+                                }
+
+                                this.Limpiar();
+                            }
+                            else
+                            {
+
+                            }*/
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else if (((Evento)lbEventos.SelectedItem).Nombre_evento == "Tacto Rectal")
+                    {
+                        if (validaciones.ValidarCargaEventosTipo4(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex, comboBox4.SelectedIndex))
+                        {
+                            //Doy de alta el evento animal
+                            DarDeAltaEvento();
+
+                            EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
+                            EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
+                            EventoAnimal_DescSubevento eventoAnimal3 = new EventoAnimal_DescSubevento();
+                            EventoAnimal_DescSubevento eventoAnimal4 = new EventoAnimal_DescSubevento();
+                            eventoAnimal1 = MapearAEventoAnimal1();
+                            eventoAnimal2 = MapearAEventoAnimal2();
+                            eventoAnimal3 = MapearAEventoAnimal3();
+                            eventoAnimal4 = MapearAEventoAnimal4();
+                            listaEventoAnimal.Add(eventoAnimal1);
+                            listaEventoAnimal.Add(eventoAnimal2);
+                            listaEventoAnimal.Add(eventoAnimal3);
+                            listaEventoAnimal.Add(eventoAnimal4);
+                            eventoNegocio.Insertar(listaEventoAnimal);
+                            MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            //Actualizo el estado del animal
+                            Animal_Negocio animalNegocio = new Animal_Negocio();
+                            if (Convert.ToInt32(comboBox1.SelectedValue) == 95)  //sería la descripcion preñada
+                            {
+                                animalNegocio.ActualizarEstado("Preñada", eventoAnimal1.Rp);
+                            }
+                            else if (Convert.ToInt32(comboBox1.SelectedValue) == 96)  //sería la descripcion preñada dudosa
+                            {
+                                animalNegocio.ActualizarEstado("Preñada dudosa", eventoAnimal1.Rp);
+                            }
+
+                            this.Limpiar();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                 }
                 else
                 {
                     MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-            }
-            else if (this.lbEventos.SelectedIndex == 6)
-            {
-                if (validaciones.ValidarCargaEventosTipo4(dtpFecha.Value.Date, lbEventos.SelectedIndex, comboBox1.SelectedIndex, comboBox2.SelectedIndex, comboBox3.SelectedIndex, comboBox4.SelectedIndex))
-                {
-                    //Doy de alta el evento animal
-                    DarDeAltaEvento();
-
-                    EventoAnimal_DescSubevento eventoAnimal1 = new EventoAnimal_DescSubevento();
-                    EventoAnimal_DescSubevento eventoAnimal2 = new EventoAnimal_DescSubevento();
-                    EventoAnimal_DescSubevento eventoAnimal3 = new EventoAnimal_DescSubevento();
-                    EventoAnimal_DescSubevento eventoAnimal4 = new EventoAnimal_DescSubevento();
-                    eventoAnimal1 = MapearAEventoAnimal1();
-                    eventoAnimal2 = MapearAEventoAnimal2();
-                    eventoAnimal3 = MapearAEventoAnimal3();
-                    eventoAnimal4 = MapearAEventoAnimal4();
-                    listaEventoAnimal.Add(eventoAnimal1);
-                    listaEventoAnimal.Add(eventoAnimal2);
-                    listaEventoAnimal.Add(eventoAnimal3);
-                    listaEventoAnimal.Add(eventoAnimal4);
-                    eventoNegocio.Insertar(listaEventoAnimal);
-                    MessageBox.Show("El evento fue dado de alta exitosamente", "Alta", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    //Actualizo el estado del animal
-                    Animal_Negocio animalNegocio = new Animal_Negocio();
-                    if (Convert.ToInt32(comboBox1.SelectedValue) == 95)  //sería la descripcion preñada
-                    {
-                        animalNegocio.ActualizarEstado("Preñada", eventoAnimal1.Rp);
-                    }
-                    else if (Convert.ToInt32(comboBox1.SelectedValue) == 96)  //sería la descripcion preñada dudosa
-                    {
-                        animalNegocio.ActualizarEstado("Preñada dudosa", eventoAnimal1.Rp);
-                    }
-
-                    this.Limpiar();
-                }
-                else
-                {
-                    MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
             }
             catch (Exception)
             {
@@ -1080,7 +1086,7 @@ namespace Escritorio
             eventoAnimal.Id_tambo = tambo.Id_tambo;
             eventoAnimal.Estado_evento = true;
 
-            if (this.lbEventos.SelectedIndex == 10)
+            if (this.lbEventos.SelectedItem.ToString() == "Servicio")
             {
                 Inseminador inseminador = inseminadorNegocio.RecuperarUno(Convert.ToInt32(comboBox1.SelectedValue));
                 eventoAnimal.Id_inseminador = inseminador.Id_inseminador;
@@ -1225,6 +1231,10 @@ namespace Escritorio
                 btnSalir.Enabled = true;
                 //btnLimpiar.Enabled = true;
                 btnBuscarAnimal.Enabled = true;
+                btnLimpiar.Enabled = true;
+                comboBox1.Enabled = true;
+                comboBox2.Enabled = true;
+                comboBox3.Enabled = true;
 
                 lbError.Text = "";
                 lbCaravana.Text = "";
@@ -1233,13 +1243,11 @@ namespace Escritorio
                 lbEstadoAnimal.Text = "";
 
                 btnCria.Visible = false;
-                btnCria2.Visible = false;
 
                 btnLimpiar.Visible = false;
 
                 Animal = new Animal();
                 Cria = new Animal();
-                Cria2 = new Animal();
 
                 gbEvento.Visible = false;
             }
@@ -1311,9 +1319,8 @@ namespace Escritorio
             try
             {
                 btnCria.Visible = false;
-                btnCria2.Visible = false;
 
-                ListaSeleccionAnimal form = new ListaSeleccionAnimal();
+                ListaSeleccionAnimal form = new ListaSeleccionAnimal("Evento");
                 form.ShowDialog();
 
                 if (form.Animal.Rp != 0)
@@ -1334,6 +1341,7 @@ namespace Escritorio
                 else
                 {
                     lbNombreAnimal.Text = "";
+                    lbCaravana.Text = "";
                     lbCategoriaAnimal.Text = "";
                     lbEstadoAnimal.Text = "";
                     lbError.Text = "Vuelva a seleccionar un animal";
@@ -1380,22 +1388,14 @@ namespace Escritorio
                 if (comboBox1.SelectedIndex == -1)
                 {
                     btnCria.Visible = false;
-                    btnCria2.Visible = false;
                 }
                 else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
                 {
                     btnCria.Visible = false;
-                    btnCria2.Visible = false;
                 }
                 else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
                 {
                     btnCria.Visible = true;
-                    btnCria2.Visible = false;
-                }
-                else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
-                {
-                    btnCria.Visible = true;
-                    btnCria2.Visible = true;
                 }
             }
             catch (Exception ex)
@@ -1412,22 +1412,14 @@ namespace Escritorio
                 if (comboBox3.SelectedIndex == -1)
                 {
                     btnCria.Visible = false;
-                    btnCria2.Visible = false;
                 }
                 else if (((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
                 {
                     btnCria.Visible = false;
-                    btnCria2.Visible = false;
                 }
                 else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
                 {
                     btnCria.Visible = true;
-                    btnCria2.Visible = false;
-                }
-                else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Vivo")
-                {
-                    btnCria.Visible = true;
-                    btnCria2.Visible = true;
                 }
                 /*else if (((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Hembra-Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Mell. Macho-Macho" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Hembra" || ((Desc_Subevento)comboBox1.SelectedItem).Descripcion == "Macho" && ((Desc_Subevento)comboBox3.SelectedItem).Descripcion == "Muerto")
                 {
@@ -1508,56 +1500,7 @@ namespace Escritorio
 
                 MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
             }
-        }
-
-        private void btnCria2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                AbmAnimales altaAnimales = new AbmAnimales(Principal.ModoForm.CRIA, Animal);
-                altaAnimales.txtRPMadre.Text = Animal.Caravana.ToString();
-                //altaAnimales.cbCategoria.Text = Animal.Categoria.Descripcion;
-
-                if (Animal.Hba != 0)
-                {
-                    altaAnimales.txtHBAMadre.Text = Animal.Hba.ToString();
-                }
-
-                altaAnimales.ShowDialog();
-
-                if (altaAnimales.Animal.Rp != 0)
-                {
-                    if (Cria2.Rp == 0)
-                    {
-                        Cria2 = altaAnimales.Animal;
-                        //lbcria1.Text = "Caravana cría: " + Cria.Caravana;
-                        //lbcria1.Visible = true;
-                        
-                    }
-
-                    DeshabilitarBtnCria2();
-
-                    //else if (Cria2.Rp != 0)
-                    //{
-                        //Cria2 = altaAnimales.Animal;
-                        //lbcria1.Text = "Caravana segunda cría: " + Cria2.Caravana;
-                        //lbcria2.Visible = true;
-                    //}
-
-                }
-
-                //Cria = altaAnimales.Animal;
-                //MessageBox.Show("Se ha cargado correctamente la cria. \n " +
-                //                 "Caravana: "   + Cria.Caravana +
-                //                 "\n Nombre: "  + Cria.Nombre_animal,"Alta de la cria",MessageBoxButtons.OK);
-                
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
-            }
-        }
+        }       
 
         private void DeshabilitarBtnCria1()
         {
@@ -1567,6 +1510,10 @@ namespace Escritorio
                 {
                     btnCria.Enabled = false;
                     lbEventos.Enabled = false;
+                    btnLimpiar.Enabled = false;
+                    comboBox1.Enabled = false;
+                    comboBox2.Enabled = false;
+                    comboBox3.Enabled = false;
                     //btnLimpiar.Enabled = false;
                     btnSalir.Enabled = false;
                     btnBuscarAnimal.Enabled = false;
@@ -1580,31 +1527,12 @@ namespace Escritorio
             }
         }
 
-        private void DeshabilitarBtnCria2()
-        {
-            try
-            {
-                if (Cria2.Rp != 0)
-                {
-                    btnCria2.Enabled = false;
-                    lbEventos.Enabled = false;
-                    //btnLimpiar.Enabled = false;
-                    btnSalir.Enabled = false;
-                    btnBuscarAnimal.Enabled = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
-
-            }
-        }
 
         private void btnLimpiar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (Cria.Rp != 0 || Cria2.Rp != 0)
+                if (Cria.Rp != 0)
                 {
                     DialogResult result = MessageBox.Show("Está a punto de eliminar la(s) cría(s) creada(s). ¿Desea continuar de todas formas?", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (result == DialogResult.Yes)
@@ -1613,11 +1541,6 @@ namespace Escritorio
                         {
 
                             animalnegocio.Eliminar(Cria.Rp);
-                        }
-
-                        if (Cria2.Rp != 0)
-                        {
-                            animalnegocio.Eliminar(Cria2.Rp);
                         }
                         this.Limpiar();
                     }

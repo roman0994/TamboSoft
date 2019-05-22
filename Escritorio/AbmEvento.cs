@@ -499,7 +499,7 @@ namespace Escritorio
                 }
 
 
-                ListaSeleccionAnimal form = new ListaSeleccionAnimal();
+                ListaSeleccionAnimal form = new ListaSeleccionAnimal("Evento");
                 form.ShowDialog();
 
                 if (form.Animal.Rp != 0)

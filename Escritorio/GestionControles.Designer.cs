@@ -191,6 +191,7 @@
             this.rp.HeaderText = "Rp";
             this.rp.Name = "rp";
             this.rp.ReadOnly = true;
+            this.rp.Visible = false;
             this.rp.Width = 5;
             // 
             // caravana

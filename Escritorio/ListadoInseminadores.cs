@@ -143,5 +143,10 @@ namespace Escritorio
 
             }
         }
+
+        private void ListadoInseminadores_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

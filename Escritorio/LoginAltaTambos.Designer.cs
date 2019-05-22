@@ -139,6 +139,7 @@
             // 
             this.txtSuperficie.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtSuperficie.Location = new System.Drawing.Point(207, 124);
+            this.txtSuperficie.MaxLength = 8;
             this.txtSuperficie.Name = "txtSuperficie";
             this.txtSuperficie.Size = new System.Drawing.Size(200, 20);
             this.txtSuperficie.TabIndex = 14;

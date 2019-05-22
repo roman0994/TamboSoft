@@ -108,6 +108,8 @@
             // 
             // dgvInseminadores
             // 
+            this.dgvInseminadores.AllowUserToAddRows = false;
+            this.dgvInseminadores.AllowUserToDeleteRows = false;
             this.dgvInseminadores.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvInseminadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInseminadores.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -232,7 +234,7 @@
             this.nombre_inseminador.HeaderText = "Inseminador";
             this.nombre_inseminador.Name = "nombre_inseminador";
             this.nombre_inseminador.ReadOnly = true;
-            this.nombre_inseminador.Width = 120;
+            this.nombre_inseminador.Width = 140;
             // 
             // estado_inseminador
             // 
@@ -240,6 +242,7 @@
             this.estado_inseminador.HeaderText = "Estado";
             this.estado_inseminador.Name = "estado_inseminador";
             this.estado_inseminador.ReadOnly = true;
+            this.estado_inseminador.Visible = false;
             this.estado_inseminador.Width = 80;
             // 
             // telefono
@@ -255,7 +258,7 @@
             this.direccion.HeaderText = "Dirección";
             this.direccion.Name = "direccion";
             this.direccion.ReadOnly = true;
-            this.direccion.Width = 110;
+            this.direccion.Width = 140;
             // 
             // dni
             // 
@@ -278,7 +281,7 @@
             this.nombre_localidad.HeaderText = "Localidad";
             this.nombre_localidad.Name = "nombre_localidad";
             this.nombre_localidad.ReadOnly = true;
-            this.nombre_localidad.Width = 120;
+            this.nombre_localidad.Width = 140;
             // 
             // id_tambo
             // 
@@ -310,6 +313,7 @@
             this.Name = "ListadoInseminadores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Inseminadores";
+            this.Load += new System.EventHandler(this.ListadoInseminadores_Load);
             this.toolStripContainer1.ContentPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.ResumeLayout(false);
             this.toolStripContainer1.TopToolStripPanel.PerformLayout();

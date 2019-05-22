@@ -187,6 +187,7 @@
             this.Name = "ReporteReproduccion";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Reporte de Reproducción";
+            this.Load += new System.EventHandler(this.ReporteReproduccion_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

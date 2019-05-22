@@ -49,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crv);
             this.Name = "vpListadoControlesPorFecha";
-            this.Text = "vpListadoControlesPorFecha";
+            this.Text = "Listado Controles";
             this.Load += new System.EventHandler(this.vpListadoControlesPorFecha_Load);
             this.ResumeLayout(false);
 

@@ -228,7 +228,41 @@ namespace Datos
                 this.AbrirConexion();
                 SqlCommand cmdAnimal = new SqlCommand("select * " +
                                                      " from dbo.vw_ListadoAnimales " +
-                                                     " where id_tambo=@id_tambo and habilitado = 'true'" +
+                                                     " where id_tambo=@id_tambo and habilitado = 'true' and estado_animal!='Vendido' and estado_animal!='Muerto' " +
+                                                     " order by Cast(caravana as int) asc", Conn);
+
+                cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
+
+                SqlDataReader dr = cmdAnimal.ExecuteReader();
+
+                DataTable dt = new DataTable();
+                dt.Load(dr);
+                dr.Close();
+                return dt;
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al recuperar listado de animales", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
+        public DataTable RecuperarVacasPorTamboDT(int id_tambo)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdAnimal = new SqlCommand("select * " +
+                                                     " from dbo.vw_ListadoAnimales " +
+                                                     " where id_tambo=@id_tambo and habilitado = 'true' and estado_animal!='Vendido' and estado_animal!='Muerto' and descripcion='Vaca' " +
                                                      " order by Cast(caravana as int) asc", Conn);
 
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
@@ -1363,6 +1397,34 @@ namespace Datos
             }
         }
 
+        public void ActualizarEstadoVendido(string estado, int rp)
+        {
+            try
+            {
+                this.AbrirConexion();
+                SqlCommand cmdActualizar = new SqlCommand("update Animal set estado_animal=@estado_animal, habilitado = 'false' where rp = @rp", Conn);
+
+                cmdActualizar.Parameters.Add("rp", SqlDbType.Int).Value = rp;
+                cmdActualizar.Parameters.Add("estado_animal", SqlDbType.VarChar, 50).Value = estado;
+
+                cmdActualizar.ExecuteNonQuery();
+
+            }
+            catch (SqlException sqe)
+            {
+                throw sqe;
+            }
+            catch (Exception ex)
+            {
+                Exception exepcionnueva = new Exception("Error al actualizar estado de animal", ex);
+                throw exepcionnueva;
+            }
+            finally
+            {
+                this.CerrarConexion();
+            }
+        }
+
         public void Eliminar(int rp)
         {
             try
@@ -1534,18 +1596,16 @@ namespace Datos
                 Animal animal = new Animal();
                 this.AbrirConexion();
 
-                SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,c.descripcion, " +
-                                                     "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado, " +
-                                                     "a.caravana,c.id_categoria " +
-                                                  " FROM Animal a " +
-                                                  " inner join EventoAnimal_DescSubevento ev on a.rp=ev.rp " +
-                                                  " inner join Evento e on ev.id_evento = e.id_evento " +
-                                                  " inner join Raza r on a.id_raza=r.id_raza " +
-                                                  " inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                  " inner join Categoria c on c.id_categoria = a.id_categoria" +
-                                                     " where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo " +
-                                                    " and a.habilitado='true'  and a.estado_animal!='Vendido'" +
-                                                    "  order by cast(a.caravana as int)asc ", Conn);
+                SqlCommand cmdFiltro = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.id_categoria," +
+                                                     "a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado" +
+                                                     " ,a.caravana " +
+                                                     " FROM Animal a " +
+                                                     " inner join Raza r on a.id_raza=r.id_raza " +
+                                                     " inner join Tambo t on a.id_tambo=t.id_tambo " +
+                                                     " where a.nombre_animal like ('%" + texto + "%') " +
+                                                     " and a.id_tambo=@idtambo and a.habilitado='true' " +
+                                                     " and a.estado_animal!='Vendido' and a.estado_animal != 'Muerto' " +
+                                                     " order by cast(a.caravana as int) asc", Conn);
 
                 cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 

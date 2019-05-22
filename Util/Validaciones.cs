@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Entidades;
 
 namespace Util
 {
@@ -57,9 +58,9 @@ namespace Util
             }
         }
 
-        public bool ValidarCargaControles(int indexAnimal, DateTime fecha)
+        public bool ValidarCargaControles(Animal animal, DateTime fecha)
         {
-            if (indexAnimal != -1 && fecha !=null)
+            if (animal != null && fecha !=null)
             {
                 return true;
             }

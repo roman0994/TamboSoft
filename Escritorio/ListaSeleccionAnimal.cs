@@ -18,22 +18,33 @@ namespace Escritorio
         Raza_Negocio razanegocio;
         Categoria_Negocio categorianegocio;
         public Animal Animal;
-        public ListaSeleccionAnimal()
+        string modoGlobal;
+
+        public ListaSeleccionAnimal(string modo)
         {
             InitializeComponent();
+            modoGlobal = modo;
             animalnegocio = new Animal_Negocio();
             razanegocio = new Raza_Negocio();
             categorianegocio = new Categoria_Negocio();
             Animal = new Animal();
-            CargarGrilla();
+            CargarGrilla(modo);
+            
         }
 
-        public void CargarGrilla()
+        public void CargarGrilla(string modo)
         {
             try
             {
                 this.dgvAnimales.AutoGenerateColumns = false;
-                this.dgvAnimales.DataSource = animalnegocio.RecuperarPorTamboDT(Principal.Tambo.Id_tambo);
+                if (modo == "Evento")
+                {
+                    this.dgvAnimales.DataSource = animalnegocio.RecuperarPorTamboDT(Principal.Tambo.Id_tambo);
+                }
+                else if(modo == "Control")
+                {
+                    this.dgvAnimales.DataSource = animalnegocio.RecuperarVacasPorTamboDT(Principal.Tambo.Id_tambo);
+                }
             }
             catch (Exception ex)
             {
@@ -101,7 +112,7 @@ namespace Escritorio
             {
                 if (this.dgvAnimales.Rows.Count != 0 && this.dgvAnimales.Rows != null)
                 {
-                    this.CargarGrilla();
+                    this.CargarGrilla(modoGlobal);
                 }
             }
             catch (Exception ex)

@@ -102,6 +102,7 @@ namespace Escritorio
             try
             {
                 LoginAltaTambos loginAlta = new LoginAltaTambos();
+                loginAlta.id_usuario = id_usuario;
                 loginAlta.Show();
                 this.Hide();
             }

@@ -34,6 +34,7 @@
             this.btnSalir = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.gbNuevoTambo = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.cbLocalidad = new System.Windows.Forms.ComboBox();
             this.cbProvincia = new System.Windows.Forms.ComboBox();
@@ -45,7 +46,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.toolTipTambo = new System.Windows.Forms.ToolTip(this.components);
-            this.label10 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.gbNuevoTambo.SuspendLayout();
             this.SuspendLayout();
@@ -131,6 +131,16 @@
             this.gbNuevoTambo.TabStop = false;
             this.gbNuevoTambo.Text = "Nuevo Tambo";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(393, 98);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(134, 13);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Formato de ingreso: XX,XX";
+            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -164,6 +174,7 @@
             // 
             this.txtSuperficie.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtSuperficie.Location = new System.Drawing.Point(178, 95);
+            this.txtSuperficie.MaxLength = 8;
             this.txtSuperficie.Name = "txtSuperficie";
             this.txtSuperficie.Size = new System.Drawing.Size(200, 20);
             this.txtSuperficie.TabIndex = 2;
@@ -227,16 +238,6 @@
             this.label2.Size = new System.Drawing.Size(54, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Nombre: *";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(393, 98);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(134, 13);
-            this.label10.TabIndex = 12;
-            this.label10.Text = "Formato de ingreso: XX,XX";
             // 
             // AltaTambos
             // 

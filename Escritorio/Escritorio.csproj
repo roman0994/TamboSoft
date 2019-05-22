@@ -307,6 +307,12 @@
     <Compile Include="ListadoInseminadores.Designer.cs">
       <DependentUpon>ListadoInseminadores.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListadoModifSincronizacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListadoModifSincronizacion.Designer.cs">
+      <DependentUpon>ListadoModifSincronizacion.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListaSeleccionAnimal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -674,6 +680,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ListadoInseminadores.resx">
       <DependentUpon>ListadoInseminadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListadoModifSincronizacion.resx">
+      <DependentUpon>ListadoModifSincronizacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListaSeleccionAnimal.resx">
       <DependentUpon>ListaSeleccionAnimal.cs</DependentUpon>

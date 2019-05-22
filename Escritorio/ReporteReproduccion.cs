@@ -136,5 +136,11 @@ namespace Escritorio
             //vistaPreviaReproduccion.idtambo = idtambo;
             //vistaPreviaReproduccion.Show();
         }
+
+        private void ReporteReproduccion_Load(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = DateTime.Now ;
+            dateTimePicker2.Value = DateTime.Now;
+        }
     }
 }

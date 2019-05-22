@@ -21,26 +21,9 @@ namespace Escritorio
         {
             InitializeComponent();
 
-            CargaComboAnimal(id_tambo);
+            
             CargarToolTips();
 
-        }
-
-        public void CargaComboAnimal(int id_tambo)
-        {
-            try
-            {
-                Animal_Negocio animalNegocio = new Animal_Negocio();
-                this.cbAnimal.DataSource = animalNegocio.RecuperarVacasPorTambo(id_tambo);
-                this.cbAnimal.DisplayMember = "caravana";
-                this.cbAnimal.ValueMember = "rp";
-                this.cbAnimal.SelectedIndex = -1;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
-
-            }
         }
 
         public void CargarToolTips()
@@ -69,7 +52,7 @@ namespace Escritorio
             try
             {
                 Validaciones validaciones = new Validaciones();
-                bool validar = validaciones.ValidarCargaControles(this.cbAnimal.SelectedIndex, this.dtpFechaControl.Value.Date);
+                bool validar = validaciones.ValidarCargaControles(Animal, this.dtpFechaControl.Value.Date);
 
                 if (validar == true)
                 {
@@ -117,7 +100,7 @@ namespace Escritorio
                 }
                 else
                 {
-                    MessageBox.Show("Debe completar los campos vacíos", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Debe seleccionar el animal", "Información faltante", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
@@ -132,7 +115,7 @@ namespace Escritorio
 
             Animal_Negocio animalNegocio = new Animal_Negocio();
 
-            Animal animal = (Animal)cbAnimal.SelectedItem;
+            Animal animal = Animal;
             
             Control_Animal control = new Control_Animal();
 
@@ -151,7 +134,10 @@ namespace Escritorio
         {
             try
             {
-                this.cbAnimal.SelectedIndex = -1;
+                lbError.Text = "";
+                lbCaravana.Text = "";
+                lbNombreAnimal.Text = "";
+                Animal = null;
                 this.txtPrimerControl.Text = string.Empty;
                 this.txtSegundoControl.Text = string.Empty;
                 this.txtGrasaPrimerControl.Text = string.Empty;
@@ -272,7 +258,7 @@ namespace Escritorio
         public bool HayCamposModificados()
         {
 
-            if (txtPrimerControl.Text == string.Empty && txtSegundoControl.Text == string.Empty && txtGrasaPrimerControl.Text == string.Empty && txtGrasaSegundoControl.Text == string.Empty && cbAnimal.SelectedIndex == -1)
+            if (txtPrimerControl.Text == string.Empty && txtSegundoControl.Text == string.Empty && txtGrasaPrimerControl.Text == string.Empty && txtGrasaSegundoControl.Text == string.Empty)
             {
                 return false;
             }
@@ -282,20 +268,32 @@ namespace Escritorio
             }
         }
 
-        private void cbAnimal_SelectionChangeCommitted(object sender, EventArgs e)
+        private void btnBuscarAnimal_Click(object sender, EventArgs e)
         {
             try
             {
-                if (cbAnimal.SelectedIndex > -1)
+                ListaSeleccionAnimal form = new ListaSeleccionAnimal("Control");
+                form.ShowDialog();
+
+                if (form.Animal.Rp != 0)
                 {
-                    Animal animal = (Animal)cbAnimal.SelectedItem;
-                    lbNombreAnimal.Text = "Nombre: " + animal.Nombre_animal;
+                    Animal = form.Animal;
+                    lbError.Text = "";
+                    lbCaravana.Text = "Caravana: " + Animal.Caravana;
+                    lbNombreAnimal.Text = "Nombre: " + Animal.Nombre_animal;
+
                 }
+                else
+                {
+                    lbNombreAnimal.Text = "";
+                    lbCaravana.Text = "";
+                    lbError.Text = "Vuelva a seleccionar un animal";
+                }
+
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Ocurrió un error", MessageBoxButtons.OK);
-
+                MessageBox.Show("Ocurrio un error al buscar el animal", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

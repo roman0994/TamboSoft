@@ -65,6 +65,19 @@ namespace Negocio
             }
         }
 
+        public DataTable RecuperarVacasPorTamboDT(int id_tambo)
+        {
+            try
+            {
+                return animalDatos.RecuperarVacasPorTamboDT(id_tambo);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         public List<Animal> RecuperarVacasPorTambo(int id_tambo)
         {
             try
@@ -344,6 +357,19 @@ namespace Negocio
             try
             {
                 animalDatos.ActualizarEstadoMuerto(estado, rp);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public void ActualizarEstadoVendido(string estado, int rp)
+        {
+            try
+            {
+                animalDatos.ActualizarEstadoVendido(estado, rp);
             }
             catch (Exception ex)
             {
