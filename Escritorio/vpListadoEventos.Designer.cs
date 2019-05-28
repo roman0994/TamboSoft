@@ -50,7 +50,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crvEventos);
             this.Name = "vpListadoEventos";
-            this.Text = "Vista Previa Listado Eventos";
+            this.Text = "Listado Eventos";
             this.Load += new System.EventHandler(this.vpListadoEventos_Load);
             this.ResumeLayout(false);
 

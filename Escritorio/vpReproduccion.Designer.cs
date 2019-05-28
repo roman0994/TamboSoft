@@ -50,7 +50,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crvReproduccion);
             this.Name = "vpReproduccion";
-            this.Text = "Vista Previa Reproducción";
+            this.Text = "Reporte de Reproducción";
             this.Load += new System.EventHandler(this.vpReproduccion_Load);
             this.ResumeLayout(false);
 

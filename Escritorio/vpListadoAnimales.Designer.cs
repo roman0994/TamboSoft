@@ -51,7 +51,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crvAnimales);
             this.Name = "vpListadoAnimales";
-            this.Text = "Vista Previa Listado Animales";
+            this.Text = "Listado Animales";
             this.Load += new System.EventHandler(this.vpListadoAnimales_Load);
             this.ResumeLayout(false);
 

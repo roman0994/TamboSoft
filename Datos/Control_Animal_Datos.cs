@@ -69,8 +69,7 @@ namespace Datos
                                                             "inner join Animal a on ca.rp=a.rp " +
                                                             "inner join Control c on ca.id_control=c.id_control " +
                                                             "inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                            "where a.id_tambo=@id_tambo and a.habilitado='true' " +
-                                                            "and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'" +
+                                                            "where a.id_tambo=@id_tambo " +
                                                             " order by ca.fecha_control desc", Conn);
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -126,9 +125,8 @@ namespace Datos
                                                            "inner join Animal a on ca.rp=a.rp " +
                                                            "inner join Control c on ca.id_control=c.id_control " +
                                                            "inner join Tambo t on a.id_tambo=t.id_tambo " +
-                                                           "where a.id_tambo=@id_tambo and a.habilitado='true' " +
+                                                           "where a.id_tambo=@id_tambo " +
                                                            " and ca.rp = @rp " +
-                                                           "and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'" +
                                                            " order by ca.fecha_control desc", Conn);
 
 
@@ -187,8 +185,7 @@ namespace Datos
                                                         " innerjoin Animal a on ca.rp = a.rp " +
                                                         " inner join Control c on ca.id_control = c.id_control " +
                                                         " inner join Tambo t on a.id_tambo = t.id_tambo " +
-                                                        " where a.id_tambo = 1 and a.habilitado = 'true' " +
-                                                        "and a.estado_animal != 'Vendido' and a.estado_animal != 'Muerto' " +
+                                                        " where a.id_tambo = 1 " +
                                                         " group by ca.fecha_control, ca.id_control, ca.rp, a.nombre_animal, a.nombre_animal, " +
                                                         " a.id_tambo, t.nombre_tambo, c.primer_control, c.segundo_control, c.grasa_primercontrol, " +
                                                         " c.grasa_segundocontrol " +
@@ -224,7 +221,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControl = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol,a.caravana from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+                SqlCommand cmdControl = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol,a.caravana from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and ca.rp=@rp", Conn);
 
                 cmdControl.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdControl.Parameters.Add("rp", SqlDbType.Int).Value = rp;
@@ -259,7 +256,7 @@ namespace Datos
             {
                 List<Control_Animal> lista = new List<Control_Animal>();
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol FROM Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and ca.fecha_control>=@fechaDesde and ca.fecha_control<=@fechaHasta and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol FROM Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and ca.fecha_control>=@fechaDesde and ca.fecha_control<=@fechaHasta", Conn);
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdControlAnimal.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
                 cmdControlAnimal.Parameters.Add("fechaHasta", SqlDbType.DateTime).Value = fechaHasta;
@@ -457,7 +454,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by ca.fecha_control,t.nombre_tambo", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo group by ca.fecha_control,t.nombre_tambo", Conn);
 
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -489,7 +486,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and CONVERT(VARCHAR(10), ca.fecha_control, 103) = CONVERT(VARCHAR(10), @fecha, 103) and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by ca.fecha_control,t.nombre_tambo", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and CONVERT(VARCHAR(10), ca.fecha_control, 103) = CONVERT(VARCHAR(10), @fecha, 103) group by ca.fecha_control,t.nombre_tambo", Conn);
 
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdControlAnimal.Parameters.Add("fecha", SqlDbType.DateTime).Value = fecha;
@@ -523,7 +520,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("select a.rp,a.nombre_animal,(SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and CONVERT(VARCHAR(10), ca.fecha_control, 103) = CONVERT(VARCHAR(10), @fecha, 103) and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp,a.nombre_animal,ca.fecha_control,t.nombre_tambo", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("select a.rp,a.nombre_animal,(SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,ca.fecha_control,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and CONVERT(VARCHAR(10), ca.fecha_control, 103) = CONVERT(VARCHAR(10), @fecha, 103) and ca.rp=@rp group by a.rp,a.nombre_animal,ca.fecha_control,t.nombre_tambo", Conn);
 
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdControlAnimal.Parameters.Add("fecha", SqlDbType.DateTime).Value = fecha;
@@ -558,7 +555,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,MONTH(ca.fecha_control) Mes, YEAR(ca.fecha_control) Año,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo = @id_tambo and MONTH(ca.fecha_control) = @mes and YEAR(ca.fecha_control) = @anio and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by MONTH(ca.fecha_control), YEAR(ca.fecha_control), t.nombre_tambo", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,MONTH(ca.fecha_control) Mes, YEAR(ca.fecha_control) Año,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo = @id_tambo and MONTH(ca.fecha_control) = @mes and YEAR(ca.fecha_control) = @anio group by MONTH(ca.fecha_control), YEAR(ca.fecha_control), t.nombre_tambo", Conn);
 
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdControlAnimal.Parameters.Add("mes", SqlDbType.Int).Value = mes;
@@ -593,7 +590,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("select a.rp,a.nombre_animal,(SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,MONTH(ca.fecha_control) Mes, YEAR(ca.fecha_control) Año,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo = @id_tambo and MONTH(ca.fecha_control) = @mes and YEAR(ca.fecha_control) = @anio and ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp,a.nombre_animal, MONTH(ca.fecha_control), YEAR(ca.fecha_control), t.nombre_tambo", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("select a.rp,a.nombre_animal,(SUM(c.primer_control)+SUM(c.segundo_control)) litrostotales, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) grasatotal,MONTH(ca.fecha_control) Mes, YEAR(ca.fecha_control) Año,t.nombre_tambo from Control_Animal ca inner join Control c on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo = @id_tambo and MONTH(ca.fecha_control) = @mes and YEAR(ca.fecha_control) = @anio and ca.rp=@rp group by a.rp,a.nombre_animal, MONTH(ca.fecha_control), YEAR(ca.fecha_control), t.nombre_tambo", Conn);
 
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdControlAnimal.Parameters.Add("mes", SqlDbType.Int).Value = mes;
@@ -629,7 +626,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
 
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
 
@@ -662,7 +659,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
+                SqlCommand cmdControlAnimal = new SqlCommand("select (SUM(c.primer_control)+SUM(c.segundo_control)) Litros_leche, (SUM(c.grasa_primercontrol) + SUM(c.grasa_segundocontrol)) Grasa_total, a.rp, a.nombre_animal, t.nombre_tambo from Control c inner join Control_Animal ca on ca.id_control = c.id_control inner join Animal a on ca.rp = a.rp inner join Tambo t on a.id_tambo = t.id_tambo where t.id_tambo=@id_tambo and a.rp=@rp group by a.rp, a.nombre_animal, t.nombre_tambo", Conn);
 
                 cmdControlAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdControlAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
@@ -696,7 +693,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by ca.fecha_control desc", Conn);
+                SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.nombre_animal like ('%" + texto + "%') and a.id_tambo=@idtambo order by ca.fecha_control desc", Conn);
                 cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
                 SqlDataReader dr = cmdFiltro.ExecuteReader();
@@ -728,7 +725,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.caravana like ('%" + caravana + "%') and a.id_tambo=@idtambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto' order by ca.fecha_control desc", Conn);
+                SqlCommand cmdFiltro = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.caravana,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.caravana like ('%" + caravana + "%') and a.id_tambo=@idtambo order by ca.fecha_control desc", Conn);
                 cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
                 SqlDataReader dr = cmdFiltro.ExecuteReader();
@@ -822,7 +819,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+                SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo", Conn);
                 cmdControles.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 SqlDataReader drControles = cmdControles.ExecuteReader();
 
@@ -890,7 +887,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where ca.rp=@rp and a.habilitado='true' and a.estado_animal!='Vendido' and a.estado_animal!='Muerto'", Conn);
+                SqlCommand cmdControles = new SqlCommand("SELECT ca.fecha_control,ca.id_control,ca.rp,a.nombre_animal,a.nombre_animal,a.id_tambo,t.nombre_tambo,c.primer_control,c.segundo_control,c.grasa_primercontrol,c.grasa_segundocontrol from Control_Animal ca inner join Animal a on ca.rp=a.rp inner join Control c on ca.id_control=c.id_control inner join Tambo t on a.id_tambo=t.id_tambo where ca.rp=@rp", Conn);
                 cmdControles.Parameters.Add("rp", SqlDbType.Int).Value = rp;
                 SqlDataReader drControles = cmdControles.ExecuteReader();
 

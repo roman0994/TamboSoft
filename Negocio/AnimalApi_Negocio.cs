@@ -35,7 +35,7 @@ namespace Negocio
             
             foreach (var item in listado)
             {
-                if (!listadoBase.Exists(a => a.Rp == item.Rp))
+                if (!listadoBase.Exists(a => a.Caravana == item.Caravana && a.IdTambo == idtambo))
                 {
                     
                     var raza = razadatos.RecuperarUno(Convert.ToInt32( item.IdRaza));
@@ -57,7 +57,7 @@ namespace Negocio
             List<AnimalApi> listadoModificados = new List<AnimalApi>();
             foreach (var item in listado)
             {
-                if (listadoBase.Exists(a => a.Rp == item.Rp && a.Caravana == item.Caravana && (a.FechaNacimiento != item.FechaNacimiento || a.NombreAnimal != item.NombreAnimal || a.EstadoAnimal != item.EstadoAnimal)))
+                if (listadoBase.Exists(a => a.Caravana == item.Caravana && (a.FechaNacimiento != item.FechaNacimiento || a.NombreAnimal != item.NombreAnimal || a.EstadoAnimal != item.EstadoAnimal)))
                 {
                     //if (listadoBase.Exists(a => a.FechaNacimiento != item.FechaNacimiento ||  a.NombreAnimal != item.NombreAnimal || a.EstadoAnimal != item.EstadoAnimal  || a.Categoria != item.Categoria ))
                     //{

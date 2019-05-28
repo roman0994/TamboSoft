@@ -50,7 +50,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crvHistorialProduccion);
             this.Name = "vpHistorialProduccion";
-            this.Text = "Vista Previa Historial Producción";
+            this.Text = "Historial de Producción";
             this.Load += new System.EventHandler(this.vpHistorialProduccion_Load);
             this.ResumeLayout(false);
 

@@ -50,7 +50,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crvHistoriaClinica);
             this.Name = "vpHistoriaClinica";
-            this.Text = "Vista Previa Historia Clínica";
+            this.Text = "Historia Clínica";
             this.Load += new System.EventHandler(this.vpHistoriaClinica_Load);
             this.ResumeLayout(false);
 

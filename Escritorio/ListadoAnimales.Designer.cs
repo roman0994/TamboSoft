@@ -33,17 +33,6 @@
             this.tlpAnimales = new System.Windows.Forms.TableLayoutPanel();
             this.btnSalir = new System.Windows.Forms.Button();
             this.dgvAnimales = new System.Windows.Forms.DataGridView();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbRegresar = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
-            this.tsbImpresora = new System.Windows.Forms.ToolStripButton();
-            this.tsbSanidad = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.lblBuscar = new System.Windows.Forms.ToolStripLabel();
-            this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsbActualizar = new System.Windows.Forms.ToolStripButton();
             this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fecha_nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edad = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +51,17 @@
             this.id_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_tambo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.id_raza = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.tsbRegresar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbNuevo = new System.Windows.Forms.ToolStripButton();
+            this.tsbImpresora = new System.Windows.Forms.ToolStripButton();
+            this.tsbSanidad = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.lblBuscar = new System.Windows.Forms.ToolStripLabel();
+            this.tstxtBuscar = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsbActualizar = new System.Windows.Forms.ToolStripButton();
             this.toolStripContainer1.ContentPanel.SuspendLayout();
             this.toolStripContainer1.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer1.SuspendLayout();
@@ -152,108 +152,6 @@
             this.dgvAnimales.Size = new System.Drawing.Size(936, 580);
             this.dgvAnimales.TabIndex = 1;
             this.dgvAnimales.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAnimales_DataBindingComplete);
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbRegresar,
-            this.toolStripSeparator1,
-            this.tsbNuevo,
-            this.tsbImpresora,
-            this.tsbSanidad,
-            this.toolStripSeparator2,
-            this.lblBuscar,
-            this.tstxtBuscar,
-            this.toolStripSeparator3,
-            this.tsbActualizar});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(464, 26);
-            this.toolStrip1.TabIndex = 0;
-            // 
-            // tsbRegresar
-            // 
-            this.tsbRegresar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tsbRegresar.Image")));
-            this.tsbRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbRegresar.Name = "tsbRegresar";
-            this.tsbRegresar.Size = new System.Drawing.Size(23, 23);
-            this.tsbRegresar.Text = "Regresar";
-            this.tsbRegresar.Click += new System.EventHandler(this.tbsRegresar_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 26);
-            // 
-            // tsbNuevo
-            // 
-            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
-            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbNuevo.Name = "tsbNuevo";
-            this.tsbNuevo.Size = new System.Drawing.Size(23, 23);
-            this.tsbNuevo.Text = "Nuevo";
-            this.tsbNuevo.Click += new System.EventHandler(this.tbsNuevo_Click);
-            // 
-            // tsbImpresora
-            // 
-            this.tsbImpresora.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbImpresora.Image = ((System.Drawing.Image)(resources.GetObject("tsbImpresora.Image")));
-            this.tsbImpresora.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbImpresora.Name = "tsbImpresora";
-            this.tsbImpresora.Size = new System.Drawing.Size(23, 23);
-            this.tsbImpresora.Text = "Impresora";
-            this.tsbImpresora.Click += new System.EventHandler(this.tbsImpresora_Click);
-            // 
-            // tsbSanidad
-            // 
-            this.tsbSanidad.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.tsbSanidad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbSanidad.Image = ((System.Drawing.Image)(resources.GetObject("tsbSanidad.Image")));
-            this.tsbSanidad.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbSanidad.Name = "tsbSanidad";
-            this.tsbSanidad.Padding = new System.Windows.Forms.Padding(2);
-            this.tsbSanidad.Size = new System.Drawing.Size(84, 23);
-            this.tsbSanidad.Text = "Imp. Sanidad";
-            this.tsbSanidad.Click += new System.EventHandler(this.tsbSanidad_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 26);
-            // 
-            // lblBuscar
-            // 
-            this.lblBuscar.Name = "lblBuscar";
-            this.lblBuscar.Size = new System.Drawing.Size(116, 23);
-            this.lblBuscar.Text = "Buscar por caravana:";
-            // 
-            // tstxtBuscar
-            // 
-            this.tstxtBuscar.BackColor = System.Drawing.SystemColors.Window;
-            this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tstxtBuscar.Name = "tstxtBuscar";
-            this.tstxtBuscar.Size = new System.Drawing.Size(100, 26);
-            this.tstxtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstxtBuscar_KeyPress);
-            this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyUp);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 26);
-            // 
-            // tsbActualizar
-            // 
-            this.tsbActualizar.BackColor = System.Drawing.Color.LightSkyBlue;
-            this.tsbActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.tsbActualizar.Image = ((System.Drawing.Image)(resources.GetObject("tsbActualizar.Image")));
-            this.tsbActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbActualizar.Name = "tsbActualizar";
-            this.tsbActualizar.Size = new System.Drawing.Size(63, 23);
-            this.tsbActualizar.Text = "Actualizar";
-            this.tsbActualizar.Click += new System.EventHandler(this.tbsActualizar_Click);
             // 
             // caravana
             // 
@@ -398,6 +296,109 @@
             this.id_raza.ReadOnly = true;
             this.id_raza.Visible = false;
             this.id_raza.Width = 40;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tsbRegresar,
+            this.toolStripSeparator1,
+            this.tsbNuevo,
+            this.tsbImpresora,
+            this.tsbSanidad,
+            this.toolStripSeparator2,
+            this.lblBuscar,
+            this.tstxtBuscar,
+            this.toolStripSeparator3,
+            this.tsbActualizar});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(495, 26);
+            this.toolStrip1.TabIndex = 0;
+            // 
+            // tsbRegresar
+            // 
+            this.tsbRegresar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tsbRegresar.Image")));
+            this.tsbRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbRegresar.Name = "tsbRegresar";
+            this.tsbRegresar.Size = new System.Drawing.Size(23, 23);
+            this.tsbRegresar.Text = "Regresar";
+            this.tsbRegresar.Click += new System.EventHandler(this.tbsRegresar_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 26);
+            // 
+            // tsbNuevo
+            // 
+            this.tsbNuevo.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbNuevo.Image = ((System.Drawing.Image)(resources.GetObject("tsbNuevo.Image")));
+            this.tsbNuevo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbNuevo.Name = "tsbNuevo";
+            this.tsbNuevo.Size = new System.Drawing.Size(23, 23);
+            this.tsbNuevo.Text = "Nuevo";
+            this.tsbNuevo.Click += new System.EventHandler(this.tbsNuevo_Click);
+            // 
+            // tsbImpresora
+            // 
+            this.tsbImpresora.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbImpresora.Image = ((System.Drawing.Image)(resources.GetObject("tsbImpresora.Image")));
+            this.tsbImpresora.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbImpresora.Name = "tsbImpresora";
+            this.tsbImpresora.Size = new System.Drawing.Size(23, 23);
+            this.tsbImpresora.Text = "Impresora";
+            this.tsbImpresora.Click += new System.EventHandler(this.tbsImpresora_Click);
+            // 
+            // tsbSanidad
+            // 
+            this.tsbSanidad.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.tsbSanidad.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbSanidad.Image = ((System.Drawing.Image)(resources.GetObject("tsbSanidad.Image")));
+            this.tsbSanidad.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSanidad.Name = "tsbSanidad";
+            this.tsbSanidad.Padding = new System.Windows.Forms.Padding(2);
+            this.tsbSanidad.Size = new System.Drawing.Size(84, 23);
+            this.tsbSanidad.Text = "Imp. Sanidad";
+            this.tsbSanidad.Visible = false;
+            this.tsbSanidad.Click += new System.EventHandler(this.tsbSanidad_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 26);
+            // 
+            // lblBuscar
+            // 
+            this.lblBuscar.Name = "lblBuscar";
+            this.lblBuscar.Size = new System.Drawing.Size(116, 23);
+            this.lblBuscar.Text = "Buscar por caravana:";
+            // 
+            // tstxtBuscar
+            // 
+            this.tstxtBuscar.BackColor = System.Drawing.SystemColors.Window;
+            this.tstxtBuscar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tstxtBuscar.Name = "tstxtBuscar";
+            this.tstxtBuscar.Size = new System.Drawing.Size(100, 26);
+            this.tstxtBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstxtBuscar_KeyPress);
+            this.tstxtBuscar.KeyUp += new System.Windows.Forms.KeyEventHandler(this.toolStripTextBox1_KeyUp);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 26);
+            // 
+            // tsbActualizar
+            // 
+            this.tsbActualizar.BackColor = System.Drawing.Color.LightSkyBlue;
+            this.tsbActualizar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.tsbActualizar.Image = ((System.Drawing.Image)(resources.GetObject("tsbActualizar.Image")));
+            this.tsbActualizar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbActualizar.Name = "tsbActualizar";
+            this.tsbActualizar.Size = new System.Drawing.Size(63, 23);
+            this.tsbActualizar.Text = "Actualizar";
+            this.tsbActualizar.Click += new System.EventHandler(this.tbsActualizar_Click);
             // 
             // ListadoAnimales
             // 

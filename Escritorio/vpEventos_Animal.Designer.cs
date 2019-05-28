@@ -49,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crvEvento_Animal);
             this.Name = "vpEventos_Animal";
-            this.Text = "vpEventos_Animal";
+            this.Text = "Eventos por Animal";
             this.Load += new System.EventHandler(this.vpEventos_Animal_Load);
             this.ResumeLayout(false);
 

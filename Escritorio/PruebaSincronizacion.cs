@@ -169,7 +169,7 @@ namespace Escritorio
                 {
                     animal = item;
 
-                    if (listadoanimalesApi.Count == 0 || !listadoanimalesApi.Exists(x => x.Rp == animal.Rp))
+                    if (listadoanimalesApi.Count == 0 || !listadoanimalesApi.Exists(x => x.Caravana == animal.Caravana && x.IdTambo == animal.IdTambo))
                     {
                         Url = "http://localhost:8081/api/animales";
                         animal = await comApi.Post<string, AnimalApi>(Url, animal);
@@ -189,10 +189,10 @@ namespace Escritorio
                         Url = "http://localhost:8081/api/animales/" + animal.Rp;
                         await comApi.Put<string, AnimalApi>(Url, animal);
 
-                        if (!comApi.response.IsSuccessStatusCode)
-                        {
-                            MessageBox.Show(this, "No se pudo subir correctamente el registro " + item.NombreAnimal);
-                        }
+                        //if (!comApi.response.IsSuccessStatusCode)
+                        //{
+                        //    MessageBox.Show(this, "No se pudo subir correctamente el registro " + item.NombreAnimal);
+                        //}
                         if (comApi.response.StatusCode == System.Net.HttpStatusCode.NoContent)
                         {
                             

@@ -49,7 +49,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crv);
             this.Name = "vpReporteReproduccion";
-            this.Text = "vpReporteReproduccion";
+            this.Text = "Reporte de Reproducción";
             this.Load += new System.EventHandler(this.vpReporteReproduccion_Load);
             this.ResumeLayout(false);
 

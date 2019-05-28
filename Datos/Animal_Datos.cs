@@ -367,7 +367,9 @@ namespace Datos
                 this.AbrirConexion();
                 SqlCommand cmdAnimal = new SqlCommand("select * " +
                                                         " from dbo.vw_ListadoAnimales " +
-                                                        " where id_tambo=@id_tambo " +
+                                                        " where id_tambo=@id_tambo and" +
+                                                        " estado_animal!='vendido' and " +
+                                                        " estado_animal!='muerto' " +
                                                         " order by Cast(caravana as int) asc", Conn);
 
 
@@ -1459,7 +1461,7 @@ namespace Datos
                 Animal animal = new Animal();
                 this.AbrirConexion();
                 SqlCommand cmdAnimal = new SqlCommand(" select * from dbo.vw_ListadoAnimales " +
-                                                        "where rp =@rp and habilitado = 'true'", Conn);
+                                                        "where rp =@rp", Conn);
 
                 cmdAnimal.Parameters.Add("rp", SqlDbType.Int).Value = rp;
                 SqlDataReader dr = cmdAnimal.ExecuteReader();
@@ -1830,7 +1832,7 @@ namespace Datos
                 SqlCommand cmdAnimal = new SqlCommand("select * " +
                                             " from dbo.vw_ListadoAnimales " +
                                             " where id_tambo=@id_tambo and " +
-                                             "descripcion = 'Vaca' and habilitado='true' " +
+                                             "descripcion = 'Vaca' " +
                                             " order by Cast(caravana as int) asc", Conn);
                 //SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba," +
                 //                "   a.id_categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana " +

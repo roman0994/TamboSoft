@@ -194,7 +194,6 @@ namespace Datos
                                                                             " inner join Evento e on e.id_evento = ea.id_evento " +
                                                                             " inner join Tambo t on ed.id_tambo = t.id_tambo " +
                                                                             " where ed.id_tambo = @id_tambo and ed.estado_evento = 'true' " +
-                                                                            " and a.habilitado = 'true' " +
                                                                             " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo " +
                                                                             " order by ed.fecha_desc desc ", Conn);
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
@@ -256,7 +255,7 @@ namespace Datos
                                                                         "left join Inseminador i on ed.id_inseminador = i.id_inseminador " +
                                                                         "where ed.id_tambo = @id_tambo and ed.rp = @rp and " +
                                                                         " e.id_evento = @id_evento and ed.fecha_desc = @fecha " +
-                                                                        " and ed.estado_evento = 'true' and a.habilitado = 'true'", Conn);
+                                                                        " and ed.estado_evento = 'true' ", Conn);
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdEventosAnimalDescSubevento.Parameters.Add("rp", SqlDbType.Int).Value = rp;
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_evento", SqlDbType.Int).Value = id_evento;
@@ -318,7 +317,6 @@ namespace Datos
                                                        " left join Desc_Subevento d on e.id_desc=d.id_desc " +
                                                        " left join Subevento s on d.id_subevento=s.id_subevento " +
                                                        " where e.id_tambo = @id_tambo and e.estado_evento = 'true' " +
-                                                       " and a.habilitado='true' " +
                                                        " order by e.fecha_desc", Conn);
 
                 cmdEvento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
@@ -352,7 +350,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdEvento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,a.caravana,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.rp=@rp and e.estado_evento = 'true' and a.habilitado='true' order by e.fecha_desc", Conn);
+                SqlCommand cmdEvento = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,a.caravana,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.rp=@rp and e.estado_evento = 'true' order by e.fecha_desc", Conn);
 
                 cmdEvento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdEvento.Parameters.Add("rp", SqlDbType.Int).Value = rp;
@@ -387,7 +385,7 @@ namespace Datos
                 this.AbrirConexion();
                 DataTable dt = new DataTable();
                 //Partos
-                SqlCommand cmdPartos = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and d.id_subevento = 1 and a.habilitado='true' order by e.fecha_desc", Conn);
+                SqlCommand cmdPartos = new SqlCommand("SELECT e.id_desc_evento,e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento where e.id_tambo = @id_tambo and e.estado_evento = 'true' and ev.nombre_evento = 'Parto' and d.id_subevento = 1 order by e.fecha_desc", Conn);
                 cmdPartos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 SqlDataReader drPartos = cmdPartos.ExecuteReader();
                 dt.Load(drPartos);
@@ -460,7 +458,7 @@ namespace Datos
                                                                         "left join Inseminador i on ed.id_inseminador = i.id_inseminador " +
                                                                          " where ed.id_tambo = @id_tambo and ed.estado_evento = 'true' " +
                                                                         " and e.nombre_evento = 'Parto' and d.id_subevento = 1 " +
-                                                                        " and a.habilitado='true' order by ea.fecha_desc desc", Conn);
+                                                                        " order by ea.fecha_desc desc", Conn);
 
 
 
@@ -529,7 +527,7 @@ namespace Datos
                                                                         " where ed.id_tambo = @id_tambo and ed.estado_evento = 'true' " +
                                                                         " and e.nombre_evento = 'Parto' and d.id_subevento = 1 " +
                                                                         " and ed.fecha_desc>=@fechaDesde and ed.fecha_desc<=@fechaHasta " +
-                                                                        " and a.habilitado='true' order by ed.fecha_desc", Conn);
+                                                                        " order by ed.fecha_desc", Conn);
 
                 cmdEventosAnimalDescSubevento.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 cmdEventosAnimalDescSubevento.Parameters.Add("fechaDesde", SqlDbType.DateTime).Value = fechaDesde;
@@ -771,7 +769,7 @@ namespace Datos
                                                                                " inner join Tambo t on ed.id_tambo = t.id_tambo " +
                                                                               "where ed.id_tambo = @id_tambo and " +
                                                                                  "a.nombre_animal like('%" + texto + "%') " +
-                                                                                " and ed.estado_evento = 'true' and a.habilitado = 'true' " +
+                                                                                " and ed.estado_evento = 'true' " +
                                                                                " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo,ed.id_tambo,ed.estado_evento " +
                                                                                " order by ed.fecha_desc desc ";
 
@@ -834,7 +832,7 @@ namespace Datos
                                                                                " inner join Tambo t on ed.id_tambo = t.id_tambo " +
                                                                               "where ed.id_tambo = @id_tambo and " +
                                                                            "e.nombre_evento like('%" + texto + "%') " +
-                                                                          " and ed.estado_evento = 'true' and a.habilitado = 'true' " +
+                                                                          " and ed.estado_evento = 'true' " +
                                                                                " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo,ed.id_tambo,ed.estado_evento " +
                                                                                " order by ed.fecha_desc desc ";
 
@@ -897,7 +895,7 @@ namespace Datos
                                                                                " inner join Tambo t on ed.id_tambo = t.id_tambo " +
                                                                               "where ed.id_tambo = @id_tambo and " +
                                                                            "a.caravana like('%" + texto + "%') " +
-                                                                          " and ed.estado_evento = 'true' and a.habilitado = 'true' " +
+                                                                          " and ed.estado_evento = 'true' " +
                                                                                " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo,ed.id_tambo,ed.estado_evento " +
                                                                                " order by ed.fecha_desc desc ";
 
@@ -1070,7 +1068,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdEventos = new SqlCommand("SELECT e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento,e.id_inseminador,i.nombre_inseminador FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento left join Inseminador i on e.id_inseminador=i.id_inseminador where e.id_tambo = @id_tambo and e.estado_evento = 'true' and a.habilitado='true' order by e.fecha_desc", Conn);
+                SqlCommand cmdEventos = new SqlCommand("SELECT e.rp,e.id_evento,e.id_desc,e.fecha_desc,a.nombre_animal,ev.nombre_evento,s.nombre_subevento,d.descripcion,e.id_tambo,t.nombre_tambo,e.estado_evento,e.id_inseminador,i.nombre_inseminador FROM EventoAnimal_DescSubevento e left join Evento ev on e.id_evento=ev.id_evento left join Animal a on e.rp=a.rp left join Tambo t on e.id_tambo=t.id_tambo left join Desc_Subevento d on e.id_desc=d.id_desc left join Subevento s on d.id_subevento=s.id_subevento left join Inseminador i on e.id_inseminador=i.id_inseminador where e.id_tambo = @id_tambo and e.estado_evento = 'true' order by e.fecha_desc", Conn);
                 cmdEventos.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 SqlDataReader drEventos = cmdEventos.ExecuteReader();
 

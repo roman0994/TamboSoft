@@ -50,7 +50,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crvProduccion);
             this.Name = "vpProduccionPorAnimal";
-            this.Text = "Vista Previa Reporte de Producción por Animal";
+            this.Text = "Reporte de Producción por Animal";
             this.Load += new System.EventHandler(this.vpProduccionPorAnimal_Load);
             this.ResumeLayout(false);
 

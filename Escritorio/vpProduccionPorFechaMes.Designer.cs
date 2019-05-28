@@ -50,7 +50,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crvProduccionPorMes);
             this.Name = "vpProduccionPorFechaMes";
-            this.Text = "Vista Previa Producción Mensual";
+            this.Text = "Producción Mensual";
             this.Load += new System.EventHandler(this.vpProduccionPorFechaMes_Load);
             this.ResumeLayout(false);
 

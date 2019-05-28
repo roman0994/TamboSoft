@@ -120,7 +120,7 @@ namespace Escritorio
                 Program.UsuarioSesion = null;
                 LoginUsuario login = new LoginUsuario();
                 login.Show();
-                this.Hide();
+                this.Dispose();
             }
             catch (Exception ex)
             {

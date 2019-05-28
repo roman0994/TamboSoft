@@ -51,7 +51,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.crvInseminadores);
             this.Name = "vpListadoInseminadores";
-            this.Text = "Vista Previa Listado Inseminadores";
+            this.Text = "Listado Inseminadores";
             this.ResumeLayout(false);
 
         }
