@@ -137,7 +137,7 @@ namespace Datos
                                                             " inner join Evento e on e.id_evento = ea.id_evento " +
                                                             " inner join Tambo t on ed.id_tambo = t.id_tambo " +
                                                             " where ed.id_tambo = @id_tambo and ed.estado_evento = 'true' " +
-                                                            " and a.habilitado = 'true' and ed.rp=@rp " +
+                                                            " and ed.rp=@rp " +
                                                             " group by ed.rp, ed.id_evento, ed.fecha_desc, a.nombre_animal, a.caravana, e.nombre_evento, t.nombre_tambo " +
                                                             " order by ed.fecha_desc desc ", Conn);
 

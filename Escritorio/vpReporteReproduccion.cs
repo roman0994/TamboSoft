@@ -31,7 +31,7 @@ namespace Escritorio
         {
             try
             {
-                rptReporteReproduccionPorFechas reporte = new rptReporteReproduccionPorFechas();
+                rptReporteReproduccionPorFechas2 reporte = new rptReporteReproduccionPorFechas2();
 
                 reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
                 reporte.SetParameterValue("@FechaDesde", Fecha_Desde);

@@ -156,7 +156,7 @@ namespace Escritorio
 
                 AnimalApi_Negocio an = new AnimalApi_Negocio();
                 AnimalApi animal = new AnimalApi();
-                List<AnimalApi> listaAnimalesBase = an.RecuperarTodos(); //La lista se llena correctamente
+                List<AnimalApi> listaAnimalesBase = an.RecuperarPorTambo(Principal.Tambo.Id_tambo); //La lista se llena correctamente
                 List<AnimalApi> listadoanimalesApi = await TraerListadoAnimalesApi();
                 List<AnimalApi> listaResultado = new List<AnimalApi>();
                 List<AnimalApi> listaModificados = new List<AnimalApi>();
@@ -169,7 +169,22 @@ namespace Escritorio
                 {
                     animal = item;
 
-                    if (listadoanimalesApi.Count == 0 || !listadoanimalesApi.Exists(x => x.Caravana == animal.Caravana && x.IdTambo == animal.IdTambo))
+                    if (listadoanimalesApi.Count == 0)
+                    {
+                        Url = "http://localhost:8081/api/animales";
+                        animal = await comApi.Post<string, AnimalApi>(Url, animal);
+
+                        if (!comApi.response.IsSuccessStatusCode)
+                        {
+                            MessageBox.Show(this, "No se pudo subir correctamente el registro " + item.NombreAnimal);
+                        }
+                        else
+                        {
+                            listaNuevos.Add(animal);
+                            listaResultado.Add(animal);
+                        }
+                    }
+                    else if (!listadoanimalesApi.Exists(x => x.Caravana == animal.Caravana && x.IdTambo == animal.IdTambo))
                     {
                         Url = "http://localhost:8081/api/animales";
                         animal = await comApi.Post<string, AnimalApi>(Url, animal);
@@ -186,20 +201,25 @@ namespace Escritorio
                     }
                     else
                     {
-                        Url = "http://localhost:8081/api/animales/" + animal.Rp;
-                        await comApi.Put<string, AnimalApi>(Url, animal);
-
-                        //if (!comApi.response.IsSuccessStatusCode)
-                        //{
-                        //    MessageBox.Show(this, "No se pudo subir correctamente el registro " + item.NombreAnimal);
-                        //}
-                        if (comApi.response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                        if (listadoanimalesApi.Exists(a => a.Caravana == animal.Caravana && (a.FechaNacimiento != animal.FechaNacimiento || a.NombreAnimal != animal.NombreAnimal || a.EstadoAnimal != animal.EstadoAnimal)))
                         {
-                            
-                            listaResultado.Add(animal);
-                            listaModificados.Add(animal);
+                            Url = "http://localhost:8081/api/animales/" + animal.Rp;
+                            await comApi.Put<string, AnimalApi>(Url, animal);
+
+                            if (!comApi.response.IsSuccessStatusCode)
+                            {
+                                MessageBox.Show(this, "No se pudo subir correctamente el registro " + item.NombreAnimal);
+                            }
+                            if (comApi.response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                            {
+
+                                listaResultado.Add(animal);
+                                listaModificados.Add(animal);
+                            }
+                           
                         }
-                        
+                       
+
                     }
 
                 }

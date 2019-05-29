@@ -228,7 +228,7 @@ namespace Datos
                 this.AbrirConexion();
                 SqlCommand cmdAnimal = new SqlCommand("select * " +
                                                      " from dbo.vw_ListadoAnimales " +
-                                                     " where id_tambo=@id_tambo and habilitado = 'true' and estado_animal!='Vendido' and estado_animal!='Muerto' " +
+                                                     " where id_tambo=@id_tambo " +
                                                      " order by Cast(caravana as int) asc", Conn);
 
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
@@ -1605,8 +1605,7 @@ namespace Datos
                                                      " inner join Raza r on a.id_raza=r.id_raza " +
                                                      " inner join Tambo t on a.id_tambo=t.id_tambo " +
                                                      " where a.nombre_animal like ('%" + texto + "%') " +
-                                                     " and a.id_tambo=@idtambo and a.habilitado='true' " +
-                                                     " and a.estado_animal!='Vendido' and a.estado_animal != 'Muerto' " +
+                                                     " and a.id_tambo=@idtambo " +
                                                      " order by cast(a.caravana as int) asc", Conn);
 
                 cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
@@ -1682,8 +1681,7 @@ namespace Datos
                                                      " inner join Raza r on a.id_raza=r.id_raza " +
                                                      " inner join Tambo t on a.id_tambo=t.id_tambo " +
                                                      " where estado_animal like ('%" + texto + "%') " +
-                                                     " and a.id_tambo=@idtambo and a.habilitado='true' " +
-                                                     " and a.estado_animal!='Vendido' " +
+                                                     " and a.id_tambo=@idtambo " +
                                                      " order by cast(a.caravana as int) asc", Conn);
                 cmdFiltro.Parameters.Add("idtambo", SqlDbType.Int).Value = idtambo;
 
@@ -1873,7 +1871,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.id_categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo and a.habilitado='true'", Conn);
+                SqlCommand cmdAnimal = new SqlCommand("SELECT a.rp,a.fecha_nacimiento,a.edad,a.foto,a.nombre_animal,a.estado_animal,a.hba,a.id_categoria,a.rp_madre,a.rp_padre,a.hba_madre,a.hba_padre,a.id_tambo,a.id_raza,r.nombre_raza,t.nombre_tambo,a.habilitado,a.caravana FROM Animal a inner join Raza r on a.id_raza=r.id_raza inner join Tambo t on a.id_tambo=t.id_tambo where a.id_tambo=@id_tambo", Conn);
                 cmdAnimal.Parameters.Add("id_tambo", SqlDbType.Int).Value = id_tambo;
                 SqlDataReader drAnimal = cmdAnimal.ExecuteReader();
 

@@ -39,7 +39,7 @@ namespace Escritorio
                 //reporte.SetDataSource(controlAnimalNegocio.ProduccionPorFiltroMesYAnimal(idtambo,mes,año, rp));
                 //crvProduccionPorMes.ReportSource = reporte;
                 //crvProduccionPorMes.Refresh();
-                RankingProduccionMesAnio reporte = new RankingProduccionMesAnio();
+                RankingProduccionMesAnio2 reporte = new RankingProduccionMesAnio2();
                 reporte.SetParameterValue("@id_tambo", Principal.Tambo.Id_tambo);
                 reporte.SetParameterValue("@mes", mes);
                 reporte.SetParameterValue("@anio", año);

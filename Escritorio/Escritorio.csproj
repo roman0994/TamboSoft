@@ -357,6 +357,12 @@
     <Compile Include="PruebaSincronizacion.Designer.cs">
       <DependentUpon>PruebaSincronizacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="RankingProduccionMesAnio2.cs">
+      <DependentUpon>RankingProduccionMesAnio2.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="RankingProduccionMesAnio.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -494,6 +500,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>rptProduccionPorFechaMes.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="rptReporteReproduccionPorFechas2.cs">
+      <DependentUpon>rptReporteReproduccionPorFechas2.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="rptReporteReproduccionPorFechas.cs">
       <AutoGen>True</AutoGen>
@@ -714,9 +726,13 @@
     <EmbeddedResource Include="PruebaSincronizacion.resx">
       <DependentUpon>PruebaSincronizacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="RankingProduccionMesAnio2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>RankingProduccionMesAnio2.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="RankingProduccionMesAnio.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>RankingProduccionMesAnio.cs</LastGenOutput>
+      <LastGenOutput>RankingProduccionMesAnio1.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="RecuperarContraseña.resx">
       <DependentUpon>RecuperarContraseña.cs</DependentUpon>
@@ -799,6 +815,10 @@
     <EmbeddedResource Include="rptProduccionPorFechaMes.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptProduccionPorFechaMes.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="rptReporteReproduccionPorFechas2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptReporteReproduccionPorFechas2.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="rptReporteReproduccionPorFechas.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
