@@ -178,7 +178,7 @@ namespace Datos
                     " nombre_animal=@nombre_animal,estado_animal=@estado_animal,hba=@hba," +
                     " id_categoria=@id_categoria,rp_madre=@rp_madre,rp_padre=@rp_padre,hba_madre=@hba_madre," +
                     " hba_padre=@hba_padre,id_tambo=@id_tambo,id_raza=@id_raza," +
-                    " habilitado=@habilitado,caravana=@caravana where rp = @rp", Conn);
+                    " habilitado=@habilitado,caravana=@caravana where caravana = @caravana and id_tambo=@id_tambo", Conn);
                 cmdActualizar.Parameters.Add("rp", SqlDbType.Int).Value = animal.Rp;
                 cmdActualizar.Parameters.Add("fecha_nacimiento", SqlDbType.DateTime).Value = animal.FechaNacimiento;
                 //cmdActualizar.Parameters.Add("edad", SqlDbType.Int).Value = animal.Edad; ;

@@ -47,7 +47,7 @@ namespace Escritorio
                 listaInexistentes = animalapinegocio.Comparar_ApiBase(listado, Principal.Tambo.Id_tambo);
                 listaModificados = animalapinegocio.CompararModif_ApiBase(listado, Principal.Tambo.Id_tambo);
 
-                if (listaInexistentes.Count > 0)
+                if (listaInexistentes.Count > 0 && listaModificados.Count == 0)
                 {
                     dataGridView1.DataSource = listaInexistentes;
                     MessageBox.Show("Se obtuvieron registros nuevos", "Registros nuevos", MessageBoxButtons.OK);
@@ -66,7 +66,7 @@ namespace Escritorio
                     //}
                    
                 }
-                if (listaModificados.Count > 0)
+                if (listaModificados.Count > 0 && listaInexistentes.Count == 0)
                 {
                     //DialogResult dialogResult2 = MessageBox.Show(this, "¿Desea actualizar los registros modificados?", "Guardar", MessageBoxButtons.YesNo);
                     dataGridView1.DataSource = listaModificados;
@@ -79,6 +79,14 @@ namespace Escritorio
                     //    animalapinegocio.Actualizar(item);
                     //}
                     //MessageBox.Show("Los animales fueron actualizados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                }
+                if (listaModificados.Count > 0 && listaInexistentes.Count > 0)
+                {
+                    dataGridView1.DataSource = listaInexistentes;
+                    MessageBox.Show("Se obtuvieron registros nuevos", "Registros nuevos", MessageBoxButtons.OK);
+                    btnGuardar.Text = "Guardar";
+                    btnGuardar.Visible = true;
 
                 }
                 if (listaInexistentes.Count == 0 && listaModificados.Count == 0)
@@ -299,6 +307,21 @@ namespace Escritorio
                 }
                 MessageBox.Show("Los animales fueron actualizados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 btnGuardar.Visible = false;
+
+            }
+            else if (btnGuardar.Text == "Guardar")
+            {
+                foreach (var item in listaInexistentes)
+                {
+                    animalapinegocio.Insertar(item);
+
+                }
+                MessageBox.Show("Los animales fueron guardados correctamente", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                MessageBox.Show("Se obtuvieron registros existentes que sufrieron modificaciones", "Actualizacion de registros", MessageBoxButtons.OK);
+                dataGridView1.DataSource = listaModificados;
+                btnGuardar.Text = "Guardar Modificados";
+                btnGuardar.Visible = true;
 
             }
         }

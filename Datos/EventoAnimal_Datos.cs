@@ -46,7 +46,7 @@ namespace Datos
             try
             {
                 this.AbrirConexion();
-                SqlCommand cmdEventos = new SqlCommand("SELECT e.rp,e.id_evento,e.fecha_desc FROM Evento_Animal e inner join Animal a on a.rp=e.rp where e.rp=@rp", Conn);
+                SqlCommand cmdEventos = new SqlCommand("SELECT e.rp,e.id_evento,e.fecha_desc FROM Evento_Animal e inner join Animal a on a.rp=e.rp where e.rp=@rp and a.habilitado = 'true'", Conn);
                 cmdEventos.Parameters.Add("rp", SqlDbType.Int).Value = rp;
                 SqlDataReader drEventos = cmdEventos.ExecuteReader();
 

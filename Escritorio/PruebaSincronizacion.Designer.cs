@@ -30,16 +30,16 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnSincronizar = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.lbSincronizacion = new System.Windows.Forms.Label();
-            this.btnSubir = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.Rp = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.caravana = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre_animal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_Nacimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado_actual = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnSincronizar = new System.Windows.Forms.Button();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lbSincronizacion = new System.Windows.Forms.Label();
+            this.btnSubir = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -87,6 +87,47 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(544, 383);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // Rp
+            // 
+            this.Rp.DataPropertyName = "rp";
+            this.Rp.Frozen = true;
+            this.Rp.HeaderText = "rp";
+            this.Rp.Name = "Rp";
+            this.Rp.ReadOnly = true;
+            this.Rp.Visible = false;
+            // 
+            // caravana
+            // 
+            this.caravana.DataPropertyName = "caravana";
+            this.caravana.Frozen = true;
+            this.caravana.HeaderText = "Caravana";
+            this.caravana.Name = "caravana";
+            this.caravana.ReadOnly = true;
+            // 
+            // nombre_animal
+            // 
+            this.nombre_animal.DataPropertyName = "nombreanimal";
+            this.nombre_animal.Frozen = true;
+            this.nombre_animal.HeaderText = "Nombre";
+            this.nombre_animal.Name = "nombre_animal";
+            this.nombre_animal.ReadOnly = true;
+            // 
+            // Fecha_Nacimiento
+            // 
+            this.Fecha_Nacimiento.DataPropertyName = "fechanacimiento";
+            this.Fecha_Nacimiento.Frozen = true;
+            this.Fecha_Nacimiento.HeaderText = "Fecha Nacimiento";
+            this.Fecha_Nacimiento.Name = "Fecha_Nacimiento";
+            this.Fecha_Nacimiento.ReadOnly = true;
+            // 
+            // estado_actual
+            // 
+            this.estado_actual.DataPropertyName = "estadoanimal";
+            this.estado_actual.Frozen = true;
+            this.estado_actual.HeaderText = "Estado Actual";
+            this.estado_actual.Name = "estado_actual";
+            this.estado_actual.ReadOnly = true;
             // 
             // btnSincronizar
             // 
@@ -136,47 +177,6 @@
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Visible = false;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
-            // 
-            // Rp
-            // 
-            this.Rp.DataPropertyName = "rp";
-            this.Rp.Frozen = true;
-            this.Rp.HeaderText = "rp";
-            this.Rp.Name = "Rp";
-            this.Rp.ReadOnly = true;
-            this.Rp.Visible = false;
-            // 
-            // caravana
-            // 
-            this.caravana.DataPropertyName = "caravana";
-            this.caravana.Frozen = true;
-            this.caravana.HeaderText = "Caravana";
-            this.caravana.Name = "caravana";
-            this.caravana.ReadOnly = true;
-            // 
-            // nombre_animal
-            // 
-            this.nombre_animal.DataPropertyName = "nombreanimal";
-            this.nombre_animal.Frozen = true;
-            this.nombre_animal.HeaderText = "Nombre";
-            this.nombre_animal.Name = "nombre_animal";
-            this.nombre_animal.ReadOnly = true;
-            // 
-            // Fecha_Nacimiento
-            // 
-            this.Fecha_Nacimiento.DataPropertyName = "fechanacimiento";
-            this.Fecha_Nacimiento.Frozen = true;
-            this.Fecha_Nacimiento.HeaderText = "Fecha Nacimiento";
-            this.Fecha_Nacimiento.Name = "Fecha_Nacimiento";
-            this.Fecha_Nacimiento.ReadOnly = true;
-            // 
-            // estado_actual
-            // 
-            this.estado_actual.DataPropertyName = "estadoanimal";
-            this.estado_actual.Frozen = true;
-            this.estado_actual.HeaderText = "Estado Actual";
-            this.estado_actual.Name = "estado_actual";
-            this.estado_actual.ReadOnly = true;
             // 
             // PruebaSincronizacion
             // 
