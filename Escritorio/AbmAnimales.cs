@@ -83,16 +83,16 @@ namespace Escritorio
                     Animal.Estado_animal = Principal.EstadoAnimales.Vivo.ToString();
                 }
 
-                if (cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Muerto.ToString() || cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Vendido.ToString())
-                {
-                    Animal.Habilitado = false;
-                }
-                else
-                {
-                    Animal.Habilitado = true;
-                }
+                //if (cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Muerto.ToString() || cbEstado.SelectedItem.ToString() == Principal.EstadoAnimales.Vendido.ToString())
+                //{
+                //    Animal.Habilitado = false;
+                //}
+                //else
+                //{
+                //    Animal.Habilitado = true;
+                //}
 
-
+                Animal.Habilitado = true;
                 Animal.Fecha_nacimiento = dtpFechaNacimiento.Value;
 
                 Animal.Nombre_animal = txtNombre.Text;
@@ -268,7 +268,7 @@ namespace Escritorio
                 ultimacaravana = animalnegocio.ObtenerUltimaCaravana(Principal.Tambo.Id_tambo);
 
                 lbUltCaravana.Text = "La ultima caravana utilizada en el tambo es: " + ultimacaravana;
-                if (ModoForm == ModoForm.ALTA)
+                if (ModoForm == ModoForm.ALTA || ModoForm == ModoForm.CRIA)
                 {
                     txtCaravana.Text = (ultimacaravana + 1).ToString();
                 }

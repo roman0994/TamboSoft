@@ -368,7 +368,7 @@ namespace Datos
                 SqlCommand cmdAnimal = new SqlCommand("select * " +
                                                         " from dbo.vw_ListadoAnimales " +
                                                         " where id_tambo=@id_tambo and" +
-                                                        " habilitado = 'true' and " +
+                                                        " habilitado = 'true'" +
                                                         " order by Cast(caravana as int) asc", Conn);
 
 

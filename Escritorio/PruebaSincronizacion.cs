@@ -136,7 +136,11 @@ namespace Escritorio
 
                 var Url = "http://localhost:8081/api/animales";
                 listado = await comApi.Get<List<AnimalApi>>(Url);
-                listado = listado.Where(x => x.IdTambo == Principal.Tambo.Id_tambo).ToList();
+                if (listado.Count > 0)
+                {
+                    listado = listado.Where(x => x.IdTambo == Principal.Tambo.Id_tambo).ToList();
+                }
+                
             }
             catch (Exception ex)
             {

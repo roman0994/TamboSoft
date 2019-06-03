@@ -76,7 +76,7 @@
             // toolStripContainer1.ContentPanel
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.tlpAnimales);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(942, 615);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(942, 616);
             this.toolStripContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 0);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -102,13 +102,13 @@
             this.tlpAnimales.RowCount = 2;
             this.tlpAnimales.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlpAnimales.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tlpAnimales.Size = new System.Drawing.Size(942, 615);
+            this.tlpAnimales.Size = new System.Drawing.Size(942, 616);
             this.tlpAnimales.TabIndex = 0;
             // 
             // btnSalir
             // 
             this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnSalir.Location = new System.Drawing.Point(864, 589);
+            this.btnSalir.Location = new System.Drawing.Point(864, 590);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(75, 23);
             this.btnSalir.TabIndex = 0;
@@ -149,7 +149,7 @@
             this.dgvAnimales.Name = "dgvAnimales";
             this.dgvAnimales.ReadOnly = true;
             this.dgvAnimales.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAnimales.Size = new System.Drawing.Size(936, 580);
+            this.dgvAnimales.Size = new System.Drawing.Size(936, 581);
             this.dgvAnimales.TabIndex = 1;
             this.dgvAnimales.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvAnimales_DataBindingComplete);
             // 
@@ -313,7 +313,7 @@
             this.tsbActualizar});
             this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(495, 26);
+            this.toolStrip1.Size = new System.Drawing.Size(380, 25);
             this.toolStrip1.TabIndex = 0;
             // 
             // tsbRegresar
@@ -322,7 +322,7 @@
             this.tsbRegresar.Image = ((System.Drawing.Image)(resources.GetObject("tsbRegresar.Image")));
             this.tsbRegresar.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbRegresar.Name = "tsbRegresar";
-            this.tsbRegresar.Size = new System.Drawing.Size(23, 23);
+            this.tsbRegresar.Size = new System.Drawing.Size(23, 22);
             this.tsbRegresar.Text = "Regresar";
             this.tsbRegresar.Click += new System.EventHandler(this.tbsRegresar_Click);
             // 

@@ -184,7 +184,7 @@ namespace Escritorio
 
                     if (estado == Principal.EstadoAnimales.Muerto.ToString() || estado == Principal.EstadoAnimales.Vendido.ToString())
                     {
-                        Animal = null;
+                        Animal = new Animal();
                         MessageBox.Show("Debe seleccionar un animal que no haya sido vendido o que esté muerto", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
                     else
@@ -195,7 +195,7 @@ namespace Escritorio
                 }
                 else
                 {
-                    Animal = null;
+                    Animal = new Animal();
                 }
             }
             catch (Exception)
